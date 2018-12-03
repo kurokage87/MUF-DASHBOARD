@@ -1,0 +1,2678 @@
+<!-- <div *ngIf="!f_monthly_usage && !f_application_usage && !f_menu_usage && !f_job_usage" class="loader">
+  <span class="spinner spinner-lg">
+    Loading...
+  </span>
+</div> -->
+<div class="content-container">
+  <main class="content-area">
+
+    <h1 class="center">MONTHLY COLLECTION DASHBOARD</h1>
+
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
+            <h4 class="card-title center">% NCL</h4>
+            <p class="card-text" style="width: 25% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="type_gauce1" [dataFormat]="dataFormat"
+              [dataSource]="dataSourceGauge">
+            </fusioncharts>
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="cursor-pointer">
+            <clr-icon shape="refresh"></clr-icon>
+            Reload
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-block">
+          <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
+          <h4 class="card-title center">NCL/10<sup>6</sup></h4>
+          <p class="card-text" style="width: 25% !important;">
+            <fusioncharts [width]="width" [height]="height" [type]="type_gauce1" [dataFormat]="dataFormat"
+            [dataSource]="dataSourceGauge1">
+          </fusioncharts>
+        </p>
+      </div>
+      <div class="card-footer">
+        <div class="cursor-pointer">
+          <clr-icon shape="refresh"></clr-icon>
+          Reload
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-block">
+        <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
+        <h4 class="card-title center">LOR/10<sup>6</sup></h4>
+        <p class="card-text" style="width: 25% !important;">
+          <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat"
+          [dataSource]="dataSourceGauge2">
+        </fusioncharts>
+      </p>
+    </div>
+    <div class="card-footer">
+      <div class="cursor-pointer">
+        <clr-icon shape="refresh"></clr-icon>
+        Reload
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-block">
+      <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
+      <h4 class="card-title center">WO/10<sup>6</sup></h4>
+      <p class="card-text" style="width: 25% !important;">
+        <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat"
+        [dataSource]="dataSourceGauge3">
+      </fusioncharts>
+    </p>
+  </div>
+  <div class="card-footer">
+    <div class="cursor-pointer">
+      <clr-icon shape="refresh"></clr-icon>
+      Reload
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="col-md-4">
+  <div class="card">
+    <div class="card-block">
+      <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
+      <h4 class="card-title center">NCI NET/10<sup>6</sup></h4>
+      <p class="card-text" style="width: 25% !important;">
+        <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat"
+        [dataSource]="dataSourceGauge4">
+      </fusioncharts>
+    </p>
+  </div>
+  <div class="card-footer">
+    <div class="cursor-pointer">
+      <clr-icon shape="refresh"></clr-icon>
+      Reload
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-block">
+        <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
+        <h4 class="card-title center">COLLECTION EFFECTIVENESS PERFORMANCE</h4>
+        <p class="card-text" style="width: 100% !important;">
+          <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource">
+          </fusioncharts>
+        </p>
+
+        <clr-datagrid class="grid-font">
+          <clr-dg-column></clr-dg-column>
+          <clr-dg-column>Jul-13</clr-dg-column>
+          <clr-dg-column>Aug-13</clr-dg-column>
+          <clr-dg-column>Sep-13</clr-dg-column>
+          <clr-dg-column>Okt-13</clr-dg-column>
+          <clr-dg-column>Nov-13</clr-dg-column>
+          <clr-dg-column>Des-13</clr-dg-column>
+          <clr-dg-column>Jan-14</clr-dg-column>
+          <clr-dg-column>Feb-14</clr-dg-column>
+          <clr-dg-column>Mar-14</clr-dg-column>
+          <clr-dg-column>Apr-14</clr-dg-column>
+          <clr-dg-column>May-14</clr-dg-column>
+          <clr-dg-column>Jun-14</clr-dg-column>
+          <clr-dg-column>Jul-14</clr-dg-column>
+
+          <clr-dg-row>
+            <clr-dg-cell>% Stay</clr-dg-cell>
+            <clr-dg-cell>78.74%</clr-dg-cell>
+            <clr-dg-cell>78.54%</clr-dg-cell>
+            <clr-dg-cell>78.49%</clr-dg-cell>
+            <clr-dg-cell>79.58%</clr-dg-cell>
+            <clr-dg-cell>79.99%</clr-dg-cell>
+            <clr-dg-cell>79.96%</clr-dg-cell>
+            <clr-dg-cell>79.92%</clr-dg-cell>
+            <clr-dg-cell>78.82%</clr-dg-cell>
+            <clr-dg-cell>78.35%</clr-dg-cell>
+            <clr-dg-cell>78.95%</clr-dg-cell>
+            <clr-dg-cell>78.84%</clr-dg-cell>
+            <clr-dg-cell>78.35%</clr-dg-cell>
+            <clr-dg-cell>76.27%</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>% Back To Current</clr-dg-cell>
+            <clr-dg-cell>5.34%</clr-dg-cell>
+            <clr-dg-cell>4.4%</clr-dg-cell>
+            <clr-dg-cell>6.25%</clr-dg-cell>
+            <clr-dg-cell>4.63%</clr-dg-cell>
+            <clr-dg-cell>5.42%</clr-dg-cell>
+            <clr-dg-cell>4.65%</clr-dg-cell>
+            <clr-dg-cell>4.31%</clr-dg-cell>
+            <clr-dg-cell>5.87%</clr-dg-cell>
+            <clr-dg-cell>4.66%</clr-dg-cell>
+            <clr-dg-cell>5.58%</clr-dg-cell>
+            <clr-dg-cell>4.4%</clr-dg-cell>
+            <clr-dg-cell>5.05%</clr-dg-cell>
+            <clr-dg-cell>3.88%</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>% Lunas</clr-dg-cell>
+            <clr-dg-cell>4.22%</clr-dg-cell>
+            <clr-dg-cell>3.49%</clr-dg-cell>
+            <clr-dg-cell>3.94%</clr-dg-cell>
+            <clr-dg-cell>3.81%</clr-dg-cell>
+            <clr-dg-cell>3.76%</clr-dg-cell>
+            <clr-dg-cell>3.97%</clr-dg-cell>
+            <clr-dg-cell>3.71%</clr-dg-cell>
+            <clr-dg-cell>3.77%</clr-dg-cell>
+            <clr-dg-cell>4.05%</clr-dg-cell>
+            <clr-dg-cell>4.15%</clr-dg-cell>
+            <clr-dg-cell>4.26%</clr-dg-cell>
+            <clr-dg-cell>4.4%</clr-dg-cell>
+            <clr-dg-cell>3.84%</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>% Repo</clr-dg-cell>
+            <clr-dg-cell>0.34%</clr-dg-cell>
+            <clr-dg-cell>0.32%</clr-dg-cell>
+            <clr-dg-cell>0.37%</clr-dg-cell>
+            <clr-dg-cell>0.34%</clr-dg-cell>
+            <clr-dg-cell>0.32%</clr-dg-cell>
+            <clr-dg-cell>0.32%</clr-dg-cell>
+            <clr-dg-cell>0.31%</clr-dg-cell>
+            <clr-dg-cell>0.32%</clr-dg-cell>
+            <clr-dg-cell>0.37%</clr-dg-cell>
+            <clr-dg-cell>0.34%</clr-dg-cell>
+            <clr-dg-cell>0.37%</clr-dg-cell>
+            <clr-dg-cell>0.37%</clr-dg-cell>
+            <clr-dg-cell>0.32%</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>% Roll Down</clr-dg-cell>
+            <clr-dg-cell>0.56%</clr-dg-cell>
+            <clr-dg-cell>0.47%</clr-dg-cell>
+            <clr-dg-cell>0.68%</clr-dg-cell>
+            <clr-dg-cell>0.55%</clr-dg-cell>
+            <clr-dg-cell>0.49%</clr-dg-cell>
+            <clr-dg-cell>0.5%</clr-dg-cell>
+            <clr-dg-cell>0.4%</clr-dg-cell>
+            <clr-dg-cell>0.49%</clr-dg-cell>
+            <clr-dg-cell>0.61%</clr-dg-cell>
+            <clr-dg-cell>0.49%</clr-dg-cell>
+            <clr-dg-cell>0.52%</clr-dg-cell>
+            <clr-dg-cell>0.48%</clr-dg-cell>
+            <clr-dg-cell>0.52%</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>% Roll Up</clr-dg-cell>
+            <clr-dg-cell>10.44%</clr-dg-cell>
+            <clr-dg-cell>12.24%</clr-dg-cell>
+            <clr-dg-cell>9.94%</clr-dg-cell>
+            <clr-dg-cell>10.75%</clr-dg-cell>
+            <clr-dg-cell>9.7%</clr-dg-cell>
+            <clr-dg-cell>10.2%</clr-dg-cell>
+            <clr-dg-cell>10.97%</clr-dg-cell>
+            <clr-dg-cell>10.45%</clr-dg-cell>
+            <clr-dg-cell>11.63%</clr-dg-cell>
+            <clr-dg-cell>11.3%</clr-dg-cell>
+            <clr-dg-cell>11.03%</clr-dg-cell>
+            <clr-dg-cell>14.82%</clr-dg-cell>
+            <clr-dg-cell>14.82%</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>% WO</clr-dg-cell>
+            <clr-dg-cell>0.35%</clr-dg-cell>
+            <clr-dg-cell>0.33%</clr-dg-cell>
+            <clr-dg-cell>0.33%</clr-dg-cell>
+            <clr-dg-cell>0.34%</clr-dg-cell>
+            <clr-dg-cell>0.32%</clr-dg-cell>
+            <clr-dg-cell>0.41%</clr-dg-cell>
+            <clr-dg-cell>0.37%</clr-dg-cell>
+            <clr-dg-cell>0.29%</clr-dg-cell>
+            <clr-dg-cell>0.32%</clr-dg-cell>
+            <clr-dg-cell>0.31%</clr-dg-cell>
+            <clr-dg-cell>0.31%</clr-dg-cell>
+            <clr-dg-cell>0.31%</clr-dg-cell>
+            <clr-dg-cell>0.35%</clr-dg-cell>
+          </clr-dg-row>
+
+          <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+        </clr-datagrid>
+        <br>
+        <br>
+        <br>
+      </div>
+      <div class="card-footer">
+        <div class="cursor-pointer">
+          <clr-icon shape="refresh"></clr-icon>
+          Reload
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-block">
+        <div class="progress top loop" max="100"><progress></progress></div>
+        <h4 class="card-title center">COLLECTION EFFECTIVENESS PERFORMANCE</h4>
+        <p class="card-text" style="width: 100% !important;">
+          <fusioncharts [width]="width" [height]="height" [type]="type_bar" [dataFormat]="dataFormat" [dataSource]="dataSourceBar"
+          style="display: inline-block !important;">
+        </fusioncharts>
+      </p>
+      <clr-datagrid class="grid-font">
+        <clr-dg-column></clr-dg-column>
+        <clr-dg-column>31/07/2013</clr-dg-column>
+        <clr-dg-column>31/08/2013</clr-dg-column>
+        <clr-dg-column>31/09/2013</clr-dg-column>
+        <clr-dg-column>31/10/2013</clr-dg-column>
+        <clr-dg-column>31/11/2013</clr-dg-column>
+        <clr-dg-column>31/12/2013</clr-dg-column>
+        <clr-dg-column>31/01/2014</clr-dg-column>
+        <clr-dg-column>31/02/2014</clr-dg-column>
+        <clr-dg-column>31/03/2014</clr-dg-column>
+        <clr-dg-column>31/04/2014</clr-dg-column>
+        <clr-dg-column>31/05/2014</clr-dg-column>
+        <clr-dg-column>31/06/2014</clr-dg-column>
+        <clr-dg-column>31/07/2014</clr-dg-column>
+
+        <clr-dg-row>
+          <clr-dg-cell>Back TO Current</clr-dg-cell>
+          <clr-dg-cell>197441</clr-dg-cell>
+          <clr-dg-cell>163748</clr-dg-cell>
+          <clr-dg-cell>233020</clr-dg-cell>
+          <clr-dg-cell>171986</clr-dg-cell>
+          <clr-dg-cell>200883</clr-dg-cell>
+          <clr-dg-cell>171557</clr-dg-cell>
+          <clr-dg-cell>158964</clr-dg-cell>
+          <clr-dg-cell>215329</clr-dg-cell>
+          <clr-dg-cell>170109</clr-dg-cell>
+          <clr-dg-cell>202633</clr-dg-cell>
+          <clr-dg-cell>159278</clr-dg-cell>
+          <clr-dg-cell>182338</clr-dg-cell>
+          <clr-dg-cell>139875</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Delq Akhir</clr-dg-cell>
+          <clr-dg-cell>3699</clr-dg-cell>
+          <clr-dg-cell>3718.1</clr-dg-cell>
+          <clr-dg-cell>3727.6</clr-dg-cell>
+          <clr-dg-cell>3713.9</clr-dg-cell>
+          <clr-dg-cell>3702.9</clr-dg-cell>
+          <clr-dg-cell>3691.7</clr-dg-cell>
+          <clr-dg-cell>3688.1</clr-dg-cell>
+          <clr-dg-cell>3669.1</clr-dg-cell>
+          <clr-dg-cell>3651.9</clr-dg-cell>
+          <clr-dg-cell>3632.1</clr-dg-cell>
+          <clr-dg-cell>3616.9</clr-dg-cell>
+          <clr-dg-cell>3609</clr-dg-cell>
+          <clr-dg-cell>3604.7</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Delq Awal</clr-dg-cell>
+          <clr-dg-cell>407037</clr-dg-cell>
+          <clr-dg-cell>480071</clr-dg-cell>
+          <clr-dg-cell>395684</clr-dg-cell>
+          <clr-dg-cell>419633</clr-dg-cell>
+          <clr-dg-cell>377313</clr-dg-cell>
+          <clr-dg-cell>395036</clr-dg-cell>
+          <clr-dg-cell>419595</clr-dg-cell>
+          <clr-dg-cell>400771</clr-dg-cell>
+          <clr-dg-cell>447271</clr-dg-cell>
+          <clr-dg-cell>387521</clr-dg-cell>
+          <clr-dg-cell>427621</clr-dg-cell>
+          <clr-dg-cell>415469</clr-dg-cell>
+          <clr-dg-cell>552788</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Lunas</clr-dg-cell>
+          <clr-dg-cell>156282</clr-dg-cell>
+          <clr-dg-cell>129838</clr-dg-cell>
+          <clr-dg-cell>147015</clr-dg-cell>
+          <clr-dg-cell>141394</clr-dg-cell>
+          <clr-dg-cell>139146</clr-dg-cell>
+          <clr-dg-cell>146657</clr-dg-cell>
+          <clr-dg-cell>136967</clr-dg-cell>
+          <clr-dg-cell>138354</clr-dg-cell>
+          <clr-dg-cell>147873</clr-dg-cell>
+          <clr-dg-cell>150787</clr-dg-cell>
+          <clr-dg-cell>150787</clr-dg-cell>
+          <clr-dg-cell>158852</clr-dg-cell>
+          <clr-dg-cell>138485</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Repo</clr-dg-cell>
+          <clr-dg-cell>12753</clr-dg-cell>
+          <clr-dg-cell>12037</clr-dg-cell>
+          <clr-dg-cell>13806</clr-dg-cell>
+          <clr-dg-cell>12700</clr-dg-cell>
+          <clr-dg-cell>11972</clr-dg-cell>
+          <clr-dg-cell>11676</clr-dg-cell>
+          <clr-dg-cell>11429</clr-dg-cell>
+          <clr-dg-cell>11817</clr-dg-cell>
+          <clr-dg-cell>13662</clr-dg-cell>
+          <clr-dg-cell>12197</clr-dg-cell>
+          <clr-dg-cell>13294</clr-dg-cell>
+          <clr-dg-cell>13420</clr-dg-cell>
+          <clr-dg-cell>11607</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Roll Down</clr-dg-cell>
+          <clr-dg-cell>20763</clr-dg-cell>
+          <clr-dg-cell>17544</clr-dg-cell>
+          <clr-dg-cell>25171</clr-dg-cell>
+          <clr-dg-cell>20381</clr-dg-cell>
+          <clr-dg-cell>18071</clr-dg-cell>
+          <clr-dg-cell>18568</clr-dg-cell>
+          <clr-dg-cell>14865</clr-dg-cell>
+          <clr-dg-cell>17957</clr-dg-cell>
+          <clr-dg-cell>22399</clr-dg-cell>
+          <clr-dg-cell>17815</clr-dg-cell>
+          <clr-dg-cell>18914</clr-dg-cell>
+          <clr-dg-cell>17295</clr-dg-cell>
+          <clr-dg-cell>18568</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Roll Up</clr-dg-cell>
+          <clr-dg-cell>386274</clr-dg-cell>
+          <clr-dg-cell>462527</clr-dg-cell>
+          <clr-dg-cell>370513</clr-dg-cell>
+          <clr-dg-cell>399252</clr-dg-cell>
+          <clr-dg-cell>359242</clr-dg-cell>
+          <clr-dg-cell>376468</clr-dg-cell>
+          <clr-dg-cell>404730</clr-dg-cell>
+          <clr-dg-cell>382814</clr-dg-cell>
+          <clr-dg-cell>424872</clr-dg-cell>
+          <clr-dg-cell>369706</clr-dg-cell>
+          <clr-dg-cell>408707</clr-dg-cell>
+          <clr-dg-cell>396174</clr-dg-cell>
+          <clr-dg-cell>594220</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Stay</clr-dg-cell>
+          <clr-dg-cell>2912.7</clr-dg-cell>
+          <clr-dg-cell>2920.2</clr-dg-cell>
+          <clr-dg-cell>2925.9</clr-dg-cell>
+          <clr-dg-cell>2955.5</clr-dg-cell>
+          <clr-dg-cell>2961.8</clr-dg-cell>
+          <clr-dg-cell>2951.7</clr-dg-cell>
+          <clr-dg-cell>2947.5</clr-dg-cell>
+          <clr-dg-cell>2892</clr-dg-cell>
+          <clr-dg-cell>2861.3</clr-dg-cell>
+          <clr-dg-cell>2867.7</clr-dg-cell>
+          <clr-dg-cell>2851.4</clr-dg-cell>
+          <clr-dg-cell>2827.7</clr-dg-cell>
+          <clr-dg-cell>2749.2</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>WO</clr-dg-cell>
+          <clr-dg-cell>12785</clr-dg-cell>
+          <clr-dg-cell>12203</clr-dg-cell>
+          <clr-dg-cell>12116</clr-dg-cell>
+          <clr-dg-cell>12642</clr-dg-cell>
+          <clr-dg-cell>11783</clr-dg-cell>
+          <clr-dg-cell>15063</clr-dg-cell>
+          <clr-dg-cell>13629</clr-dg-cell>
+          <clr-dg-cell>10791</clr-dg-cell>
+          <clr-dg-cell>11683</clr-dg-cell>
+          <clr-dg-cell>11282</clr-dg-cell>
+          <clr-dg-cell>11286</clr-dg-cell>
+          <clr-dg-cell>11165</clr-dg-cell>
+          <clr-dg-cell>12748</clr-dg-cell>
+        </clr-dg-row>
+        <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+      </clr-datagrid>
+    </div>
+    <div class="card-footer">
+      <div class="cursor-pointer">
+        <clr-icon shape="refresh"></clr-icon>
+        Reload
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-block">
+        <div class="progress top loop" max="100"><progress></progress></div>
+        <h4 class="card-title center">AR VS BALANCE AR</h4>
+        <p class="card-text" style="width: 100% !important;">
+          <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource2">
+          </fusioncharts>
+        </p>
+        <clr-datagrid class="grid-font">
+          <clr-dg-column></clr-dg-column>
+          <clr-dg-column>Jul-13</clr-dg-column>
+          <clr-dg-column>Aug-13</clr-dg-column>
+          <clr-dg-column>Sep-13</clr-dg-column>
+          <clr-dg-column>Okt-13</clr-dg-column>
+          <clr-dg-column>Nov-13</clr-dg-column>
+          <clr-dg-column>Des-13</clr-dg-column>
+          <clr-dg-column>Jan-14</clr-dg-column>
+          <clr-dg-column>Feb-14</clr-dg-column>
+          <clr-dg-column>Mar-14</clr-dg-column>
+          <clr-dg-column>Apr-14</clr-dg-column>
+          <clr-dg-column>May-14</clr-dg-column>
+          <clr-dg-column>Jun-14</clr-dg-column>
+          <clr-dg-column>Jul-14</clr-dg-column>
+
+          <clr-dg-row>
+            <clr-dg-cell>AR/10</clr-dg-cell>
+            <clr-dg-cell>43957</clr-dg-cell>
+            <clr-dg-cell>44309</clr-dg-cell>
+            <clr-dg-cell>44542</clr-dg-cell>
+            <clr-dg-cell>44741</clr-dg-cell>
+            <clr-dg-cell>44902</clr-dg-cell>
+            <clr-dg-cell>45381</clr-dg-cell>
+            <clr-dg-cell>45417</clr-dg-cell>
+            <clr-dg-cell>45575</clr-dg-cell>
+            <clr-dg-cell>45455</clr-dg-cell>
+            <clr-dg-cell>45496</clr-dg-cell>
+            <clr-dg-cell>45693</clr-dg-cell>
+            <clr-dg-cell>46035</clr-dg-cell>
+            <clr-dg-cell>46491</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>01. Current</clr-dg-cell>
+            <clr-dg-cell>359899</clr-dg-cell>
+            <clr-dg-cell>355951</clr-dg-cell>
+            <clr-dg-cell>365637</clr-dg-cell>
+            <clr-dg-cell>367163</clr-dg-cell>
+            <clr-dg-cell>372825</clr-dg-cell>
+            <clr-dg-cell>376825</clr-dg-cell>
+            <clr-dg-cell>370801</clr-dg-cell>
+            <clr-dg-cell>376504</clr-dg-cell>
+            <clr-dg-cell>366276</clr-dg-cell>
+            <clr-dg-cell>373021</clr-dg-cell>
+            <clr-dg-cell>369720</clr-dg-cell>
+            <clr-dg-cell>374413</clr-dg-cell>
+            <clr-dg-cell>358393</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>02. 1-30</clr-dg-cell>
+            <clr-dg-cell>6523.8</clr-dg-cell>
+            <clr-dg-cell>7079.4</clr-dg-cell>
+            <clr-dg-cell>6523</clr-dg-cell>
+            <clr-dg-cell>6629.1</clr-dg-cell>
+            <clr-dg-cell>6292.8</clr-dg-cell>
+            <clr-dg-cell>6508.5</clr-dg-cell>
+            <clr-dg-cell>6955.1</clr-dg-cell>
+            <clr-dg-cell>6491.7</clr-dg-cell>
+            <clr-dg-cell>7424.6</clr-dg-cell>
+            <clr-dg-cell>6749.9</clr-dg-cell>
+            <clr-dg-cell>7237.3</clr-dg-cell>
+            <clr-dg-cell>7053.4</clr-dg-cell>
+            <clr-dg-cell>8854.3</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>03. 31-60</clr-dg-cell>
+            <clr-dg-cell>621679</clr-dg-cell>
+            <clr-dg-cell>709455</clr-dg-cell>
+            <clr-dg-cell>575732</clr-dg-cell>
+            <clr-dg-cell>557393</clr-dg-cell>
+            <clr-dg-cell>518614</clr-dg-cell>
+            <clr-dg-cell>493283</clr-dg-cell>
+            <clr-dg-cell>599567</clr-dg-cell>
+            <clr-dg-cell>639573</clr-dg-cell>
+            <clr-dg-cell>598376</clr-dg-cell>
+            <clr-dg-cell>598665</clr-dg-cell>
+            <clr-dg-cell>604285</clr-dg-cell>
+            <clr-dg-cell>649432</clr-dg-cell>
+            <clr-dg-cell>821940</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>04. 61-90</clr-dg-cell>
+            <clr-dg-cell>228789</clr-dg-cell>
+            <clr-dg-cell>312889</clr-dg-cell>
+            <clr-dg-cell>258577</clr-dg-cell>
+            <clr-dg-cell>217335</clr-dg-cell>
+            <clr-dg-cell>217859</clr-dg-cell>
+            <clr-dg-cell>198418</clr-dg-cell>
+            <clr-dg-cell>246101</clr-dg-cell>
+            <clr-dg-cell>270511</clr-dg-cell>
+            <clr-dg-cell>242303</clr-dg-cell>
+            <clr-dg-cell>262537</clr-dg-cell>
+            <clr-dg-cell>252790</clr-dg-cell>
+            <clr-dg-cell>257384</clr-dg-cell>
+            <clr-dg-cell>294191</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>05. 91-120</clr-dg-cell>
+            <clr-dg-cell>167618</clr-dg-cell>
+            <clr-dg-cell>179914</clr-dg-cell>
+            <clr-dg-cell>201722</clr-dg-cell>
+            <clr-dg-cell>181335</clr-dg-cell>
+            <clr-dg-cell>150813</clr-dg-cell>
+            <clr-dg-cell>156146</clr-dg-cell>
+            <clr-dg-cell>153015</clr-dg-cell>
+            <clr-dg-cell>154575</clr-dg-cell>
+            <clr-dg-cell>193972</clr-dg-cell>
+            <clr-dg-cell>178199</clr-dg-cell>
+            <clr-dg-cell>200511</clr-dg-cell>
+            <clr-dg-cell>177805</clr-dg-cell>
+            <clr-dg-cell>204410</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>06. 121-150</clr-dg-cell>
+            <clr-dg-cell>133732</clr-dg-cell>
+            <clr-dg-cell>145690</clr-dg-cell>
+            <clr-dg-cell>143292</clr-dg-cell>
+            <clr-dg-cell>164674</clr-dg-cell>
+            <clr-dg-cell>146949</clr-dg-cell>
+            <clr-dg-cell>128620</clr-dg-cell>
+            <clr-dg-cell>130087</clr-dg-cell>
+            <clr-dg-cell>131078</clr-dg-cell>
+            <clr-dg-cell>132802</clr-dg-cell>
+            <clr-dg-cell>164369</clr-dg-cell>
+            <clr-dg-cell>157956</clr-dg-cell>
+            <clr-dg-cell>168340</clr-dg-cell>
+            <clr-dg-cell>156410</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>07. >150</clr-dg-cell>
+            <clr-dg-cell>291413</clr-dg-cell>
+            <clr-dg-cell>286604</clr-dg-cell>
+            <clr-dg-cell>275917</clr-dg-cell>
+            <clr-dg-cell>274791</clr-dg-cell>
+            <clr-dg-cell>292740</clr-dg-cell>
+            <clr-dg-cell>268365</clr-dg-cell>
+            <clr-dg-cell>252819</clr-dg-cell>
+            <clr-dg-cell>236690</clr-dg-cell>
+            <clr-dg-cell>235534</clr-dg-cell>
+            <clr-dg-cell>239834</clr-dg-cell>
+            <clr-dg-cell>267999</clr-dg-cell>
+            <clr-dg-cell>287601</clr-dg-cell>
+            <clr-dg-cell>320306</clr-dg-cell>
+          </clr-dg-row>
+          <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+        </clr-datagrid>
+      </div>
+      <div class="card-footer">
+        <div class="cursor-pointer">
+          <clr-icon shape="refresh"></clr-icon>
+          Reload
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-block">
+        <div class="progress top loop" max="100"><progress></progress></div>
+        <h4 class="card-title center">LOSSES PERFORMANCE</h4>
+        <p class="card-text" style="width: 100% !important;">
+          <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource3">
+          </fusioncharts>
+        </p>
+        <clr-datagrid class="grid-font">
+          <clr-dg-column></clr-dg-column>
+          <clr-dg-column>Jul-13</clr-dg-column>
+          <clr-dg-column>Aug-13</clr-dg-column>
+          <clr-dg-column>Sep-13</clr-dg-column>
+          <clr-dg-column>Okt-13</clr-dg-column>
+          <clr-dg-column>Nov-13</clr-dg-column>
+          <clr-dg-column>Des-13</clr-dg-column>
+          <clr-dg-column>Jan-14</clr-dg-column>
+          <clr-dg-column>Feb-14</clr-dg-column>
+          <clr-dg-column>Mar-14</clr-dg-column>
+          <clr-dg-column>Apr-14</clr-dg-column>
+          <clr-dg-column>May-14</clr-dg-column>
+          <clr-dg-column>Jun-14</clr-dg-column>
+          <clr-dg-column>Jul-14</clr-dg-column>
+
+          <clr-dg-row>
+            <clr-dg-cell>LOR/10</clr-dg-cell>
+            <clr-dg-cell>49968</clr-dg-cell>
+            <clr-dg-cell>45647</clr-dg-cell>
+            <clr-dg-cell>44135</clr-dg-cell>
+            <clr-dg-cell>39045</clr-dg-cell>
+            <clr-dg-cell>37447</clr-dg-cell>
+            <clr-dg-cell>44190</clr-dg-cell>
+            <clr-dg-cell>38810</clr-dg-cell>
+            <clr-dg-cell>38482</clr-dg-cell>
+            <clr-dg-cell>50175</clr-dg-cell>
+            <clr-dg-cell>44487</clr-dg-cell>
+            <clr-dg-cell>48487</clr-dg-cell>
+            <clr-dg-cell>54287</clr-dg-cell>
+            <clr-dg-cell>43044</clr-dg-cell>
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>WO/10</clr-dg-cell>
+            <clr-dg-cell>117285</clr-dg-cell>
+            <clr-dg-cell>107772</clr-dg-cell>
+            <clr-dg-cell>110014</clr-dg-cell>
+            <clr-dg-cell>108939</clr-dg-cell>
+            <clr-dg-cell>100435</clr-dg-cell>
+            <clr-dg-cell>128245</clr-dg-cell>
+            <clr-dg-cell>117488</clr-dg-cell>
+            <clr-dg-cell>96769</clr-dg-cell>
+            <clr-dg-cell>101766</clr-dg-cell>
+            <clr-dg-cell>99300</clr-dg-cell>
+            <clr-dg-cell>102183</clr-dg-cell>
+            <clr-dg-cell>101443</clr-dg-cell>
+            <clr-dg-cell>117659</clr-dg-cell>
+
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>NCL Net/10</clr-dg-cell>
+            <clr-dg-cell>19490</clr-dg-cell>
+            <clr-dg-cell>18054</clr-dg-cell>
+            <clr-dg-cell>19163</clr-dg-cell>
+            <clr-dg-cell>20929</clr-dg-cell>
+            <clr-dg-cell>17860</clr-dg-cell>
+            <clr-dg-cell>26224</clr-dg-cell>
+            <clr-dg-cell>15528</clr-dg-cell>
+            <clr-dg-cell>16982</clr-dg-cell>
+            <clr-dg-cell>16202</clr-dg-cell>
+            <clr-dg-cell>17783</clr-dg-cell>
+            <clr-dg-cell>14950</clr-dg-cell>
+            <clr-dg-cell>17007</clr-dg-cell>
+            <clr-dg-cell>14851</clr-dg-cell>
+
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>NCL %</clr-dg-cell>
+            <clr-dg-cell>3.94 %</clr-dg-cell>
+            <clr-dg-cell>3.56 %</clr-dg-cell>
+            <clr-dg-cell>3.65 %</clr-dg-cell>
+            <clr-dg-cell>3.31 %</clr-dg-cell>
+            <clr-dg-cell>3.21 %</clr-dg-cell>
+            <clr-dg-cell>3.76 %</clr-dg-cell>
+            <clr-dg-cell>3.6 %</clr-dg-cell>
+            <clr-dg-cell>3.34 %</clr-dg-cell>
+            <clr-dg-cell>3.46 %</clr-dg-cell>
+            <clr-dg-cell>3.32 %</clr-dg-cell>
+            <clr-dg-cell>3.46 %</clr-dg-cell>
+            <clr-dg-cell>3.63 %</clr-dg-cell>
+            <clr-dg-cell>3.66 %</clr-dg-cell>
+
+          </clr-dg-row>
+          <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+        </clr-datagrid>
+        <br><br><br><br><br><br>
+        
+      </div>
+      <div class="card-footer">
+        <div class="cursor-pointer">
+          <clr-icon shape="refresh"></clr-icon>
+          Reload
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-block">
+        <div class="progress top loop" max="100"><progress></progress></div>
+        <h4 class="card-title center">UNIT REPO BY OVD</h4>
+        <p class="card-text" style="width: 100% !important;">
+          <fusioncharts [width]="width" [height]="height" [type]="type_line" [dataFormat]="dataFormat" [dataSource]="dataSourceLine">
+          </fusioncharts>
+        </p>
+        <clr-datagrid class="grid-font">
+          <clr-dg-column></clr-dg-column>
+          <clr-dg-column>Jul-13</clr-dg-column>
+          <clr-dg-column>Aug-13</clr-dg-column>
+          <clr-dg-column>Sep-13</clr-dg-column>
+          <clr-dg-column>Okt-13</clr-dg-column>
+          <clr-dg-column>Nov-13</clr-dg-column>
+          <clr-dg-column>Des-13</clr-dg-column>
+          <clr-dg-column>Jan-14</clr-dg-column>
+          <clr-dg-column>Feb-14</clr-dg-column>
+          <clr-dg-column>Mar-14</clr-dg-column>
+          <clr-dg-column>Apr-14</clr-dg-column>
+          <clr-dg-column>May-14</clr-dg-column>
+          <clr-dg-column>Jun-14</clr-dg-column>
+          <clr-dg-column>Jul-14</clr-dg-column>
+
+          <clr-dg-row>
+            <clr-dg-cell>> 90</clr-dg-cell>
+            <clr-dg-cell>3617</clr-dg-cell>
+            <clr-dg-cell>2921</clr-dg-cell>
+            <clr-dg-cell>3463</clr-dg-cell>
+            <clr-dg-cell>3477</clr-dg-cell>
+            <clr-dg-cell>3063</clr-dg-cell>
+            <clr-dg-cell>2965</clr-dg-cell>
+            <clr-dg-cell>2519</clr-dg-cell>
+            <clr-dg-cell>2388</clr-dg-cell>
+            <clr-dg-cell>2733</clr-dg-cell>
+            <clr-dg-cell>2541</clr-dg-cell>
+            <clr-dg-cell>2801</clr-dg-cell>
+            <clr-dg-cell>2816</clr-dg-cell>
+            <clr-dg-cell>2526</clr-dg-cell>
+
+
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>61 - 90</clr-dg-cell>
+            <clr-dg-cell>2530</clr-dg-cell>
+            <clr-dg-cell>2549</clr-dg-cell>
+            <clr-dg-cell>3045</clr-dg-cell>
+            <clr-dg-cell>2436</clr-dg-cell>
+            <clr-dg-cell>2103</clr-dg-cell>
+            <clr-dg-cell>2129</clr-dg-cell>
+            <clr-dg-cell>1945</clr-dg-cell>
+            <clr-dg-cell>2470</clr-dg-cell>
+            <clr-dg-cell>2588</clr-dg-cell>
+            <clr-dg-cell>2251</clr-dg-cell>
+            <clr-dg-cell>2741</clr-dg-cell>
+            <clr-dg-cell>2563</clr-dg-cell>
+            <clr-dg-cell>2349</clr-dg-cell>
+
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>31 - 60</clr-dg-cell>
+            <clr-dg-cell>5618</clr-dg-cell>
+            <clr-dg-cell>5912</clr-dg-cell>
+            <clr-dg-cell>6191</clr-dg-cell>
+            <clr-dg-cell>5755</clr-dg-cell>
+            <clr-dg-cell>5741</clr-dg-cell>
+            <clr-dg-cell>5316</clr-dg-cell>
+            <clr-dg-cell>5891</clr-dg-cell>
+            <clr-dg-cell>5734</clr-dg-cell>
+            <clr-dg-cell>6727</clr-dg-cell>
+            <clr-dg-cell>6217</clr-dg-cell>
+            <clr-dg-cell>6510</clr-dg-cell>
+            <clr-dg-cell>6709</clr-dg-cell>
+            <clr-dg-cell>5209</clr-dg-cell>
+
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>8 - 30</clr-dg-cell>
+            <clr-dg-cell>920</clr-dg-cell>
+            <clr-dg-cell>603</clr-dg-cell>
+            <clr-dg-cell>1024</clr-dg-cell>
+            <clr-dg-cell>954</clr-dg-cell>
+            <clr-dg-cell>966</clr-dg-cell>
+            <clr-dg-cell>1147</clr-dg-cell>
+            <clr-dg-cell>991</clr-dg-cell>
+            <clr-dg-cell>1157</clr-dg-cell>
+            <clr-dg-cell>1529</clr-dg-cell>
+            <clr-dg-cell>1097</clr-dg-cell>
+            <clr-dg-cell>1131</clr-dg-cell>
+            <clr-dg-cell>1231</clr-dg-cell>
+            <clr-dg-cell>1450</clr-dg-cell>
+
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>01 - 7</clr-dg-cell>
+            <clr-dg-cell>32</clr-dg-cell>
+            <clr-dg-cell>31</clr-dg-cell>
+            <clr-dg-cell>47</clr-dg-cell>
+            <clr-dg-cell>35</clr-dg-cell>
+            <clr-dg-cell>52</clr-dg-cell>
+            <clr-dg-cell>45</clr-dg-cell>
+            <clr-dg-cell>39</clr-dg-cell>
+            <clr-dg-cell>34</clr-dg-cell>
+            <clr-dg-cell>36</clr-dg-cell>
+            <clr-dg-cell>55</clr-dg-cell>
+            <clr-dg-cell>52</clr-dg-cell>
+            <clr-dg-cell>28</clr-dg-cell>
+            <clr-dg-cell>37</clr-dg-cell>
+
+          </clr-dg-row>
+          <clr-dg-row>
+            <clr-dg-cell>Current</clr-dg-cell>
+            <clr-dg-cell>28</clr-dg-cell>
+            <clr-dg-cell>18</clr-dg-cell>
+            <clr-dg-cell>25</clr-dg-cell>
+            <clr-dg-cell>28</clr-dg-cell>
+            <clr-dg-cell>37</clr-dg-cell>
+            <clr-dg-cell>29</clr-dg-cell>
+            <clr-dg-cell>39</clr-dg-cell>
+            <clr-dg-cell>25</clr-dg-cell>
+            <clr-dg-cell>34</clr-dg-cell>
+            <clr-dg-cell>25</clr-dg-cell>
+            <clr-dg-cell>35</clr-dg-cell>
+            <clr-dg-cell>32</clr-dg-cell>
+            <clr-dg-cell>26</clr-dg-cell>
+
+          </clr-dg-row>
+          <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+        </clr-datagrid>
+      </div>
+      <div class="card-footer">
+        <div class="cursor-pointer">
+          <clr-icon shape="refresh"></clr-icon>
+          Reload
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-block">
+        <div class="progress top loop" max="100"><progress></progress></div>
+        <h4 class="card-title center">AMOUNT REPO BY OVD</h4>
+        <p class="card-text" style="width: 100% !important;">
+          <fusioncharts [width]="width" [height]="height" [type]="type_line2" [dataFormat]="dataFormat"
+          [dataSource]="dataSourceLine2" style="display: inline-block !important;">
+        </fusioncharts>
+      </p>
+      <clr-datagrid class="grid-font">
+        <clr-dg-column></clr-dg-column>
+        <clr-dg-column>Jul-13</clr-dg-column>
+        <clr-dg-column>Aug-13</clr-dg-column>
+        <clr-dg-column>Sep-13</clr-dg-column>
+        <clr-dg-column>Okt-13</clr-dg-column>
+        <clr-dg-column>Nov-13</clr-dg-column>
+        <clr-dg-column>Des-13</clr-dg-column>
+        <clr-dg-column>Jan-14</clr-dg-column>
+        <clr-dg-column>Feb-14</clr-dg-column>
+        <clr-dg-column>Mar-14</clr-dg-column>
+        <clr-dg-column>Apr-14</clr-dg-column>
+        <clr-dg-column>May-14</clr-dg-column>
+        <clr-dg-column>Jun-14</clr-dg-column>
+        <clr-dg-column>Jul-14</clr-dg-column>
+
+        <clr-dg-row>
+          <clr-dg-cell>> 90 /10</clr-dg-cell>
+          <clr-dg-cell>55116</clr-dg-cell>
+          <clr-dg-cell>44253</clr-dg-cell>
+          <clr-dg-cell>53814</clr-dg-cell>
+          <clr-dg-cell>48030</clr-dg-cell>
+          <clr-dg-cell>42748</clr-dg-cell>
+          <clr-dg-cell>44404</clr-dg-cell>
+          <clr-dg-cell>37945</clr-dg-cell>
+          <clr-dg-cell>32265</clr-dg-cell>
+          <clr-dg-cell>45989</clr-dg-cell>
+          <clr-dg-cell>39043</clr-dg-cell>
+          <clr-dg-cell>42497</clr-dg-cell>
+          <clr-dg-cell>44143</clr-dg-cell>
+          <clr-dg-cell>32813</clr-dg-cell>
+
+
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>61 - 90 /10</clr-dg-cell>
+          <clr-dg-cell>38785</clr-dg-cell>
+          <clr-dg-cell>35398</clr-dg-cell>
+          <clr-dg-cell>45990</clr-dg-cell>
+          <clr-dg-cell>39681</clr-dg-cell>
+          <clr-dg-cell>37245</clr-dg-cell>
+          <clr-dg-cell>32619</clr-dg-cell>
+          <clr-dg-cell>28734</clr-dg-cell>
+          <clr-dg-cell>38673</clr-dg-cell>
+          <clr-dg-cell>44995</clr-dg-cell>
+          <clr-dg-cell>34172</clr-dg-cell>
+          <clr-dg-cell>44309</clr-dg-cell>
+          <clr-dg-cell>41082</clr-dg-cell>
+          <clr-dg-cell>38433</clr-dg-cell>
+
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>31 - 60 /10</clr-dg-cell>
+          <clr-dg-cell>75231</clr-dg-cell>
+          <clr-dg-cell>74821</clr-dg-cell>
+          <clr-dg-cell>82344</clr-dg-cell>
+          <clr-dg-cell>73898</clr-dg-cell>
+          <clr-dg-cell>73961</clr-dg-cell>
+          <clr-dg-cell>86222</clr-dg-cell>
+          <clr-dg-cell>80831</clr-dg-cell>
+          <clr-dg-cell>78025</clr-dg-cell>
+          <clr-dg-cell>95354</clr-dg-cell>
+          <clr-dg-cell>88941</clr-dg-cell>
+          <clr-dg-cell>88869</clr-dg-cell>
+          <clr-dg-cell>104113</clr-dg-cell>
+          <clr-dg-cell>80958</clr-dg-cell>
+
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>8 - 30 /10</clr-dg-cell>
+          <clr-dg-cell>10272</clr-dg-cell>
+          <clr-dg-cell>6817</clr-dg-cell>
+          <clr-dg-cell>12074</clr-dg-cell>
+          <clr-dg-cell>11960</clr-dg-cell>
+          <clr-dg-cell>12448</clr-dg-cell>
+          <clr-dg-cell>14552</clr-dg-cell>
+          <clr-dg-cell>11081</clr-dg-cell>
+          <clr-dg-cell>15297</clr-dg-cell>
+          <clr-dg-cell>19967</clr-dg-cell>
+          <clr-dg-cell>13748</clr-dg-cell>
+          <clr-dg-cell>14173</clr-dg-cell>
+          <clr-dg-cell>15739</clr-dg-cell>
+          <clr-dg-cell>19696</clr-dg-cell>
+
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>01 - 7 /10</clr-dg-cell>
+          <clr-dg-cell>639</clr-dg-cell>
+          <clr-dg-cell>324</clr-dg-cell>
+          <clr-dg-cell>495</clr-dg-cell>
+          <clr-dg-cell>421</clr-dg-cell>
+          <clr-dg-cell>740</clr-dg-cell>
+          <clr-dg-cell>446</clr-dg-cell>
+          <clr-dg-cell>751</clr-dg-cell>
+          <clr-dg-cell>421</clr-dg-cell>
+          <clr-dg-cell>626</clr-dg-cell>
+          <clr-dg-cell>563</clr-dg-cell>
+          <clr-dg-cell>920</clr-dg-cell>
+          <clr-dg-cell>504</clr-dg-cell>
+          <clr-dg-cell>756</clr-dg-cell>
+
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Current /10</clr-dg-cell>
+          <clr-dg-cell>688</clr-dg-cell>
+          <clr-dg-cell>361</clr-dg-cell>
+          <clr-dg-cell>209</clr-dg-cell>
+          <clr-dg-cell>379</clr-dg-cell>
+          <clr-dg-cell>601</clr-dg-cell>
+          <clr-dg-cell>577</clr-dg-cell>
+          <clr-dg-cell>643</clr-dg-cell>
+          <clr-dg-cell>300</clr-dg-cell>
+          <clr-dg-cell>420</clr-dg-cell>
+          <clr-dg-cell>472</clr-dg-cell>
+          <clr-dg-cell>335</clr-dg-cell>
+          <clr-dg-cell>349</clr-dg-cell>
+          <clr-dg-cell>612</clr-dg-cell>
+
+
+        </clr-dg-row>
+        <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+      </clr-datagrid>
+    </div>
+
+    <div class="card-footer">
+      <div class="cursor-pointer">
+        <clr-icon shape="refresh"></clr-icon>
+        Reload
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-block">
+        <div class="progress top loop" max="100"><progress></progress></div>
+        <h4 class="card-title center">PERFORMANCE REPO, SOLD, STOCK BY UNIT</h4>
+        <p class="card-text" style="width: 100% !important;">
+          <fusioncharts [width]="full_widt" [height]="height" [type]="type_bar2" [dataFormat]="dataFormat"
+          [dataSource]="dataSourceBar2" style="display: inline-block !important;">
+        </fusioncharts>
+      </p>
+      <clr-datagrid class="grid-font">
+        <clr-dg-column></clr-dg-column>
+        <clr-dg-column>Jul-13</clr-dg-column>
+        <clr-dg-column>Aug-13</clr-dg-column>
+        <clr-dg-column>Sep-13</clr-dg-column>
+        <clr-dg-column>Okt-13</clr-dg-column>
+        <clr-dg-column>Nov-13</clr-dg-column>
+        <clr-dg-column>Des-13</clr-dg-column>
+        <clr-dg-column>Jan-14</clr-dg-column>
+        <clr-dg-column>Feb-14</clr-dg-column>
+        <clr-dg-column>Mar-14</clr-dg-column>
+        <clr-dg-column>Apr-14</clr-dg-column>
+        <clr-dg-column>May-14</clr-dg-column>
+        <clr-dg-column>Jun-14</clr-dg-column>
+        <clr-dg-column>Jul-14</clr-dg-column>
+
+        <clr-dg-row>
+          <clr-dg-cell>REPO</clr-dg-cell>
+          <clr-dg-cell>12753</clr-dg-cell>
+          <clr-dg-cell>12038</clr-dg-cell>
+          <clr-dg-cell>13808</clr-dg-cell>
+          <clr-dg-cell>12702</clr-dg-cell>
+          <clr-dg-cell>11973</clr-dg-cell>
+          <clr-dg-cell>11678</clr-dg-cell>
+          <clr-dg-cell>11430</clr-dg-cell>
+          <clr-dg-cell>11819</clr-dg-cell>
+          <clr-dg-cell>13662</clr-dg-cell>
+          <clr-dg-cell>13662</clr-dg-cell>
+          <clr-dg-cell>12198</clr-dg-cell>
+          <clr-dg-cell>13294</clr-dg-cell>
+          <clr-dg-cell>13420</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>SOLD</clr-dg-cell>
+          <clr-dg-cell>14291</clr-dg-cell>
+          <clr-dg-cell>10708</clr-dg-cell>
+          <clr-dg-cell>14444</clr-dg-cell>
+          <clr-dg-cell>13952</clr-dg-cell>
+          <clr-dg-cell>12253</clr-dg-cell>
+          <clr-dg-cell>12324</clr-dg-cell>
+          <clr-dg-cell>11066</clr-dg-cell>
+          <clr-dg-cell>11570</clr-dg-cell>
+          <clr-dg-cell>12050</clr-dg-cell>
+          <clr-dg-cell>13768</clr-dg-cell>
+          <clr-dg-cell>12860</clr-dg-cell>
+          <clr-dg-cell>12834</clr-dg-cell>
+          <clr-dg-cell>11350</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>STOCK</clr-dg-cell>
+          <clr-dg-cell>9206</clr-dg-cell>
+          <clr-dg-cell>10522</clr-dg-cell>
+          <clr-dg-cell>3875</clr-dg-cell>
+          <clr-dg-cell>8965</clr-dg-cell>
+          <clr-dg-cell>8685</clr-dg-cell>
+          <clr-dg-cell>8030</clr-dg-cell>
+          <clr-dg-cell>8367</clr-dg-cell>
+          <clr-dg-cell>8604</clr-dg-cell>
+          <clr-dg-cell>10204</clr-dg-cell>
+          <clr-dg-cell>8606</clr-dg-cell>
+          <clr-dg-cell>9030</clr-dg-cell>
+          <clr-dg-cell>3586</clr-dg-cell>
+          <clr-dg-cell>9830</clr-dg-cell>
+        </clr-dg-row>
+        <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+      </clr-datagrid>
+    </div>
+    <div class="card-footer">
+      <div class="cursor-pointer">
+        <clr-icon shape="refresh"></clr-icon>
+        Reload
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-block">
+        <div class="progress top loop" max="100"><progress></progress></div>
+        <h4 class="card-title center">REPO BY PORTOFOLIO</h4>
+        <p class="card-text" style="width: 100% !important;">
+          <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+          [dataSource]="dataSourceStackCol">
+        </fusioncharts>
+      </p>
+      <clr-datagrid class="grid-font">
+        <clr-dg-column></clr-dg-column>
+        <clr-dg-column>Jul-13</clr-dg-column>
+        <clr-dg-column>Aug-13</clr-dg-column>
+        <clr-dg-column>Sep-13</clr-dg-column>
+        <clr-dg-column>Okt-13</clr-dg-column>
+        <clr-dg-column>Nov-13</clr-dg-column>
+        <clr-dg-column>Des-13</clr-dg-column>
+        <clr-dg-column>Jan-14</clr-dg-column>
+        <clr-dg-column>Feb-14</clr-dg-column>
+        <clr-dg-column>Mar-14</clr-dg-column>
+        <clr-dg-column>Apr-14</clr-dg-column>
+        <clr-dg-column>May-14</clr-dg-column>
+        <clr-dg-column>Jun-14</clr-dg-column>
+        <clr-dg-column>Jul-14</clr-dg-column>
+        <clr-dg-row>
+          <clr-dg-cell>HONDA</clr-dg-cell>
+          <clr-dg-cell>20.79 %</clr-dg-cell>
+          <clr-dg-cell>19.6 %</clr-dg-cell>
+          <clr-dg-cell>20.1 %</clr-dg-cell>
+          <clr-dg-cell>20.22 %</clr-dg-cell>
+          <clr-dg-cell>19.91 %</clr-dg-cell>
+          <clr-dg-cell>20.11 %</clr-dg-cell>
+          <clr-dg-cell>20.1 %</clr-dg-cell>
+          <clr-dg-cell>20.04 %</clr-dg-cell>
+          <clr-dg-cell>20.28 %</clr-dg-cell>
+          <clr-dg-cell>20.56 %</clr-dg-cell>
+          <clr-dg-cell>20.63 %</clr-dg-cell>
+          <clr-dg-cell>20.89 %</clr-dg-cell>
+          <clr-dg-cell>21.73 %</clr-dg-cell>
+
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>YAMAHA</clr-dg-cell>
+          <clr-dg-cell>18.96 %</clr-dg-cell>
+          <clr-dg-cell>18.03 %</clr-dg-cell>
+          <clr-dg-cell>17.11 %</clr-dg-cell>
+          <clr-dg-cell>16.89 %</clr-dg-cell>
+          <clr-dg-cell>16.63 %</clr-dg-cell>
+          <clr-dg-cell>17.51 %</clr-dg-cell>
+          <clr-dg-cell>16.54 %</clr-dg-cell>
+          <clr-dg-cell>16.58 %</clr-dg-cell>
+          <clr-dg-cell>17 %</clr-dg-cell>
+          <clr-dg-cell>17.47 %</clr-dg-cell>
+          <clr-dg-cell>18.31 %</clr-dg-cell>
+          <clr-dg-cell>17.19 %</clr-dg-cell>
+          <clr-dg-cell>16.89 %</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>SUZUKI</clr-dg-cell>
+          <clr-dg-cell>5.32 % </clr-dg-cell>
+          <clr-dg-cell>5.61 % </clr-dg-cell>
+          <clr-dg-cell>5.5 % </clr-dg-cell>
+          <clr-dg-cell>6.03 % </clr-dg-cell>
+          <clr-dg-cell>5.66 % </clr-dg-cell>
+          <clr-dg-cell>5.45 % </clr-dg-cell>
+          <clr-dg-cell>5.34 % </clr-dg-cell>
+          <clr-dg-cell>6.12 % </clr-dg-cell>
+          <clr-dg-cell>6.13 % </clr-dg-cell>
+          <clr-dg-cell>5.89 % </clr-dg-cell>
+          <clr-dg-cell>5.96 % </clr-dg-cell>
+          <clr-dg-cell>6.04 % </clr-dg-cell>
+          <clr-dg-cell>5.67 % </clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>UMCY</clr-dg-cell>
+          <clr-dg-cell>42.51 %</clr-dg-cell>
+          <clr-dg-cell>44.77 %</clr-dg-cell>
+          <clr-dg-cell>45.34 %</clr-dg-cell>
+          <clr-dg-cell>45.18 %</clr-dg-cell>
+          <clr-dg-cell>46.44 %</clr-dg-cell>
+          <clr-dg-cell>44.82 %</clr-dg-cell>
+          <clr-dg-cell>47.13 %</clr-dg-cell>
+          <clr-dg-cell>46.43 %</clr-dg-cell>
+          <clr-dg-cell>46 %</clr-dg-cell>
+          <clr-dg-cell>45.26 %</clr-dg-cell>
+          <clr-dg-cell>44.63 %</clr-dg-cell>
+          <clr-dg-cell>45.12 %</clr-dg-cell>
+          <clr-dg-cell>45.31 %</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>UCAR</clr-dg-cell>
+          <clr-dg-cell>2.02 %</clr-dg-cell>
+          <clr-dg-cell>1.89 %</clr-dg-cell>
+          <clr-dg-cell>2.26 %</clr-dg-cell>
+          <clr-dg-cell>2.36 %</clr-dg-cell>
+          <clr-dg-cell>2.48 %</clr-dg-cell>
+          <clr-dg-cell>2.52 %</clr-dg-cell>
+          <clr-dg-cell>2.16 %</clr-dg-cell>
+          <clr-dg-cell>2.33 %</clr-dg-cell>
+          <clr-dg-cell>2.11 %</clr-dg-cell>
+          <clr-dg-cell>2.66 %</clr-dg-cell>
+          <clr-dg-cell>2.51 %</clr-dg-cell>
+          <clr-dg-cell>2.74 %</clr-dg-cell>
+          <clr-dg-cell>2.25 %</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>NCAR</clr-dg-cell>
+          <clr-dg-cell>3.94 %</clr-dg-cell>
+          <clr-dg-cell>3.62 %</clr-dg-cell>
+          <clr-dg-cell>3.53 %</clr-dg-cell>
+          <clr-dg-cell>3.39 %</clr-dg-cell>
+          <clr-dg-cell>3.36 %</clr-dg-cell>
+          <clr-dg-cell>4.01 %</clr-dg-cell>
+          <clr-dg-cell>3.51 %</clr-dg-cell>
+          <clr-dg-cell>3.38 %</clr-dg-cell>
+          <clr-dg-cell>3.78 %</clr-dg-cell>
+          <clr-dg-cell>3.5 %</clr-dg-cell>
+          <clr-dg-cell>3.43 %</clr-dg-cell>
+          <clr-dg-cell>3.96 %</clr-dg-cell>
+          <clr-dg-cell>4.16 %</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>NON AISI</clr-dg-cell>
+          <clr-dg-cell>5.94 %</clr-dg-cell>
+          <clr-dg-cell>5.99 %</clr-dg-cell>
+          <clr-dg-cell>5.84 %</clr-dg-cell>
+          <clr-dg-cell>5.54 %</clr-dg-cell>
+          <clr-dg-cell>5.19 %</clr-dg-cell>
+          <clr-dg-cell>5.25 %</clr-dg-cell>
+          <clr-dg-cell>4.86 %</clr-dg-cell>
+          <clr-dg-cell>4.79 %</clr-dg-cell>
+          <clr-dg-cell>4.41 %</clr-dg-cell>
+          <clr-dg-cell>4.3 %</clr-dg-cell>
+          <clr-dg-cell>4.18 %</clr-dg-cell>
+          <clr-dg-cell>3.78 %</clr-dg-cell>
+          <clr-dg-cell>3.7 %</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>OTHER AISI</clr-dg-cell>
+          <clr-dg-cell>0.51 %</clr-dg-cell>
+          <clr-dg-cell>0.48 %</clr-dg-cell>
+          <clr-dg-cell>0.32 %</clr-dg-cell>
+          <clr-dg-cell>0.39 %</clr-dg-cell>
+          <clr-dg-cell>0.33 %</clr-dg-cell>
+          <clr-dg-cell>0.33 %</clr-dg-cell>
+          <clr-dg-cell>0.36 %</clr-dg-cell>
+          <clr-dg-cell>0.34 %</clr-dg-cell>
+          <clr-dg-cell>0.29 %</clr-dg-cell>
+          <clr-dg-cell>0.35 %</clr-dg-cell>
+          <clr-dg-cell>0.35 %</clr-dg-cell>
+          <clr-dg-cell>0.28 %</clr-dg-cell>
+          <clr-dg-cell>0.28 %</clr-dg-cell>
+
+        </clr-dg-row>
+        <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+      </clr-datagrid>
+      <br><br><br><br><br><br>
+    </div>
+    <div class="card-footer">
+      <div class="cursor-pointer">
+        <clr-icon shape="refresh"></clr-icon>
+        Reload
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-block">
+      <div class="progress top loop" max="100"><progress></progress></div>
+      <h4 class="card-title center">REPO BY OBJECT YEAR</h4>
+      <p class="card-text" style="width: 100% !important;">
+        <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+        [dataSource]="dataSourceStackCol2">
+      </fusioncharts>
+    </p>
+    <clr-datagrid class="grid-font">
+      <clr-dg-column></clr-dg-column>
+      <clr-dg-column>Jul-13</clr-dg-column>
+      <clr-dg-column>Aug-13</clr-dg-column>
+      <clr-dg-column>Sep-13</clr-dg-column>
+      <clr-dg-column>Okt-13</clr-dg-column>
+      <clr-dg-column>Nov-13</clr-dg-column>
+      <clr-dg-column>Des-13</clr-dg-column>
+      <clr-dg-column>Jan-14</clr-dg-column>
+      <clr-dg-column>Feb-14</clr-dg-column>
+      <clr-dg-column>Mar-14</clr-dg-column>
+      <clr-dg-column>Apr-14</clr-dg-column>
+      <clr-dg-column>May-14</clr-dg-column>
+      <clr-dg-column>Jun-14</clr-dg-column>
+      <clr-dg-column>Jul-14</clr-dg-column>
+      <clr-dg-row>
+        <clr-dg-cell>2014</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0.04%</clr-dg-cell>
+        <clr-dg-cell>0.53%</clr-dg-cell>
+        <clr-dg-cell>1.89%</clr-dg-cell>
+        <clr-dg-cell>4.26%</clr-dg-cell>
+        <clr-dg-cell>7.4%</clr-dg-cell>
+        <clr-dg-cell>10.7%</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2013</clr-dg-cell>
+        <clr-dg-cell>6.51%</clr-dg-cell>
+        <clr-dg-cell>9.21%</clr-dg-cell>
+        <clr-dg-cell>12.46%</clr-dg-cell>
+        <clr-dg-cell>15.85%</clr-dg-cell>
+        <clr-dg-cell>18.87%</clr-dg-cell>
+        <clr-dg-cell>22.89%</clr-dg-cell>
+        <clr-dg-cell>26.61%</clr-dg-cell>
+        <clr-dg-cell>29.3%</clr-dg-cell>
+        <clr-dg-cell>32.4%</clr-dg-cell>
+        <clr-dg-cell>33.87%</clr-dg-cell>
+        <clr-dg-cell>33.68%</clr-dg-cell>
+        <clr-dg-cell>31.78%</clr-dg-cell>
+        <clr-dg-cell>29.98%</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2012</clr-dg-cell>
+        <clr-dg-cell>32.16%</clr-dg-cell>
+        <clr-dg-cell>31.43%</clr-dg-cell>
+        <clr-dg-cell>28.95%</clr-dg-cell>
+        <clr-dg-cell>26.93%</clr-dg-cell>
+        <clr-dg-cell>26.24%</clr-dg-cell>
+        <clr-dg-cell>24.42%</clr-dg-cell>
+        <clr-dg-cell>21.79%</clr-dg-cell>
+        <clr-dg-cell>20.84%</clr-dg-cell>
+        <clr-dg-cell>19.2%</clr-dg-cell>
+        <clr-dg-cell>17.8%</clr-dg-cell>
+        <clr-dg-cell>17.06%</clr-dg-cell>
+        <clr-dg-cell>15.65%</clr-dg-cell>
+        <clr-dg-cell>15.75%</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2011</clr-dg-cell>
+        <clr-dg-cell>26.54%</clr-dg-cell>
+        <clr-dg-cell>25.57%</clr-dg-cell>
+        <clr-dg-cell>23.94%</clr-dg-cell>
+        <clr-dg-cell>23.28%</clr-dg-cell>
+        <clr-dg-cell>21.05%</clr-dg-cell>
+        <clr-dg-cell>20.66%</clr-dg-cell>
+        <clr-dg-cell>19.38%</clr-dg-cell>
+        <clr-dg-cell>17.53%</clr-dg-cell>
+        <clr-dg-cell>16.84%</clr-dg-cell>
+        <clr-dg-cell>16.72%</clr-dg-cell>
+        <clr-dg-cell>15.36%</clr-dg-cell>
+        <clr-dg-cell>15.41%</clr-dg-cell>
+        <clr-dg-cell>14.52%</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2010</clr-dg-cell>
+        <clr-dg-cell>13.23%</clr-dg-cell>
+        <clr-dg-cell>13.31%</clr-dg-cell>
+        <clr-dg-cell>13.2%</clr-dg-cell>
+        <clr-dg-cell>13.23%</clr-dg-cell>
+        <clr-dg-cell>12.64%</clr-dg-cell>
+        <clr-dg-cell>12.37%</clr-dg-cell>
+        <clr-dg-cell>12.18%</clr-dg-cell>
+        <clr-dg-cell>12.44%</clr-dg-cell>
+        <clr-dg-cell>12.14%</clr-dg-cell>
+        <clr-dg-cell>11.14%</clr-dg-cell>
+        <clr-dg-cell>10.88%</clr-dg-cell>
+        <clr-dg-cell>11.62%</clr-dg-cell>
+        <clr-dg-cell>11.7%</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2009</clr-dg-cell>
+        <clr-dg-cell>7.02%</clr-dg-cell>
+        <clr-dg-cell>6.78%</clr-dg-cell>
+        <clr-dg-cell>7.2%</clr-dg-cell>
+        <clr-dg-cell>7.01%</clr-dg-cell>
+        <clr-dg-cell>7.24%</clr-dg-cell>
+        <clr-dg-cell>6.78%</clr-dg-cell>
+        <clr-dg-cell>7.24%</clr-dg-cell>
+        <clr-dg-cell>7.19%</clr-dg-cell>
+        <clr-dg-cell>6.72%</clr-dg-cell>
+        <clr-dg-cell>6.31%</clr-dg-cell>
+        <clr-dg-cell>6.82%</clr-dg-cell>
+        <clr-dg-cell>6.49%</clr-dg-cell>
+        <clr-dg-cell>6.33%</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2008</clr-dg-cell>
+        <clr-dg-cell>6.56%</clr-dg-cell>
+        <clr-dg-cell>5.97%</clr-dg-cell>
+        <clr-dg-cell>6.33%</clr-dg-cell>
+        <clr-dg-cell>6.07%</clr-dg-cell>
+        <clr-dg-cell>6.54%</clr-dg-cell>
+        <clr-dg-cell>5.69%</clr-dg-cell>
+        <clr-dg-cell>5.75%</clr-dg-cell>
+        <clr-dg-cell>5.63%</clr-dg-cell>
+        <clr-dg-cell>5.52%</clr-dg-cell>
+        <clr-dg-cell>5.39%</clr-dg-cell>
+        <clr-dg-cell>5.52%</clr-dg-cell>
+        <clr-dg-cell>5.03%</clr-dg-cell>
+        <clr-dg-cell>4.93%</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2007</clr-dg-cell>
+        <clr-dg-cell>3.53%</clr-dg-cell>
+        <clr-dg-cell>3.41%</clr-dg-cell>
+        <clr-dg-cell>3.51%</clr-dg-cell>
+        <clr-dg-cell>3.5%</clr-dg-cell>
+        <clr-dg-cell>3.32%</clr-dg-cell>
+        <clr-dg-cell>3.25%</clr-dg-cell>
+        <clr-dg-cell>3.07%</clr-dg-cell>
+        <clr-dg-cell>3.32%</clr-dg-cell>
+        <clr-dg-cell>3.05%</clr-dg-cell>
+        <clr-dg-cell>3.24%</clr-dg-cell>
+        <clr-dg-cell>2.78%</clr-dg-cell>
+        <clr-dg-cell>3.17%</clr-dg-cell>
+        <clr-dg-cell>2.73%</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2006</clr-dg-cell>
+        <clr-dg-cell>2.1%</clr-dg-cell>
+        <clr-dg-cell>2.03%</clr-dg-cell>
+        <clr-dg-cell>2.13%</clr-dg-cell>
+        <clr-dg-cell>1.87%</clr-dg-cell>
+        <clr-dg-cell>1.85%</clr-dg-cell>
+        <clr-dg-cell>1.72%</clr-dg-cell>
+        <clr-dg-cell>2.01%</clr-dg-cell>
+        <clr-dg-cell>1.9%</clr-dg-cell>
+        <clr-dg-cell>1.74%</clr-dg-cell>
+        <clr-dg-cell>1.82%</clr-dg-cell>
+        <clr-dg-cell>1.87%</clr-dg-cell>
+        <clr-dg-cell>1.7%</clr-dg-cell>
+        <clr-dg-cell>1.67%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2005</clr-dg-cell>
+        <clr-dg-cell>1.55%</clr-dg-cell>
+        <clr-dg-cell>1.46%</clr-dg-cell>
+        <clr-dg-cell>1.41%</clr-dg-cell>
+        <clr-dg-cell>1.55%</clr-dg-cell>
+        <clr-dg-cell>1.54%</clr-dg-cell>
+        <clr-dg-cell>1.49%</clr-dg-cell>
+        <clr-dg-cell>1.28%</clr-dg-cell>
+        <clr-dg-cell>1.21%</clr-dg-cell>
+        <clr-dg-cell>1.22%</clr-dg-cell>
+        <clr-dg-cell>1.26%</clr-dg-cell>
+        <clr-dg-cell>1.18%</clr-dg-cell>
+        <clr-dg-cell>1.27%</clr-dg-cell>
+        <clr-dg-cell>1.23%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2004</clr-dg-cell>
+        <clr-dg-cell>0.64%</clr-dg-cell>
+        <clr-dg-cell>0.67%</clr-dg-cell>
+        <clr-dg-cell>0.72%</clr-dg-cell>
+        <clr-dg-cell>0.54%</clr-dg-cell>
+        <clr-dg-cell>0.62%</clr-dg-cell>
+        <clr-dg-cell>0.55%</clr-dg-cell>
+        <clr-dg-cell>0.57%</clr-dg-cell>
+        <clr-dg-cell>0.48%</clr-dg-cell>
+        <clr-dg-cell>0.57%</clr-dg-cell>
+        <clr-dg-cell>0.46%</clr-dg-cell>
+        <clr-dg-cell>0.5%</clr-dg-cell>
+        <clr-dg-cell>0.39%</clr-dg-cell>
+        <clr-dg-cell>0.31%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2003</clr-dg-cell>
+        <clr-dg-cell>0.16%</clr-dg-cell>
+        <clr-dg-cell>0.15%</clr-dg-cell>
+        <clr-dg-cell>0.16%</clr-dg-cell>
+        <clr-dg-cell>0.16%</clr-dg-cell>
+        <clr-dg-cell>0.09%</clr-dg-cell>
+        <clr-dg-cell>0.18%</clr-dg-cell>
+        <clr-dg-cell>0.14%</clr-dg-cell>
+        <clr-dg-cell>0.11%</clr-dg-cell>
+        <clr-dg-cell>0.1%</clr-dg-cell>
+        <clr-dg-cell>0.11%</clr-dg-cell>
+        <clr-dg-cell>0.09%</clr-dg-cell>
+        <clr-dg-cell>0.08%</clr-dg-cell>
+        <clr-dg-cell>0.14%</clr-dg-cell>
+
+      </clr-dg-row>
+
+      <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+    </clr-datagrid>
+  </div>
+  <div class="card-footer">
+    <div class="cursor-pointer">
+      <clr-icon shape="refresh"></clr-icon>
+      Reload
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-block">
+        <div class="progress top loop" max="100"><progress></progress></div>
+        <h4 class="card-title center">REPO BY LAST INSTALLMENT NUMBER</h4>
+        <p class="card-text" style="width: 100% !important;">
+          <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+          [dataSource]="dataSourceStackCol3">
+        </fusioncharts>
+      </p>
+      <clr-datagrid class="grid-font">
+        <clr-dg-column></clr-dg-column>
+        <clr-dg-column>Jul-13</clr-dg-column>
+        <clr-dg-column>Aug-13</clr-dg-column>
+        <clr-dg-column>Sep-13</clr-dg-column>
+        <clr-dg-column>Okt-13</clr-dg-column>
+        <clr-dg-column>Nov-13</clr-dg-column>
+        <clr-dg-column>Des-13</clr-dg-column>
+        <clr-dg-column>Jan-14</clr-dg-column>
+        <clr-dg-column>Feb-14</clr-dg-column>
+        <clr-dg-column>Mar-14</clr-dg-column>
+        <clr-dg-column>Apr-14</clr-dg-column>
+        <clr-dg-column>May-14</clr-dg-column>
+        <clr-dg-column>Jun-14</clr-dg-column>
+        <clr-dg-column>Jul-14</clr-dg-column>
+        <clr-dg-row>
+          <clr-dg-cell><= 6</clr-dg-cell>
+          <clr-dg-cell>41.71%</clr-dg-cell>
+          <clr-dg-cell>43.04%</clr-dg-cell>
+          <clr-dg-cell>42.32%</clr-dg-cell>
+          <clr-dg-cell>44.59%</clr-dg-cell>
+          <clr-dg-cell>46.4%</clr-dg-cell>
+          <clr-dg-cell>47.88%</clr-dg-cell>
+          <clr-dg-cell>51.5%</clr-dg-cell>
+          <clr-dg-cell>50.63%</clr-dg-cell>
+          <clr-dg-cell>51.27%</clr-dg-cell>
+          <clr-dg-cell>50.89%</clr-dg-cell>
+          <clr-dg-cell>49.65%</clr-dg-cell>
+          <clr-dg-cell>49.1%</clr-dg-cell>
+          <clr-dg-cell>49.78%</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>07 - 12</clr-dg-cell>
+          <clr-dg-cell>28.51%</clr-dg-cell>
+          <clr-dg-cell>27.29%</clr-dg-cell>
+          <clr-dg-cell>28.08%</clr-dg-cell>
+          <clr-dg-cell>26.22%</clr-dg-cell>
+          <clr-dg-cell>26.28%</clr-dg-cell>
+          <clr-dg-cell>25.18%</clr-dg-cell>
+          <clr-dg-cell>23.49%</clr-dg-cell>
+          <clr-dg-cell>24.82%</clr-dg-cell>
+          <clr-dg-cell>24.7%</clr-dg-cell>
+          <clr-dg-cell>25.99%</clr-dg-cell>
+          <clr-dg-cell>26.5%</clr-dg-cell>
+          <clr-dg-cell>27.71%</clr-dg-cell>
+          <clr-dg-cell>26.53%</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>13 - 24</clr-dg-cell>
+          <clr-dg-cell>25.05%</clr-dg-cell>
+          <clr-dg-cell>25.29%</clr-dg-cell>
+          <clr-dg-cell>25.19%</clr-dg-cell>
+          <clr-dg-cell>24.61%</clr-dg-cell>
+          <clr-dg-cell>23.1%</clr-dg-cell>
+          <clr-dg-cell>22.38%</clr-dg-cell>
+          <clr-dg-cell>20.73%</clr-dg-cell>
+          <clr-dg-cell>20.09%</clr-dg-cell>
+          <clr-dg-cell>19.7%</clr-dg-cell>
+          <clr-dg-cell>18.69%</clr-dg-cell>
+          <clr-dg-cell>19.2%</clr-dg-cell>
+          <clr-dg-cell>18.59%</clr-dg-cell>
+          <clr-dg-cell>18.69%</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>25 - 36</clr-dg-cell>
+          <clr-dg-cell>4.63%</clr-dg-cell>
+          <clr-dg-cell>4.29%</clr-dg-cell>
+          <clr-dg-cell>4.29%</clr-dg-cell>
+          <clr-dg-cell>4.45%</clr-dg-cell>
+          <clr-dg-cell>4.15%</clr-dg-cell>
+          <clr-dg-cell>4.38%</clr-dg-cell>
+          <clr-dg-cell>4.19%</clr-dg-cell>
+          <clr-dg-cell>4.36%</clr-dg-cell>
+          <clr-dg-cell>4.14%</clr-dg-cell>
+          <clr-dg-cell>4.3%</clr-dg-cell>
+          <clr-dg-cell>4.5%</clr-dg-cell>
+          <clr-dg-cell>4.42%</clr-dg-cell>
+          <clr-dg-cell>4.83%</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>37 - 48</clr-dg-cell>
+          <clr-dg-cell>0.1%</clr-dg-cell>
+          <clr-dg-cell>0.09%</clr-dg-cell>
+          <clr-dg-cell>0.1%</clr-dg-cell>
+          <clr-dg-cell>0.13%</clr-dg-cell>
+          <clr-dg-cell>0.07%</clr-dg-cell>
+          <clr-dg-cell>0.18%</clr-dg-cell>
+          <clr-dg-cell>0.09%</clr-dg-cell>
+          <clr-dg-cell>0.11%</clr-dg-cell>
+          <clr-dg-cell>0.19%</clr-dg-cell>
+          <clr-dg-cell>0.13%</clr-dg-cell>
+          <clr-dg-cell>0.15%</clr-dg-cell>
+          <clr-dg-cell>0.18%</clr-dg-cell>
+          <clr-dg-cell>0.17%</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>> 40</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+
+        </clr-dg-row>
+        <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+      </clr-datagrid>
+      <br><br><br><br><br><br>
+    </div>
+    <div class="card-footer">
+      <div class="cursor-pointer">
+        <clr-icon shape="refresh"></clr-icon>
+        Reload
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-block">
+      <div class="progress top loop" max="100"><progress></progress></div>
+      <h4 class="card-title center">REPO BY GROUP DP</h4>
+      <p class="card-text" style="width: 100% !important;">
+        <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+        [dataSource]="dataSourceStackCol4">
+      </fusioncharts>
+    </p>
+    <clr-datagrid class="grid-font">
+      <clr-dg-column></clr-dg-column>
+      <clr-dg-column>Jul-13</clr-dg-column>
+      <clr-dg-column>Aug-13</clr-dg-column>
+      <clr-dg-column>Sep-13</clr-dg-column>
+      <clr-dg-column>Okt-13</clr-dg-column>
+      <clr-dg-column>Nov-13</clr-dg-column>
+      <clr-dg-column>Des-13</clr-dg-column>
+      <clr-dg-column>Jan-14</clr-dg-column>
+      <clr-dg-column>Feb-14</clr-dg-column>
+      <clr-dg-column>Mar-14</clr-dg-column>
+      <clr-dg-column>Apr-14</clr-dg-column>
+      <clr-dg-column>May-14</clr-dg-column>
+      <clr-dg-column>Jun-14</clr-dg-column>
+      <clr-dg-column>Jul-14</clr-dg-column>
+      <clr-dg-row>
+        <clr-dg-cell>01. = 0%</clr-dg-cell>
+        <clr-dg-cell>0.05%</clr-dg-cell>
+        <clr-dg-cell>0.02%</clr-dg-cell>
+        <clr-dg-cell>0.04%</clr-dg-cell>
+        <clr-dg-cell>0.11%</clr-dg-cell>
+        <clr-dg-cell>0.03%</clr-dg-cell>
+        <clr-dg-cell>0.23%</clr-dg-cell>
+        <clr-dg-cell>0.03%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0.01%</clr-dg-cell>
+        <clr-dg-cell>0.05%</clr-dg-cell>
+        <clr-dg-cell>0.11%</clr-dg-cell>
+        <clr-dg-cell>0.12%</clr-dg-cell>
+        <clr-dg-cell>0.01%</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>02. < 5%</clr-dg-cell>
+        <clr-dg-cell>0.15%</clr-dg-cell>
+        <clr-dg-cell>0.06%</clr-dg-cell>
+        <clr-dg-cell>0.07%</clr-dg-cell>
+        <clr-dg-cell>0.07%</clr-dg-cell>
+        <clr-dg-cell>0.06%</clr-dg-cell>
+        <clr-dg-cell>0.07%</clr-dg-cell>
+        <clr-dg-cell>0.05%</clr-dg-cell>
+        <clr-dg-cell>0.03%</clr-dg-cell>
+        <clr-dg-cell>0.03%</clr-dg-cell>
+        <clr-dg-cell>0.04%</clr-dg-cell>
+        <clr-dg-cell>0.02%</clr-dg-cell>
+        <clr-dg-cell>0.01%</clr-dg-cell>
+        <clr-dg-cell>0.02%</clr-dg-cell>
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>03. 5 - < 10%</clr-dg-cell>
+        <clr-dg-cell>23.36%</clr-dg-cell>
+        <clr-dg-cell>20.74%</clr-dg-cell>
+        <clr-dg-cell>18.3%</clr-dg-cell>
+        <clr-dg-cell>16.78%</clr-dg-cell>
+        <clr-dg-cell>15.27%</clr-dg-cell>
+        <clr-dg-cell>13.64%</clr-dg-cell>
+        <clr-dg-cell>10.84%</clr-dg-cell>
+        <clr-dg-cell>9.76%</clr-dg-cell>
+        <clr-dg-cell>8.92%</clr-dg-cell>
+        <clr-dg-cell>7.61%</clr-dg-cell>
+        <clr-dg-cell>6.85%</clr-dg-cell>
+        <clr-dg-cell>6.1%</clr-dg-cell>
+        <clr-dg-cell>5.76%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>04. 10 - < 15%</clr-dg-cell>
+        <clr-dg-cell>23.04%</clr-dg-cell>
+        <clr-dg-cell>20.81%</clr-dg-cell>
+        <clr-dg-cell>18.6%</clr-dg-cell>
+        <clr-dg-cell>16.7%</clr-dg-cell>
+        <clr-dg-cell>14.25%</clr-dg-cell>
+        <clr-dg-cell>13.02%</clr-dg-cell>
+        <clr-dg-cell>10.53%</clr-dg-cell>
+        <clr-dg-cell>9.19%</clr-dg-cell>
+        <clr-dg-cell>7.96%</clr-dg-cell>
+        <clr-dg-cell>6.8%</clr-dg-cell>
+        <clr-dg-cell>6.34%</clr-dg-cell>
+        <clr-dg-cell>5.42%</clr-dg-cell>
+        <clr-dg-cell>5.43%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>05. 15 - < 20%</clr-dg-cell>
+        <clr-dg-cell>13.02%</clr-dg-cell>
+        <clr-dg-cell>11.35%</clr-dg-cell>
+        <clr-dg-cell>10.49%</clr-dg-cell>
+        <clr-dg-cell>8.87%</clr-dg-cell>
+        <clr-dg-cell>8.04%</clr-dg-cell>
+        <clr-dg-cell>7.21%</clr-dg-cell>
+        <clr-dg-cell>6.09%</clr-dg-cell>
+        <clr-dg-cell>5.36%</clr-dg-cell>
+        <clr-dg-cell>4.52%</clr-dg-cell>
+        <clr-dg-cell>3.88%</clr-dg-cell>
+        <clr-dg-cell>3.81%</clr-dg-cell>
+        <clr-dg-cell>3.56%</clr-dg-cell>
+        <clr-dg-cell>3.14%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>06. 20 - < 25%</clr-dg-cell>
+        <clr-dg-cell>25.28%</clr-dg-cell>
+        <clr-dg-cell>30.96%</clr-dg-cell>
+        <clr-dg-cell>34.93%</clr-dg-cell>
+        <clr-dg-cell>38.99%</clr-dg-cell>
+        <clr-dg-cell>42.19%</clr-dg-cell>
+        <clr-dg-cell>44.74%</clr-dg-cell>
+        <clr-dg-cell>50.5%</clr-dg-cell>
+        <clr-dg-cell>52.12%</clr-dg-cell>
+        <clr-dg-cell>54.74%</clr-dg-cell>
+        <clr-dg-cell>57.19%</clr-dg-cell>
+        <clr-dg-cell>57.83%</clr-dg-cell>
+        <clr-dg-cell>58.12%</clr-dg-cell>
+        <clr-dg-cell>58.7%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>07. 25 - < 30%</clr-dg-cell>
+        <clr-dg-cell>8.4%</clr-dg-cell>
+        <clr-dg-cell>9.11%</clr-dg-cell>
+        <clr-dg-cell>10.3%</clr-dg-cell>
+        <clr-dg-cell>11.2%</clr-dg-cell>
+        <clr-dg-cell>12.42%</clr-dg-cell>
+        <clr-dg-cell>12.79%</clr-dg-cell>
+        <clr-dg-cell>13.5%</clr-dg-cell>
+        <clr-dg-cell>14.57%</clr-dg-cell>
+        <clr-dg-cell>14.65%</clr-dg-cell>
+        <clr-dg-cell>15.46%</clr-dg-cell>
+        <clr-dg-cell>15.67%</clr-dg-cell>
+        <clr-dg-cell>15.91%</clr-dg-cell>
+        <clr-dg-cell>15.97%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>08. 30 - < 35%</clr-dg-cell>
+        <clr-dg-cell>3.58%</clr-dg-cell>
+        <clr-dg-cell>4.23%</clr-dg-cell>
+        <clr-dg-cell>4.57%</clr-dg-cell>
+        <clr-dg-cell>4.26%</clr-dg-cell>
+        <clr-dg-cell>4.77%</clr-dg-cell>
+        <clr-dg-cell>5.16%</clr-dg-cell>
+        <clr-dg-cell>5.16%</clr-dg-cell>
+        <clr-dg-cell>5.38%</clr-dg-cell>
+        <clr-dg-cell>6.02%</clr-dg-cell>
+        <clr-dg-cell>5.74%</clr-dg-cell>
+        <clr-dg-cell>5.92%</clr-dg-cell>
+        <clr-dg-cell>6.48%</clr-dg-cell>
+        <clr-dg-cell>6.64%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>09. 35 - < 40%</clr-dg-cell>
+        <clr-dg-cell>1.4%</clr-dg-cell>
+        <clr-dg-cell>1.58%</clr-dg-cell>
+        <clr-dg-cell>1.6%</clr-dg-cell>
+        <clr-dg-cell>1.72%</clr-dg-cell>
+        <clr-dg-cell>1.7%</clr-dg-cell>
+        <clr-dg-cell>1.79%</clr-dg-cell>
+        <clr-dg-cell>1.9%</clr-dg-cell>
+        <clr-dg-cell>2.01%</clr-dg-cell>
+        <clr-dg-cell>1.57%</clr-dg-cell>
+        <clr-dg-cell>1.84%</clr-dg-cell>
+        <clr-dg-cell>1.96%</clr-dg-cell>
+        <clr-dg-cell>2.26%</clr-dg-cell>
+        <clr-dg-cell>2.45%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>10. >= 40%</clr-dg-cell>
+        <clr-dg-cell>1.18%</clr-dg-cell>
+        <clr-dg-cell>1.15%</clr-dg-cell>
+        <clr-dg-cell>1.12%</clr-dg-cell>
+        <clr-dg-cell>1.3%</clr-dg-cell>
+        <clr-dg-cell>1.27%</clr-dg-cell>
+        <clr-dg-cell>1.34%</clr-dg-cell>
+        <clr-dg-cell>1.39%</clr-dg-cell>
+        <clr-dg-cell>1.57%</clr-dg-cell>
+        <clr-dg-cell>1.58%</clr-dg-cell>
+        <clr-dg-cell>1.4%</clr-dg-cell>
+        <clr-dg-cell>1.5%</clr-dg-cell>
+        <clr-dg-cell>2.03%</clr-dg-cell>
+        <clr-dg-cell>1.89%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+    </clr-datagrid>
+  </div>
+  <div class="card-footer">
+    <div class="cursor-pointer">
+      <clr-icon shape="refresh"></clr-icon>
+      Reload
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-block">
+        <div class="progress top loop" max="100"><progress></progress></div>
+        <h4 class="card-title center">UNIT SOLD BY OBJECT YEAR</h4>
+        <p class="card-text" style="width: 100% !important;">
+          <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+          [dataSource]="dataSourceStackCol5">
+        </fusioncharts>
+      </p>
+      <clr-datagrid class="grid-font">
+      <clr-dg-column></clr-dg-column>
+      <clr-dg-column>Jul-13</clr-dg-column>
+      <clr-dg-column>Aug-13</clr-dg-column>
+      <clr-dg-column>Sep-13</clr-dg-column>
+      <clr-dg-column>Okt-13</clr-dg-column>
+      <clr-dg-column>Nov-13</clr-dg-column>
+      <clr-dg-column>Des-13</clr-dg-column>
+      <clr-dg-column>Jan-14</clr-dg-column>
+      <clr-dg-column>Feb-14</clr-dg-column>
+      <clr-dg-column>Mar-14</clr-dg-column>
+      <clr-dg-column>Apr-14</clr-dg-column>
+      <clr-dg-column>May-14</clr-dg-column>
+      <clr-dg-column>Jun-14</clr-dg-column>
+      <clr-dg-column>Jul-14</clr-dg-column>
+      <clr-dg-row>
+        <clr-dg-cell>2014</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0.01%</clr-dg-cell>
+        <clr-dg-cell>0.17%</clr-dg-cell>
+        <clr-dg-cell>0.79%</clr-dg-cell>
+        <clr-dg-cell>2.62%</clr-dg-cell>
+        <clr-dg-cell>5.09%</clr-dg-cell>
+        <clr-dg-cell>8.18%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2013</clr-dg-cell>
+        <clr-dg-cell>3.99%</clr-dg-cell>
+        <clr-dg-cell>5.59%</clr-dg-cell>
+        <clr-dg-cell>9.39%</clr-dg-cell>
+        <clr-dg-cell>13.46%</clr-dg-cell>
+        <clr-dg-cell>17.18%</clr-dg-cell>
+        <clr-dg-cell>20.77%</clr-dg-cell>
+        <clr-dg-cell>24.21%</clr-dg-cell>
+        <clr-dg-cell>27.35%</clr-dg-cell>
+        <clr-dg-cell>29.48%</clr-dg-cell>
+        <clr-dg-cell>33.17%</clr-dg-cell>
+        <clr-dg-cell>34.28%</clr-dg-cell>
+        <clr-dg-cell>32.94%</clr-dg-cell>
+        <clr-dg-cell>31.66%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2012</clr-dg-cell>
+        <clr-dg-cell>33.21%</clr-dg-cell>
+        <clr-dg-cell>32.44%</clr-dg-cell>
+        <clr-dg-cell>30.86%</clr-dg-cell>
+        <clr-dg-cell>28.39%</clr-dg-cell>
+        <clr-dg-cell>27.28%</clr-dg-cell>
+        <clr-dg-cell>25.26%</clr-dg-cell>
+        <clr-dg-cell>23.81%</clr-dg-cell>
+        <clr-dg-cell>22.03%</clr-dg-cell>
+        <clr-dg-cell>20.42%</clr-dg-cell>
+        <clr-dg-cell>18.29%</clr-dg-cell>
+        <clr-dg-cell>17.72%</clr-dg-cell>
+        <clr-dg-cell>16.8%</clr-dg-cell>
+        <clr-dg-cell>15.71%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2011</clr-dg-cell>
+        <clr-dg-cell>27.66%</clr-dg-cell>
+        <clr-dg-cell>27.03%</clr-dg-cell>
+        <clr-dg-cell>25.19%</clr-dg-cell>
+        <clr-dg-cell>23.81%</clr-dg-cell>
+        <clr-dg-cell>22.25%</clr-dg-cell>
+        <clr-dg-cell>21.36%</clr-dg-cell>
+        <clr-dg-cell>20.12%</clr-dg-cell>
+        <clr-dg-cell>18.69%</clr-dg-cell>
+        <clr-dg-cell>18.05%</clr-dg-cell>
+        <clr-dg-cell>16.47%</clr-dg-cell>
+        <clr-dg-cell>16.15%</clr-dg-cell>
+        <clr-dg-cell>15.69%</clr-dg-cell>
+        <clr-dg-cell>15.02%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2010</clr-dg-cell>
+        <clr-dg-cell>13.44%</clr-dg-cell>
+        <clr-dg-cell>13.67%</clr-dg-cell>
+        <clr-dg-cell>13.41%</clr-dg-cell>
+        <clr-dg-cell>13.27%</clr-dg-cell>
+        <clr-dg-cell>12.75%</clr-dg-cell>
+        <clr-dg-cell>12.33%</clr-dg-cell>
+        <clr-dg-cell>12.38%</clr-dg-cell>
+        <clr-dg-cell>12.18%</clr-dg-cell>
+        <clr-dg-cell>12.16%</clr-dg-cell>
+        <clr-dg-cell>12.26%</clr-dg-cell>
+        <clr-dg-cell>10.81%</clr-dg-cell>
+        <clr-dg-cell>11.19%</clr-dg-cell>
+        <clr-dg-cell>11.54%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2009</clr-dg-cell>
+        <clr-dg-cell>6.73%</clr-dg-cell>
+        <clr-dg-cell>7.17%</clr-dg-cell>
+        <clr-dg-cell>6.97%</clr-dg-cell>
+        <clr-dg-cell>7.03%</clr-dg-cell>
+       <clr-dg-cell> 7.29%</clr-dg-cell>
+        <clr-dg-cell>6.7%</clr-dg-cell>
+        <clr-dg-cell>6.94%</clr-dg-cell>
+        <clr-dg-cell>7.06%</clr-dg-cell>
+        <clr-dg-cell>6.91%</clr-dg-cell>
+        <clr-dg-cell>6.68%</clr-dg-cell>
+        <clr-dg-cell>6.38%</clr-dg-cell>
+        <clr-dg-cell>6.66%</clr-dg-cell>
+        <clr-dg-cell>6.6%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2008</clr-dg-cell>
+        <clr-dg-cell>6.54%</clr-dg-cell>
+        <clr-dg-cell>6.3%</clr-dg-cell>
+        <clr-dg-cell>6.21%</clr-dg-cell>
+        <clr-dg-cell>6.28%</clr-dg-cell>
+        <clr-dg-cell>6.12%</clr-dg-cell>
+        <clr-dg-cell>5.69%</clr-dg-cell>
+        <clr-dg-cell>5.56%</clr-dg-cell>
+        <clr-dg-cell>5.88%</clr-dg-cell>
+        <clr-dg-cell>5.47%</clr-dg-cell>
+        <clr-dg-cell>5.59%</clr-dg-cell>
+        <clr-dg-cell>5.44%</clr-dg-cell>
+        <clr-dg-cell>5.13%</clr-dg-cell>
+        <clr-dg-cell>5.11%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2007</clr-dg-cell>
+        <clr-dg-cell>3.7%</clr-dg-cell>
+        <clr-dg-cell>3.48%</clr-dg-cell>
+        <clr-dg-cell>3.65%</clr-dg-cell>
+        <clr-dg-cell>3.4%</clr-dg-cell>
+        <clr-dg-cell>3.21%</clr-dg-cell>
+        <clr-dg-cell>3.48%</clr-dg-cell>
+        <clr-dg-cell>2.97%</clr-dg-cell>
+        <clr-dg-cell>3.05%</clr-dg-cell>
+        <clr-dg-cell>3.39%</clr-dg-cell>
+        <clr-dg-cell>3.08%</clr-dg-cell>
+        <clr-dg-cell>3.01%</clr-dg-cell>
+        <clr-dg-cell>3.04%</clr-dg-cell>
+        <clr-dg-cell>2.73%</clr-dg-cell>
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2006</clr-dg-cell>
+        <clr-dg-cell>2.16%</clr-dg-cell>
+        <clr-dg-cell>1.97%</clr-dg-cell>
+        <clr-dg-cell>2.14%</clr-dg-cell>
+        <clr-dg-cell>2.13%</clr-dg-cell>
+        <clr-dg-cell>1.69%</clr-dg-cell>
+        <clr-dg-cell>1.88%</clr-dg-cell>
+        <clr-dg-cell>1.74%</clr-dg-cell>
+        <clr-dg-cell>1.89%</clr-dg-cell>
+        <clr-dg-cell>1.96%</clr-dg-cell>
+        <clr-dg-cell>1.81%</clr-dg-cell>
+        <clr-dg-cell>1.8%</clr-dg-cell>
+        <clr-dg-cell>1.79%</clr-dg-cell>
+        <clr-dg-cell>1.78%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2005</clr-dg-cell>
+        <clr-dg-cell>1.71%</clr-dg-cell>
+        <clr-dg-cell>1.56%</clr-dg-cell>
+        <clr-dg-cell>1.49%</clr-dg-cell>
+        <clr-dg-cell>1.41%</clr-dg-cell>
+        <clr-dg-cell>1.53%</clr-dg-cell>
+        <clr-dg-cell>1.42%</clr-dg-cell>
+        <clr-dg-cell>1.47%</clr-dg-cell>
+        <clr-dg-cell>1.25%</clr-dg-cell>
+        <clr-dg-cell>1.33%</clr-dg-cell>
+        <clr-dg-cell>1.21%</clr-dg-cell>
+        <clr-dg-cell>1.21%</clr-dg-cell>
+        <clr-dg-cell>1.21%</clr-dg-cell>
+        <clr-dg-cell>1.23%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2004</clr-dg-cell>
+        <clr-dg-cell>0.71%</clr-dg-cell>
+        <clr-dg-cell>0.61%</clr-dg-cell>
+        <clr-dg-cell>0.61%</clr-dg-cell>
+        <clr-dg-cell>0.6%</clr-dg-cell>
+        <clr-dg-cell>0.6%</clr-dg-cell>
+        <clr-dg-cell>0.67%</clr-dg-cell>
+        <clr-dg-cell>0.65%</clr-dg-cell>
+        <clr-dg-cell>0.46%</clr-dg-cell>
+        <clr-dg-cell>0.55%</clr-dg-cell>
+        <clr-dg-cell>0.54%</clr-dg-cell>
+        <clr-dg-cell>0.49%</clr-dg-cell>
+        <clr-dg-cell>0.37%</clr-dg-cell>
+        <clr-dg-cell>0.34%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2003</clr-dg-cell>
+        <clr-dg-cell>0.14%</clr-dg-cell>
+        <clr-dg-cell>0.21%</clr-dg-cell>
+        <clr-dg-cell>0.08%</clr-dg-cell>
+        <clr-dg-cell>0.21%</clr-dg-cell>
+        <clr-dg-cell>0.1%</clr-dg-cell>
+        <clr-dg-cell>0.18%</clr-dg-cell>
+        <clr-dg-cell>0.15%</clr-dg-cell>
+        <clr-dg-cell>0.16%</clr-dg-cell>
+        <clr-dg-cell>0.11%</clr-dg-cell>
+        <clr-dg-cell>0.11%</clr-dg-cell>
+        <clr-dg-cell>0.09%</clr-dg-cell>
+        <clr-dg-cell>0.09%</clr-dg-cell>
+        <clr-dg-cell>0.11%</clr-dg-cell>
+
+
+      </clr-dg-row>
+
+      <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+    </clr-datagrid>
+    </div>
+    <div class="card-footer">
+      <div class="cursor-pointer">
+        <clr-icon shape="refresh"></clr-icon>
+        Reload
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-block">
+      <div class="progress top loop" max="100"><progress></progress></div>
+      <h4 class="card-title center">UNIT SOLD BY LAST INSTALLMENT NUMBER</h4>
+      <p class="card-text" style="width: 100% !important;">
+        <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+        [dataSource]="dataSourceStackCol6">
+      </fusioncharts>
+    </p>
+    <clr-datagrid class="grid-font">
+        <clr-dg-column></clr-dg-column>
+        <clr-dg-column>Jul-13</clr-dg-column>
+        <clr-dg-column>Aug-13</clr-dg-column>
+        <clr-dg-column>Sep-13</clr-dg-column>
+        <clr-dg-column>Okt-13</clr-dg-column>
+        <clr-dg-column>Nov-13</clr-dg-column>
+        <clr-dg-column>Des-13</clr-dg-column>
+        <clr-dg-column>Jan-14</clr-dg-column>
+        <clr-dg-column>Feb-14</clr-dg-column>
+        <clr-dg-column>Mar-14</clr-dg-column>
+        <clr-dg-column>Apr-14</clr-dg-column>
+        <clr-dg-column>May-14</clr-dg-column>
+        <clr-dg-column>Jun-14</clr-dg-column>
+        <clr-dg-column>Jul-14</clr-dg-column>
+        <clr-dg-row>
+          <clr-dg-cell><= 6</clr-dg-cell>
+          <clr-dg-cell>41.28%</clr-dg-cell>
+          <clr-dg-cell>40.88%</clr-dg-cell>
+          <clr-dg-cell>42.49%</clr-dg-cell>
+         <clr-dg-cell> 43.49%</clr-dg-cell>
+          <clr-dg-cell>45.36%</clr-dg-cell>
+          <clr-dg-cell>47.76%</clr-dg-cell>
+          <clr-dg-cell>49.45%</clr-dg-cell>
+          <clr-dg-cell>51.07%</clr-dg-cell>
+          <clr-dg-cell>50.91%</clr-dg-cell>
+          <clr-dg-cell>51.49%</clr-dg-cell>
+          <clr-dg-cell>50.54%</clr-dg-cell>
+          <clr-dg-cell>49.09%</clr-dg-cell>
+          <clr-dg-cell>49.07%</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>07 - 12</clr-dg-cell>
+          <clr-dg-cell>29.56%</clr-dg-cell>
+          <clr-dg-cell>28.41%</clr-dg-cell>
+          <clr-dg-cell>28%</clr-dg-cell>
+          <clr-dg-cell>27.15%</clr-dg-cell>
+          <clr-dg-cell>26.14%</clr-dg-cell>
+          <clr-dg-cell>25.83%</clr-dg-cell>
+          <clr-dg-cell>24.04%</clr-dg-cell>
+          <clr-dg-cell>23.87%</clr-dg-cell>
+          <clr-dg-cell>24.66%</clr-dg-cell>
+          <clr-dg-cell>25.12%</clr-dg-cell>
+          <clr-dg-cell>26.42%</clr-dg-cell>
+          <clr-dg-cell>27.13%</clr-dg-cell>
+          <clr-dg-cell>27.07%</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>13 - 24</clr-dg-cell>
+          <clr-dg-cell>25.15%</clr-dg-cell>
+          <clr-dg-cell>25.95%</clr-dg-cell>
+          <clr-dg-cell>25.28%</clr-dg-cell>
+          <clr-dg-cell>24.9%</clr-dg-cell>
+          <clr-dg-cell>24.09%</clr-dg-cell>
+          <clr-dg-cell>22.04%</clr-dg-cell>
+          <clr-dg-cell>22.09%</clr-dg-cell>
+          <clr-dg-cell>20.61%</clr-dg-cell>
+          <clr-dg-cell>20.01%</clr-dg-cell>
+          <clr-dg-cell>19.23%</clr-dg-cell>
+          <clr-dg-cell>18.58%</clr-dg-cell>
+          <clr-dg-cell>19.12%</clr-dg-cell>
+          <clr-dg-cell>18.91%</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>25 - 36</clr-dg-cell>
+          <clr-dg-cell>3.97%</clr-dg-cell>
+          <clr-dg-cell>4.62%</clr-dg-cell>
+          <clr-dg-cell>4.13%</clr-dg-cell>
+          <clr-dg-cell>4.33%</clr-dg-cell>
+          <clr-dg-cell>4.32%</clr-dg-cell>
+          <clr-dg-cell>4.25%</clr-dg-cell>
+          <clr-dg-cell>4.29%</clr-dg-cell>
+          <clr-dg-cell>4.32%</clr-dg-cell>
+          <clr-dg-cell>4.3%</clr-dg-cell>
+          <clr-dg-cell>3.98%</clr-dg-cell>
+          <clr-dg-cell>4.34%</clr-dg-cell>
+          <clr-dg-cell>4.54%</clr-dg-cell>
+          <clr-dg-cell>4.78%</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>37 - 48</clr-dg-cell>
+          <clr-dg-cell>0.04%</clr-dg-cell>
+          <clr-dg-cell>0.14%</clr-dg-cell>
+          <clr-dg-cell>0.09%</clr-dg-cell>
+          <clr-dg-cell>0.13%</clr-dg-cell>
+          <clr-dg-cell>0.09%</clr-dg-cell>
+          <clr-dg-cell>0.12%</clr-dg-cell>
+          <clr-dg-cell>0.14%</clr-dg-cell>
+          <clr-dg-cell>0.12%</clr-dg-cell>
+          <clr-dg-cell>0.12%</clr-dg-cell>
+          <clr-dg-cell>0.18%</clr-dg-cell>
+          <clr-dg-cell>0.12%</clr-dg-cell>
+          <clr-dg-cell>0.12%</clr-dg-cell>
+          <clr-dg-cell>0.18%</clr-dg-cell>
+
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>> 40</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0.01%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+
+        </clr-dg-row>
+        <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+      </clr-datagrid>
+      <br><br><br><br><br><br><br><br><br>
+  </div>
+  <div class="card-footer">
+    <div class="cursor-pointer">
+      <clr-icon shape="refresh"></clr-icon>
+      Reload
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-block">
+        <div class="progress top loop" max="100"><progress></progress></div>
+        <h4 class="card-title center">RR PCT BY OBJECT YEARS</h4>
+        <p class="card-text" style="width: 100% !important;">
+          <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+          [dataSource]="dataSourceStackCol7">
+        </fusioncharts>
+      </p>
+      <clr-datagrid class="grid-font">
+      <clr-dg-column></clr-dg-column>
+      <clr-dg-column>Jul-13</clr-dg-column>
+      <clr-dg-column>Aug-13</clr-dg-column>
+      <clr-dg-column>Sep-13</clr-dg-column>
+      <clr-dg-column>Okt-13</clr-dg-column>
+      <clr-dg-column>Nov-13</clr-dg-column>
+      <clr-dg-column>Des-13</clr-dg-column>
+      <clr-dg-column>Jan-14</clr-dg-column>
+      <clr-dg-column>Feb-14</clr-dg-column>
+      <clr-dg-column>Mar-14</clr-dg-column>
+      <clr-dg-column>Apr-14</clr-dg-column>
+      <clr-dg-column>May-14</clr-dg-column>
+      <clr-dg-column>Jun-14</clr-dg-column>
+      <clr-dg-column>Jul-14</clr-dg-column>
+      <clr-dg-row>
+        <clr-dg-cell>2014</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>0%</clr-dg-cell>
+        <clr-dg-cell>58.77%</clr-dg-cell>
+        <clr-dg-cell>74.42%</clr-dg-cell>
+        <clr-dg-cell>74.58%</clr-dg-cell>
+        <clr-dg-cell>70.61%</clr-dg-cell>
+        <clr-dg-cell>72.91%</clr-dg-cell>
+        <clr-dg-cell>70.64%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2013</clr-dg-cell>
+        <clr-dg-cell>79.25%</clr-dg-cell>
+        <clr-dg-cell>72.79%</clr-dg-cell>
+        <clr-dg-cell>74.24%</clr-dg-cell>
+        <clr-dg-cell>73.82%</clr-dg-cell>
+        <clr-dg-cell>73.6%</clr-dg-cell>
+        <clr-dg-cell>76.69%</clr-dg-cell>
+        <clr-dg-cell>71.76%</clr-dg-cell>
+        <clr-dg-cell>71.92%</clr-dg-cell>
+        <clr-dg-cell>74.73%</clr-dg-cell>
+        <clr-dg-cell>72.6%</clr-dg-cell>
+        <clr-dg-cell>74.01%</clr-dg-cell>
+        <clr-dg-cell>72%</clr-dg-cell>
+        <clr-dg-cell>71.85%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2012</clr-dg-cell>
+        <clr-dg-cell>73.19%</clr-dg-cell>
+        <clr-dg-cell>75.21%</clr-dg-cell>
+        <clr-dg-cell>75.88%</clr-dg-cell>
+        <clr-dg-cell>76.98%</clr-dg-cell>
+        <clr-dg-cell>77.09%</clr-dg-cell>
+        <clr-dg-cell>78.01%</clr-dg-cell>
+        <clr-dg-cell>77.98%</clr-dg-cell>
+        <clr-dg-cell>78.73%</clr-dg-cell>
+        <clr-dg-cell>81.76%</clr-dg-cell>
+        <clr-dg-cell>80.64%</clr-dg-cell>
+        <clr-dg-cell>79.08%</clr-dg-cell>
+        <clr-dg-cell>82.03%</clr-dg-cell>
+        <clr-dg-cell>78.99%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2011</clr-dg-cell>
+        <clr-dg-cell>78.44%</clr-dg-cell>
+        <clr-dg-cell>79.06%</clr-dg-cell>
+        <clr-dg-cell>80.27%</clr-dg-cell>
+        <clr-dg-cell>81.92%</clr-dg-cell>
+        <clr-dg-cell>84%</clr-dg-cell>
+        <clr-dg-cell>79.53%</clr-dg-cell>
+        <clr-dg-cell>84.71%</clr-dg-cell>
+        <clr-dg-cell>84.75%</clr-dg-cell>
+        <clr-dg-cell>83.37%</clr-dg-cell>
+        <clr-dg-cell>83.11%</clr-dg-cell>
+        <clr-dg-cell>86.64%</clr-dg-cell>
+        <clr-dg-cell>86.52%</clr-dg-cell>
+        <clr-dg-cell>84.21%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2010</clr-dg-cell>
+        <clr-dg-cell>86.22%</clr-dg-cell>
+        <clr-dg-cell>90.46%</clr-dg-cell>
+        <clr-dg-cell>86.61%</clr-dg-cell>
+        <clr-dg-cell>87.12%</clr-dg-cell>
+        <clr-dg-cell>85.76%</clr-dg-cell>
+        <clr-dg-cell>79.97%</clr-dg-cell>
+        <clr-dg-cell>85.1%</clr-dg-cell>
+        <clr-dg-cell>86.62%</clr-dg-cell>
+       <clr-dg-cell> 81.41%</clr-dg-cell>
+        <clr-dg-cell>80.92%</clr-dg-cell>
+        <clr-dg-cell>82.52%</clr-dg-cell>
+        <clr-dg-cell>83.54%</clr-dg-cell>
+        <clr-dg-cell>78.79%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2009</clr-dg-cell>
+        <clr-dg-cell>87.77%</clr-dg-cell>
+        <clr-dg-cell>87.61%</clr-dg-cell>
+       <clr-dg-cell> 88.71%</clr-dg-cell>
+        <clr-dg-cell>83.94%</clr-dg-cell>
+        <clr-dg-cell>84.15%</clr-dg-cell>
+        <clr-dg-cell>86.42%</clr-dg-cell>
+        <clr-dg-cell>82.46%</clr-dg-cell>
+        <clr-dg-cell>84.98%</clr-dg-cell>
+        <clr-dg-cell>83.98%</clr-dg-cell>
+        <clr-dg-cell>81.7%</clr-dg-cell>
+        <clr-dg-cell>77.78%</clr-dg-cell>
+        <clr-dg-cell>80.6%</clr-dg-cell>
+        <clr-dg-cell>76.51%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2008</clr-dg-cell>
+        <clr-dg-cell>74.99%</clr-dg-cell>
+        <clr-dg-cell>82.49%</clr-dg-cell>
+        <clr-dg-cell>79.87%</clr-dg-cell>
+        <clr-dg-cell>81.68%</clr-dg-cell>
+        <clr-dg-cell>85.77%</clr-dg-cell>
+        <clr-dg-cell>82.58%</clr-dg-cell>
+        <clr-dg-cell>81.64%</clr-dg-cell>
+        <clr-dg-cell>82.23%</clr-dg-cell>
+        <clr-dg-cell>80.35%</clr-dg-cell>
+        <clr-dg-cell>78.92%</clr-dg-cell>
+       <clr-dg-cell> 85.88%</clr-dg-cell>
+        <clr-dg-cell>86.07%</clr-dg-cell>
+        <clr-dg-cell>80.02%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2007</clr-dg-cell>
+        <clr-dg-cell>65.27%</clr-dg-cell>
+        <clr-dg-cell>82.16%</clr-dg-cell>
+        <clr-dg-cell>84.06%</clr-dg-cell>
+        <clr-dg-cell>83.06%</clr-dg-cell>
+        <clr-dg-cell>82.5%</clr-dg-cell>
+        <clr-dg-cell>87.68%</clr-dg-cell>
+        <clr-dg-cell>82.97%</clr-dg-cell>
+        <clr-dg-cell>85.97%</clr-dg-cell>
+        <clr-dg-cell>80.58%</clr-dg-cell>
+        <clr-dg-cell>80.48%</clr-dg-cell>
+        <clr-dg-cell>90.57%</clr-dg-cell>
+        <clr-dg-cell>81.8%</clr-dg-cell>
+        <clr-dg-cell>83.13%</clr-dg-cell>
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2006</clr-dg-cell>
+        <clr-dg-cell>79.97%</clr-dg-cell>
+        <clr-dg-cell>78.85%</clr-dg-cell>
+        <clr-dg-cell>85.31%</clr-dg-cell>
+        <clr-dg-cell>83.01%</clr-dg-cell>
+        <clr-dg-cell>92.86%</clr-dg-cell>
+        <clr-dg-cell>84.57%</clr-dg-cell>
+        <clr-dg-cell>87.48%</clr-dg-cell>
+        <clr-dg-cell>85.85%</clr-dg-cell>
+        <clr-dg-cell>88.93%</clr-dg-cell>
+        <clr-dg-cell>87.41%</clr-dg-cell>
+        <clr-dg-cell>85.96%</clr-dg-cell>
+        <clr-dg-cell>89.41%</clr-dg-cell>
+        <clr-dg-cell>81.49%</clr-dg-cell>
+
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2005</clr-dg-cell>
+        <clr-dg-cell>84.92%</clr-dg-cell>
+        <clr-dg-cell>83.37%</clr-dg-cell>
+        <clr-dg-cell>93.12%</clr-dg-cell>
+        <clr-dg-cell>86.04%</clr-dg-cell>
+        <clr-dg-cell>82.54%</clr-dg-cell>
+        <clr-dg-cell>83.08%</clr-dg-cell>
+        <clr-dg-cell>81.29%</clr-dg-cell>
+        <clr-dg-cell>89.13%</clr-dg-cell>
+        <clr-dg-cell>91.11%</clr-dg-cell>
+        <clr-dg-cell>92.99%</clr-dg-cell>
+        <clr-dg-cell>80.87%</clr-dg-cell>
+        <clr-dg-cell>85.38%</clr-dg-cell>
+        <clr-dg-cell>85.4%</clr-dg-cell>
+
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2004</clr-dg-cell>
+        <clr-dg-cell>80.27%</clr-dg-cell>
+        <clr-dg-cell>79.93%</clr-dg-cell>
+        <clr-dg-cell>81.04%</clr-dg-cell>
+        <clr-dg-cell>88.81%</clr-dg-cell>
+        <clr-dg-cell>83.25%</clr-dg-cell>
+        <clr-dg-cell>76.12%</clr-dg-cell>
+        <clr-dg-cell>79.58%</clr-dg-cell>
+        <clr-dg-cell>79%</clr-dg-cell>
+        <clr-dg-cell>90.21%</clr-dg-cell>
+        <clr-dg-cell>87.4%</clr-dg-cell>
+        <clr-dg-cell>91.97%</clr-dg-cell>
+        <clr-dg-cell>82.78%</clr-dg-cell>
+        <clr-dg-cell>86.03%</clr-dg-cell>
+
+
+
+      </clr-dg-row>
+      <clr-dg-row>
+        <clr-dg-cell>2003</clr-dg-cell>
+        <clr-dg-cell>93.82%</clr-dg-cell>
+        <clr-dg-cell>89.01%</clr-dg-cell>
+        <clr-dg-cell>92.77%</clr-dg-cell>
+        <clr-dg-cell>92.64%</clr-dg-cell>
+        <clr-dg-cell>72.86%</clr-dg-cell>
+        <clr-dg-cell>80.25%</clr-dg-cell>
+        <clr-dg-cell>75.17%</clr-dg-cell>
+        <clr-dg-cell>89.74%</clr-dg-cell>
+        <clr-dg-cell>92.28%</clr-dg-cell>
+        <clr-dg-cell>86.96%</clr-dg-cell>
+        <clr-dg-cell>83.01%</clr-dg-cell>
+        <clr-dg-cell>86.83%</clr-dg-cell>
+       <clr-dg-cell> 90.26%</clr-dg-cell>
+
+      </clr-dg-row>
+
+      <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+    </clr-datagrid>
+    </div>
+    <div class="card-footer">
+      <div class="cursor-pointer">
+        <clr-icon shape="refresh"></clr-icon>
+        Reload
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-block">
+      <div class="progress top loop" max="100"><progress></progress></div>
+      <h4 class="card-title center">RR PCT BY LAST INSTALLMENT NUMBER</h4>
+      <p class="card-text" style="width: 100% !important;">
+        <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat"
+        [dataSource]="dataSourceStackCol8">
+      </fusioncharts>
+    </p>
+    <clr-datagrid class="grid-font">
+        <clr-dg-column></clr-dg-column>
+        <clr-dg-column>Jul-13</clr-dg-column>
+        <clr-dg-column>Aug-13</clr-dg-column>
+        <clr-dg-column>Sep-13</clr-dg-column>
+        <clr-dg-column>Okt-13</clr-dg-column>
+        <clr-dg-column>Nov-13</clr-dg-column>
+        <clr-dg-column>Des-13</clr-dg-column>
+        <clr-dg-column>Jan-14</clr-dg-column>
+        <clr-dg-column>Feb-14</clr-dg-column>
+        <clr-dg-column>Mar-14</clr-dg-column>
+        <clr-dg-column>Apr-14</clr-dg-column>
+        <clr-dg-column>May-14</clr-dg-column>
+        <clr-dg-column>Jun-14</clr-dg-column>
+        <clr-dg-column>Jul-14</clr-dg-column>
+        <clr-dg-row>
+          <clr-dg-cell><= 6</clr-dg-cell>
+          <clr-dg-cell>71.71%</clr-dg-cell>
+          <clr-dg-cell>73.78%</clr-dg-cell>
+          <clr-dg-cell>73.54%</clr-dg-cell>
+          <clr-dg-cell>72.69%</clr-dg-cell>
+          <clr-dg-cell>73.89%</clr-dg-cell>
+          <clr-dg-cell>74.55%</clr-dg-cell>
+          <clr-dg-cell>72.33%</clr-dg-cell>
+          <clr-dg-cell>72.57%</clr-dg-cell>
+          <clr-dg-cell>72.64%</clr-dg-cell>
+          <clr-dg-cell>71.19%</clr-dg-cell>
+          <clr-dg-cell>71.99%</clr-dg-cell>
+          <clr-dg-cell>71.72%</clr-dg-cell>
+          <clr-dg-cell>68.5%</clr-dg-cell>
+
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>07 - 12</clr-dg-cell>
+          <clr-dg-cell>75.17%</clr-dg-cell>
+          <clr-dg-cell>77.03%</clr-dg-cell>
+          <clr-dg-cell>78.35%</clr-dg-cell>
+          <clr-dg-cell>79.58%</clr-dg-cell>
+          <clr-dg-cell>79.62%</clr-dg-cell>
+          <clr-dg-cell>78.35%</clr-dg-cell>
+          <clr-dg-cell>76.74%</clr-dg-cell>
+          <clr-dg-cell>78.16%</clr-dg-cell>
+          <clr-dg-cell>81.28%</clr-dg-cell>
+          <clr-dg-cell>78.41%</clr-dg-cell>
+          <clr-dg-cell>79.12%</clr-dg-cell>
+          <clr-dg-cell>77.39%</clr-dg-cell>
+          <clr-dg-cell>76%</clr-dg-cell>
+
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>13 - 24</clr-dg-cell>
+          <clr-dg-cell>83.81%</clr-dg-cell>
+          <clr-dg-cell>85.08%</clr-dg-cell>
+          <clr-dg-cell>85.46%</clr-dg-cell>
+          <clr-dg-cell>87.54%</clr-dg-cell>
+          <clr-dg-cell>86.19%</clr-dg-cell>
+          <clr-dg-cell>86.65%</clr-dg-cell>
+          <clr-dg-cell>87.78%</clr-dg-cell>
+          <clr-dg-cell>89.67%</clr-dg-cell>
+          <clr-dg-cell>89.01%</clr-dg-cell>
+          <clr-dg-cell>88.09%</clr-dg-cell>
+          <clr-dg-cell>87.24%</clr-dg-cell>
+          <clr-dg-cell>87.92%</clr-dg-cell>
+          <clr-dg-cell>88.15%</clr-dg-cell>
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>25 - 36</clr-dg-cell>
+          <clr-dg-cell>112.51%</clr-dg-cell>
+          <clr-dg-cell>118.71%</clr-dg-cell>
+          <clr-dg-cell>110.91%</clr-dg-cell>
+          <clr-dg-cell>110.06%</clr-dg-cell>
+          <clr-dg-cell>119.1%</clr-dg-cell>
+          <clr-dg-cell>106.31%</clr-dg-cell>
+          <clr-dg-cell>116.57%</clr-dg-cell>
+          <clr-dg-cell>110.21%</clr-dg-cell>
+          <clr-dg-cell>116.49%</clr-dg-cell>
+          <clr-dg-cell>110.27%</clr-dg-cell>
+          <clr-dg-cell>110.05%</clr-dg-cell>
+          <clr-dg-cell>121.58%</clr-dg-cell>
+          <clr-dg-cell>107.39%</clr-dg-cell>
+
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>37 - 48</clr-dg-cell>
+          <clr-dg-cell>128.47%</clr-dg-cell>
+          <clr-dg-cell>150.43%</clr-dg-cell>
+          <clr-dg-cell>135.014%</clr-dg-cell>
+          <clr-dg-cell>151.18%</clr-dg-cell>
+          <clr-dg-cell>142.62%</clr-dg-cell>
+          <clr-dg-cell>141.39%</clr-dg-cell>
+          <clr-dg-cell>115.36%</clr-dg-cell>
+          <clr-dg-cell>175.69%</clr-dg-cell>
+          <clr-dg-cell>144.82%</clr-dg-cell>
+          <clr-dg-cell>153.66%</clr-dg-cell>
+          <clr-dg-cell>142.56%</clr-dg-cell>
+          <clr-dg-cell>220.91%</clr-dg-cell>
+          <clr-dg-cell>149.27%</clr-dg-cell>
+
+
+
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>> 40</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>183.44%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+          <clr-dg-cell>0%</clr-dg-cell>
+
+
+        </clr-dg-row>
+        <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+      </clr-datagrid>
+      <br><br><br><br><br><br><br><br>  <br>
+  </div>
+  <div class="card-footer">
+    <div class="cursor-pointer">
+      <clr-icon shape="refresh"></clr-icon>
+      Reload
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+</main>
+<clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
+</clr-vertical-nav>
+</div>

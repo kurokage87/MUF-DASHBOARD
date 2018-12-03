@@ -1,0 +1,45 @@
+<div class="login-wrapper">
+  <form class="login" ngNativeValidate (submit)="onSubmit()">
+      <label class="title" >
+          <h3 class="welcome">MUF</h3>
+          DASHBOARD
+          <!-- <h5 class="hint">Use your Company ID to sign in or create one now</h5> -->
+      </label>
+      <div class="login-group">
+          <!-- <div class="auth-source select">
+              <select id="login-auth-source-1">
+                  <option>Local Users</option>
+                  <option>Administrator</option>
+              </select>
+          </div> -->
+          <input #u class="username" type="text" id="login_username" placeholder="Username" 
+          [(ngModel)]="user"
+          [ngModelOptions]="{standalone: true}" required pattern="[0-9_]{1,8}">
+          <div *ngIf="uVal"><p style="color:red">field username not valid</p></div>
+          <!-- <div><p style="color:red">field username not valid</p></div> -->
+          <input #p class="password" type="password" id="login_password" placeholder="Password"
+          [(ngModel)]="pass"
+          [ngModelOptions]="{standalone: true}"  required pattern="[a-zA-Z0-9!@##$%^&*()]{1,30}">
+          <div *ngIf="pVal"><p style="color:red">field password not valid</p></div>
+          <!-- <div><p style="color:red">field password not valid</p></div> -->
+          <!-- <div class="checkbox">
+              <input type="checkbox" id="rememberme">
+              <label for="rememberme">
+                  Remember me
+              </label>
+          </div> -->
+          <div *ngIf="valid" class="error active">
+              Invalid user name or password
+          </div>
+          <button type="submit" class="btn btn-primary" >LOGIN</button>
+          <!-- <a href="javascript://" class="signup">Sign up for a Company ID</a> -->
+      </div>
+  </form>
+</div>
+<!-- <div *ngIf="user">{{user}}</div>
+<div *ngIf="pass">{{pass}}</div> -->
+
+
+<!-- [ngModelOptions]="{standalone: true}" -->
+<!-- [(ngModel)]="pass"
+          [ngModelOptions]="{standalone: true}" -->
