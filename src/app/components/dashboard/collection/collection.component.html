@@ -6,18 +6,60 @@
 <div class="content-container">
   <main class="content-area">
 
+    
     <h1 class="center">MONTHLY COLLECTION DASHBOARD</h1>
-
     <div class="row">
 
-      <div class="col-md-6">
+        <!-- <div class="col-md-6">
+          <div class="card">
+            <div class="card-block">
+              <div class="row filterArea center">
+                <div class="col-sm-3 area" ><span>Area</span></div>
+                <div class="col-sm-3 ">
+                    <select clrSelect name="options" [(ngModel)]="area">
+                        <option value="one">One</option>
+                        <option value="two">Two</option>
+                        <option value="three">Three</option>
+                      </select>
+                    </div>
+              </div>
+              <div class="row filterArea center">
+                  <div class="col-sm-3 area" ><span>CABANG</span></div>
+                  <div class="col-sm-3 ">
+                      <select clrSelect name="options" [(ngModel)]="branchList">
+                          <option value="one">One</option>
+                          <option value="two">Two</option>
+                          <option value="three">Three</option>
+                        </select>
+                      </div>
+                </div>
+                <div class="row filterArea center">
+                    <div class="col-sm-3 area" ><span>PORTFOLIO</span></div>
+                    <div class="col-sm-3 ">
+                        <select clrSelect name="options" [(ngModel)]="portfolioList">
+                            <option value="one">One</option>
+                            <option value="two">Two</option>
+                            <option value="three">Three</option>
+                          </select>
+                        </div>
+                  </div>
+              
+          </div>
+        </div>
+      </div> -->
+  
+  </div>
+  
+
+<div class="row gauge">
+    <div class="col2">
         <div class="card">
           <div class="card-block">
             <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
             <h4 class="card-title center">% NCL</h4>
             <p class="card-text" style="width: 25% !important;">
-              <fusioncharts [width]="width" [height]="height" [type]="type_gauce1" [dataFormat]="dataFormat"
-              [dataSource]="dataSourceGauge">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat"
+              [dataSource]="dataSourceGauge1">
             </fusioncharts>
           </p>
         </div>
@@ -30,31 +72,27 @@
       </div>
     </div>
 
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-block">
-          <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
-          <h4 class="card-title center">NCL/10<sup>6</sup></h4>
-          <p class="card-text" style="width: 25% !important;">
-            <fusioncharts [width]="width" [height]="height" [type]="type_gauce1" [dataFormat]="dataFormat"
-            [dataSource]="dataSourceGauge1">
-          </fusioncharts>
-        </p>
-      </div>
-      <div class="card-footer">
-        <div class="cursor-pointer">
-          <clr-icon shape="refresh"></clr-icon>
-          Reload
+    <div class="col2">
+        <div class="card">
+          <div class="card-block">
+            <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
+            <h4 class="card-title center">NCL/10<sup>6</sup></h4>
+            <p class="card-text" style="width: 25% !important;">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat"
+              [dataSource]="dataSourceGauge1">
+            </fusioncharts>
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="cursor-pointer">
+            <clr-icon shape="refresh"></clr-icon>
+            Reload
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-</div>
-
-<div class="row">
-
-  <div class="col-md-4">
+  <div class="col2">
     <div class="card">
       <div class="card-block">
         <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
@@ -74,7 +112,7 @@
   </div>
 </div>
 
-<div class="col-md-4">
+<div class="col2">
   <div class="card">
     <div class="card-block">
       <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
@@ -94,7 +132,7 @@
 </div>
 </div>
 
-<div class="col-md-4">
+<div class="col2">
   <div class="card">
     <div class="card-block">
       <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
@@ -275,7 +313,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-block">
-        <div class="progress top loop" max="100"><progress></progress></div>
+        <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
         <h4 class="card-title center">COLLECTION EFFECTIVENESS PERFORMANCE</h4>
         <p class="card-text" style="width: 100% !important;">
           <fusioncharts [width]="width" [height]="height" [type]="type_bar" [dataFormat]="dataFormat" [dataSource]="dataSourceBar"
@@ -462,7 +500,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-block">
-        <div class="progress top loop" max="100"><progress></progress></div>
+        <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
         <h4 class="card-title center">AR VS BALANCE AR</h4>
         <p class="card-text" style="width: 100% !important;">
           <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource2">
@@ -627,7 +665,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-block">
-        <div class="progress top loop" max="100"><progress></progress></div>
+        <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
         <h4 class="card-title center">LOSSES PERFORMANCE</h4>
         <p class="card-text" style="width: 100% !important;">
           <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource3">

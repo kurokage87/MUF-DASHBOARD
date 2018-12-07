@@ -15,17 +15,19 @@ export class ReportCabangComponent implements OnInit {
   totalActualUnit: number
 
   request_data = { app: "muf-dashboard", method: "", data: { bulan: "", branch_code: "" } }
-  months : any;
+  months: any;
   loading: boolean = true;
   all_months = { f_checked_all_months: false, f_disabled_all_months: false };
 
-  monthe :any;
+  monthe: any;
+  cabang;
   data: string;
   cab = localStorage.getItem("currentUser");
-  test=JSON.parse(this.cab);
-  area = this.test["data"].resultUserProfileLocation[0].branch_code
+  test = JSON.parse(this.cab);
+  area: any;
+  bran_id;
   // cabang=this.test["data"].resultUserProfileLocation[0].branch_code
-  cabang = this.area
+
   // cabang = "0103"
   ncabang = this.test["data"].resultUserProfileLocation[0].branch_name
   // ncabang = "DUREN TIGA"
@@ -33,7 +35,7 @@ export class ReportCabangComponent implements OnInit {
   f_monthly_usage: boolean = false;
   unit: any
   amount: any
-  
+
   // data:any
   mom: any
   mtd: any
@@ -52,13 +54,33 @@ export class ReportCabangComponent implements OnInit {
   totalActualInUnit: any
   totalActualInAmount: any
   totalProyeksiInAmount: any
-  title_unit_booking_ir_1:any;
-  title_unit_booking_ir_2:any;
-  title_unit_booking_ir_3:any;
+  title_unit_booking_ir_1: any;
+  title_unit_booking_ir_2: any;
+  title_unit_booking_ir_3: any;
+  // ---------------------------------------------
+  datas
+  setSatus;
+  hide = true;
 
+
+
+  unitBookingIRUnit = {
+    "data_sekarang": null,
+    "data_bulan_kurang_2": null,
+    "data_bulan_kurang_3": null,
+    "growth_2_1": null,
+    "growth_3_2": null,
+  };
+  unitBookingIRAmount = {
+    "data_sekarang": null,
+    "data_bulan_kurang_2": null,
+    "data_bulan_kurang_3": null,
+    "growth_2_1": null,
+    "growth_3_2": null,
+  };
   params = {
-    bulan: this.monthe,
-    branch_code: this.cabang
+    "bulan": this.monthe,
+    "branch_code": this.cabang
   }
 
   branch_params_code = {
@@ -66,7 +88,20 @@ export class ReportCabangComponent implements OnInit {
   }
 
   branch_params_area = {
-    "data": "WHERE BRANCH_PARENT = '"+this.area+"' ORDER BY BRANCH_NAME ASC"
+    "data": "WHERE BRANCH_PARENT = '" + this.test["data"].resultUserProfileLocation[0].branch_code + "' ORDER BY BRANCH_NAME ASC"
+  }
+
+  branch_params_code_ho = {
+    "data": "WHERE BRANCH_TYPE = 'BR' AND BRANCH_TYPE NOT IN ('AR','HO') ORDER BY BRANCH_NAME ASC"
+  }
+
+
+
+  list_branch_area = {
+    "app": "mdm",
+    "method": "getBranchArea",
+    "data": this.branch_params_code
+
   }
 
   list_area = {
@@ -75,13 +110,15 @@ export class ReportCabangComponent implements OnInit {
     "data": null
   }
 
-
-  list_branch_area = {
-    "app": "mdm",
-    "method": "getBranchArea",
-    "data": this.branch_params_code
-    
+  getDataByMethod = {
+    "app": "muf-dashboard",
+    "method": "bookingIR",
+    "data": {
+      "bulan": "8",
+      "branch_code": "0102"
+    }
   }
+
 
   data_parameter = {
     app: "muf-dashboard",
@@ -90,7 +127,7 @@ export class ReportCabangComponent implements OnInit {
   }
 
   constructor(private service: ServicesService) {
-    
+
     this.months = [
       { name: 'January', value: '1', f_checked: false, f_disabled: false },
       { name: 'February', value: '2', f_checked: false, f_disabled: false },
@@ -105,460 +142,737 @@ export class ReportCabangComponent implements OnInit {
       { name: 'November', value: '11', f_checked: false, f_disabled: false },
       { name: 'December', value: '12', f_checked: false, f_disabled: false }
     ];
-      this.monthe = (new Date().getMonth() + 1).toString();
-    
+    this.monthe = (new Date().getMonth() + 1).toString();
+
   }
 
   ngOnInit() {
-    // this.setDefaultMonth();
-    
-    this.getBranch();
-    // this.monthAdd();
-    this.getDataBookingIr();
-    // this.onClickSubmit();
+    // console.log(this.test['data'].resultUserProfileLocation[0].branch_code)
+    this.getDataBranch();
+
+
   }
 
-  monthAdd(){
-    var tot = 0
-    this.months.forEach(element => {
-       tot =+ element.value
-    });
-    console.log(tot) 
-  }
+  getDataBranch() {
+    var bran: string;
+    var cu = this.test;
+    console.log(cu);
+    //validasi area ,branch, atau ho
+    for (let index = 0; index < cu.data.resultProfileUserRole.length; index++) {
+      if (cu.data.resultProfileUserRole[index].role_code == 'DSB_MKT_BR') {
+        // this.cabang=cu['data'].resultUserProfileLocation[0].branch_code;
 
-  getDataProyeksi() {
-    this.data_parameter.method = "proyeksi";
-    this.service.postData('post', this.data_parameter).subscribe(
-      response => {
-        if (response.status == true) {
-          this.proyeksi = response.data
-          // console.log(response.data)
-        }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-          this.getDataProyeksi();
-        }
+        this.list_area.data = this.branch_params_code;
+        console.log(this.cabang);
+        this.setSatus = "branch"
+        this.hide = true;
+        break;
       }
-    )
-  }
-
-  getDataActual(){
-    this.data_parameter.method = "actual"
-    this.service.postData('post', this.data_parameter).subscribe(
-      response => {
-        if(response.status == true){
-          this.actual = response.data
-        }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-          this.getDataActual()
-        }
+      else if (cu.data.resultProfileUserRole[index].role_code == 'DSB_MKT_AR') {
+        this.list_area.data = this.branch_params_area;
+        this.setSatus = "area"
+        this.hide = false;
+        break;
       }
-    )
-  }
-
-  getDataAmount() {
-    this.data_parameter.method = "amountBookingIR"
-    this.service.postData('post', this.data_parameter).subscribe(
-      response => {
-        if (response.status == true) {
-          this.amount = response.data
-          // console.log(response.data)
-        }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-          this.getDataAmount();
-        }
+      else {
+        this.list_area.data = this.branch_params_code_ho;
+        this.setSatus = "ho"
+        this.hide = false;
       }
-    )
-  }
-
-  getDataBookingIr() {
-    
-    this.data_parameter.method = "unitBookingIR"
-    this.data_parameter.data = {bulan:this.monthe,branch_code : this.cabang}
-    this.service.postData('post', this.data_parameter).subscribe(
-      response => {
-        if (response.status == true) {
-          this.booking = response.data_booking_ir
-          this.mtd = response.data_mtd_target
-          this.mom = response.data_mom
-          this.avg = response.data_avg_booking_ir
-          this.ytd = response.data_ytd_target
-          this.yoy = response.data_yoy
-          this.actual = response.data_actual
-          this.proyeksi = response.data_proyeksi
-          this.unit = response.data_unit_booking_ir
-          this.totalUnitByPortofolio = response.data_total_unit_by_portofolio
-          this.amount = response.data_amount_booking_ir
-          this.totalAmountByPortofolio = response.data_total_amount_by_portofolio
-          this.actualUnit = response.data_actual_in_unit
-          this.totalActualInUnit = response.data_total_actual_in_unit
-          this.actualAmount = response.data_actual_in_amount
-          this.totalActualInAmount = response.data_total_actual_in_amount
-          this.proyeksiAmout = response.data_proyeksi_in_amount
-          this.totalProyeksiInAmount = response.data_total_proyeksi_in_amount
-          this.actualTarget = response.data_target_actual
-          this.loading = false;
-          this.months.forEach(element => {
-            if (element.value == this.monthe) {
-              this.title_unit_booking_ir_1 = element.name.substring(0, 3)+'-'+new Date().getFullYear();
-            }
-            if (element.value == this.monthe-1) {
-              this.title_unit_booking_ir_2 = element.name.substring(0, 3)+'-'+new Date().getFullYear();
-            }
-            if (element.value == this.monthe-2) {
-              this.title_unit_booking_ir_3 = element.name.substring(0, 3)+'-'+new Date().getFullYear();
-            }
-          });
-          console.log(response.data)
-        }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-          this.loading = false;
-          // this.getDataBookingIr();
+    }
+    //get branch 
+    this.service.postData('post', this.list_area).subscribe(
+      res => {
+        this.datas = res;
+        console.log(this.datas);
+        this.list_branch = this.datas;
+        if (this.setSatus == "area" && this.cabang == undefined) {
+          this.cabang = this.list_branch['0'].branch_code;
         }
-      } , error =>
-      {
-        console.log(error)
+        if (this.setSatus == "ho" && this.cabang == undefined) {
+          this.cabang = this.list_branch['1'].branch_code;
+        }
+        if (this.setSatus == "branch" && this.cabang == undefined) {
+          this.cabang = this.test['data'].resultUserProfileLocation[0].branch_code;
+        }
         this.loading = false;
+        //panggil semua method cuy
+        this.getDataUnitBookingIR(this.monthe, this.cabang);
+        this.getDataWorkingDay(this.monthe, this.cabang);
+        this.getMtdTarget(this.monthe, this.cabang);
+        this.getDataAvgBookingIR(this.monthe, this.cabang);
+        this.getDataYtdTarget(this.monthe, this.cabang);
+        this.getDataMom(this.monthe, this.cabang);
+        this.getDataYoy(this.monthe, this.cabang);
+        this.getDatAct(this.monthe, this.cabang);
+        this.getDataProyeksi(this.monthe, this.cabang);
+        this.getDataActTarget(this.monthe, this.cabang);
+        this.getDataUnit(this.monthe, this.cabang);
+        this.getDataTotalUnit(this.monthe, this.cabang);
+        this.getDataAmount(this.monthe, this.cabang);
+        this.getDataTotalAmount(this.monthe, this.cabang)
+        this.getDataActUnit(this.monthe, this.cabang);
+        this.getDataActAmount(this.monthe, this.cabang);
+        this.getDataProAmount(this.monthe, this.cabang);
+        this.getDataTotActAmount(this.monthe, this.cabang);
+        this.getDataTotActUnit (this.monthe, this.cabang);
+        this.getTotProAmount(this.monthe, this.cabang);
       }
-    )
+    );
+
   }
 
   refresh() {
     this.loading = true;
-    this.booking = []
-          this.mtd = []
-          this.mom = []
-          this.avg = []
-          this.ytd = []
-          this.yoy = []
-          this.actual = []
-          this.proyeksi = []
-          // this.unit = []
-          this.totalUnitByPortofolio = []
-          this.amount = []
-          this.totalAmountByPortofolio = []
-          this.actualUnit = []
-          this.totalActualInUnit = []
-          this.actualAmount = []
-          this.totalActualInAmount = []
-          this.proyeksiAmout = []
-          this.totalProyeksiInAmount = []
-          this.actualTarget = []
-
-          // this.getDataBookingIr()
-    // this.listProject();
+    this.getDataBranch();
   }
 
-
-  // getDataMtd() {
-  //   this.data_parameter.method = "mtdTarget"
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if (response.status == true) {
-  //         this.mtd = response.data
-  //         // console.log(response.data[0])
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getDataMtd();
-  //       }
-  //     }
-  //   )
-  // }
-
-  // getDataMom() {
-  //   this.data_parameter.method = "mom"
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if (response.status == true) {
-  //         this.mom = response.data
-  //         // console.log(response.data[1])
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getDataMom();
-  //       }
-
-  //     }
-  //   )
-  // }
-
-  getDataUnit() {
-    this.refresh();
-    this.data_parameter.method = "unitBookingIR"
-    this.service.postData('post', this.data_parameter).subscribe(
-      response => {
-        if (response.status == true) {
-          this.unit = response.data
-          this.months.forEach(element => {
-            if (element.value == this.monthe) {
-              this.title_unit_booking_ir_1 = element.name.substring(0, 3)+'-'+new Date().getFullYear();
-            }
-            if (element.value == this.monthe-1) {
-              this.title_unit_booking_ir_2 = element.name.substring(0, 3)+'-'+new Date().getFullYear();
-            }
-            if (element.value == this.monthe-2) {
-              this.title_unit_booking_ir_3 = element.name.substring(0, 3)+'-'+new Date().getFullYear();
-            }
-          });
-          // console.log(response.data)
-        }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-          this.getDataUnit();
-        }
-      }
-    )
-  }
-
-  // getDataAvgBookingIr() {
-  //   this.data_parameter.method = "avgBookingIR"
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if (response.status == true) {
-  //         this.avg = response.data
-  //         // console.log(response.data)
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getDataAvgBookingIr();
-  //       }
-  //     }
-  //   )
-  // }
-
-  // getDataYtd() {
-  //   this.data_parameter.method = "ytdTarget"
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if (response.status == true) {
-  //         this.ytd = response.data
-  //         // console.log(response.data)
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getDataYtd()
-  //       }
-  //     }
-  //   )
-  // }
-
-  // getDataYoy(){
-  //   this.data_parameter.method = "YOY"
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if(response.status == true){
-  //         this.yoy = response.data
-  //         // console.log(response.data)
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getDataYoy();
-  //       }
-  //     }
-  //   )
-  // }
-
-  // getDataActualUnit(){
-  //   this.data_parameter.method = "actualInUnit"
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if(response.status == true){
-  //         this.actualUnit = response.data
-  //         // console.log(response.data)
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getDataActualUnit();
-  //       }
-  //     } 
-  //   )
-  // }
-
-  // getDataTargetActual(){
-  //   this.data_parameter.method = "targetActual"
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //      console.log(response.data)
-  //     }
-  //   )
-  // }
-
-  // getDataActualAmount(){
-  //   this.data_parameter.method = "actualInAmount"
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if(response.status == true){
-  //         this.actualAmount = response.data
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getDataActualAmount();
-  //       }
-  //     }
-  //   )
-  // }
-
-  // getDataProyeksiAmount(){
-  //   this.data_parameter.method = "proyeksiInAmount"
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if(response.status == true){
-  //         this.proyeksiAmout = response.data
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getDataProyeksiAmount()
-  //       }
-  //     }
-  //   )
-  // }
-
-  // getDataAvg() {
-  //   this.service.postData('post', )
-  // }
-
-  getBranch() {
-    let localS:any = localStorage.getItem("currentUser");
-    localS = JSON.parse(this.cab);
-    for (let index = 0; index < localS.data.resultProfileUserRole.length; index++) {
-      if(localS.data.resultProfileUserRole[index].role_code == 'DSB_MKT_BR') {
-        this.list_area.data = this.branch_params_code;
-        break;
-      } else {
-        this.list_area.data = this.branch_params_area;
+  //get data unit booking IR
+  getDataUnitBookingIR(bulan, br_code) {
+    var unitBook = {
+      "app": "muf-dashboard",
+      "method": "bookingIR",
+      "data": {
+        "bulan": bulan,
+        "branch_code": br_code
       }
     }
-    this.service.postData('post', this.list_area).subscribe(
+    var dataUBI = this.list_branch
+    console.log(dataUBI);
+
+    console.log(this.monthe)
+
+    this.service.postApi('post', unitBook).subscribe(result => {
+      console.log(result['data']);
+      var temp;
+      temp = result['data'];
+      this.unitBookingIRUnit.data_sekarang = temp['1'].data_sekarang;
+      this.unitBookingIRUnit.data_bulan_kurang_2 = temp['1'].data_bulan_kurang_2;
+      this.unitBookingIRUnit.data_bulan_kurang_3 = temp['1'].data_bulan_kurang_3;
+      this.unitBookingIRUnit.growth_2_1 = temp['1'].growth_2_1;
+      this.unitBookingIRUnit.growth_3_2 = temp['1'].growth_3_2;
+
+      this.unitBookingIRAmount.data_sekarang = temp['0'].data_sekarang;
+      this.unitBookingIRAmount.data_bulan_kurang_2 = temp['0'].data_bulan_kurang_2;
+      this.unitBookingIRAmount.data_bulan_kurang_3 = temp['0'].data_bulan_kurang_3;
+      this.unitBookingIRAmount.growth_2_1 = temp['0'].growth_2_1;
+      this.unitBookingIRAmount.growth_3_2 = temp['0'].growth_3_2;
+    })
+
+
+  }
+
+  //untuk title table
+  tableTitle = {
+    "title1": null,
+    "workday1": null,
+    "title2": null,
+    "workday2": null,
+    "title3": null,
+    "workday3": null,
+    "title4": null
+  }
+  getDataWorkingDay(bulan, br_code) {
+    var bulans = {
+      "app": "muf-dashboard",
+      "method": "countWorkDay",
+      "data": {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+    let tgl;
+    //get data working day untuk title
+    this.service.postApi('post', bulans).subscribe(getTanggal => {
+      tgl = getTanggal;
+      this.tableTitle.title1 = tgl['data_count_work_day'][0].periode;
+      this.tableTitle.workday1 = tgl['data_count_work_day'][0].count_work_day
+      this.tableTitle.title2 = tgl['data_count_work_day'][1].periode;
+      this.tableTitle.workday2 = tgl['data_count_work_day'][1].count_work_day
+      this.tableTitle.title3 = tgl['data_count_work_day'][2].periode;
+      this.tableTitle.workday3 = tgl['data_count_work_day'][2].count_work_day
+
+      let tggl = new Date(this.tableTitle.title1);
+      let tahun = (tggl.getFullYear() - 1)
+      let bln = tggl.getMonth()
+      let thn_blkg = new Date(tahun, bln)
+
+      this.tableTitle.title4 = thn_blkg
+
+    })
+
+  }
+
+  target = {
+    "target_unit": null,
+    "target_unit_realisasi": null,
+    "target_unit_acievment": null,
+    "target_amount": null,
+    "target_amount_realisasi": null,
+    "target_amount_acievment": null,
+  }
+  getMtdTarget(bulan, br_code) {
+    var mtdTarget = {
+      "app": "muf-dashboard",
+      "method": "mtdTarget",
+      "data": {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+    let mtd;
+    this.service.postApi('post', mtdTarget).subscribe(
+      resMtd => {
+        mtd = resMtd;
+        this.target.target_amount = mtd['data'][0].target;
+        this.target.target_amount_realisasi = mtd['data'][0].realisasi;
+        this.target.target_amount_acievment = mtd['data'][0].acievment;
+
+        this.target.target_unit = mtd['data'][1].target;
+        this.target.target_unit_realisasi = mtd['data'][1].realisasi;
+        this.target.target_unit_acievment = mtd['data'][1].acievment;
+        console.log(mtd)
+      }
+    );
+
+  }
+
+  dataAvg = {
+    "avg_unit1": null,
+    "avg_unit2": null,
+    "avg_unit3": null,
+    "avg_amount1": null,
+    "avg_amount2": null,
+    "avg_amount3": null,
+    "avg_growth_unit2_1": null,
+    "avg_growth_unit3_2": null,
+    "avg_growth_amount2_1": null,
+    "avg_growth_amount3_2": null
+  }
+
+  //data avgbookingIR
+  getDataAvgBookingIR(bulan, br_code) {
+    var AvgBookingIR = {
+      "app": "muf-dashboard",
+      "method": "avgBookingIR",
+      "data": {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+    let avg;
+    this.service.postApi('post', AvgBookingIR).subscribe(resAvg => {
+      avg = resAvg;
+      // console.log(avg)
+      // console.log(avg['data'][0].data_sekarang)
+      this.dataAvg.avg_unit1 = avg['data'][1].data_sekarang;
+      this.dataAvg.avg_unit2 = avg['data'][1].data_bulan_kurang_2;
+      this.dataAvg.avg_unit3 = avg['data'][1].data_bulan_kurang_3;
+      this.dataAvg.avg_growth_unit2_1 = avg['data'][1].growth_2_1;
+      this.dataAvg.avg_growth_unit3_2 = avg['data'][1].growth_3_2;
+
+      this.dataAvg.avg_amount1 = avg['data'][0].data_sekarang;
+      this.dataAvg.avg_amount2 = avg['data'][0].data_bulan_kurang_2;
+      this.dataAvg.avg_amount3 = avg['data'][0].data_bulan_kurang_3;
+      this.dataAvg.avg_growth_amount2_1 = avg['data'][0].growth_2_1;
+      this.dataAvg.avg_growth_amount3_2 = avg['data'][0].growth_3_2;
+    })
+
+  }
+
+  dataYtdTarget = {
+    "ytd_unit_target": null,
+    "ytd_unit_realisasi": null,
+    "ytd_unit_acievment": null,
+    "ytd_amount_target": null,
+    "ytd_amount_realisasi": null,
+    "ytd_amount_acievment": null
+  }
+  getDataYtdTarget(bulan, br_code) {
+    var ytdTarget = {
+      "app": "muf-dashboard",
+      "method": "ytdTarget",
+      "data": {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+    let ytd;
+
+    this.service.postApi('post', ytdTarget).subscribe(
+      resYtd => {
+        ytd = resYtd
+        console.log(ytd);
+        console.log(ytd['data'][0].target);
+        this.dataYtdTarget.ytd_unit_target = ytd['data'][1].target;
+        this.dataYtdTarget.ytd_unit_realisasi = ytd['data'][1].realisasi;
+        this.dataYtdTarget.ytd_unit_acievment = ytd['data'][1].acievment;
+
+        this.dataYtdTarget.ytd_amount_target = ytd['data'][0].target;
+        this.dataYtdTarget.ytd_amount_realisasi = ytd['data'][0].realisasi;
+        this.dataYtdTarget.ytd_amount_acievment = ytd['data'][0].acievment;
+
+      }
+    );
+  }
+
+  dataMom = {
+    "data_unit_thn_lalu": null,
+    "data_unit_sekarang": null,
+    "data_unit_growth": null,
+    "data_amount_thn_lalu": null,
+    "data_amount_sekarang": null,
+    "data_amount_growth": null
+  }
+
+  getDataMom(bulan, br_code) {
+    var mom = {
+      "app": "muf-dashboard",
+      "method": "mom",
+      "data": {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    let data_mom
+
+    this.service.postApi('post', mom).subscribe(
       response => {
-        if (response) {
-          this.list_branch = response;
-          for (let index = 0; index < localS.data.resultProfileUserRole.length; index++) {
-            if(localS.data.resultProfileUserRole[index].role_code == 'DSB_MKT_BR') {
-              this.cabang = this.area;
-              break;
-            } else {
-              this.cabang = this.list_branch[0].branch_code
-            }
-          }
-          console.log(this.list_branch)
-        }
+        data_mom = response
+        console.log(data_mom)
+        this.dataMom.data_unit_sekarang = data_mom['data'][1].data_sekarang
+        this.dataMom.data_unit_thn_lalu = data_mom['data'][1].data_tahun_lalu
+        this.dataMom.data_unit_growth = data_mom['data'][1].growth
+
+        this.dataMom.data_amount_sekarang = data_mom['data'][0].data_sekarang
+        this.dataMom.data_amount_thn_lalu = data_mom['data'][0].data_tahun_lalu
+        this.dataMom.data_amount_growth = data_mom['data'][0].growth
       }
     )
   }
 
-  setMonth() {
-    this.months.forEach(element => {
-      if (element.value == (new Date().getMonth() + 1).toString()) {
-        element.f_checked = true;
+  dataYoy = {
+    "unit_tahun_lalu": null,
+    "unit_sekarang": null,
+    "unit_growth": null,
+    "amount_tahun_lalu": null,
+    "amout_sekarang": null,
+    "amount_growth": null
+  }
+
+  getDataYoy(bulan, br_code) {
+    let apiYoy = {
+      "app": "muf-dashboard",
+      "method": "YOY",
+      "data": {
+        "bulan": bulan,
+        "branch_code": br_code
       }
-    });
+    }
+
+    let yoy
+    this.service.postApi('post', apiYoy).subscribe(
+      response => {
+        yoy = response.data
+        // console.log(yoy)
+        this.dataYoy.unit_sekarang = yoy['1'].realisasi
+        this.dataYoy.unit_tahun_lalu = yoy['1'].realisasi_y_min_1
+        this.dataYoy.unit_growth = yoy['1'].growth
+
+        this.dataYoy.amout_sekarang = yoy['0'].realisasi
+        this.dataYoy.amount_tahun_lalu = yoy['0'].realisasi_y_min_1
+        this.dataYoy.amount_growth = yoy['0'].growth
+      }
+    )
+  }
+
+  dataAct = {
+    "fid_bl": null,
+    "fid_bs": null,
+    "fid_dbl": null,
+    "fid_diff1": null,
+    "fid_diff2": null,
+
+    "fpd_bl": null,
+    "fpd_bs": null,
+    "fpd_dbl": null,
+    "fpd_diff1": null,
+    "fpd_diff2": null,
+
+    "f3pd_bl": null,
+    "f3pd_bs": null,
+    "f3pd_dbl": null,
+    "f3pd_diff1": null,
+    "f3pd_diff2": null,
+
+    "mob_bl": null,
+    "mob_bs": null,
+    "mob_dbl": null,
+    "mob_diff1": null,
+    "mob_diff2": null,
+  }
+
+  getDatAct(bulan, br_code) {
+    let actApi = {
+      "app": "muf-dashboard",
+      "method": "actual",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    let act
+    this.service.postApi('post', actApi).subscribe(
+      response => {
+        act = response.data
+        console.log(act)
+        this.dataAct.mob_bl = act['0'].bl_FPD
+        this.dataAct.mob_bs = act['0'].bs_FPD
+        this.dataAct.mob_dbl = act['0'].dbl_FPD
+        this.dataAct.mob_diff1 = act['0'].diff1
+        this.dataAct.mob_diff2 = act['0'].diff2
+
+        this.dataAct.f3pd_bl = act['1'].bl_FPD
+        this.dataAct.f3pd_bs = act['1'].bs_FPD
+        this.dataAct.f3pd_dbl = act['1'].dbl_FPD
+        this.dataAct.f3pd_diff1 = act['1'].diff1
+        this.dataAct.f3pd_diff2 = act['1'].diff2
+
+        this.dataAct.fid_bl = act['2'].bl_FPD
+        this.dataAct.fid_bs = act['2'].bs_FPD
+        this.dataAct.fid_dbl = act['2'].dbl_FPD
+        this.dataAct.fid_diff1 = act['2'].diff1
+        this.dataAct.fid_diff2 = act['2'].diff2
+
+        this.dataAct.fpd_bl = act['3'].bl_FPD
+        this.dataAct.fpd_bs = act['3'].bs_FPD
+        this.dataAct.fpd_dbl = act['3'].dbl_FPD
+        this.dataAct.fpd_diff1 = act['3'].diff1
+        this.dataAct.fpd_diff2 = act['3'].diff2
+
+      }
+
+    )
+  }
+
+  dataPro = {
+    "fid_bl": null,
+    "fid_bs": null,
+    "fid_dbl": null,
+    "fid_diff1": null,
+    "fid_diff2": null,
+
+    "fpd_bl": null,
+    "fpd_bs": null,
+    "fpd_dbl": null,
+    "fpd_diff1": null,
+    "fpd_diff2": null,
+
+    "f3pd_bl": null,
+    "f3pd_bs": null,
+    "f3pd_dbl": null,
+    "f3pd_diff1": null,
+    "f3pd_diff2": null,
+
+    "mob_bl": null,
+    "mob_bs": null,
+    "mob_dbl": null,
+    "mob_diff1": null,
+    "mob_diff2": null,
+  }
+
+  getDataProyeksi(bulan, br_code) {
+    let proApi = {
+      "app": "muf-dashboard",
+      "method": "proyeksi",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    let proyeksi
+    this.service.postApi('post', proApi).subscribe(
+      response => {
+        proyeksi = response.data
+        this.dataPro.mob_bl = proyeksi['0'].bl_FPD
+        this.dataPro.mob_bs = proyeksi['0'].bs_FPD
+        this.dataPro.mob_dbl = proyeksi['0'].dbl_FPD
+        this.dataPro.mob_diff1 = proyeksi['0'].diff1
+        this.dataPro.mob_diff2 = proyeksi['0'].diff2
+
+        this.dataPro.f3pd_bl = proyeksi['1'].bl_FPD
+        this.dataPro.f3pd_bs = proyeksi['1'].bs_FPD
+        this.dataPro.f3pd_dbl = proyeksi['1'].dbl_FPD
+        this.dataPro.f3pd_diff1 = proyeksi['1'].diff1
+        this.dataPro.f3pd_diff2 = proyeksi['1'].diff2
+
+        this.dataPro.fid_bl = proyeksi['2'].bl_FPD
+        this.dataPro.fid_bs = proyeksi['2'].bs_FPD
+        this.dataPro.fid_dbl = proyeksi['2'].dbl_FPD
+        this.dataPro.fid_diff1 = proyeksi['2'].diff1
+        this.dataPro.fid_diff2 = proyeksi['2'].diff2
+
+        this.dataPro.fpd_bl = proyeksi['3'].bl_FPD
+        this.dataPro.fpd_bs = proyeksi['3'].bs_FPD
+        this.dataPro.fpd_dbl = proyeksi['3'].dbl_FPD
+        this.dataPro.fpd_diff1 = proyeksi['3'].diff1
+        this.dataPro.fpd_diff2 = proyeksi['3'].diff2
+
+      }
+    )
+  }
+
+  dataActTarget = {
+    "fid_realisasi": null,
+    "fid_target": null,
+
+    "fpd_realisasi": null,
+    "fpd_target": null,
+
+    "f3pd_realisasi": null,
+    "f3pd_target": null,
+
+    "mob_realisasi": null,
+    "mob_target": null,
+  }
+
+  getDataActTarget(bulan, br_code) {
+    let actTargetApi = {
+      "app": "muf-dashboard",
+      "method": "targetActual",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    let actTarget
+
+    this.service.postApi('post', actTargetApi).subscribe(
+      response => {
+        actTarget = response.data
+        this.dataActTarget.mob_realisasi = actTarget["0"].realisasi;
+        this.dataActTarget.mob_target = actTarget['0'].target;
+        this.dataActTarget.f3pd_realisasi = actTarget['1'].realisasi;
+        this.dataActTarget.f3pd_target = actTarget['1'].target;
+        this.dataActTarget.fid_realisasi = actTarget['2'].realisasi;
+        this.dataActTarget.fid_target = actTarget['2'].target;
+        this.dataActTarget.fpd_realisasi = actTarget['3'].realisasi;
+        this.dataActTarget.fpd_target = actTarget['3'].target
+      }
+    )
+  }
+
+  getDataUnit(bulan, br_code) {
+    let unitApi = {
+      "app": "muf-dashboard",
+      "method": "unitBookingIR",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    this.service.postApi('post', unitApi).subscribe(
+      response => {
+        this.unit = response.data
+      }
+    )
+  }
+
+  getDataTotalUnit(bulan, br_code) {
+    let totUnitApi = {
+      "app": "muf-dashboard",
+      "method": "totalUnitByPortofolio",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    this.service.postApi('post', totUnitApi).subscribe(
+      response => {
+        this.totalUnitByPortofolio = response.data
+      }
+    )
+  }
+
+  getDataAmount(bulan, br_code) {
+    let amountApi = {
+      "app": "muf-dashboard",
+      "method": "amountBookingIR",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+      this.service.postApi('post', amountApi).subscribe(
+        response => {
+          this.amount = response.data
+        }
+      )
+  }
+
+  getDataTotalAmount(bulan, br_code) {
+    let totAmountApi = {
+      "app": "muf-dashboard",
+      "method": "totalAmountByPortofolio",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+    this.service.postApi('post', totAmountApi).subscribe(
+      response => {
+        this.totalAmountByPortofolio = response.data
+      }
+    )
+  }
+
+  getDataActUnit(bulan, br_code){
+    let actUnitApi = {
+      "app": "muf-dashboard",
+      "method": "actualInUnit",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    this.service.postApi('post', actUnitApi).subscribe(
+      response => {
+        this.actualUnit = response.data
+      }
+    )
+  }
+
+  getDataTotActUnit(bulan, br_code){
+    let totUnit = {
+      "app": "muf-dashboard",
+      "method": "totalActualInUnit",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    this.service.postApi('post', totUnit).subscribe(
+      response => {
+        this.totalActualInUnit = response.data
+      }
+    )
+  }
+
+  getDataActAmount(bulan, br_code){
+    let actAmount = {
+      "app": "muf-dashboard",
+      "method": "actualInAmount",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+    
+    this.service.postApi('post', actAmount).subscribe(
+      response => {
+        this.actualAmount = response.data
+      }
+    )
+  }
+
+  getDataTotActAmount(bulan, br_code){
+    let totAmount = {
+      "app": "muf-dashboard",
+      "method": "totalActualInAmount",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    this.service.postApi('post', totAmount).subscribe(
+      response => {
+        this.totalActualInAmount = response.data
+      }
+    )
+  }
+
+  getDataProAmount(bulan, br_code){
+    let proAmount = {
+      "app": "muf-dashboard",
+      "method": "proyeksiInAmount",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    this.service.postApi('post', proAmount).subscribe(
+      response => {
+        this.proyeksiAmout = response.data
+      }
+    )
+  }
+
+  getTotProAmount(bulan, br_code){
+    let totPro = {
+      "app": "muf-dashboard",
+      "method": "totalProyeksiInAmount",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    this.service.postApi('post', totPro).subscribe(
+      response => {
+        this.totalProyeksiInAmount = response.data
+      }
+    )
   }
 
   onClickSubmit() {
-    let getM = this.monthe
-    let getBran = this.cabang
-    this.setNCabang();
-    this.setDefaultMonth(getM, getBran)
     this.ngOnInit();
-    
-
+    // this.getDataBranch()
   }
 
-  // getTotalAmountPortfolio(){
-  //   this.data_parameter.method = "totalAmountByPortofolio";
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if(response.status == true){
-  //         this.totalAmountByPortofolio = response.data
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getTotalAmountPortfolio();
-  //       }
-  //     }
-  //   )
+  // ngAfterContentInit(){
+  //   this.ngOnInit();
   // }
 
-  // getTotalUnitByPortfolio(){
-  //   this.data_parameter.method = "totalUnitByPortofolio";
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if(response.status == true){
-  //         this.totalUnitByPortofolio = response.data
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getTotalUnitByPortfolio();
-  //       }
+  // getDataMom(bulan,br_code){
+  //   var mom={
+  //     "app": "muf-dashboard",
+  //     "method": "mom",
+  //     "data": {
+  //         "bulan": bulan,
+  //         "branch_code": br_code
+  //             }
+  //             }
+  //   let dataMom;
+
+  //   this.service.postApi('post',mom).subscribe(
+  //     resMom=>{
+  //       dataMom=resMom;
+  //       console.log(dataMom);
   //     }
-  //   )
-  // }
+  //   );
 
-  // getTotActUnit(){
-  //   this.data_parameter.method = "totalActualInUnit"
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if(response.status == true){
-  //         this.totalActualInUnit = response.data
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getTotActUnit();
-  //       }
-  //     }
-  //   )
-  // }
-
-  // getTotActAmount(){
-  //   this.data_parameter.method = "totalActualInAmount";
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if(response.status == true){
-  //         this.totalActualInAmount = response.data
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getTotActAmount();
-  //       }
-  //     }
-  //   )
-  // }
-
-  // getTotProAmount(){
-  //   this.data_parameter.method = "totalProyeksiInAmount";
-  //   this.service.postData('post', this.data_parameter).subscribe(
-  //     response => {
-  //       if(response.status == true){
-  //         this.totalProyeksiInAmount = response.data
-  //       }else if(response.status == false && response.notif == "IJ031041: Connection handle has been closed and is unusable"){
-  //         this.getTotProAmount();
-  //       }
-  //     }
-  //   )
-  // }
-
-  setNCabang(){
-    this.ncabang = this.cabang;
-    this.list_branch.forEach(element => {
-      if(element.branch_code == this.ncabang){
-        this.ncabang = element.branch_name;
-      }
-    });
-  }
-  setDefaultMonth(bulan?, bran?) {
-    //untuk set bulan otoomatis bulan yang berjalan
-    let m = this.monthe
-    // console.log(m)
-    if (bulan == null) {
-      this.params.bulan = this.monthe
-      this.params.branch_code = this.cabang
-    }
-    else {
-      this.params.bulan = bulan
-      this.params.branch_code = bran
-    }
-
-    let nama_cabang = this.list_branch
-    var nama = nama_cabang.find(getNama => nama_cabang['branch_code'] == bran)
-    // this.ncabang = nama.branc
-    console.log(nama_cabang)
-    // this.params.bulan = this.monthe;
-    // this.params.bulan = this.monthe;
-    // this.getDataMom()
-    // this.getDataMtd();
-    this.getDataBookingIr();
-    // this.getDataAmount();
-    this.getDataUnit();
-    // this.getDataAvgBookingIr();
-    // this.getDataYoy();
-    // this.getDataYtd();
-    // this.getDataActualAmount();
-    // this.getDataActualUnit();
-    // this.getDataProyeksiAmount();
-    // this.getDataActual();
-    // this.getDataProyeksi();
-    // this.getTotalAmountPortfolio();
-    // this.getTotProAmount();
-    // this.getTotActAmount();
-    // this.getTotalUnitByPortfolio();
-    // this.getTotalAmountPortfolio();
-    // this.getTotActUnit();
-    // this.setDefaultBranch();
-  }
-
-  // setDefaultBranch(){
-  //   this.cabang = this
-  //   // this.branch = this.getBranch()
-  //   // this.params.branch_code = this.branch;
   // }
 }

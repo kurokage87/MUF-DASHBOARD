@@ -2,9 +2,13 @@
   Loading...
 </span>
 
-<div *ngIf="!this.loading" class="content-container">
+<!-- <div *ngIf="!this.loading" class="content-container"> -->
+    <div  class="content-container">
   <main class="content-area">
 
+    <!-- <ul>
+      <li *ngFor='let s of unitBookingIR'>{{s.data_sekarang}}</li>
+    </ul> -->
     <h1 class="center">{{ncabang}}</h1>
     <div class="container">
 
@@ -30,6 +34,20 @@
                         <!-- <p>{{monthe}}</p> -->
                       </div>
                     </div>
+                    <!-- <div class="row col-md-4" style="text-align: left" hidden={{hide}}>
+                        <div class="row col-md-12">
+        
+                          <div class="col-md-2">
+                            <label for="" class="control-label">AREA</label>
+                          </div>
+                          <div class="col-md-10">
+                            <select  name="area" id="area" class="form-control" [(ngModel)]="bran_id">
+                              <option  *ngFor="let s of area" [ngValue]="s.branch_code">{{s.branch_name}}</option>
+                            </select>
+                          </div>
+             
+                        </div>
+                      </div> -->
                     <div class="row col-md-4" style="text-align: left">
                         <div class="row col-md-12">
                           <!-- <div class="form-group"> -->
@@ -37,7 +55,7 @@
                             <label for="" class="control-label">Branch</label>
                           </div>
                           <div class="col-md-10">
-                            <select  name="area" id="area" class="form-control" [(ngModel)]="cabang">
+                            <select  name="area" id="area" class="form-control" [(ngModel)]="cabang" [disabled]="hide">
                               <option  *ngFor="let s of list_branch" [ngValue]="s.branch_code">{{s.branch_name}}</option>
                             </select>
                           </div>
@@ -63,130 +81,131 @@
           <div class="card">
             <div class="card-block">
               <div class="card-text">
-
-                <table class="table table-noborder">
-                  <thead cellspacing="1">
-                    <tr>
-                      <th class="center table-header" colspan="6">Unit Booking IR</th>
-                      <th class="center table-header" colspan="4">MTD Target Mei</th>
-                      <th class="center table-header" colspan="4">MOM</th>
-                    </tr>
-                  </thead>
-                  <tbody *ngIf="booking">
-                    <tr>
-                      <td rowspan="2" class="middle-center"></td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_3}}</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_2}}</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_1}}</td>
-                      <td colspan="2" class="header2">Growth</td>
-                      <td rowspan="2" class="middle-center"></td>
-                      <td rowspan="2" class="middle-center">Target</td>
-                      <td rowspan="2" class="middle-center">Realisasi</td>
-                      <td rowspan="2" class="middle-center">Acv %</td>
-                      <td rowspan="2" class="middle-center"></td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_3}}</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_1}}</td>
-                      <td rowspan="2" class="middle-center">Growth</td>
-                      <td rowspan="5" style="vertical-align: bottom">JUTAAN</td>
-                    </tr>
-                    <tr>
-                      <td class="header2">{{title_unit_booking_ir_3}}-{{title_unit_booking_ir_1}}</td>
-                      <td class="header2">{{title_unit_booking_ir_2}}-{{title_unit_booking_ir_1}}</td>
-                    </tr>
-                    <tr>
-                      <td class="header2">Unit</td>
-                      <td *ngIf="booking">{{booking[1].data_bulan_kurang_3 | number}}</td>
-                      <td *ngIf="booking">{{booking[1].data_bulan_kurang_2 | number}}</td>
-                      <td *ngIf="booking">{{booking[1].data_sekarang | number}}</td>
-                      <td *ngIf="booking">{{booking[1].growth_3_2}}</td>
-                      <td *ngIf="booking">{{booking[1].growth_2_1}}</td>
-                      <td class="middle-center">Unit</td>
-                      <td *ngIf="mtd">{{mtd[1].target | number}}</td>
-                      <td *ngIf="mtd">{{mtd[1].realisasi | number}}</td>
-                      <td *ngIf="mtd">{{mtd[1].acievment}}</td>
-                      <td class="middle-center">Unit</td>
-                      <td *ngIf="mom">{{mom[1].data_tahun_lalu |number}}</td>
-                      <td *ngIf="mom">{{mom[1].data_sekarang | number}}</td>
-                      <td *ngIf="mom">{{mom[1].growth}}</td>
-                    </tr>
-                    <tr>
-                      <td class="header2">Amount</td>
-                      <td *ngIf="booking">{{booking[0].data_bulan_kurang_3 | number}}</td>
-                      <td *ngIf="booking">{{booking[0].data_bulan_kurang_2 | number}}</td>
-                      <td *ngIf="booking">{{booking[0].data_sekarang| number}}</td>
-                      <td *ngIf="booking">{{booking[0].growth_3_2}}</td>
-                      <td *ngIf="booking">{{booking[0].growth_2_1}}</td>
-                      <td class="middle-center">Amount</td>
-                      <td *ngIf="mtd">{{mtd[0].target | number}}</td>
-                      <td *ngIf="mtd">{{mtd[0].realisasi | number}}</td>
-                      <td *ngIf="mtd">{{mtd[0].acievment}}</td>
-                      <td class="middle-center">Amount</td>
-                      <td *ngIf="mom">{{mom[0].data_tahun_lalu | number}}</td>
-                      <td *ngIf="mom">{{mom[0].data_sekarang | number}}</td>
-                      <td *ngIf="mom">{{mom[0].growth}}</td>
-                    </tr>
-                  </tbody>
-                  <thead>
-                    <tr>
-                      <th class="center table-header" colspan="6">Average Booking IR/ Day</th>
-                      <th class="center table-header" colspan="4">YTD Target Jan - {{title_unit_booking_ir_1}}</th>
-                      <th class="center table-header" colspan="4">YOY</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td rowspan="2" class="middle-center"></td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_3}}</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_2}}</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_1}}</td>
-                      <td colspan="2" class="header2">Growth</td>
-                      <td rowspan="2" class="middle-center"></td>
-                      <td rowspan="2" class="middle-center">Target</td>
-                      <td rowspan="2" class="middle-center">Realisasi</td>
-                      <td rowspan="2" class="middle-center">Acv %</td>
-                      <td rowspan="2" class="middle-center"></td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_3}}</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_1}}</td>
-                      <td rowspan="2" class="middle-center">Growth</td>
-                    </tr>
-                    <tr>
-                      <td class="header2">{{title_unit_booking_ir_3}}-{{title_unit_booking_ir_1}}</td>
-                      <td class="header2">{{title_unit_booking_ir_2}}-{{title_unit_booking_ir_1}}</td>
-                    </tr>
-                    <tr>
-                      <td class="header2">AVG Unit</td>
-                      <td *ngIf="avg">{{avg[1].data_bulan_kurang_3 | number}}</td>
-                      <td *ngIf="avg">{{avg[1].data_bulan_kurang_2 | number}}</td>
-                      <td *ngIf="avg">{{avg[1].data_sekarang | number}}</td>
-                      <td *ngIf="avg">{{avg[1].growth_3_2}}</td>
-                      <td *ngIf="avg">{{avg[1].growth_2_1}}</td>
-                      <td class="header2">Unit</td>
-                      <td *ngIf="ytd">{{ytd[1].target | number}}</td>
-                      <td *ngIf="ytd">{{ytd[1].realisasi | number}}</td>
-                      <td *ngIf="ytd">{{ytd[1].acievment}}</td>
-                      <td class="header2">Unit</td>
-                      <td *ngIf="yoy">{{yoy[1].realisasi_y_min_1 | number}}</td>
-                      <td *ngIf="yoy">{{yoy[1].realisasi | number}}</td>
-                      <td *ngIf="yoy">{{yoy[1].growth}}</td>
-                    </tr>
-                    <tr>
-                      <td class="middle-center">AVG Amount</td>
-                      <td *ngIf="avg">{{avg[0].data_bulan_kurang_3 | number}}</td>
-                      <td *ngIf="avg">{{avg[0].data_bulan_kurang_2 | number}}</td>
-                      <td *ngIf="avg">{{avg[0].data_sekarang | number}}</td>
-                      <td *ngIf="avg">{{avg[0].growth_3_2}}</td>
-                      <td *ngIf="avg">{{avg[0].growth_2_1}}</td>
-                      <td class="middle-center">Amount</td>
-                      <td *ngIf="ytd">{{ytd[0].target | number}}</td>
-                      <td *ngIf="ytd">{{ytd[0].realisasi | number}}</td>
-                      <td *ngIf="ytd">{{ytd[0].acievment}}</td>
-                      <td class="middle-center">Amount</td>
-                      <td *ngIf="yoy">{{yoy[0].realisasi_y_min_1 | number}}</td>
-                      <td *ngIf="yoy">{{yoy[0].realisasi | number}}</td>
-                      <td *ngIf="yoy">{{yoy[0].growth}}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                  <table class="table table-noborder">
+                      <thead cellspacing="1">
+                        <tr>
+                          <th class="center table-header" colspan="6">Unit Booking IR</th>
+                          <th class="center table-header" colspan="4">MTD Target {{tableTitle.title1}}</th>
+                          <th class="center table-header" colspan="4">MOM</th>
+                        </tr>
+                      </thead>
+                      <tbody >
+                        <tr>
+                          <td rowspan="2" class="middle-center"></td>
+                          <td rowspan="2" class="middle-center">{{tableTitle.title3 | date: "MMM yyyy"}}</td>
+                          <td rowspan="2" class="middle-center">{{tableTitle.title2 | date: "MMM yyyy"}}</td>
+                          <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}}</td>
+                          <td colspan="2" class="header2">Growth</td>
+                          <td rowspan="2" class="middle-center"></td>
+                          <td rowspan="2" class="middle-center">Target</td>
+                          <td rowspan="2" class="middle-center">Realisasi</td>
+                          <td rowspan="2" class="middle-center">Acv %</td>
+                          <td rowspan="2" class="middle-center"></td>
+                          <td rowspan="2" class="middle-center">{{tableTitle.title4 | date: "MMM yyyy"}}</td>
+                          <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}}</td>
+                          <td rowspan="2" class="middle-center">Growth</td>
+                          <td rowspan="5" style="vertical-align: bottom">JUTAAN</td>
+                        </tr>
+                        <tr>
+                          <td class="header2">{{tableTitle.title3 | date: "MMM yyyy"}} - {{tableTitle.title2 | date: "MMM yyyy"}}</td>
+                          <td class="header2">{{tableTitle.title2 | date: "MMM yyyy"}} - {{tableTitle.title1 | date: "MMM yyyy"}}</td>
+                        </tr>
+                        <tr>
+                          <td class="header2">Unit</td>
+                          <td >{{unitBookingIRUnit.data_bulan_kurang_3 |  number:"1.0-0"}}</td>
+                          <td >{{unitBookingIRUnit.data_bulan_kurang_2 |  number:"1.0-0"}}</td>
+                          <td >{{unitBookingIRUnit.data_sekarang |  number:"1.0-0"}}</td>
+                          <td >{{unitBookingIRUnit.growth_2_1}}</td>
+                          <td >{{unitBookingIRUnit.growth_3_2}}</td>
+                          <td class="middle-center">Unit</td>
+                          <td >{{target.target_unit |  number:"1.0-0"}}</td>
+                          <td >{{target.target_unit_realisasi |  number:"1.0-0"}}</td>
+                          <td >{{target.target_unit_acievment}}</td>
+                          <td class="middle-center">Unit</td>
+                          <td>{{dataMom.data_unit_thn_lalu |  number:"1.0-0"}}</td>
+                          <td>{{dataMom.data_unit_sekarang |  number:"1.0-0"}}</td>
+                          <td>{{dataMom.data_unit_growth}}</td>
+                        </tr>
+                        <tr>
+                          <td class="header2">Amount</td>
+                          <td >{{unitBookingIRAmount.data_bulan_kurang_3 |  number:"1.0-0"}}</td>
+                          <td >{{unitBookingIRAmount.data_bulan_kurang_2 |  number:"1.0-0"}}</td>
+                          <td >{{unitBookingIRAmount.data_sekarang |  number:"1.0-0"}}</td>
+                          <td >{{unitBookingIRAmount.growth_2_1}}</td>
+                          <td >{{unitBookingIRAmount.growth_3_2}}</td>
+                          <td class="middle-center">Amount</td>
+                          <td >{{target.target_amount | number:"1.0-0"}}</td>
+                          <td >{{target.target_amount_realisasi | number:"1.0-0"}}</td>
+                          <td >{{target.target_amount_acievment}}</td>
+                          <td class="middle-center">Amount</td>
+                          <td>{{dataMom.data_amount_thn_lalu | number:"1.0-0"}}</td>
+                          <td>{{dataMom.data_amount_sekarang | number:"1.0-0"}}</td>
+                          <td>{{dataMom.data_amount_growth}}</td>
+                        </tr>
+                      </tbody>
+                      <thead>
+                        <tr>
+                          <th class="center table-header" colspan="6">Average Booking IR/ Day</th>
+                          <th class="center table-header" colspan="4">YTD Target Jan - {{tableTitle.title1 | date: "MMM yyyy"}}</th>
+                          <th class="center table-header" colspan="4">YOY</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td rowspan="2" class="middle-center"></td>
+                          <td rowspan="2" class="middle-center">{{tableTitle.title3 | date: "MMM yyyy"}} ({{tableTitle.workday3}})</td>
+                          <td rowspan="2" class="middle-center">{{tableTitle.title2 | date: "MMM yyyy"}} ({{tableTitle.workday2}})</td>
+                          <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} ({{tableTitle.workday1}})</td>
+                          <td colspan="2" class="header2">Growth</td>
+                          <td rowspan="2" class="middle-center"></td>
+                          <td rowspan="2" class="middle-center">Target</td>
+                          <td rowspan="2" class="middle-center">Realisasi</td>
+                          <td rowspan="2" class="middle-center">Acv %</td>
+                          <td rowspan="2" class="middle-center"></td>
+                          <td rowspan="2" class="middle-center">{{tableTitle.title4 | date: "MMM yyyy"}}</td>
+                          <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}}</td>
+                          <td rowspan="2" class="middle-center">Growth</td>
+                        </tr>
+                        <tr>
+                          <td class="header2">{{tableTitle.title3 | date: "MMM yyyy"}} - {{tableTitle.title2 | date: "MMM yyyy"}}</td>
+                          <td class="header2">{{tableTitle.title2 | date: "MMM yyyy"}} - {{tableTitle.title1 | date: "MMM yyyy"}}</td>
+                        </tr>
+                        <tr>
+                          <td class="header2">AVG Unit</td>
+                          <td >{{dataAvg.avg_unit3 | number:"1.0-0"}}</td>
+                          <td >{{dataAvg.avg_unit2 | number:"1.0-0"}}</td>
+                          <td >{{dataAvg.avg_unit1| number:"1.0-0"}}</td>
+                          <td >{{this.dataAvg.avg_growth_unit2_1}}%</td>
+                          <td >{{this.dataAvg.avg_growth_unit3_2}}%</td>
+                          <td class="header2">Unit</td>
+                          <td >{{dataYtdTarget.ytd_unit_target | number:"1.0-0"}}</td>
+                          <td >{{dataYtdTarget.ytd_unit_realisasi | number:"1.0-0"}}</td>
+                          <td >{{dataYtdTarget.ytd_unit_acievment}}</td>
+                          <td class="header2">Unit</td>
+                          <td >{{dataYoy.unit_tahun_lalu}}</td>
+                          <td >{{dataYoy.unit_sekarang}}</td>
+                          <td >{{dataYoy.unit_growth}}</td>
+                        </tr>
+                        <tr>
+                          <td class="middle-center">AVG Amount</td>
+                          <td >{{dataAvg.avg_amount3 | number: "1.0-0"}}</td>
+                          <td >{{dataAvg.avg_amount2 | number: "1.0-0"}}</td>
+                          <td >{{dataAvg.avg_amount1 | number: "1.0-0"}}</td>
+                          <td >{{dataAvg.avg_growth_amount2_1}}%</td>
+                          <td >{{dataAvg.avg_growth_amount3_2}}%</td>
+                          <td class="middle-center">Amount</td>
+                          <td >{{dataYtdTarget.ytd_amount_target | number: "1.0-0"}}</td>
+                          <td >{{dataYtdTarget.ytd_amount_realisasi | number: "1.0-0"}}</td>
+                          <td >{{dataYtdTarget.ytd_amount_acievment}}</td>
+                          <td class="middle-center">Amount</td>
+                          <td>{{dataYoy.amount_tahun_lalu | number:"1.0-0"}}</td>
+                          <td>{{dataYoy.amout_sekarang | number:"1.0-0"}}</td>
+                          <td>{{dataYoy.amount_growth}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+    
+                
 
               </div>
             </div>
@@ -200,7 +219,6 @@
           <div class="card">
             <div class="card-block">
               <div class="card-text">
-
                 <table class="table table-compact table-noborder col-lg-12">
                   <thead>
                     <tr>
@@ -212,91 +230,91 @@
                   <tbody>
                     <tr>
                       <td rowspan="2" class="middle-center">IN AMOUNT</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_3}}</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_2}}</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_1}}</td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title3 | date: "MMM yyyy"}} ({{tableTitle.workday3}})</td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title2 | date: "MMM yyyy"}} ({{tableTitle.workday2}})</td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} ({{tableTitle.workday1}})</td>
                       <td colspan="2" class="middle-center">Diff</td>
                       <td class="middle-center" rowspan="2">Target</td>
                       <td class="middle-center" rowspan="2">Realisasi</td>
                       <td rowspan="2" class="middle-center">IN AMOUNT</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_3}}</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_2}}</td>
-                      <td rowspan="2" class="middle-center">{{title_unit_booking_ir_1}}</td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title3 | date: "MMM yyyy"}} ({{tableTitle.workday3}})</td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title2 | date: "MMM yyyy"}} ({{tableTitle.workday2}})</td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} ({{tableTitle.workday1}})</td>
                       <td colspan="2" class="middle-center">Diff</td>
                     </tr>
                     <tr>
-                      <td class="middle-center">{{title_unit_booking_ir_1}}-{{title_unit_booking_ir_2}}</td>
-                      <td class="middle-center">{{title_unit_booking_ir_1}}-{{title_unit_booking_ir_3}}</td>
-                      <td class="middle-center">{{title_unit_booking_ir_1}}-{{title_unit_booking_ir_2}}</td>
-                      <td class="middle-center">{{title_unit_booking_ir_1}}-{{title_unit_booking_ir_3}}</td>
+                      <td class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} - {{tableTitle.title2 | date: "MMM yyyy"}}</td>
+                      <td class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} - {{tableTitle.title3 | date: "MMM yyyy"}}</td>
+                      <td class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} - {{tableTitle.title2 | date: "MMM yyyy"}}</td>
+                      <td class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} - {{tableTitle.title3 | date: "MMM yyyy"}}</td>
                     </tr>
                     <tr>
                       <td class="header2">FPD</td>
-                      <td *ngIf="actual">{{actual[3].dbl_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[3].bl_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[3].bs_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[3].diff1}}%</td>
-                      <td *ngIf="actual">{{actual[3].diff2}}%</td>
-                      <td *ngIf="actualTarget">{{actualTarget[3].target}}%</td>
-                      <td *ngIf="actualTarget">{{actualTarget[3].realisasi}}%</td>
+                      <td>{{dataAct.fpd_dbl}}%</td>
+                      <td>{{dataAct.fpd_bl}}%</td>
+                      <td>{{dataAct.fpd_bs}}%</td>
+                      <td>{{dataAct.fpd_diff1}}%</td>
+                      <td>{{dataAct.fpd_diff2}}%</td>
+                      <td>{{dataActTarget.fpd_target}}%</td>
+                      <td>{{dataActTarget.fpd_realisasi}}%</td>
                       <td class="header2">FPD</td>
-                      <td *ngIf="proyeksi">{{proyeksi[3].dbl_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[3].bl_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[3].bs_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[3].diff1}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[3].diff2}}%</td>
+                      <td>{{dataPro.fpd_dbl}}%</td>
+                      <td>{{dataPro.fpd_bl}}%</td>
+                      <td>{{dataPro.fpd_bs}}%</td>
+                      <td>{{dataPro.fpd_diff1}}%</td>
+                      <td>{{dataPro.fpd_diff2}}%</td>
                     </tr>
                     <tr>
                       <td class="header2">F3PD</td>
-                      <td *ngIf="actual">{{actual[1].dbl_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[1].bl_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[1].bs_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[1].diff1}}%</td>
-                      <td *ngIf="actual">{{actual[1].diff2}}%</td>
-                      <td *ngIf="actualTarget">{{actualTarget[1].target}}%</td>
-                      <td *ngIf="actualTarget">{{actualTarget[1].realisasi}}%</td>
+                      <td>{{dataAct.f3pd_dbl}}%</td>
+                      <td>{{dataAct.f3pd_bl}}%</td>
+                      <td>{{dataAct.f3pd_bs}}%</td>
+                      <td>{{dataAct.f3pd_diff1}}%</td>
+                      <td>{{dataAct.f3pd_diff2}}%</td>
+                      <td>{{dataActTarget.f3pd_target}}%</td>
+                      <td>{{dataActTarget.f3pd_realisasi}}%</td>
                       <td class="header2">F3PD</td>
-                      <td *ngIf="proyeksi">{{proyeksi[1].dbl_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[1].bl_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[1].bs_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[1].diff1}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[1].diff2}}%</td>
+                      <td>{{dataPro.f3pd_dbl}}%</td>
+                      <td>{{dataPro.f3pd_bl}}%</td>
+                      <td>{{dataPro.f3pd_bs}}%</td>
+                      <td>{{dataPro.f3pd_diff1}}%</td>
+                      <td>{{dataPro.f3pd_diff2}}%</td>
                     </tr>
                     <tr>
                       <td class="header2">30+@6MOB</td>
-                      <td *ngIf="actual">{{actual[0].dbl_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[0].bl_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[0].bs_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[0].diff1}}%</td>
-                      <td *ngIf="actual">{{actual[0].diff2}}%</td>
-                      <td *ngIf="actualTarget">{{actualTarget[0].target}}%</td>
-                      <td *ngIf="actualTarget">{{actualTarget[0].realisasi}}%</td>
+                      <td >{{dataAct.mob_dbl}}%</td>
+                      <td >{{dataAct.mob_bl}}%</td>
+                      <td >{{dataAct.mob_bs}}%</td>
+                      <td >{{dataAct.mob_diff1}}%</td>
+                      <td >{{dataAct.mob_diff2}}%</td>
+                      <td>{{dataActTarget.mob_target}}%</td>
+                      <td>{{dataActTarget.mob_realisasi}}%</td>
                       <td class="header2">30+@6MOB</td>
-                      <td *ngIf="proyeksi">{{proyeksi[0].dbl_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[0].bl_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[0].bs_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[0].diff1}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[0].diff2}}%</td>
+                      <td >{{dataPro.mob_dbl}}%</td>
+                      <td >{{dataPro.mob_bl}}%</td>
+                      <td >{{dataPro.mob_bs}}%</td>
+                      <td >{{dataPro.mob_diff1}}%</td>
+                      <td >{{dataPro.mob_diff2}}%</td>
                     </tr>
                     <tr>
                       <td class="header2">FID9</td>
-                      <td *ngIf="actual">{{actual[2].dbl_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[2].bl_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[2].bs_FPD}}%</td>
-                      <td *ngIf="actual">{{actual[2].diff1}}%</td>
-                      <td *ngIf="actual">{{actual[2].diff2}}%</td>
-                      <td *ngIf="actualTarget">{{actualTarget[2].target}}%</td>
-                      <td *ngIf="actualTarget">{{actualTarget[2].realisasi}}%</td>
+                      <td >{{dataAct.fid_dbl}}%</td>
+                      <td >{{dataAct.fid_bl}}%</td>
+                      <td >{{dataAct.fid_bs}}%</td>
+                      <td >{{dataAct.fid_diff1}}%</td>
+                      <td >{{dataAct.fid_diff2}}%</td>
+                      <td>{{dataActTarget.fid_target}}%</td>
+                      <td>{{dataActTarget.fid_realisasi}}%</td>
                       <td class="header2">FID9</td>
-                      <td *ngIf="proyeksi">{{proyeksi[2].dbl_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[2].bl_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[2].bs_FPD}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[2].diff1}}%</td>
-                      <td *ngIf="proyeksi">{{proyeksi[2].diff2}}%</td>
+                      <td >{{dataPro.fid_dbl}}%</td>
+                      <td >{{dataPro.fid_bl}}%</td>
+                      <td >{{dataPro.fid_bs}}%</td>
+                      <td >{{dataPro.fid_diff1}}%</td>
+                      <td >{{dataPro.fid_diff2}}%</td>
                     </tr>
                   </tbody>
                 </table>
-
+                
               </div>
             </div>
           </div>
@@ -317,11 +335,11 @@
                       <th class="center table-header" colspan="7">UNIT</th>
                     </tr>
                   </thead>
-                  <tbody *ngIf="this.unit">
+                  <tbody>
                     <tr>
                       <td rowspan="2" class="middle-center">PORTOFOLIO</td>
-                      <td colspan="3" class="middle-center">{{title_unit_booking_ir_2}}</td>
-                      <td colspan="3" class="middle-center">{{title_unit_booking_ir_1}}</td>
+                      <td colspan="3" class="middle-center">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td colspan="3" class="middle-center">{{tableTitle.title1 | date:"MMM_yy"}}</td>
                     </tr>
                     <tr>
                       <td class="middle-center">OI</td>
@@ -341,33 +359,19 @@
                       <td>{{s.ppd_now}}</td>
                     </tr>
                   </tbody>
-                  <tfoot *ngIf="this.totalUnitByPortofolio">
+                  <tfoot>
                     <tr *ngFor="let n of totalUnitByPortofolio" class="middle-center">
-                      <td >
-                        {{n.portfolio_code}}
-                      </td>
-                      <td>
-                        {{n.oi}}
-                      </td>
-                      <td>
-                        {{n.po}}
-                      </td>
-                      <td>
-                        {{n.ppd}}
-                      </td>
-                      <td>
-                        {{n.oi_now}}
-                      </td>
-                      <td>
-                        {{n.po_now}}
-                      </td>
-                      <td>
-                        {{n.ppd_now}}
-                      </td>
+                      <td>{{n.portfolio_code}}</td>
+                      <td>{{n.oi}}</td>
+                      <td>{{n.po}}</td>
+                      <td>{{n.ppd}}</td>
+                      <td>{{n.oi_now}}</td>
+                      <td>{{n.po_now}}</td>
+                      <td>{{n.ppd_now}}</td>
                     </tr>
                   </tfoot>
                 </table>
-
+                
               </div>
             </div>
           </div>
@@ -378,7 +382,7 @@
             <div class="card-block">
               <div class="card-text">
 
-                <table *ngIf="this.amount" class="table table-compact table-noborder col-lg-6">
+                <table class="table table-compact table-noborder col-lg-6">
                   <thead>
                     <tr>
                       <th class="center table-header" colspan="7">AMOUNT</th>
@@ -386,8 +390,8 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="3" class="middle-center">{{title_unit_booking_ir_2}}</td>
-                      <td colspan="3" class="middle-center">{{title_unit_booking_ir_1}}</td>
+                      <td colspan="3" class="middle-center">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td colspan="3" class="middle-center">{{tableTitle.title1 | date:"MMM_yy"}}</td>
                     </tr>
                     <tr>
                       <td class="middle-center">OI</td>
@@ -405,27 +409,14 @@
                       <td>{{s.po_now | number}}</td>
                       <td>{{s.ppd_now | number}}</td>
                   </tbody>
-                  <tfoot *ngIf="this.totalAmountByPortofolio">
+                  <tfoot>
                     <tr *ngFor="let n of totalAmountByPortofolio" class="middle-center">
-                      
-                      <td>
-                        {{n.oi}}
-                      </td>
-                      <td>
-                        {{n.po}}
-                      </td>
-                      <td>
-                        {{n.ppd}}
-                      </td>
-                      <td>
-                        {{n.oi_now}}
-                      </td>
-                      <td>
-                        {{n.po_now}}
-                      </td>
-                      <td>
-                        {{n.ppd_now}}
-                      </td>
+                      <td>{{n.oi | number}}</td>
+                      <td>{{n.po | number}}</td>
+                      <td>{{n.ppd | number}}</td>
+                      <td>{{n.oi_now | number}}</td>
+                      <td>{{n.po_now | number}}</td>
+                      <td>{{n.ppd_now | number}}</td>
                     </tr>
                   </tfoot>
                 </table>
@@ -443,7 +434,7 @@
             <div class="card-block">
               <div class="card-text">
 
-                <table *ngIf="this.actualUnit" class="table table-nobordered">
+                <table class="table table-nobordered">
                   <thead>
                     <tr>
                       <th class="center row1" colspan="2">ACTUAL IN UNIT</th>
@@ -456,18 +447,18 @@
                   <tbody>
                     <tr>
                       <td class="column1" colspan="2">PORTFOLIO</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
                     </tr>
                     
                     
@@ -487,7 +478,7 @@
                       <td>{{s.bs_30MOB6}}%</td>
                     </tr>
                   </tbody>
-                    <tfoot *ngIf="totalActualInUnit">
+                    <tfoot>
                     <tr *ngFor="let s of totalActualInUnit">
                       <td class="column1 text-left" colspan="2">TOTAL</td>
                       <td class="column1">{{s.dbl_FPD}}%</td>
@@ -518,7 +509,7 @@
             <div class="card-block">
               <div class="card-text">
 
-                <table *ngIf="actualAmount" class="table table-nobordered">
+                <table class="table table-nobordered">
                   <thead>
                     <tr>
                       <th class="center row1">ACTUAL IN A MOUNT</th>
@@ -531,18 +522,18 @@
                   <tbody>
                     <tr>
                       <td class="column1">PORTFOLIO</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
                     </tr>
                     <tr *ngFor="let s of actualAmount">
                       <td class="text-left">{{s.portfolio_code}}</td>
@@ -560,7 +551,7 @@
                       <td>{{s.bs_30MOB6}}%</td>
                     </tr>
                     </tbody>
-                    <tfoot *ngIf="totalActualInAmount">
+                    <tfoot>
                     <tr *ngFor="let s of totalActualInAmount">
                       <td class="column1 text-left">TOTAL</td>
                       <td class="column1">{{s.dbl_FPD}}%</td>
@@ -591,7 +582,7 @@
             <div class="card-block">
               <div class="card-text">
 
-                <table *ngIf="proyeksiAmout" class="table table-nobordered">
+                <table class="table table-nobordered">
                   <thead>
                     <tr>
                       <th class="center row1">PROYEKSI IN A MOUNT</th>
@@ -604,50 +595,50 @@
                   <tbody>
                     <tr>
                       <td class="column1">PORTFOLIO</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
-                      <td class="column1">{{title_unit_booking_ir_3}}</td>
-                      <td class="column1">{{title_unit_booking_ir_2}}</td>
-                      <td class="column1">{{title_unit_booking_ir_1}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
                     </tr>
-                    <tr *ngFor="let s of proyeksiAmout">
-                        <td class="text-left">{{s.portfolio_code}}</td>
-                        <td>{{s.dbl_FPD}}%</td>
-                        <td>{{s.bl_FPD}}%</td>
-                        <td>{{s.bs_FPD}}%</td>
-                        <td>{{s.dbl_F3PD}}%</td>
-                        <td>{{s.bl_F3PD}}%</td>
-                        <td>{{s.bs_F3PD}}%</td>
-                        <td>{{s.dbl_FID}}%</td>
-                        <td>{{s.bl_FID}}%</td>
-                        <td>{{s.bs_FID}}%</td>
-                        <td>{{s.dbl_30MOB6}}%</td>
-                        <td>{{s.bl_30MOB6}}%</td>
-                        <td>{{s.bs_30MOB6}}%</td>
+                    <tr *ngFor="let s of actualAmount">
+                      <td class="text-left">{{s.portfolio_code}}</td>
+                      <td>{{s.dbl_FPD}}%</td>
+                      <td>{{s.bl_FPD}}%</td>
+                      <td>{{s.bs_FPD}}%</td>
+                      <td>{{s.dbl_F3PD}}%</td>
+                      <td>{{s.bl_F3PD}}%</td>
+                      <td>{{s.bs_F3PD}}%</td>
+                      <td>{{s.dbl_FID}}%</td>
+                      <td>{{s.bl_FID}}%</td>
+                      <td>{{s.bs_FID}}%</td>
+                      <td>{{s.dbl_30MOB6}}%</td>
+                      <td>{{s.bl_30MOB6}}%</td>
+                      <td>{{s.bs_30MOB6}}%</td>
                     </tr>
                     </tbody>
-                    <tfoot *ngIf="totalProyeksiInAmount">
-                    <tr *ngFor="let s of totalProyeksiInAmount ">
+                    <tfoot>
+                    <tr *ngFor="let s of totalActualInAmount">
                       <td class="column1 text-left">TOTAL</td>
                       <td class="column1">{{s.dbl_FPD}}%</td>
-                        <td class="column1">{{s.bl_FPD}}%</td>
-                        <td class="column1">{{s.bs_FPD}}%</td>
-                        <td class="column1">{{s.dbl_F3PD}}%</td>
-                        <td class="column1">{{s.bl_F3PD}}%</td>
-                        <td class="column1">{{s.bs_F3PD}}%</td>
-                        <td class="column1">{{s.dbl_FID}}%</td>
-                        <td class="column1">{{s.bl_FID}}%</td>
-                        <td class="column1">{{s.bs_FID}}%</td>
-                        <td class="column1">{{s.dbl_30MOB6}}%</td>
-                        <td class="column1">{{s.bl_30MOB6}}%</td>
-                        <td class="column1">{{s.bs_30MOB6}}%</td>
+                      <td class="column1">{{s.bl_FPD}}%</td>
+                      <td class="column1">{{s.bs_FPD}}%</td>
+                      <td class="column1">{{s.dbl_F3PD}}%</td>
+                      <td class="column1">{{s.bl_F3PD}}%</td>
+                      <td class="column1">{{s.bs_F3PD}}%</td>
+                      <td class="column1">{{s.dbl_FID}}%</td>
+                      <td class="column1">{{s.bl_FID}}%</td>
+                      <td class="column1">{{s.bs_FID}}%</td>
+                      <td class="column1">{{s.dbl_30MOB6}}%</td>
+                      <td class="column1">{{s.bl_30MOB6}}%</td>
+                      <td class="column1">{{s.bs_30MOB6}}%</td>
                     </tr>
                     </tfoot>
                 </table>

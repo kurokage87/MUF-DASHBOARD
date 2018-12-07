@@ -7,6 +7,12 @@ import { ServicesService } from 'src/app/services/services.service';
   styleUrls: ['./collection.component.css']
 })
 export class CollectionComponent implements OnInit {
+  
+  dataCache=JSON.parse('currentUser');
+
+  areaList
+  branchList
+  portfolioList
   data = {
     "chart": {
       "caption": "Collection Effectiveness Performance",
@@ -393,7 +399,8 @@ export class CollectionComponent implements OnInit {
       "yaxisname": "Total",
       "formatnumberscale": "1",
       "plottooltext": "<b>$dataValue</b> apps were available on <b>$seriesName</b> in $label",
-      "theme": "zune",
+      // "theme": "zune",
+      "theme": "fusion",
       "exportenabled": "1",
       // "drawcrossline": "1"
       
@@ -495,7 +502,7 @@ export class CollectionComponent implements OnInit {
             "value": "407037"
           },
           {
-            "value": "480071"
+            "value": "480077"
           },
           {
             "value": "395684"
@@ -6183,8 +6190,9 @@ export class CollectionComponent implements OnInit {
   }
   }
 
-  width_gauce2 = 0.27 * screen.width
-  height_gauce2 =  0.3 * screen.height
+  width_gauce3 = 0.13 * screen.width
+  height_gauce2 =  0.18 * screen.height
+  width_gauce2 =  0.16 * screen.width
 
   width = 0.41 * screen.width;
   full_widt = 0.88 * screen.width;
@@ -6242,5 +6250,6 @@ export class CollectionComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.dataCache);
   }
 }

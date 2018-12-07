@@ -8,5618 +8,1742 @@ import { Component, OnInit } from '@angular/core';
 export class RecoveryComponent implements OnInit {
   line1 = {
     "chart": {
-      "caption": "Proyeksi 0+",
-      "yaxisname": "% of Day",
+      "caption": "TREND WO JF NON JF BY UNIT",
+      "pYAxisName": "",
+      "sYAxisName": "",
+      "sYaxisMaxValue": "900",
+      "pYAxisMaxValue": "2500",
       // "useEllipsesWhenOverflow":"0",
-      "rotateLabels": "0",
-      "showhovereffect": "1",
-      "numbersuffix": "%",
-      "drawcrossline": "1",
-      "plottooltext": "<b>$dataValue</b> Proyeksi 0+ $seriesName",
-      "theme": "candy"
+      "numbersuffix": "",
+      "exportenabled": "1",
+      // "plottooltext": "<b>$dataValue</b> Proyeksi 0+ $seriesName",
+      "theme": "fusion"
     },
     "categories": [
       {
         "category": [
           {
-            "label": "1"
+            "label": "Mei 2017"
           },
           {
-            "label": "2"
+            "label": "Jun 2017"
           },
           {
-            "label": "3"
+            "label": "Jul 2017"
           },
           {
-            "label": "4"
+            "label": "Agus 2017"
           },
           {
-            "label": "5"
+            "label": "Sep 2017"
           },
           {
-            "label": "6"
+            "label": "Okt 2017"
           },
           {
-            "label": "7"
+            "label": "Nov 2017"
           },
           {
-            "label": "8"
+            "label": "Des 2017"
           },
           {
-            "label": "9"
+            "label": "Jan 2018"
           },
           {
-            "label": "10"
+            "label": "Feb 2018"
           },
           {
-            "label": "11"
+            "label": "Mar 2018"
           },
           {
-            "label": "12"
+            "label": "Apr 2018"
           },
           {
-            "label": "13"
+            "label": "Mei 2018"
           },
-          {
-            "label": "14"
-          },
-          {
-            "label": "15"
-          },
-          {
-            "label": "16"
-          },
-          {
-            "label": "17"
-          },
-          {
-            "label": "18"
-          },
-          {
-            "label": "19"
-          },
-          {
-            "label": "20"
-          },
-          {
-            "label": "21"
-          },
-          {
-            "label": "22"
-          },
-          {
-            "label": "23"
-          },
-          {
-            "label": "24"
-          },
-          {
-            "label": "25"
-          },
-          {
-            "label": "26"
-          },
-          {
-            "label": "27"
-          },
-          {
-            "label": "28"
-          },
-          {
-            "label": "29"
-          },
-          {
-            "label": "30"
-          },
-          {
-            "label": "31"
-          }
         ]
       }
     ],
     "dataset": [
       {
-        "seriesname": "Dec-17",
+        "seriesname": "NON JF",
+        "renderAs": "line",
         "data": [
           {
-            "value": "91.19"
+            "value": "354"
           },
           {
-            "value": "90.06"
+            "value": "742"
           },
           {
-            "value": "89.69"
+            "value": "638"
           },
           {
-            "value": "84.65"
+            "value": "940"
           },
           {
-            "value": "81.59"
+            "value": "274"
           },
           {
-            "value": "79.03"
+            "value": "848"
           },
           {
-            "value": "76.39"
+            "value": "872"
           },
           {
-            "value": "73.83"
+            "value": "903"
           },
           {
-            "value": "72.67"
+            "value": "919"
           },
           {
-            "value": "72.29"
+            "value": "831"
           },
           {
-            "value": "68.11"
+            "value": "1049"
           },
           {
-            "value": "65.26"
+            "value": "1173"
           },
           {
-            "value": "62.67"
-          },
-          {
-            "value": "60.26"
-          },
-          {
-            "value": "57.64"
-          },
-          {
-            "value": "56.53"
-          },
-          {
-            "value": "56.18"
-          },
-          {
-            "value": "51.66"
-          },
-          {
-            "value": "48.54"
-          },
-          {
-            "value": "41.87"
-          },
-          {
-            "value": "38.92"
-          },
-          {
-            "value": "33.68"
-          },
-          {
-            "value": "32.00"
-          },
-          {
-            "value": "31.44"
-          },
-          {
-            "value": "30.98"
-          },
-          {
-            "value": "29.89"
-          },
-          {
-            "value": "25.11"
-          },
-          {
-            "value": "21.79"
-          },
-          {
-            "value": "18.98"
-          },
-          {
-            "value": "16.73"
-          },
-          {
-            "value": "16.22"
+            "value": "961"
           }
         ]
       },
       {
-        "seriesname": "Jan-18",
+        "seriesname": "Grand Total",
+        "renderAs": "line",
         "data": [
           {
-            "value": "90.97"
+            "value": "409"
           },
           {
-            "value": "87.49"
+            "value": "742"
           },
           {
-            "value": "85.21"
+            "value": "789"
           },
           {
-            "value": "83.35"
+            "value": "1185"
           },
           {
-            "value": "80.85"
+            "value": "894"
           },
           {
-            "value": "79.97"
+            "value": "1289"
           },
           {
-            "value": "79.43"
+            "value": "1323"
           },
           {
-            "value": "75.35"
+            "value": "1464"
           },
           {
-            "value": "72.61"
+            "value": "1540"
           },
           {
-            "value": "70.18"
+            "value": "1463"
           },
           {
-            "value": "67.82"
+            "value": "1810"
           },
           {
-            "value": "65.28"
+            "value": "2026"
           },
           {
-            "value": "64.27"
-          },
-          {
-            "value": "63.95"
-          },
-          {
-            "value": "59.58"
-          },
-          {
-            "value": "56.39"
-          },
-          {
-            "value": "53.73"
-          },
-          {
-            "value": "51.29"
-          },
-          {
-            "value": "48.85"
-          },
-          {
-            "value": "47.68"
-          },
-          {
-            "value": "47.35"
-          },
-          {
-            "value": "42.69"
-          },
-          {
-            "value": "39.79"
-          },
-          {
-            "value": "37.36"
-          },
-          {
-            "value": "31.83"
-          },
-          {
-            "value": "29.06"
-          },
-          {
-            "value": "27.88"
-          },
-          {
-            "value": "27.44"
-          },
-          {
-            "value": "22.73"
-          },
-          {
-            "value": "19.42"
-          },
-          {
-            "value": "16.38"
+            "value": "1756"
           }
         ]
       },
       {
-        "seriesname": "Feb-18",
+        "seriesname": "JF",
+        "parentYAxis": "S",
+        "renderAs": "line",
         "data": [
           {
-            "value": "82.67"
+            "value": "55"
           },
           {
-            "value": "79.51"
+            "value": "125"
           },
           {
-            "value": "78.51"
+            "value": "151"
           },
           {
-            "value": "78.17"
+            "value": "245"
           },
           {
-            "value": "74.56"
+            "value": "274"
           },
           {
-            "value": "71.86"
+            "value": "441"
           },
           {
-            "value": "69.37"
+            "value": "484"
           },
           {
-            "value": "66.99"
+            "value": "561"
           },
           {
-            "value": "64.45"
+            "value": "621"
           },
           {
-            "value": "63.37"
+            "value": "632"
           },
           {
-            "value": "63.02"
+            "value": "761"
           },
           {
-            "value": "58.90"
+            "value": "853"
           },
           {
-            "value": "56.01"
-          },
-          {
-            "value": "53.65"
-          },
-          {
-            "value": "52.48"
-          },
-          {
-            "value": "50.48"
-          },
-          {
-            "value": "49.29"
-          },
-          {
-            "value": "48.96"
-          },
-          {
-            "value": "43.89"
-          },
-          {
-            "value": "40.66"
-          },
-          {
-            "value": "37.92"
-          },
-          {
-            "value": "35.19"
-          },
-          {
-            "value": "32.63"
-          },
-          {
-            "value": "31.62"
-          },
-          {
-            "value": "31.16"
-          },
-          {
-            "value": "24.24"
-          },
-          {
-            "value": "20.94"
-          },
-          {
-            "value": "16.98"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
+            "value": "795"
           }
         ]
-      },
-      {
-        "seriesname": "Mar-18",
-        "data": [
-          {
-            "value": "90.83"
-          },
-          {
-            "value": "87.33"
-          },
-          {
-            "value": "86.27"
-          },
-          {
-            "value": "85.87"
-          },
-          {
-            "value": "82.26"
-          },
-          {
-            "value": "79.44"
-          },
-          {
-            "value": "77.07"
-          },
-          {
-            "value": "74.63"
-          },
-          {
-            "value": "72.22"
-          },
-          {
-            "value": "70.71"
-          },
-          {
-            "value": "70.71"
-          },
-          {
-            "value": "66.69"
-          },
-          {
-            "value": "63.80"
-          },
-          {
-            "value": "63.69"
-          },
-          {
-            "value": "58.78"
-          },
-          {
-            "value": "56.19"
-          },
-          {
-            "value": "55.77"
-          },
-          {
-            "value": "55.43"
-          },
-          {
-            "value": "51.12"
-          },
-          {
-            "value": "48.01"
-          },
-          {
-            "value": "45.17"
-          },
-          {
-            "value": "42.42"
-          },
-          {
-            "value": "39.71"
-          },
-          {
-            "value": "38.67"
-          },
-          {
-            "value": "38.25"
-          },
-          {
-            "value": "31.31"
-          },
-          {
-            "value": "26.05"
-          },
-          {
-            "value": "23.45"
-          },
-          {
-            "value": "20.25"
-          },
-          {
-            "value": "19.64"
-          },
-          {
-            "value": "17.32"
-          }
-        ]
-      },
-      {
-        "seriesname": "Apr-18",
-        "data": [
-          {
-            "value": "89.90"
-          },
-          {
-            "value": "85.83"
-          },
-          {
-            "value": "83.40"
-          },
-          {
-            "value": "81.35"
-          },
-          {
-            "value": "79.11"
-          },
-          {
-            "value": "76.74"
-          },
-          {
-            "value": "75.68"
-          },
-          {
-            "value": "75.33"
-          },
-          {
-            "value": "71.15"
-          },
-          {
-            "value": "68.26"
-          },
-          {
-            "value": "65.87"
-          },
-          {
-            "value": "63.44"
-          },
-          {
-            "value": "60.90"
-          },
-          {
-            "value": "60.50"
-          },
-          {
-            "value": "60.18"
-          },
-          {
-            "value": "55.89"
-          },
-          {
-            "value": "52.94"
-          },
-          {
-            "value": "50.53"
-          },
-          {
-            "value": "48.01"
-          },
-          {
-            "value": "45.08"
-          },
-          {
-            "value": "44.02"
-          },
-          {
-            "value": "43.69"
-          },
-          {
-            "value": "39.07"
-          },
-          {
-            "value": "33.82"
-          },
-          {
-            "value": "31.14"
-          },
-          {
-            "value": "26.16"
-          },
-          {
-            "value": "23.60"
-          },
-          {
-            "value": "22.25"
-          },
-          {
-            "value": "21.32"
-          },
-          {
-            "value": "17.26"
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
-      {
-        "seriesname": "May-18",
-        "data": [
-          {
-            "value": "91.75"
-          },
-          {
-            "value": "87.60"
-          },
-          {
-            "value": "85.12"
-          },
-          {
-            "value": "83.01"
-          },
-          {
-            "value": "81.94"
-          },
-          {
-            "value": "81.55"
-          },
-          {
-            "value": "77.76"
-          },
-          {
-            "value": "74.97"
-          },
-          {
-            "value": "72.29"
-          },
-          {
-            "value": "71.82"
-          },
-          {
-            "value": "68.45"
-          },
-          {
-            "value": "67.33"
-          },
-          {
-            "value": "66.99"
-          },
-          {
-            "value": "62.67"
-          },
-          {
-            "value": "59.51"
-          },
-          {
-            "value": "56.96"
-          },
-          {
-            "value": "54.44"
-          },
-          {
-            "value": "51.94"
-          },
-          {
-            "value": "50.78"
-          },
-          {
-            "value": "50.37"
-          },
-          {
-            "value": "45.76"
-          },
-          {
-            "value": "42.51"
-          },
-          {
-            "value": "39.98"
-          },
-          {
-            "value": "37.66"
-          },
-          {
-            "value": "32.45"
-          },
-          {
-            "value": "31.15"
-          },
-          {
-            "value": "30.60"
-          },
-          {
-            "value": "25.50"
-          },
-          {
-            "value": "24.29"
-          },
-          {
-            "value": "20.28"
-          },
-          {
-            "value": "16.72"
-          }
-        ]
-      },
-      {
-        "seriesname": "Jun-18",
-        "data": [
-          {
-            "value": "89.14"
-          },
-          {
-            "value": "87.76"
-          },
-          {
-            "value": "87.33"
-          },
-          {
-            "value": "82.01"
-          },
-          {
-            "value": "78.86"
-          },
-          {
-            "value": "75.96"
-          },
-          {
-            "value": "67.51"
-          },
-          {
-            "value": "63.30"
-          },
-          {
-            "value": "61.85"
-          },
-          {
-            "value": "61.35"
-          },
-          {
-            "value": "58.94"
-          },
-          {
-            "value": "56.08"
-          },
-          {
-            "value": "55.28"
-          },
-          {
-            "value": "54.92"
-          },
-          {
-            "value": "54.84"
-          },
-          {
-            "value": "54.68"
-          },
-          {
-            "value": "54.47"
-          },
-          {
-            "value": "54.00"
-          },
-          {
-            "value": "53.35"
-          },
-          {
-            "value": "50.83"
-          },
-          {
-            "value": "47.30"
-          },
-          {
-            "value": "44.19"
-          },
-          {
-            "value": "43.15"
-          },
-          {
-            "value": "42.76"
-          },
-          {
-            "value": "35.77"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
+      }
     ]
   }
 
   line2 = {
     "chart": {
-      "caption": "Proyeksi 30+",
-      "yaxisname": "% of Day",
+      "caption": "TREND WO JF NON JF BY AMT",
+      "pYAxisName": "",
+      "sYAxisName": "",
+      "sYaxisMaxValue": "40000",
+      "pYAxisMaxValue": "25000",
       // "useEllipsesWhenOverflow":"0",
-      "rotateLabels": "0",
-      "showhovereffect": "1",
-      "numbersuffix": "%",
-      "drawcrossline": "1",
-      "plottooltext": "<b>$dataValue</b> Proyeksi 30+ $seriesName",
-      "theme": "candy"
+      "numbersuffix": "",
+      "exportenabled": "1",
+      // "plottooltext": "<b>$dataValue</b> Proyeksi 0+ $seriesName",
+      "theme": "fusion"
     },
     "categories": [
       {
         "category": [
           {
-            "label": "1"
+            "label": "Mei 2017"
           },
           {
-            "label": "2"
+            "label": "Jun 2017"
           },
           {
-            "label": "3"
+            "label": "Jul 2017"
           },
           {
-            "label": "4"
+            "label": "Agus 2017"
           },
           {
-            "label": "5"
+            "label": "Sep 2017"
           },
           {
-            "label": "6"
+            "label": "Okt 2017"
           },
           {
-            "label": "7"
+            "label": "Nov 2017"
           },
           {
-            "label": "8"
+            "label": "Des 2017"
           },
           {
-            "label": "9"
+            "label": "Jan 2018"
           },
           {
-            "label": "10"
+            "label": "Feb 2018"
           },
           {
-            "label": "11"
+            "label": "Mar 2018"
           },
           {
-            "label": "12"
+            "label": "Apr 2018"
           },
           {
-            "label": "13"
+            "label": "Mei 2018"
           },
-          {
-            "label": "14"
-          },
-          {
-            "label": "15"
-          },
-          {
-            "label": "16"
-          },
-          {
-            "label": "17"
-          },
-          {
-            "label": "18"
-          },
-          {
-            "label": "19"
-          },
-          {
-            "label": "20"
-          },
-          {
-            "label": "21"
-          },
-          {
-            "label": "22"
-          },
-          {
-            "label": "23"
-          },
-          {
-            "label": "24"
-          },
-          {
-            "label": "25"
-          },
-          {
-            "label": "26"
-          },
-          {
-            "label": "27"
-          },
-          {
-            "label": "28"
-          },
-          {
-            "label": "29"
-          },
-          {
-            "label": "30"
-          },
-          {
-            "label": "31"
-          }
         ]
       }
     ],
     "dataset": [
       {
-        "seriesname": "Dec-17",
+        "seriesname": "JF",
+        "renderAs": "line",
         "data": [
           {
-            "value": "17.59"
+            "value": "1454"
           },
           {
-            "value": "17.28"
+            "value": "2528"
           },
           {
-            "value": "17.19"
+            "value": "2117"
           },
           {
-            "value": "16.24"
+            "value": "3487"
           },
           {
-            "value": "15.42"
+            "value": "4452"
           },
           {
-            "value": "14.80"
+            "value": "6650"
           },
           {
-            "value": "14.22"
+            "value": "7450"
           },
           {
-            "value": "13.71"
+            "value": "7980"
           },
           {
-            "value": "13.37"
+            "value": "8702"
           },
           {
-            "value": "13.31"
+            "value": "10321"
           },
           {
-            "value": "12.74"
+            "value": "11058"
           },
           {
-            "value": "12.18"
+            "value": "11987"
           },
           {
-            "value": "11.69"
-          },
-          {
-            "value": "11.21"
-          },
-          {
-            "value": "10.81"
-          },
-          {
-            "value": "10.46"
-          },
-          {
-            "value": "10.41"
-          },
-          {
-            "value": "10.00"
-          },
-          {
-            "value": "9.54"
-          },
-          {
-            "value": "9.12"
-          },
-          {
-            "value": "8.64"
-          },
-          {
-            "value": "8.22"
-          },
-          {
-            "value": "7.75"
-          },
-          {
-            "value": "7.49"
-          },
-          {
-            "value": "7.33"
-          },
-          {
-            "value": "7.04"
-          },
-          {
-            "value": "6.54"
-          },
-          {
-            "value": "5.51"
-          },
-          {
-            "value": "4.16"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": "2.66"
+            "value": "12058"
           }
         ]
       },
       {
-        "seriesname": "Jan-18",
+        "seriesname": "Grand Total",
+        "renderAs": "line",
+        "parentYAxis": "S",
         "data": [
           {
-            "value": "16.85"
+            "value": "7681"
           },
           {
-            "value": "16.31"
+            "value": "13278"
           },
           {
-            "value": "15.70"
+            "value": "12762"
           },
           {
-            "value": "15.28"
+            "value": "20074"
           },
           {
-            "value": "14.78"
+            "value": "15519"
           },
           {
-            "value": "14.54"
+            "value": "22159"
           },
           {
-            "value": "14.47"
+            "value": "24589"
           },
           {
-            "value": "14.05"
+            "value": "28628"
           },
           {
-            "value": "13.56"
+            "value": "28027"
           },
           {
-            "value": "13.09"
+            "value": "26135"
           },
           {
-            "value": "12.63"
+            "value": "28695"
           },
           {
-            "value": "12.14"
+            "value": "33933"
           },
           {
-            "value": "11.89"
-          },
-          {
-            "value": "11.87"
-          },
-          {
-            "value": "11.48"
-          },
-          {
-            "value": "10.99"
-          },
-          {
-            "value": "10.57"
-          },
-          {
-            "value": "10.17"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": "9.62"
-          },
-          {
-            "value": "9.59"
-          },
-          {
-            "value": "9.20"
-          },
-          {
-            "value": "8.79"
-          },
-          {
-            "value": "8.42"
-          },
-          {
-            "value": "8.07"
-          },
-          {
-            "value": "7.50"
-          },
-          {
-            "value": "7.14"
-          },
-          {
-            "value": "6.93"
-          },
-          {
-            "value": "6.11"
-          },
-          {
-            "value": "5.19"
-          },
-          {
-            "value": "3.00"
+            "value": "31517"
           }
         ]
       },
       {
-        "seriesname": "Feb-18",
+        "seriesname": "NON JF",
+        "renderAs": "line",
         "data": [
           {
-            "value": "14.80"
+            "value": "6228"
           },
           {
-            "value": "14.42"
+            "value": "10750"
           },
           {
-            "value": "14.19"
+            "value": "16587"
           },
           {
-            "value": "14.14"
+            "value": "11068"
           },
           {
-            "value": "13.73"
+            "value": "15508"
           },
           {
-            "value": "13.31"
+            "value": "17452"
           },
           {
-            "value": "12.90"
+            "value": "17225"
           },
           {
-            "value": "12.53"
+            "value": "15790"
           },
           {
-            "value": "12.13"
+            "value": "18654"
           },
           {
-            "value": "11.85"
+            "value": "22256"
           },
           {
-            "value": "11.82"
+            "value": "18998"
           },
           {
-            "value": "11.42"
+            "value": "19558"
           },
           {
-            "value": "10.94"
-          },
-          {
-            "value": "10.54"
-          },
-          {
-            "value": "10.40"
-          },
-          {
-            "value": "10.13"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.76"
-          },
-          {
-            "value": "9.36"
-          },
-          {
-            "value": "8.98"
-          },
-          {
-            "value": "8.56"
-          },
-          {
-            "value": "8.18"
-          },
-          {
-            "value": "7.83"
-          },
-          {
-            "value": "7.53"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.90"
-          },
-          {
-            "value": "5.73"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
+            "value": "20123"
           }
         ]
-      },
-      {
-        "seriesname": "Mar-18",
-        "data": [
-          {
-            "value": "18.70"
-          },
-          {
-            "value": "17.77"
-          },
-          {
-            "value": "17.39"
-          },
-          {
-            "value": "17.26"
-          },
-          {
-            "value": "16.55"
-          },
-          {
-            "value": "15.85"
-          },
-          {
-            "value": "15.24"
-          },
-          {
-            "value": "14.73"
-          },
-          {
-            "value": "14.17"
-          },
-          {
-            "value": "13.79"
-          },
-          {
-            "value": "13.79"
-          },
-          {
-            "value": "13.25"
-          },
-          {
-            "value": "12.68"
-          },
-          {
-            "value": "12.27"
-          },
-          {
-            "value": "11.76"
-          },
-          {
-            "value": "11.26"
-          },
-          {
-            "value": "11.19"
-          },
-          {
-            "value": "11.17"
-          },
-          {
-            "value": "10.71"
-          },
-          {
-            "value": "10.24"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.45"
-          },
-          {
-            "value": "9.04"
-          },
-          {
-            "value": "8.77"
-          },
-          {
-            "value": "8.65"
-          },
-          {
-            "value": "8.27"
-          },
-          {
-            "value": "7.68"
-          },
-          {
-            "value": "7.09"
-          },
-          {
-            "value": "5.53"
-          },
-          {
-            "value": "4.96"
-          },
-          {
-            "value": "3.14"
-          }
-        ]
-      },
-      {
-        "seriesname": "Apr-18",
-        "data": [
-          {
-            "value": "17.17"
-          },
-          {
-            "value": "16.70"
-          },
-          {
-            "value": "16.02"
-          },
-          {
-            "value": "15.54"
-          },
-          {
-            "value": "15.09"
-          },
-          {
-            "value": "14.59"
-          },
-          {
-            "value": "14.32"
-          },
-          {
-            "value": "14.28"
-          },
-          {
-            "value": "13.87"
-          },
-          {
-            "value": "13.39"
-          },
-          {
-            "value": "12.93"
-          },
-          {
-            "value": "12.50"
-          },
-          {
-            "value": "12.06"
-          },
-          {
-            "value": "12.03"
-          },
-          {
-            "value": "12.00"
-          },
-          {
-            "value": "11.59"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.70"
-          },
-          {
-            "value": "10.34"
-          },
-          {
-            "value": "9.98"
-          },
-          {
-            "value": "9.71"
-          },
-          {
-            "value": "9.70"
-          },
-          {
-            "value": "9.34"
-          },
-          {
-            "value": "8.90"
-          },
-          {
-            "value": "8.46"
-          },
-          {
-            "value": "7.92"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.39"
-          },
-          {
-            "value": "5.88"
-          },
-          {
-            "value": "3.18"
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
-      {
-        "seriesname": "May-18",
-        "data": [
-          {
-            "value": "18.34"
-          },
-          {
-            "value": "17.17"
-          },
-          {
-            "value": "16.44"
-          },
-          {
-            "value": "15.86"
-          },
-          {
-            "value": "15.56"
-          },
-          {
-            "value": "15.49"
-          },
-          {
-            "value": "15.01"
-          },
-          {
-            "value": "14.43"
-          },
-          {
-            "value": "13.90"
-          },
-          {
-            "value": "13.83"
-          },
-          {
-            "value": "13.28"
-          },
-          {
-            "value": "12.98"
-          },
-          {
-            "value": "12.96"
-          },
-          {
-            "value": "12.49"
-          },
-          {
-            "value": "11.99"
-          },
-          {
-            "value": "11.52"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.72"
-          },
-          {
-            "value": "10.44"
-          },
-          {
-            "value": "10.42"
-          },
-          {
-            "value": "10.01"
-          },
-          {
-            "value": "9.52"
-          },
-          {
-            "value": "9.13"
-          },
-          {
-            "value": "8.73"
-          },
-          {
-            "value": "8.34"
-          },
-          {
-            "value": "7.90"
-          },
-          {
-            "value": "7.69"
-          },
-          {
-            "value": "7.23"
-          },
-          {
-            "value": "6.35"
-          },
-          {
-            "value": "5.55"
-          },
-          {
-            "value": "3.08"
-          }
-        ]
-      },
-      {
-        "seriesname": "Jun-18",
-        "data": [
-          {
-            "value": "16.50"
-          },
-          {
-            "value": "16.22"
-          },
-          {
-            "value": "16.14"
-          },
-          {
-            "value": "15.51"
-          },
-          {
-            "value": "14.88"
-          },
-          {
-            "value": "14.29"
-          },
-          {
-            "value": "13.82"
-          },
-          {
-            "value": "13.24"
-          },
-          {
-            "value": "12.87"
-          },
-          {
-            "value": "12.82"
-          },
-          {
-            "value": "12.26"
-          },
-          {
-            "value": "11.69"
-          },
-          {
-            "value": "11.50"
-          },
-          {
-            "value": "11.47"
-          },
-          {
-            "value": "11.46"
-          },
-          {
-            "value": "11.44"
-          },
-          {
-            "value": "11.43"
-          },
-          {
-            "value": "11.39"
-          },
-          {
-            "value": "11.32"
-          },
-          {
-            "value": "11.16"
-          },
-          {
-            "value": "10.88"
-          },
-          {
-            "value": "10.51"
-          },
-          {
-            "value": "10.28"
-          },
-          {
-            "value": "10.19"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
+      }
     ]
   }
 
   line3 = {
     "chart": {
-      "caption": "Proyeksi 60+",
-      "yaxisname": "% of Day",
-      // "useEllipsesWhenOverflow":"0",
-      "rotateLabels": "0",
-      "showhovereffect": "1",
-      "numbersuffix": "%",
-      "drawcrossline": "1",
-      "plottooltext": "<b>$dataValue</b> Proyeksi 60+ $seriesName",
-      "theme": "candy"
+      "caption": "HANDLING TO WO_IN UNIT",
+      "xAxisName": "",
+      "pYAxisName": "",
+      "sYAxisName": "",
+      "numberPrefix": "",
+      "numbersuffix": "",
+      "exportenabled": "1",
+      "sNumberSuffix": " ",
+      "pYAxisMaxValue": "250",
+      "sYAxisMaxValue": "9",
+      "divlineAlpha": "100",
+      "divlineColor": "#999999",
+      "divlineThickness": "1",
+      "divLineDashed": "1",
+      "divLineDashLen": "1",
+      "theme": "fusion"
     },
     "categories": [
       {
         "category": [
           {
-            "label": "1"
+            "label": "Mei 2017"
           },
           {
-            "label": "2"
+            "label": "Jun 2017"
           },
           {
-            "label": "3"
+            "label": "Jul 2017"
           },
           {
-            "label": "4"
+            "label": "Agus 2017"
           },
           {
-            "label": "5"
+            "label": "Sep 2017"
           },
           {
-            "label": "6"
+            "label": "Okt 2017"
           },
           {
-            "label": "7"
+            "label": "Nov 2017"
           },
           {
-            "label": "8"
+            "label": "Des 2017"
           },
           {
-            "label": "9"
+            "label": "Jan 2018"
           },
           {
-            "label": "10"
+            "label": "Feb 2018"
           },
           {
-            "label": "11"
+            "label": "Mar 2018"
           },
           {
-            "label": "12"
+            "label": "Apr 2018"
           },
           {
-            "label": "13"
+            "label": "Mei 2018"
           },
-          {
-            "label": "14"
-          },
-          {
-            "label": "15"
-          },
-          {
-            "label": "16"
-          },
-          {
-            "label": "17"
-          },
-          {
-            "label": "18"
-          },
-          {
-            "label": "19"
-          },
-          {
-            "label": "20"
-          },
-          {
-            "label": "21"
-          },
-          {
-            "label": "22"
-          },
-          {
-            "label": "23"
-          },
-          {
-            "label": "24"
-          },
-          {
-            "label": "25"
-          },
-          {
-            "label": "26"
-          },
-          {
-            "label": "27"
-          },
-          {
-            "label": "28"
-          },
-          {
-            "label": "29"
-          },
-          {
-            "label": "30"
-          },
-          {
-            "label": "31"
-          }
         ]
       }
     ],
     "dataset": [
       {
-        "seriesname": "Dec-17",
-        "data": [
+        "dataset": [
           {
-            "value": "17.59"
+            "seriesname": "Sold",
+            "data": [
+              {
+                "value": "5"
+              },
+              {
+                "value": "8"
+              },
+              {
+                "value": "10"
+              },
+              {
+                "value": "20"
+              },
+              {
+                "value": "34"
+              },
+              {
+                "value": "38"
+              },
+              {
+                "value": "45"
+              },
+              {
+                "value": "32"
+              },
+              {
+                "value": "65"
+              },
+              {
+                "value": "25"
+              },
+              {
+                "value": "20"
+              },
+              {
+                "value": "27"
+              },
+              {
+                "value": "31"
+              }
+            ]
           },
           {
-            "value": "17.28"
+            "seriesname": "Repo",
+            "data": [
+              {
+                "value": "15"
+              },
+              {
+                "value": "19"
+              },
+              {
+                "value": "29"
+              },
+              {
+                "value": "25"
+              },
+              {
+                "value": "39"
+              },
+              {
+                "value": "47"
+              },
+              {
+                "value": "65"
+              },
+              {
+                "value": "87"
+              },
+              {
+                "value": "77"
+              },
+              {
+                "value": "90"
+              },
+              {
+                "value": "24"
+              },
+              {
+                "value": "10"
+              },
+              {
+                "value": "5"
+              }
+            ]
           },
           {
-            "value": "17.19"
-          },
-          {
-            "value": "16.24"
-          },
-          {
-            "value": "15.42"
-          },
-          {
-            "value": "14.80"
-          },
-          {
-            "value": "14.22"
-          },
-          {
-            "value": "13.71"
-          },
-          {
-            "value": "13.37"
-          },
-          {
-            "value": "13.31"
-          },
-          {
-            "value": "12.74"
-          },
-          {
-            "value": "12.18"
-          },
-          {
-            "value": "11.69"
-          },
-          {
-            "value": "11.21"
-          },
-          {
-            "value": "10.81"
-          },
-          {
-            "value": "10.46"
-          },
-          {
-            "value": "10.41"
-          },
-          {
-            "value": "10.00"
-          },
-          {
-            "value": "9.54"
-          },
-          {
-            "value": "9.12"
-          },
-          {
-            "value": "8.64"
-          },
-          {
-            "value": "8.22"
-          },
-          {
-            "value": "7.75"
-          },
-          {
-            "value": "7.49"
-          },
-          {
-            "value": "7.33"
-          },
-          {
-            "value": "7.04"
-          },
-          {
-            "value": "6.54"
-          },
-          {
-            "value": "5.51"
-          },
-          {
-            "value": "4.16"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": "2.66"
+            "seriesname": "Lunas",
+            "data": [
+              {
+                "value": "8"
+              },
+              {
+                "value": "10"
+              },
+              {
+                "value": "12"
+              },
+              {
+                "value": "14"
+              },
+              {
+                "value": "7"
+              },
+              {
+                "value": "20"
+              },
+              {
+                "value": "12"
+              },
+              {
+                "value": "16"
+              },
+              {
+                "value": "24"
+              },
+              {
+                "value": "11"
+              },
+              {
+                "value": "5"
+              },
+              {
+                "value": "15"
+              },
+              {
+                "value": "10"
+              }
+            ]
           }
         ]
       },
+      
+    ],
+    "lineset": [
       {
-        "seriesname": "Jan-18",
+        "seriesname": "Handling To Wo",
+        "showValues": "0",
         "data": [
           {
-            "value": "16.85"
+            "value": "1.22"
           },
           {
-            "value": "16.31"
+            "value": "0.81"
           },
           {
-            "value": "15.70"
+            "value": "3.93"
           },
           {
-            "value": "15.28"
+            "value": "3.88"
           },
           {
-            "value": "14.78"
+            "value": "3.91"
           },
           {
-            "value": "14.54"
+            "value": "4.89"
           },
           {
-            "value": "14.47"
+            "value": "6.49"
           },
           {
-            "value": "14.05"
+            "value": "6.97"
           },
           {
-            "value": "13.56"
+            "value": "8.12"
           },
           {
-            "value": "13.09"
+            "value": "7.38"
           },
           {
-            "value": "12.63"
+            "value": "7.51"
           },
           {
-            "value": "12.14"
+            "value": "5.23"
           },
           {
-            "value": "11.89"
-          },
-          {
-            "value": "11.87"
-          },
-          {
-            "value": "11.48"
-          },
-          {
-            "value": "10.99"
-          },
-          {
-            "value": "10.57"
-          },
-          {
-            "value": "10.17"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": "9.62"
-          },
-          {
-            "value": "9.59"
-          },
-          {
-            "value": "9.20"
-          },
-          {
-            "value": "8.79"
-          },
-          {
-            "value": "8.42"
-          },
-          {
-            "value": "8.07"
-          },
-          {
-            "value": "7.50"
-          },
-          {
-            "value": "7.14"
-          },
-          {
-            "value": "6.93"
-          },
-          {
-            "value": "6.11"
-          },
-          {
-            "value": "5.19"
-          },
-          {
-            "value": "3.00"
+            "value": "7.29"
           }
         ]
-      },
-      {
-        "seriesname": "Feb-18",
-        "data": [
-          {
-            "value": "14.80"
-          },
-          {
-            "value": "14.42"
-          },
-          {
-            "value": "14.19"
-          },
-          {
-            "value": "14.14"
-          },
-          {
-            "value": "13.73"
-          },
-          {
-            "value": "13.31"
-          },
-          {
-            "value": "12.90"
-          },
-          {
-            "value": "12.53"
-          },
-          {
-            "value": "12.13"
-          },
-          {
-            "value": "11.85"
-          },
-          {
-            "value": "11.82"
-          },
-          {
-            "value": "11.42"
-          },
-          {
-            "value": "10.94"
-          },
-          {
-            "value": "10.54"
-          },
-          {
-            "value": "10.40"
-          },
-          {
-            "value": "10.13"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.76"
-          },
-          {
-            "value": "9.36"
-          },
-          {
-            "value": "8.98"
-          },
-          {
-            "value": "8.56"
-          },
-          {
-            "value": "8.18"
-          },
-          {
-            "value": "7.83"
-          },
-          {
-            "value": "7.53"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.90"
-          },
-          {
-            "value": "5.73"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
-      {
-        "seriesname": "Mar-18",
-        "data": [
-          {
-            "value": "18.70"
-          },
-          {
-            "value": "17.77"
-          },
-          {
-            "value": "17.39"
-          },
-          {
-            "value": "17.26"
-          },
-          {
-            "value": "16.55"
-          },
-          {
-            "value": "15.85"
-          },
-          {
-            "value": "15.24"
-          },
-          {
-            "value": "14.73"
-          },
-          {
-            "value": "14.17"
-          },
-          {
-            "value": "13.79"
-          },
-          {
-            "value": "13.79"
-          },
-          {
-            "value": "13.25"
-          },
-          {
-            "value": "12.68"
-          },
-          {
-            "value": "12.27"
-          },
-          {
-            "value": "11.76"
-          },
-          {
-            "value": "11.26"
-          },
-          {
-            "value": "11.19"
-          },
-          {
-            "value": "11.17"
-          },
-          {
-            "value": "10.71"
-          },
-          {
-            "value": "10.24"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.45"
-          },
-          {
-            "value": "9.04"
-          },
-          {
-            "value": "8.77"
-          },
-          {
-            "value": "8.65"
-          },
-          {
-            "value": "8.27"
-          },
-          {
-            "value": "7.68"
-          },
-          {
-            "value": "7.09"
-          },
-          {
-            "value": "5.53"
-          },
-          {
-            "value": "4.96"
-          },
-          {
-            "value": "3.14"
-          }
-        ]
-      },
-      {
-        "seriesname": "Apr-18",
-        "data": [
-          {
-            "value": "17.17"
-          },
-          {
-            "value": "16.70"
-          },
-          {
-            "value": "16.02"
-          },
-          {
-            "value": "15.54"
-          },
-          {
-            "value": "15.09"
-          },
-          {
-            "value": "14.59"
-          },
-          {
-            "value": "14.32"
-          },
-          {
-            "value": "14.28"
-          },
-          {
-            "value": "13.87"
-          },
-          {
-            "value": "13.39"
-          },
-          {
-            "value": "12.93"
-          },
-          {
-            "value": "12.50"
-          },
-          {
-            "value": "12.06"
-          },
-          {
-            "value": "12.03"
-          },
-          {
-            "value": "12.00"
-          },
-          {
-            "value": "11.59"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.70"
-          },
-          {
-            "value": "10.34"
-          },
-          {
-            "value": "9.98"
-          },
-          {
-            "value": "9.71"
-          },
-          {
-            "value": "9.70"
-          },
-          {
-            "value": "9.34"
-          },
-          {
-            "value": "8.90"
-          },
-          {
-            "value": "8.46"
-          },
-          {
-            "value": "7.92"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.39"
-          },
-          {
-            "value": "5.88"
-          },
-          {
-            "value": "3.18"
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
-      {
-        "seriesname": "May-18",
-        "data": [
-          {
-            "value": "18.34"
-          },
-          {
-            "value": "17.17"
-          },
-          {
-            "value": "16.44"
-          },
-          {
-            "value": "15.86"
-          },
-          {
-            "value": "15.56"
-          },
-          {
-            "value": "15.49"
-          },
-          {
-            "value": "15.01"
-          },
-          {
-            "value": "14.43"
-          },
-          {
-            "value": "13.90"
-          },
-          {
-            "value": "13.83"
-          },
-          {
-            "value": "13.28"
-          },
-          {
-            "value": "12.98"
-          },
-          {
-            "value": "12.96"
-          },
-          {
-            "value": "12.49"
-          },
-          {
-            "value": "11.99"
-          },
-          {
-            "value": "11.52"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.72"
-          },
-          {
-            "value": "10.44"
-          },
-          {
-            "value": "10.42"
-          },
-          {
-            "value": "10.01"
-          },
-          {
-            "value": "9.52"
-          },
-          {
-            "value": "9.13"
-          },
-          {
-            "value": "8.73"
-          },
-          {
-            "value": "8.34"
-          },
-          {
-            "value": "7.90"
-          },
-          {
-            "value": "7.69"
-          },
-          {
-            "value": "7.23"
-          },
-          {
-            "value": "6.35"
-          },
-          {
-            "value": "5.55"
-          },
-          {
-            "value": "3.08"
-          }
-        ]
-      },
-      {
-        "seriesname": "Jun-18",
-        "data": [
-          {
-            "value": "16.50"
-          },
-          {
-            "value": "16.22"
-          },
-          {
-            "value": "16.14"
-          },
-          {
-            "value": "15.51"
-          },
-          {
-            "value": "14.88"
-          },
-          {
-            "value": "14.29"
-          },
-          {
-            "value": "13.82"
-          },
-          {
-            "value": "13.24"
-          },
-          {
-            "value": "12.87"
-          },
-          {
-            "value": "12.82"
-          },
-          {
-            "value": "12.26"
-          },
-          {
-            "value": "11.69"
-          },
-          {
-            "value": "11.50"
-          },
-          {
-            "value": "11.47"
-          },
-          {
-            "value": "11.46"
-          },
-          {
-            "value": "11.44"
-          },
-          {
-            "value": "11.43"
-          },
-          {
-            "value": "11.39"
-          },
-          {
-            "value": "11.32"
-          },
-          {
-            "value": "11.16"
-          },
-          {
-            "value": "10.88"
-          },
-          {
-            "value": "10.51"
-          },
-          {
-            "value": "10.28"
-          },
-          {
-            "value": "10.19"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
+      }
     ]
+
   }
 
   line4 = {
     "chart": {
-      "caption": "Proyeksi 30+",
-      "yaxisname": "% of Day",
-      // "useEllipsesWhenOverflow":"0",
-      "rotateLabels": "0",
-      "showhovereffect": "1",
-      "numbersuffix": "%",
-      "drawcrossline": "1",
-      "plottooltext": "<b>$dataValue</b> Proyeksi 30+ $seriesName",
-      "theme": "candy"
+      "caption": "HANDLING TO WO_IN AMOUNT",
+      "xAxisName": "",
+      "pYAxisName": "",
+      "sYAxisName": "",
+      "numberPrefix": "",
+      "exportenabled": "1",
+      "numbersuffix": "",
+      "sNumberSuffix": " ",
+      "pYAxisMaxValue": "3500000",
+      "sYAxisMaxValue": "7",
+      "divlineAlpha": "100",
+      "divlineColor": "#999999",
+      "divlineThickness": "1",
+      "divLineDashed": "1",
+      "divLineDashLen": "1",
+      "theme": "fusion"
     },
     "categories": [
       {
         "category": [
           {
-            "label": "1"
+            "label": "Mei 2017"
           },
           {
-            "label": "2"
+            "label": "Jun 2017"
           },
           {
-            "label": "3"
+            "label": "Jul 2017"
           },
           {
-            "label": "4"
+            "label": "Agus 2017"
           },
           {
-            "label": "5"
+            "label": "Sep 2017"
           },
           {
-            "label": "6"
+            "label": "Okt 2017"
           },
           {
-            "label": "7"
+            "label": "Nov 2017"
           },
           {
-            "label": "8"
+            "label": "Des 2017"
           },
           {
-            "label": "9"
+            "label": "Jan 2018"
           },
           {
-            "label": "10"
+            "label": "Feb 2018"
           },
           {
-            "label": "11"
+            "label": "Mar 2018"
           },
           {
-            "label": "12"
+            "label": "Apr 2018"
           },
           {
-            "label": "13"
+            "label": "Mei 2018"
           },
-          {
-            "label": "14"
-          },
-          {
-            "label": "15"
-          },
-          {
-            "label": "16"
-          },
-          {
-            "label": "17"
-          },
-          {
-            "label": "18"
-          },
-          {
-            "label": "19"
-          },
-          {
-            "label": "20"
-          },
-          {
-            "label": "21"
-          },
-          {
-            "label": "22"
-          },
-          {
-            "label": "23"
-          },
-          {
-            "label": "24"
-          },
-          {
-            "label": "25"
-          },
-          {
-            "label": "26"
-          },
-          {
-            "label": "27"
-          },
-          {
-            "label": "28"
-          },
-          {
-            "label": "29"
-          },
-          {
-            "label": "30"
-          },
-          {
-            "label": "31"
-          }
         ]
       }
     ],
     "dataset": [
       {
-        "seriesname": "Dec-17",
-        "data": [
+        "dataset": [
           {
-            "value": "17.59"
+            "seriesname": "Sold",
+            "data": [
+              {
+                "value": "111244"
+              },
+              {
+                "value": "232321"
+              },
+              {
+                "value": "244565"
+              },
+              {
+                "value": "1111256"
+              },
+              {
+                "value": "1212321"
+              },
+              {
+                "value": "365222"
+              },
+              {
+                "value": "1698745"
+              },
+              {
+                "value": "1998987"
+              },
+              {
+                "value": "2001215"
+              },
+              {
+                "value": "1010101"
+              },
+              {
+                "value": "225000"
+              },
+              {
+                "value": "698745"
+              },
+              {
+                "value": "656469"
+              }
+            ]
           },
           {
-            "value": "17.28"
+            "seriesname": "Repo",
+            "data": [
+              {
+                "value": "1055654"
+              },
+              {
+                "value": "223687"
+              },
+              {
+                "value": "205547"
+              },
+              {
+                "value": "1600210"
+              },
+              {
+                "value": "1688797"
+              },
+              {
+                "value": "445445"
+              },
+              {
+                "value": "987654"
+              },
+              {
+                "value": "123456"
+              },
+              {
+                "value": "985421"
+              },
+              {
+                "value": "875421"
+              },
+              {
+                "value": "875422"
+              },
+              {
+                "value": "874510"
+              },
+              {
+                "value": "986532"
+              }
+            ]
           },
           {
-            "value": "17.19"
-          },
-          {
-            "value": "16.24"
-          },
-          {
-            "value": "15.42"
-          },
-          {
-            "value": "14.80"
-          },
-          {
-            "value": "14.22"
-          },
-          {
-            "value": "13.71"
-          },
-          {
-            "value": "13.37"
-          },
-          {
-            "value": "13.31"
-          },
-          {
-            "value": "12.74"
-          },
-          {
-            "value": "12.18"
-          },
-          {
-            "value": "11.69"
-          },
-          {
-            "value": "11.21"
-          },
-          {
-            "value": "10.81"
-          },
-          {
-            "value": "10.46"
-          },
-          {
-            "value": "10.41"
-          },
-          {
-            "value": "10.00"
-          },
-          {
-            "value": "9.54"
-          },
-          {
-            "value": "9.12"
-          },
-          {
-            "value": "8.64"
-          },
-          {
-            "value": "8.22"
-          },
-          {
-            "value": "7.75"
-          },
-          {
-            "value": "7.49"
-          },
-          {
-            "value": "7.33"
-          },
-          {
-            "value": "7.04"
-          },
-          {
-            "value": "6.54"
-          },
-          {
-            "value": "5.51"
-          },
-          {
-            "value": "4.16"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": "2.66"
+            "seriesname": "Lunas",
+            "data": [
+              {
+                "value": "200122"
+              },
+              {
+                "value": "124578"
+              },
+              {
+                "value": "123212"
+              },
+              {
+                "value": "321455"
+              },
+              {
+                "value": "124536"
+              },
+              {
+                "value": "635241"
+              },
+              {
+                "value": "784569"
+              },
+              {
+                "value": "112233"
+              },
+              {
+                "value": "223344"
+              },
+              {
+                "value": "234567"
+              },
+              {
+                "value": "456789"
+              },
+              {
+                "value": "453278"
+              },
+              {
+                "value": "114214"
+              }
+            ]
           }
         ]
       },
+    ],
+    "lineset": [
       {
-        "seriesname": "Jan-18",
+        "seriesname": "Handling To Wo",
+        "showValues": "0",
         "data": [
           {
-            "value": "16.85"
+            "value": "1.22"
           },
           {
-            "value": "16.31"
+            "value": "0.81"
           },
           {
-            "value": "15.70"
+            "value": "3.93"
           },
           {
-            "value": "15.28"
+            "value": "3.88"
           },
           {
-            "value": "14.78"
+            "value": "3.91"
           },
           {
-            "value": "14.54"
+            "value": "3.89"
           },
           {
-            "value": "14.47"
+            "value": "5.49"
           },
           {
-            "value": "14.05"
+            "value": "6.97"
           },
           {
-            "value": "13.56"
+            "value": "1.12"
           },
           {
-            "value": "13.09"
+            "value": "3.38"
           },
           {
-            "value": "12.63"
+            "value": "2.51"
           },
           {
-            "value": "12.14"
+            "value": "5.23"
           },
           {
-            "value": "11.89"
-          },
-          {
-            "value": "11.87"
-          },
-          {
-            "value": "11.48"
-          },
-          {
-            "value": "10.99"
-          },
-          {
-            "value": "10.57"
-          },
-          {
-            "value": "10.17"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": "9.62"
-          },
-          {
-            "value": "9.59"
-          },
-          {
-            "value": "9.20"
-          },
-          {
-            "value": "8.79"
-          },
-          {
-            "value": "8.42"
-          },
-          {
-            "value": "8.07"
-          },
-          {
-            "value": "7.50"
-          },
-          {
-            "value": "7.14"
-          },
-          {
-            "value": "6.93"
-          },
-          {
-            "value": "6.11"
-          },
-          {
-            "value": "5.19"
-          },
-          {
-            "value": "3.00"
+            "value": "4.29"
           }
         ]
-      },
-      {
-        "seriesname": "Feb-18",
-        "data": [
-          {
-            "value": "14.80"
-          },
-          {
-            "value": "14.42"
-          },
-          {
-            "value": "14.19"
-          },
-          {
-            "value": "14.14"
-          },
-          {
-            "value": "13.73"
-          },
-          {
-            "value": "13.31"
-          },
-          {
-            "value": "12.90"
-          },
-          {
-            "value": "12.53"
-          },
-          {
-            "value": "12.13"
-          },
-          {
-            "value": "11.85"
-          },
-          {
-            "value": "11.82"
-          },
-          {
-            "value": "11.42"
-          },
-          {
-            "value": "10.94"
-          },
-          {
-            "value": "10.54"
-          },
-          {
-            "value": "10.40"
-          },
-          {
-            "value": "10.13"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.76"
-          },
-          {
-            "value": "9.36"
-          },
-          {
-            "value": "8.98"
-          },
-          {
-            "value": "8.56"
-          },
-          {
-            "value": "8.18"
-          },
-          {
-            "value": "7.83"
-          },
-          {
-            "value": "7.53"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.90"
-          },
-          {
-            "value": "5.73"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
-      {
-        "seriesname": "Mar-18",
-        "data": [
-          {
-            "value": "18.70"
-          },
-          {
-            "value": "17.77"
-          },
-          {
-            "value": "17.39"
-          },
-          {
-            "value": "17.26"
-          },
-          {
-            "value": "16.55"
-          },
-          {
-            "value": "15.85"
-          },
-          {
-            "value": "15.24"
-          },
-          {
-            "value": "14.73"
-          },
-          {
-            "value": "14.17"
-          },
-          {
-            "value": "13.79"
-          },
-          {
-            "value": "13.79"
-          },
-          {
-            "value": "13.25"
-          },
-          {
-            "value": "12.68"
-          },
-          {
-            "value": "12.27"
-          },
-          {
-            "value": "11.76"
-          },
-          {
-            "value": "11.26"
-          },
-          {
-            "value": "11.19"
-          },
-          {
-            "value": "11.17"
-          },
-          {
-            "value": "10.71"
-          },
-          {
-            "value": "10.24"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.45"
-          },
-          {
-            "value": "9.04"
-          },
-          {
-            "value": "8.77"
-          },
-          {
-            "value": "8.65"
-          },
-          {
-            "value": "8.27"
-          },
-          {
-            "value": "7.68"
-          },
-          {
-            "value": "7.09"
-          },
-          {
-            "value": "5.53"
-          },
-          {
-            "value": "4.96"
-          },
-          {
-            "value": "3.14"
-          }
-        ]
-      },
-      {
-        "seriesname": "Apr-18",
-        "data": [
-          {
-            "value": "17.17"
-          },
-          {
-            "value": "16.70"
-          },
-          {
-            "value": "16.02"
-          },
-          {
-            "value": "15.54"
-          },
-          {
-            "value": "15.09"
-          },
-          {
-            "value": "14.59"
-          },
-          {
-            "value": "14.32"
-          },
-          {
-            "value": "14.28"
-          },
-          {
-            "value": "13.87"
-          },
-          {
-            "value": "13.39"
-          },
-          {
-            "value": "12.93"
-          },
-          {
-            "value": "12.50"
-          },
-          {
-            "value": "12.06"
-          },
-          {
-            "value": "12.03"
-          },
-          {
-            "value": "12.00"
-          },
-          {
-            "value": "11.59"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.70"
-          },
-          {
-            "value": "10.34"
-          },
-          {
-            "value": "9.98"
-          },
-          {
-            "value": "9.71"
-          },
-          {
-            "value": "9.70"
-          },
-          {
-            "value": "9.34"
-          },
-          {
-            "value": "8.90"
-          },
-          {
-            "value": "8.46"
-          },
-          {
-            "value": "7.92"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.39"
-          },
-          {
-            "value": "5.88"
-          },
-          {
-            "value": "3.18"
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
-      {
-        "seriesname": "May-18",
-        "data": [
-          {
-            "value": "18.34"
-          },
-          {
-            "value": "17.17"
-          },
-          {
-            "value": "16.44"
-          },
-          {
-            "value": "15.86"
-          },
-          {
-            "value": "15.56"
-          },
-          {
-            "value": "15.49"
-          },
-          {
-            "value": "15.01"
-          },
-          {
-            "value": "14.43"
-          },
-          {
-            "value": "13.90"
-          },
-          {
-            "value": "13.83"
-          },
-          {
-            "value": "13.28"
-          },
-          {
-            "value": "12.98"
-          },
-          {
-            "value": "12.96"
-          },
-          {
-            "value": "12.49"
-          },
-          {
-            "value": "11.99"
-          },
-          {
-            "value": "11.52"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.72"
-          },
-          {
-            "value": "10.44"
-          },
-          {
-            "value": "10.42"
-          },
-          {
-            "value": "10.01"
-          },
-          {
-            "value": "9.52"
-          },
-          {
-            "value": "9.13"
-          },
-          {
-            "value": "8.73"
-          },
-          {
-            "value": "8.34"
-          },
-          {
-            "value": "7.90"
-          },
-          {
-            "value": "7.69"
-          },
-          {
-            "value": "7.23"
-          },
-          {
-            "value": "6.35"
-          },
-          {
-            "value": "5.55"
-          },
-          {
-            "value": "3.08"
-          }
-        ]
-      },
-      {
-        "seriesname": "Jun-18",
-        "data": [
-          {
-            "value": "16.50"
-          },
-          {
-            "value": "16.22"
-          },
-          {
-            "value": "16.14"
-          },
-          {
-            "value": "15.51"
-          },
-          {
-            "value": "14.88"
-          },
-          {
-            "value": "14.29"
-          },
-          {
-            "value": "13.82"
-          },
-          {
-            "value": "13.24"
-          },
-          {
-            "value": "12.87"
-          },
-          {
-            "value": "12.82"
-          },
-          {
-            "value": "12.26"
-          },
-          {
-            "value": "11.69"
-          },
-          {
-            "value": "11.50"
-          },
-          {
-            "value": "11.47"
-          },
-          {
-            "value": "11.46"
-          },
-          {
-            "value": "11.44"
-          },
-          {
-            "value": "11.43"
-          },
-          {
-            "value": "11.39"
-          },
-          {
-            "value": "11.32"
-          },
-          {
-            "value": "11.16"
-          },
-          {
-            "value": "10.88"
-          },
-          {
-            "value": "10.51"
-          },
-          {
-            "value": "10.28"
-          },
-          {
-            "value": "10.19"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
+      }
     ]
+
   }
 
   line5 = {
     "chart": {
-      "caption": "Proyeksi 30+",
-      "yaxisname": "% of Day",
-      // "useEllipsesWhenOverflow":"0",
-      "rotateLabels": "0",
-      "showhovereffect": "1",
-      "numbersuffix": "%",
-      "drawcrossline": "1",
-      "plottooltext": "<b>$dataValue</b> Proyeksi 30+ $seriesName",
-      "theme": "candy"
+      "caption": "HANDLING_WO IN UNIT",
+      "xAxisName": "",
+      "pYAxisName": "",
+      "sYAxisName": "",
+      "numberPrefix": "",
+      "exportenabled": "1",
+      "numbersuffix": "",
+      "sNumberSuffix": " ",
+      "pYAxisMaxValue": "250",
+      "sYAxisMaxValue": "2500",
+      "divlineAlpha": "100",
+      "divlineColor": "#999999",
+      "divlineThickness": "1",
+      "divLineDashed": "1",
+      "divLineDashLen": "1",
+      "theme": "fusion"
     },
     "categories": [
       {
         "category": [
           {
-            "label": "1"
+            "label": "Mei 2017"
           },
           {
-            "label": "2"
+            "label": "Jun 2017"
           },
           {
-            "label": "3"
+            "label": "Jul 2017"
           },
           {
-            "label": "4"
+            "label": "Agus 2017"
           },
           {
-            "label": "5"
+            "label": "Sep 2017"
           },
           {
-            "label": "6"
+            "label": "Okt 2017"
           },
           {
-            "label": "7"
+            "label": "Nov 2017"
           },
           {
-            "label": "8"
+            "label": "Des 2017"
           },
           {
-            "label": "9"
+            "label": "Jan 2018"
           },
           {
-            "label": "10"
+            "label": "Feb 2018"
           },
           {
-            "label": "11"
+            "label": "Mar 2018"
           },
           {
-            "label": "12"
+            "label": "Apr 2018"
           },
           {
-            "label": "13"
+            "label": "Mei 2018"
           },
-          {
-            "label": "14"
-          },
-          {
-            "label": "15"
-          },
-          {
-            "label": "16"
-          },
-          {
-            "label": "17"
-          },
-          {
-            "label": "18"
-          },
-          {
-            "label": "19"
-          },
-          {
-            "label": "20"
-          },
-          {
-            "label": "21"
-          },
-          {
-            "label": "22"
-          },
-          {
-            "label": "23"
-          },
-          {
-            "label": "24"
-          },
-          {
-            "label": "25"
-          },
-          {
-            "label": "26"
-          },
-          {
-            "label": "27"
-          },
-          {
-            "label": "28"
-          },
-          {
-            "label": "29"
-          },
-          {
-            "label": "30"
-          },
-          {
-            "label": "31"
-          }
         ]
       }
     ],
     "dataset": [
       {
-        "seriesname": "Dec-17",
-        "data": [
+        "dataset": [
           {
-            "value": "17.59"
+            "seriesname": "Sold",
+            "showValues": "1",
+            "data": [
+              {
+                "value": "1"
+              },
+              {
+                "value": "1"
+              },
+              {
+                "value": "4"
+              },
+              {
+                "value": "24"
+              },
+              {
+                "value": "29"
+              },
+              {
+                "value": "24"
+              },
+              {
+                "value": "67"
+              },
+              {
+                "value": "86"
+              },
+              {
+                "value": "104"
+              },
+              {
+                "value": "80"
+              },
+              {
+                "value": "96"
+              },
+              {
+                "value": "103"
+              },
+              {
+                "value": "81"
+              }
+            ]
           },
           {
-            "value": "17.28"
+            "seriesname": "Repo",
+            "showValues": "1",
+            "data": [
+              {
+                "value": "2"
+              },
+              {
+                "value": "2"
+              },
+              {
+                "value": "29"
+              },
+              {
+                "value":"34"
+              },
+              {
+                "value": "30"
+              },
+              {
+                "value": "60"
+              },
+              {
+                "value": "80"
+              },
+              {
+                "value": "91"
+              },
+              {
+                "value": "112"
+              },
+              {
+                "value": "102"
+              },
+              {
+                "value": "118"
+              },
+              {
+                "value": "94"
+              },
+              {
+                "value": "108"
+              }
+            ]
           },
           {
-            "value": "17.19"
-          },
-          {
-            "value": "16.24"
-          },
-          {
-            "value": "15.42"
-          },
-          {
-            "value": "14.80"
-          },
-          {
-            "value": "14.22"
-          },
-          {
-            "value": "13.71"
-          },
-          {
-            "value": "13.37"
-          },
-          {
-            "value": "13.31"
-          },
-          {
-            "value": "12.74"
-          },
-          {
-            "value": "12.18"
-          },
-          {
-            "value": "11.69"
-          },
-          {
-            "value": "11.21"
-          },
-          {
-            "value": "10.81"
-          },
-          {
-            "value": "10.46"
-          },
-          {
-            "value": "10.41"
-          },
-          {
-            "value": "10.00"
-          },
-          {
-            "value": "9.54"
-          },
-          {
-            "value": "9.12"
-          },
-          {
-            "value": "8.64"
-          },
-          {
-            "value": "8.22"
-          },
-          {
-            "value": "7.75"
-          },
-          {
-            "value": "7.49"
-          },
-          {
-            "value": "7.33"
-          },
-          {
-            "value": "7.04"
-          },
-          {
-            "value": "6.54"
-          },
-          {
-            "value": "5.51"
-          },
-          {
-            "value": "4.16"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": "2.66"
+            "seriesname": "Lunas",
+            "showValues": "1",
+            "data": [
+              {
+                "value": "1"
+              },
+              {
+                "value": "2"
+              },
+              {
+                "value": "2"
+              },
+              {
+                "value": "12"
+              },
+              {
+                "value": "5"
+              },
+              {
+                "value": "3"
+              },
+              {
+                "value": "8"
+              },
+              {
+                "value": "11"
+              },
+              {
+                "value": "13"
+              },
+              {
+                "value": "6"
+              },
+              {
+                "value": "18"
+              },
+              {
+                "value": "12"
+              },
+              {
+                "value": "20"
+              }
+            ]
           }
         ]
       },
+    ],
+    "lineset": [
       {
-        "seriesname": "Jan-18",
+        "seriesname": "Wo",
+        "showValues": "0",
         "data": [
           {
-            "value": "16.85"
+            "value": "409"
           },
           {
-            "value": "16.31"
+            "value": "742"
           },
           {
-            "value": "15.70"
+            "value": "789"
           },
           {
-            "value": "15.28"
+            "value": "1185"
           },
           {
-            "value": "14.78"
+            "value": "894"
           },
           {
-            "value": "14.54"
+            "value": "1289"
           },
           {
-            "value": "14.47"
+            "value": "1356"
           },
           {
-            "value": "14.05"
+            "value": "1464"
           },
           {
-            "value": "13.56"
+            "value": "1565"
           },
           {
-            "value": "13.09"
+            "value": "1463"
           },
           {
-            "value": "12.63"
+            "value": "1810"
           },
           {
-            "value": "12.14"
+            "value": "2010"
           },
           {
-            "value": "11.89"
-          },
-          {
-            "value": "11.87"
-          },
-          {
-            "value": "11.48"
-          },
-          {
-            "value": "10.99"
-          },
-          {
-            "value": "10.57"
-          },
-          {
-            "value": "10.17"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": "9.62"
-          },
-          {
-            "value": "9.59"
-          },
-          {
-            "value": "9.20"
-          },
-          {
-            "value": "8.79"
-          },
-          {
-            "value": "8.42"
-          },
-          {
-            "value": "8.07"
-          },
-          {
-            "value": "7.50"
-          },
-          {
-            "value": "7.14"
-          },
-          {
-            "value": "6.93"
-          },
-          {
-            "value": "6.11"
-          },
-          {
-            "value": "5.19"
-          },
-          {
-            "value": "3.00"
+            "value": "1756"
           }
         ]
-      },
-      {
-        "seriesname": "Feb-18",
-        "data": [
-          {
-            "value": "14.80"
-          },
-          {
-            "value": "14.42"
-          },
-          {
-            "value": "14.19"
-          },
-          {
-            "value": "14.14"
-          },
-          {
-            "value": "13.73"
-          },
-          {
-            "value": "13.31"
-          },
-          {
-            "value": "12.90"
-          },
-          {
-            "value": "12.53"
-          },
-          {
-            "value": "12.13"
-          },
-          {
-            "value": "11.85"
-          },
-          {
-            "value": "11.82"
-          },
-          {
-            "value": "11.42"
-          },
-          {
-            "value": "10.94"
-          },
-          {
-            "value": "10.54"
-          },
-          {
-            "value": "10.40"
-          },
-          {
-            "value": "10.13"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.76"
-          },
-          {
-            "value": "9.36"
-          },
-          {
-            "value": "8.98"
-          },
-          {
-            "value": "8.56"
-          },
-          {
-            "value": "8.18"
-          },
-          {
-            "value": "7.83"
-          },
-          {
-            "value": "7.53"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.90"
-          },
-          {
-            "value": "5.73"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
-      {
-        "seriesname": "Mar-18",
-        "data": [
-          {
-            "value": "18.70"
-          },
-          {
-            "value": "17.77"
-          },
-          {
-            "value": "17.39"
-          },
-          {
-            "value": "17.26"
-          },
-          {
-            "value": "16.55"
-          },
-          {
-            "value": "15.85"
-          },
-          {
-            "value": "15.24"
-          },
-          {
-            "value": "14.73"
-          },
-          {
-            "value": "14.17"
-          },
-          {
-            "value": "13.79"
-          },
-          {
-            "value": "13.79"
-          },
-          {
-            "value": "13.25"
-          },
-          {
-            "value": "12.68"
-          },
-          {
-            "value": "12.27"
-          },
-          {
-            "value": "11.76"
-          },
-          {
-            "value": "11.26"
-          },
-          {
-            "value": "11.19"
-          },
-          {
-            "value": "11.17"
-          },
-          {
-            "value": "10.71"
-          },
-          {
-            "value": "10.24"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.45"
-          },
-          {
-            "value": "9.04"
-          },
-          {
-            "value": "8.77"
-          },
-          {
-            "value": "8.65"
-          },
-          {
-            "value": "8.27"
-          },
-          {
-            "value": "7.68"
-          },
-          {
-            "value": "7.09"
-          },
-          {
-            "value": "5.53"
-          },
-          {
-            "value": "4.96"
-          },
-          {
-            "value": "3.14"
-          }
-        ]
-      },
-      {
-        "seriesname": "Apr-18",
-        "data": [
-          {
-            "value": "17.17"
-          },
-          {
-            "value": "16.70"
-          },
-          {
-            "value": "16.02"
-          },
-          {
-            "value": "15.54"
-          },
-          {
-            "value": "15.09"
-          },
-          {
-            "value": "14.59"
-          },
-          {
-            "value": "14.32"
-          },
-          {
-            "value": "14.28"
-          },
-          {
-            "value": "13.87"
-          },
-          {
-            "value": "13.39"
-          },
-          {
-            "value": "12.93"
-          },
-          {
-            "value": "12.50"
-          },
-          {
-            "value": "12.06"
-          },
-          {
-            "value": "12.03"
-          },
-          {
-            "value": "12.00"
-          },
-          {
-            "value": "11.59"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.70"
-          },
-          {
-            "value": "10.34"
-          },
-          {
-            "value": "9.98"
-          },
-          {
-            "value": "9.71"
-          },
-          {
-            "value": "9.70"
-          },
-          {
-            "value": "9.34"
-          },
-          {
-            "value": "8.90"
-          },
-          {
-            "value": "8.46"
-          },
-          {
-            "value": "7.92"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.39"
-          },
-          {
-            "value": "5.88"
-          },
-          {
-            "value": "3.18"
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
-      {
-        "seriesname": "May-18",
-        "data": [
-          {
-            "value": "18.34"
-          },
-          {
-            "value": "17.17"
-          },
-          {
-            "value": "16.44"
-          },
-          {
-            "value": "15.86"
-          },
-          {
-            "value": "15.56"
-          },
-          {
-            "value": "15.49"
-          },
-          {
-            "value": "15.01"
-          },
-          {
-            "value": "14.43"
-          },
-          {
-            "value": "13.90"
-          },
-          {
-            "value": "13.83"
-          },
-          {
-            "value": "13.28"
-          },
-          {
-            "value": "12.98"
-          },
-          {
-            "value": "12.96"
-          },
-          {
-            "value": "12.49"
-          },
-          {
-            "value": "11.99"
-          },
-          {
-            "value": "11.52"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.72"
-          },
-          {
-            "value": "10.44"
-          },
-          {
-            "value": "10.42"
-          },
-          {
-            "value": "10.01"
-          },
-          {
-            "value": "9.52"
-          },
-          {
-            "value": "9.13"
-          },
-          {
-            "value": "8.73"
-          },
-          {
-            "value": "8.34"
-          },
-          {
-            "value": "7.90"
-          },
-          {
-            "value": "7.69"
-          },
-          {
-            "value": "7.23"
-          },
-          {
-            "value": "6.35"
-          },
-          {
-            "value": "5.55"
-          },
-          {
-            "value": "3.08"
-          }
-        ]
-      },
-      {
-        "seriesname": "Jun-18",
-        "data": [
-          {
-            "value": "16.50"
-          },
-          {
-            "value": "16.22"
-          },
-          {
-            "value": "16.14"
-          },
-          {
-            "value": "15.51"
-          },
-          {
-            "value": "14.88"
-          },
-          {
-            "value": "14.29"
-          },
-          {
-            "value": "13.82"
-          },
-          {
-            "value": "13.24"
-          },
-          {
-            "value": "12.87"
-          },
-          {
-            "value": "12.82"
-          },
-          {
-            "value": "12.26"
-          },
-          {
-            "value": "11.69"
-          },
-          {
-            "value": "11.50"
-          },
-          {
-            "value": "11.47"
-          },
-          {
-            "value": "11.46"
-          },
-          {
-            "value": "11.44"
-          },
-          {
-            "value": "11.43"
-          },
-          {
-            "value": "11.39"
-          },
-          {
-            "value": "11.32"
-          },
-          {
-            "value": "11.16"
-          },
-          {
-            "value": "10.88"
-          },
-          {
-            "value": "10.51"
-          },
-          {
-            "value": "10.28"
-          },
-          {
-            "value": "10.19"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
+      }
     ]
+
   }
 
   line6 = {
     "chart": {
-      "caption": "Proyeksi 30+",
-      "yaxisname": "% of Day",
-      // "useEllipsesWhenOverflow":"0",
-      "rotateLabels": "0",
-      "showhovereffect": "1",
-      "numbersuffix": "%",
-      "drawcrossline": "1",
-      "plottooltext": "<b>$dataValue</b> Proyeksi 30+ $seriesName",
-      "theme": "candy"
+      "caption": "HANDLING_WO IN AMOUNT (MILLION)",
+      "xAxisName": "",
+      "pYAxisName": "",
+      "sYAxisName": "",
+      "numberPrefix": "",
+      "exportenabled": "1",
+      "numbersuffix": "",
+      "sNumberSuffix": " ",
+      "pYAxisMaxValue": "3500",
+      "sYAxisMaxValue": "40000",
+      "divlineAlpha": "100",
+      "divlineColor": "#999999",
+      "divlineThickness": "1",
+      "divLineDashed": "1",
+      "divLineDashLen": "1",
+      "theme": "fusion"
     },
     "categories": [
       {
         "category": [
           {
-            "label": "1"
+            "label": "Mei 2017"
           },
           {
-            "label": "2"
+            "label": "Jun 2017"
           },
           {
-            "label": "3"
+            "label": "Jul 2017"
           },
           {
-            "label": "4"
+            "label": "Agus 2017"
           },
           {
-            "label": "5"
+            "label": "Sep 2017"
           },
           {
-            "label": "6"
+            "label": "Okt 2017"
           },
           {
-            "label": "7"
+            "label": "Nov 2017"
           },
           {
-            "label": "8"
+            "label": "Des 2017"
           },
           {
-            "label": "9"
+            "label": "Jan 2018"
           },
           {
-            "label": "10"
+            "label": "Feb 2018"
           },
           {
-            "label": "11"
+            "label": "Mar 2018"
           },
           {
-            "label": "12"
+            "label": "Apr 2018"
           },
           {
-            "label": "13"
+            "label": "Mei 2018"
           },
-          {
-            "label": "14"
-          },
-          {
-            "label": "15"
-          },
-          {
-            "label": "16"
-          },
-          {
-            "label": "17"
-          },
-          {
-            "label": "18"
-          },
-          {
-            "label": "19"
-          },
-          {
-            "label": "20"
-          },
-          {
-            "label": "21"
-          },
-          {
-            "label": "22"
-          },
-          {
-            "label": "23"
-          },
-          {
-            "label": "24"
-          },
-          {
-            "label": "25"
-          },
-          {
-            "label": "26"
-          },
-          {
-            "label": "27"
-          },
-          {
-            "label": "28"
-          },
-          {
-            "label": "29"
-          },
-          {
-            "label": "30"
-          },
-          {
-            "label": "31"
-          }
         ]
       }
     ],
     "dataset": [
       {
-        "seriesname": "Dec-17",
-        "data": [
+        "dataset": [
           {
-            "value": "17.59"
+            "seriesname": "Sold",
+            "showValues": "1",
+            "data": [
+              {
+                "value": "19"
+              },
+              {
+                "value": "19"
+              },
+              {
+                "value": "30"
+              },
+              {
+                "value": "198"
+              },
+              {
+                "value": "345"
+              },
+              {
+                "value": "356"
+              },
+              {
+                "value": "930"
+              },
+              {
+                "value": "1097"
+              },
+              {
+                "value": "1139"
+              },
+              {
+                "value": "989"
+              },
+              {
+                "value": "968"
+              },
+              {
+                "value": "931"
+              },
+              {
+                "value": "913"
+              }
+            ]
           },
           {
-            "value": "17.28"
+            "seriesname": "Repo",
+            "showValues": "1",
+            "data": [
+              {
+                "value": "19"
+              },
+              {
+                "value": "17"
+              },
+              {
+                "value": "455"
+              },
+              {
+                "value": "406"
+              },
+              {
+                "value": "570"
+              },
+              {
+                "value": "1042"
+              },
+              {
+                "value": "944"
+              },
+              {
+                "value": "1955"
+              },
+              {
+                "value": "1612"
+              },
+              {
+                "value": "1585"
+              },
+              {
+                "value": "1552"
+              },
+              {
+                "value": "1553"
+              },
+              {
+                "value": "1851"
+              }
+            ]
           },
           {
-            "value": "17.19"
-          },
-          {
-            "value": "16.24"
-          },
-          {
-            "value": "15.42"
-          },
-          {
-            "value": "14.80"
-          },
-          {
-            "value": "14.22"
-          },
-          {
-            "value": "13.71"
-          },
-          {
-            "value": "13.37"
-          },
-          {
-            "value": "13.31"
-          },
-          {
-            "value": "12.74"
-          },
-          {
-            "value": "12.18"
-          },
-          {
-            "value": "11.69"
-          },
-          {
-            "value": "11.21"
-          },
-          {
-            "value": "10.81"
-          },
-          {
-            "value": "10.46"
-          },
-          {
-            "value": "10.41"
-          },
-          {
-            "value": "10.00"
-          },
-          {
-            "value": "9.54"
-          },
-          {
-            "value": "9.12"
-          },
-          {
-            "value": "8.64"
-          },
-          {
-            "value": "8.22"
-          },
-          {
-            "value": "7.75"
-          },
-          {
-            "value": "7.49"
-          },
-          {
-            "value": "7.33"
-          },
-          {
-            "value": "7.04"
-          },
-          {
-            "value": "6.54"
-          },
-          {
-            "value": "5.51"
-          },
-          {
-            "value": "4.16"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": "2.66"
+            "seriesname": "Lunas",
+            "showValues": "1",
+            "data": [
+              {
+                "value": "75"
+              },
+              {
+                "value": "197"
+              },
+              {
+                "value": "13"
+              },
+              {
+                "value": "495"
+              },
+              {
+                "value": "59"
+              },
+              {
+                "value": "20"
+              },
+              {
+                "value": "50"
+              },
+              {
+                "value": "70"
+              },
+              {
+                "value": "221"
+              },
+              {
+                "value": "270"
+              },
+              {
+                "value": "178"
+              },
+              {
+                "value": "83"
+              },
+              {
+                "value": "123"
+              }
+            ]
           }
         ]
       },
+    ],
+    "lineset": [
       {
-        "seriesname": "Jan-18",
+        "seriesname": "Handling To Wo",
+        "showValues": "0",
         "data": [
           {
-            "value": "16.85"
+            "value": "7681"
           },
           {
-            "value": "16.31"
+            "value": "13278"
           },
           {
-            "value": "15.70"
+            "value": "12762"
           },
           {
-            "value": "15.28"
+            "value": "20074"
           },
           {
-            "value": "14.78"
+            "value": "15519"
           },
           {
-            "value": "14.54"
+            "value": "22159"
           },
           {
-            "value": "14.47"
+            "value": "24589"
           },
           {
-            "value": "14.05"
+            "value": "28628"
           },
           {
-            "value": "13.56"
+            "value": "28027"
           },
           {
-            "value": "13.09"
+            "value": "26135"
           },
           {
-            "value": "12.63"
+            "value": "30124"
           },
           {
-            "value": "12.14"
+            "value": "33933"
           },
           {
-            "value": "11.89"
-          },
-          {
-            "value": "11.87"
-          },
-          {
-            "value": "11.48"
-          },
-          {
-            "value": "10.99"
-          },
-          {
-            "value": "10.57"
-          },
-          {
-            "value": "10.17"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": "9.62"
-          },
-          {
-            "value": "9.59"
-          },
-          {
-            "value": "9.20"
-          },
-          {
-            "value": "8.79"
-          },
-          {
-            "value": "8.42"
-          },
-          {
-            "value": "8.07"
-          },
-          {
-            "value": "7.50"
-          },
-          {
-            "value": "7.14"
-          },
-          {
-            "value": "6.93"
-          },
-          {
-            "value": "6.11"
-          },
-          {
-            "value": "5.19"
-          },
-          {
-            "value": "3.00"
+            "value": "32356"
           }
         ]
-      },
-      {
-        "seriesname": "Feb-18",
-        "data": [
-          {
-            "value": "14.80"
-          },
-          {
-            "value": "14.42"
-          },
-          {
-            "value": "14.19"
-          },
-          {
-            "value": "14.14"
-          },
-          {
-            "value": "13.73"
-          },
-          {
-            "value": "13.31"
-          },
-          {
-            "value": "12.90"
-          },
-          {
-            "value": "12.53"
-          },
-          {
-            "value": "12.13"
-          },
-          {
-            "value": "11.85"
-          },
-          {
-            "value": "11.82"
-          },
-          {
-            "value": "11.42"
-          },
-          {
-            "value": "10.94"
-          },
-          {
-            "value": "10.54"
-          },
-          {
-            "value": "10.40"
-          },
-          {
-            "value": "10.13"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.76"
-          },
-          {
-            "value": "9.36"
-          },
-          {
-            "value": "8.98"
-          },
-          {
-            "value": "8.56"
-          },
-          {
-            "value": "8.18"
-          },
-          {
-            "value": "7.83"
-          },
-          {
-            "value": "7.53"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.90"
-          },
-          {
-            "value": "5.73"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
-      {
-        "seriesname": "Mar-18",
-        "data": [
-          {
-            "value": "18.70"
-          },
-          {
-            "value": "17.77"
-          },
-          {
-            "value": "17.39"
-          },
-          {
-            "value": "17.26"
-          },
-          {
-            "value": "16.55"
-          },
-          {
-            "value": "15.85"
-          },
-          {
-            "value": "15.24"
-          },
-          {
-            "value": "14.73"
-          },
-          {
-            "value": "14.17"
-          },
-          {
-            "value": "13.79"
-          },
-          {
-            "value": "13.79"
-          },
-          {
-            "value": "13.25"
-          },
-          {
-            "value": "12.68"
-          },
-          {
-            "value": "12.27"
-          },
-          {
-            "value": "11.76"
-          },
-          {
-            "value": "11.26"
-          },
-          {
-            "value": "11.19"
-          },
-          {
-            "value": "11.17"
-          },
-          {
-            "value": "10.71"
-          },
-          {
-            "value": "10.24"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.45"
-          },
-          {
-            "value": "9.04"
-          },
-          {
-            "value": "8.77"
-          },
-          {
-            "value": "8.65"
-          },
-          {
-            "value": "8.27"
-          },
-          {
-            "value": "7.68"
-          },
-          {
-            "value": "7.09"
-          },
-          {
-            "value": "5.53"
-          },
-          {
-            "value": "4.96"
-          },
-          {
-            "value": "3.14"
-          }
-        ]
-      },
-      {
-        "seriesname": "Apr-18",
-        "data": [
-          {
-            "value": "17.17"
-          },
-          {
-            "value": "16.70"
-          },
-          {
-            "value": "16.02"
-          },
-          {
-            "value": "15.54"
-          },
-          {
-            "value": "15.09"
-          },
-          {
-            "value": "14.59"
-          },
-          {
-            "value": "14.32"
-          },
-          {
-            "value": "14.28"
-          },
-          {
-            "value": "13.87"
-          },
-          {
-            "value": "13.39"
-          },
-          {
-            "value": "12.93"
-          },
-          {
-            "value": "12.50"
-          },
-          {
-            "value": "12.06"
-          },
-          {
-            "value": "12.03"
-          },
-          {
-            "value": "12.00"
-          },
-          {
-            "value": "11.59"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.70"
-          },
-          {
-            "value": "10.34"
-          },
-          {
-            "value": "9.98"
-          },
-          {
-            "value": "9.71"
-          },
-          {
-            "value": "9.70"
-          },
-          {
-            "value": "9.34"
-          },
-          {
-            "value": "8.90"
-          },
-          {
-            "value": "8.46"
-          },
-          {
-            "value": "7.92"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.39"
-          },
-          {
-            "value": "5.88"
-          },
-          {
-            "value": "3.18"
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
-      {
-        "seriesname": "May-18",
-        "data": [
-          {
-            "value": "18.34"
-          },
-          {
-            "value": "17.17"
-          },
-          {
-            "value": "16.44"
-          },
-          {
-            "value": "15.86"
-          },
-          {
-            "value": "15.56"
-          },
-          {
-            "value": "15.49"
-          },
-          {
-            "value": "15.01"
-          },
-          {
-            "value": "14.43"
-          },
-          {
-            "value": "13.90"
-          },
-          {
-            "value": "13.83"
-          },
-          {
-            "value": "13.28"
-          },
-          {
-            "value": "12.98"
-          },
-          {
-            "value": "12.96"
-          },
-          {
-            "value": "12.49"
-          },
-          {
-            "value": "11.99"
-          },
-          {
-            "value": "11.52"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.72"
-          },
-          {
-            "value": "10.44"
-          },
-          {
-            "value": "10.42"
-          },
-          {
-            "value": "10.01"
-          },
-          {
-            "value": "9.52"
-          },
-          {
-            "value": "9.13"
-          },
-          {
-            "value": "8.73"
-          },
-          {
-            "value": "8.34"
-          },
-          {
-            "value": "7.90"
-          },
-          {
-            "value": "7.69"
-          },
-          {
-            "value": "7.23"
-          },
-          {
-            "value": "6.35"
-          },
-          {
-            "value": "5.55"
-          },
-          {
-            "value": "3.08"
-          }
-        ]
-      },
-      {
-        "seriesname": "Jun-18",
-        "data": [
-          {
-            "value": "16.50"
-          },
-          {
-            "value": "16.22"
-          },
-          {
-            "value": "16.14"
-          },
-          {
-            "value": "15.51"
-          },
-          {
-            "value": "14.88"
-          },
-          {
-            "value": "14.29"
-          },
-          {
-            "value": "13.82"
-          },
-          {
-            "value": "13.24"
-          },
-          {
-            "value": "12.87"
-          },
-          {
-            "value": "12.82"
-          },
-          {
-            "value": "12.26"
-          },
-          {
-            "value": "11.69"
-          },
-          {
-            "value": "11.50"
-          },
-          {
-            "value": "11.47"
-          },
-          {
-            "value": "11.46"
-          },
-          {
-            "value": "11.44"
-          },
-          {
-            "value": "11.43"
-          },
-          {
-            "value": "11.39"
-          },
-          {
-            "value": "11.32"
-          },
-          {
-            "value": "11.16"
-          },
-          {
-            "value": "10.88"
-          },
-          {
-            "value": "10.51"
-          },
-          {
-            "value": "10.28"
-          },
-          {
-            "value": "10.19"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
+      }
     ]
+
   }
 
   line7 = {
     "chart": {
-      "caption": "Proyeksi 30+",
-      "yaxisname": "% of Day",
+      "caption": "PROPORSI NCI",
+      // "numberPrefix": "$",
+      "showPercentInTooltip": "0",
+      "decimals": "1",
+      "useDataPlotColorForLabels": "1",
+      "theme": "fusion"
+  },
+  "data": [
+      {
+          "label": "JF",
+          "value": "30.64"
+      },
+      {
+          "label": "Non JF",
+          "value": "69.96"
+      }
+  ]  
+  }
+
+  line8 = {
+    "chart": {
+      "caption": "TRENDN CI",
+      "pYAxisName": "",
+      "sYAxisName": "",
+      "sYaxisMaxValue": "1200000",
+      "pYAxisMaxValue": "800000",
       // "useEllipsesWhenOverflow":"0",
-      "rotateLabels": "0",
-      "showhovereffect": "1",
-      "numbersuffix": "%",
-      "drawcrossline": "1",
-      "plottooltext": "<b>$dataValue</b> Proyeksi 30+ $seriesName",
-      "theme": "candy"
+      "numbersuffix": "",
+      "exportenabled": "1",
+      // "plottooltext": "<b>$dataValue</b> Proyeksi 0+ $seriesName",
+      "theme": "fusion"
     },
     "categories": [
       {
         "category": [
           {
-            "label": "1"
+            "label": "Mei 2017"
           },
           {
-            "label": "2"
+            "label": "Jun 2017"
           },
           {
-            "label": "3"
+            "label": "Jul 2017"
           },
           {
-            "label": "4"
+            "label": "Agus 2017"
           },
           {
-            "label": "5"
+            "label": "Sep 2017"
           },
           {
-            "label": "6"
+            "label": "Okt 2017"
           },
           {
-            "label": "7"
+            "label": "Nov 2017"
           },
           {
-            "label": "8"
+            "label": "Des 2017"
           },
           {
-            "label": "9"
+            "label": "Jan 2018"
           },
           {
-            "label": "10"
+            "label": "Feb 2018"
           },
           {
-            "label": "11"
+            "label": "Mar 2018"
           },
           {
-            "label": "12"
+            "label": "Apr 2018"
           },
           {
-            "label": "13"
+            "label": "Mei 2018"
           },
-          {
-            "label": "14"
-          },
-          {
-            "label": "15"
-          },
-          {
-            "label": "16"
-          },
-          {
-            "label": "17"
-          },
-          {
-            "label": "18"
-          },
-          {
-            "label": "19"
-          },
-          {
-            "label": "20"
-          },
-          {
-            "label": "21"
-          },
-          {
-            "label": "22"
-          },
-          {
-            "label": "23"
-          },
-          {
-            "label": "24"
-          },
-          {
-            "label": "25"
-          },
-          {
-            "label": "26"
-          },
-          {
-            "label": "27"
-          },
-          {
-            "label": "28"
-          },
-          {
-            "label": "29"
-          },
-          {
-            "label": "30"
-          },
-          {
-            "label": "31"
-          }
         ]
       }
     ],
     "dataset": [
       {
-        "seriesname": "Dec-17",
+        "seriesname": "NCI",
+        "renderAs": "line",
+        // "parentYAxis": "S",
         "data": [
           {
-            "value": "17.59"
+            "value": "0"
           },
           {
-            "value": "17.28"
+            "value": "0"
           },
           {
-            "value": "17.19"
+            "value": "0"
           },
           {
-            "value": "16.24"
+            "value": "0"
           },
           {
-            "value": "15.42"
+            "value": "0"
           },
           {
-            "value": "14.80"
+            "value": "0"
           },
           {
-            "value": "14.22"
+            "value": "0"
           },
           {
-            "value": "13.71"
+            "value": "0"
           },
           {
-            "value": "13.37"
+            "value": "0"
           },
           {
-            "value": "13.31"
+            "value": "0"
           },
           {
-            "value": "12.74"
+            "value": "0"
           },
           {
-            "value": "12.18"
+            "value": "0"
           },
           {
-            "value": "11.69"
-          },
-          {
-            "value": "11.21"
-          },
-          {
-            "value": "10.81"
-          },
-          {
-            "value": "10.46"
-          },
-          {
-            "value": "10.41"
-          },
-          {
-            "value": "10.00"
-          },
-          {
-            "value": "9.54"
-          },
-          {
-            "value": "9.12"
-          },
-          {
-            "value": "8.64"
-          },
-          {
-            "value": "8.22"
-          },
-          {
-            "value": "7.75"
-          },
-          {
-            "value": "7.49"
-          },
-          {
-            "value": "7.33"
-          },
-          {
-            "value": "7.04"
-          },
-          {
-            "value": "6.54"
-          },
-          {
-            "value": "5.51"
-          },
-          {
-            "value": "4.16"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": "2.66"
+            "value": "0"
           }
         ]
       },
       {
-        "seriesname": "Jan-18",
+        "seriesname": "BMRI - JF",
+        "renderAs": "line",
         "data": [
           {
-            "value": "16.85"
+            "value": "0"
           },
           {
-            "value": "16.31"
+            "value": "0"
           },
           {
-            "value": "15.70"
+            "value": "0"
           },
           {
-            "value": "15.28"
+            "value": "0"
           },
           {
-            "value": "14.78"
+            "value": "0"
           },
           {
-            "value": "14.54"
+            "value": "0"
           },
           {
-            "value": "14.47"
+            "value": "0"
           },
           {
-            "value": "14.05"
+            "value": "0"
           },
           {
-            "value": "13.56"
+            "value": "0"
           },
           {
-            "value": "13.09"
+            "value": "0"
           },
           {
-            "value": "12.63"
+            "value": "0"
           },
           {
-            "value": "12.14"
+            "value": "0"
           },
           {
-            "value": "11.89"
-          },
-          {
-            "value": "11.87"
-          },
-          {
-            "value": "11.48"
-          },
-          {
-            "value": "10.99"
-          },
-          {
-            "value": "10.57"
-          },
-          {
-            "value": "10.17"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": "9.62"
-          },
-          {
-            "value": "9.59"
-          },
-          {
-            "value": "9.20"
-          },
-          {
-            "value": "8.79"
-          },
-          {
-            "value": "8.42"
-          },
-          {
-            "value": "8.07"
-          },
-          {
-            "value": "7.50"
-          },
-          {
-            "value": "7.14"
-          },
-          {
-            "value": "6.93"
-          },
-          {
-            "value": "6.11"
-          },
-          {
-            "value": "5.19"
-          },
-          {
-            "value": "3.00"
+            "value": "0"
           }
         ]
       },
       {
-        "seriesname": "Feb-18",
+        "seriesname": "JF",
+        // "parentYAxis": "S",
+        "renderAs": "line",
         "data": [
           {
-            "value": "14.80"
+            "value": "0"
           },
           {
-            "value": "14.42"
+            "value": "4536"
           },
           {
-            "value": "14.19"
+            "value": "9725"
           },
           {
-            "value": "14.14"
+            "value": "418142"
           },
           {
-            "value": "13.73"
+            "value": "136574"
           },
           {
-            "value": "13.31"
+            "value": "61408"
           },
           {
-            "value": "12.90"
+            "value": "243050"
           },
           {
-            "value": "12.53"
+            "value": "100321"
           },
           {
-            "value": "12.13"
+            "value": "309814"
           },
           {
-            "value": "11.85"
+            "value": "504937"
           },
           {
-            "value": "11.82"
+            "value": "219559"
           },
           {
-            "value": "11.42"
+            "value": "222528"
           },
           {
-            "value": "10.94"
-          },
-          {
-            "value": "10.54"
-          },
-          {
-            "value": "10.40"
-          },
-          {
-            "value": "10.13"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.76"
-          },
-          {
-            "value": "9.36"
-          },
-          {
-            "value": "8.98"
-          },
-          {
-            "value": "8.56"
-          },
-          {
-            "value": "8.18"
-          },
-          {
-            "value": "7.83"
-          },
-          {
-            "value": "7.53"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.90"
-          },
-          {
-            "value": "5.73"
-          },
-          {
-            "value": "3.02"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
+            "value": "287093"
           }
         ]
       },
       {
-        "seriesname": "Mar-18",
+        "seriesname": "NON JF",
+        // "parentYAxis": "S",
+        "renderAs": "line",
         "data": [
           {
-            "value": "18.70"
+            "value": "100099"
           },
           {
-            "value": "17.77"
+            "value": "218580"
           },
           {
-            "value": "17.39"
+            "value": "265432"
           },
           {
-            "value": "17.26"
+            "value": "351805"
           },
           {
-            "value": "16.55"
+            "value": "295845"
           },
           {
-            "value": "15.85"
+            "value": "546138"
           },
           {
-            "value": "15.24"
+            "value": "676904"
           },
           {
-            "value": "14.73"
+            "value": "711019"
           },
           {
-            "value": "14.17"
+            "value": "692038"
           },
           {
-            "value": "13.79"
+            "value": "369568"
           },
           {
-            "value": "13.79"
+            "value": "587397"
           },
           {
-            "value": "13.25"
+            "value": "408757"
           },
           {
-            "value": "12.68"
-          },
-          {
-            "value": "12.27"
-          },
-          {
-            "value": "11.76"
-          },
-          {
-            "value": "11.26"
-          },
-          {
-            "value": "11.19"
-          },
-          {
-            "value": "11.17"
-          },
-          {
-            "value": "10.71"
-          },
-          {
-            "value": "10.24"
-          },
-          {
-            "value": "9.83"
-          },
-          {
-            "value": "9.45"
-          },
-          {
-            "value": "9.04"
-          },
-          {
-            "value": "8.77"
-          },
-          {
-            "value": "8.65"
-          },
-          {
-            "value": "8.27"
-          },
-          {
-            "value": "7.68"
-          },
-          {
-            "value": "7.09"
-          },
-          {
-            "value": "5.53"
-          },
-          {
-            "value": "4.96"
-          },
-          {
-            "value": "3.14"
+            "value": "424764"
           }
         ]
       },
       {
-        "seriesname": "Apr-18",
+        "seriesname": "NCI",
+        "parentYAxis": "S",
+        "renderAs": "line",
         "data": [
           {
-            "value": "17.17"
+            "value": "100099"
           },
           {
-            "value": "16.70"
+            "value": "223116"
           },
           {
-            "value": "16.02"
+            "value": "275156"
           },
           {
-            "value": "15.54"
+            "value": "769947"
           },
           {
-            "value": "15.09"
+            "value": "417108"
           },
           {
-            "value": "14.59"
+            "value": "607545"
           },
           {
-            "value": "14.32"
+            "value": "919953"
           },
           {
-            "value": "14.28"
+            "value": "811340"
           },
           {
-            "value": "13.87"
+            "value": "1001852"
           },
           {
-            "value": "13.39"
+            "value": "874506"
           },
           {
-            "value": "12.93"
+            "value": "806957"
           },
           {
-            "value": "12.50"
+            "value": "631286"
           },
           {
-            "value": "12.06"
-          },
-          {
-            "value": "12.03"
-          },
-          {
-            "value": "12.00"
-          },
-          {
-            "value": "11.59"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.70"
-          },
-          {
-            "value": "10.34"
-          },
-          {
-            "value": "9.98"
-          },
-          {
-            "value": "9.71"
-          },
-          {
-            "value": "9.70"
-          },
-          {
-            "value": "9.34"
-          },
-          {
-            "value": "8.90"
-          },
-          {
-            "value": "8.46"
-          },
-          {
-            "value": "7.92"
-          },
-          {
-            "value": "7.34"
-          },
-          {
-            "value": "6.39"
-          },
-          {
-            "value": "5.88"
-          },
-          {
-            "value": "3.18"
-          },
-          {
-            "value": ""
+            "value": "711857"
           }
         ]
-      },
-      {
-        "seriesname": "May-18",
-        "data": [
-          {
-            "value": "18.34"
-          },
-          {
-            "value": "17.17"
-          },
-          {
-            "value": "16.44"
-          },
-          {
-            "value": "15.86"
-          },
-          {
-            "value": "15.56"
-          },
-          {
-            "value": "15.49"
-          },
-          {
-            "value": "15.01"
-          },
-          {
-            "value": "14.43"
-          },
-          {
-            "value": "13.90"
-          },
-          {
-            "value": "13.83"
-          },
-          {
-            "value": "13.28"
-          },
-          {
-            "value": "12.98"
-          },
-          {
-            "value": "12.96"
-          },
-          {
-            "value": "12.49"
-          },
-          {
-            "value": "11.99"
-          },
-          {
-            "value": "11.52"
-          },
-          {
-            "value": "11.12"
-          },
-          {
-            "value": "10.72"
-          },
-          {
-            "value": "10.44"
-          },
-          {
-            "value": "10.42"
-          },
-          {
-            "value": "10.01"
-          },
-          {
-            "value": "9.52"
-          },
-          {
-            "value": "9.13"
-          },
-          {
-            "value": "8.73"
-          },
-          {
-            "value": "8.34"
-          },
-          {
-            "value": "7.90"
-          },
-          {
-            "value": "7.69"
-          },
-          {
-            "value": "7.23"
-          },
-          {
-            "value": "6.35"
-          },
-          {
-            "value": "5.55"
-          },
-          {
-            "value": "3.08"
-          }
-        ]
-      },
-      {
-        "seriesname": "Jun-18",
-        "data": [
-          {
-            "value": "16.50"
-          },
-          {
-            "value": "16.22"
-          },
-          {
-            "value": "16.14"
-          },
-          {
-            "value": "15.51"
-          },
-          {
-            "value": "14.88"
-          },
-          {
-            "value": "14.29"
-          },
-          {
-            "value": "13.82"
-          },
-          {
-            "value": "13.24"
-          },
-          {
-            "value": "12.87"
-          },
-          {
-            "value": "12.82"
-          },
-          {
-            "value": "12.26"
-          },
-          {
-            "value": "11.69"
-          },
-          {
-            "value": "11.50"
-          },
-          {
-            "value": "11.47"
-          },
-          {
-            "value": "11.46"
-          },
-          {
-            "value": "11.44"
-          },
-          {
-            "value": "11.43"
-          },
-          {
-            "value": "11.39"
-          },
-          {
-            "value": "11.32"
-          },
-          {
-            "value": "11.16"
-          },
-          {
-            "value": "10.88"
-          },
-          {
-            "value": "10.51"
-          },
-          {
-            "value": "10.28"
-          },
-          {
-            "value": "10.19"
-          },
-          {
-            "value": "9.85"
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          },
-          {
-            "value": ""
-          }
-        ]
-      },
+      }
     ]
   }
 
-  width = 0.41 * screen.width
+  width = 0.42 * screen.width
   height = 0.4 * screen.height
-  type = 'msline'
+  type = 'mscombidy2d'
+  type2 = 'msstackedcolumn2dlinedy'
+  type3 = 'pie3d'
   dataFormat = 'json'
 
   dataSourceLine1 = this.line1
   dataSourceLine2 = this.line2
+  dataSourceLine3 = this.line3
+  dataSourceLine4 = this.line4  
+  dataSourceLine5 = this.line5
+  dataSourceLine6 = this.line6
+  dataSourceLine7 = this.line7
+  dataSourceLine8 = this.line8
   collapsed: boolean = true;
   constructor() { }
 

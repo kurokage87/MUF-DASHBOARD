@@ -9,6 +9,7 @@ import { ServicesService } from 'src/app/services/services.service';
 })
 export class LoginComponent implements OnInit {
 
+  
   uVal
   pVal
   user="";
@@ -53,7 +54,7 @@ export class LoginComponent implements OnInit {
         console.log(localStorage.getItem('currentUser'));
       }
       else{
-        this.valid="ok"
+        this.valid="notValid"
       }
     });
 

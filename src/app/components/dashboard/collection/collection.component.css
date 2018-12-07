@@ -35,3 +35,25 @@
 clr-dg-column {
     text-align: center !important;
 }
+
+.filterArea{
+    text-align: left !important;
+    height: fit-content;
+    align-self: auto;
+
+    vertical-align: bottom;
+}
+.area{
+    margin-top: 25px;
+    left: 0%;
+}
+
+.gauge{
+    margin-left: 0.1%; 
+}
+
+.col2{
+    width: 19.8%;
+}
+
+

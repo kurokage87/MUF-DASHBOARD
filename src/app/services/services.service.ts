@@ -26,4 +26,10 @@ export class ServicesService {
     headers.append("X-API-KEY","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9");
     return this.http.post<any>(this.config.api_url + link, data,httpOptions);
   }
+
+  postApi(link: string, data: any): Observable<any> {
+    let headers = new HttpHeaders();
+    headers.append("X-API-KEY","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9");
+    return this.http.post<any>(this.config.api_url + link, data,httpOptions);
+  }
 }
