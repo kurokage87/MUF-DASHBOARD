@@ -61,7 +61,41 @@ export class ReportCabangComponent implements OnInit {
   datas
   setSatus;
   hide = true;
-
+  // ----------------------- color text ----------------------
+  //booking IR
+  colorBookUniGr1 = ''
+  colorBookUniGr2 = ''
+  colorBookAmntiGr1 = ''
+  colorBookAmntiGr2 = ''
+  //MOM
+  colorMom1 = ''
+  colorMom2 = ''
+  //Avg Booking IR
+  colorAvgUniGr1 = ''
+  colorAvgUniGr2 = ''
+  colorAvgAmntGr1 = ''
+  colorAvgAmntGr2 = ''
+  //YOY
+  colorYoy1 = ''
+  colorYoy2 = ''
+  //Actual  
+  colorActFpdDiff1 = ''
+  colorActFpdDiff2 = ''
+  colorActF3pdDiff1 = ''
+  colorActF3pdDiff2 = ''
+  colorActMobDiff1 = ''
+  colorActMobDiff2 = ''
+  colorActFidDiff1 = ''
+  colorActFidDiff2 = ''
+  //proyeksi
+  colorProFpdDiff1 = ''
+  colorProFpdDiff2 = ''
+  colorProF3pdDiff1 = ''
+  colorProF3pdDiff2 = ''
+  colorProMobDiff1 = ''
+  colorProMobDiff2 = ''
+  colorProFidDiff1 = ''
+  colorProFidDiff2 = ''
 
 
   unitBookingIRUnit = {
@@ -156,14 +190,14 @@ export class ReportCabangComponent implements OnInit {
   getDataBranch() {
     var bran: string;
     var cu = this.test;
-    console.log(cu);
+    //console.log(cu);
     //validasi area ,branch, atau ho
     for (let index = 0; index < cu.data.resultProfileUserRole.length; index++) {
       if (cu.data.resultProfileUserRole[index].role_code == 'DSB_MKT_BR') {
         // this.cabang=cu['data'].resultUserProfileLocation[0].branch_code;
 
         this.list_area.data = this.branch_params_code;
-        console.log(this.cabang);
+        //console.log(this.cabang);
         this.setSatus = "branch"
         this.hide = true;
         break;
@@ -184,7 +218,7 @@ export class ReportCabangComponent implements OnInit {
     this.service.postData('post', this.list_area).subscribe(
       res => {
         this.datas = res;
-        console.log(this.datas);
+        //console.log(this.datas);
         this.list_branch = this.datas;
         if (this.setSatus == "area" && this.cabang == undefined) {
           this.cabang = this.list_branch['0'].branch_code;
@@ -238,12 +272,12 @@ export class ReportCabangComponent implements OnInit {
       }
     }
     var dataUBI = this.list_branch
-    console.log(dataUBI);
+    //console.log(dataUBI);
 
-    console.log(this.monthe)
+    //console.log(this.monthe)
 
     this.service.postApi('post', unitBook).subscribe(result => {
-      console.log(result['data']);
+      //console.log(result['data']);
       var temp;
       temp = result['data'];
       this.unitBookingIRUnit.data_sekarang = temp['1'].data_sekarang;
@@ -251,12 +285,42 @@ export class ReportCabangComponent implements OnInit {
       this.unitBookingIRUnit.data_bulan_kurang_3 = temp['1'].data_bulan_kurang_3;
       this.unitBookingIRUnit.growth_2_1 = temp['1'].growth_2_1;
       this.unitBookingIRUnit.growth_3_2 = temp['1'].growth_3_2;
+      console.log(temp['1'].data_bulan_kurang_2)
+      console.log(temp['1'].data_sekarang)
+
+      //warna kondisi growth
+      this.colorBookUniGr1 = +temp['1'].data_bulan_kurang_3 > +temp['1'].data_bulan_kurang_2? "red":"green"
+      this.colorBookUniGr2 = +temp['1'].data_bulan_kurang_2 > +temp['1'].data_sekarang ? "red" : "green"
+      console.log(this.colorBookUniGr2)
+
+      // if(temp['1'].data_bulan_kurang_2 > temp['1'].data_sekarang){
+      //   this.colorBookUniGr2 = 'red'
+      // }else if(temp['1'].data_bulan_kurang_2 < temp['1'].data_sekarang){
+      //   this.colorBookUniGr2 = 'green'
+      // }
+
 
       this.unitBookingIRAmount.data_sekarang = temp['0'].data_sekarang;
       this.unitBookingIRAmount.data_bulan_kurang_2 = temp['0'].data_bulan_kurang_2;
       this.unitBookingIRAmount.data_bulan_kurang_3 = temp['0'].data_bulan_kurang_3;
       this.unitBookingIRAmount.growth_2_1 = temp['0'].growth_2_1;
       this.unitBookingIRAmount.growth_3_2 = temp['0'].growth_3_2;
+
+      this.colorBookAmntiGr1 = +temp['0'].data_bulan_kurang_3 > +temp['0'].data_bulan_kurang_2? "red":"green"
+      this.colorBookAmntiGr2 = +temp['0'].data_bulan_kurang_2 > +temp['0'].data_sekarang ? "red" : "green"
+      
+      //warna kondisi growth
+      // if(temp['0'].data_bulan_kurang_3 > temp['0'].data_bulan_kurang_2 || temp['0'].data_bulan_kurang_2 > temp['0'].data_sekarang){
+      //   this.colorBookAmntiGr1 = 'red'
+      // }else if(temp['0'].data_bulan_kurang_3 < temp['0'].data_bulan_kurang_2){
+      //   this.colorBookAmntiGr1 = 'green'
+      // }
+
+      // if(temp['0'].data_bulan_kurang_2 > temp['0'].data_sekarang){
+      //   this.colorBookAmntiGr1 = 'red'
+      // }else if(temp['0'].data_bulan_kurang_2 < temp['0'].data_sekarang){
+      //   this.colorBookAmntiGr2 = 'green'
+      // }
     })
 
 
@@ -331,7 +395,7 @@ export class ReportCabangComponent implements OnInit {
         this.target.target_unit = mtd['data'][1].target;
         this.target.target_unit_realisasi = mtd['data'][1].realisasi;
         this.target.target_unit_acievment = mtd['data'][1].acievment;
-        console.log(mtd)
+        //console.log(mtd)
       }
     );
 
@@ -371,11 +435,17 @@ export class ReportCabangComponent implements OnInit {
       this.dataAvg.avg_growth_unit2_1 = avg['data'][1].growth_2_1;
       this.dataAvg.avg_growth_unit3_2 = avg['data'][1].growth_3_2;
 
+      this.colorAvgUniGr1 = +avg['data'][1].data_bulan_kurang_3 > +avg['data'][1].data_bulan_kurang_2 ? "red":"green"
+      this.colorAvgUniGr2 = +avg['data'][1].data_bulan_kurang_2 > +avg['data'][1].data_sekarang ? "red":"green"
+
       this.dataAvg.avg_amount1 = avg['data'][0].data_sekarang;
       this.dataAvg.avg_amount2 = avg['data'][0].data_bulan_kurang_2;
       this.dataAvg.avg_amount3 = avg['data'][0].data_bulan_kurang_3;
       this.dataAvg.avg_growth_amount2_1 = avg['data'][0].growth_2_1;
       this.dataAvg.avg_growth_amount3_2 = avg['data'][0].growth_3_2;
+      
+      this.colorAvgAmntGr1 = +avg['data'][0].data_bulan_kurang_3 > +avg['data'][0].data_bulan_kurang_2 ? "red":"green"
+      this.colorAvgAmntGr2 = +avg['data'][0].data_bulan_kurang_2 > +avg['data'][0].data_sekarang ? "red":"green"
     })
 
   }
@@ -402,8 +472,8 @@ export class ReportCabangComponent implements OnInit {
     this.service.postApi('post', ytdTarget).subscribe(
       resYtd => {
         ytd = resYtd
-        console.log(ytd);
-        console.log(ytd['data'][0].target);
+        //console.log(ytd);
+        //console.log(ytd['data'][0].target);
         this.dataYtdTarget.ytd_unit_target = ytd['data'][1].target;
         this.dataYtdTarget.ytd_unit_realisasi = ytd['data'][1].realisasi;
         this.dataYtdTarget.ytd_unit_acievment = ytd['data'][1].acievment;
@@ -440,14 +510,18 @@ export class ReportCabangComponent implements OnInit {
     this.service.postApi('post', mom).subscribe(
       response => {
         data_mom = response
-        console.log(data_mom)
+        //console.log(data_mom)
         this.dataMom.data_unit_sekarang = data_mom['data'][1].data_sekarang
         this.dataMom.data_unit_thn_lalu = data_mom['data'][1].data_tahun_lalu
         this.dataMom.data_unit_growth = data_mom['data'][1].growth
 
+        this.colorMom1 = +data_mom['data'][1].data_tahun_lalu > +data_mom['data'][1].data_sekarang ? "red":"green"
+
         this.dataMom.data_amount_sekarang = data_mom['data'][0].data_sekarang
         this.dataMom.data_amount_thn_lalu = data_mom['data'][0].data_tahun_lalu
         this.dataMom.data_amount_growth = data_mom['data'][0].growth
+
+        this.colorMom2 = +data_mom['data'][0].data_tahun_lalu > +data_mom['data'][0].data_sekarang ? "red":"green"
       }
     )
   }
@@ -480,9 +554,13 @@ export class ReportCabangComponent implements OnInit {
         this.dataYoy.unit_tahun_lalu = yoy['1'].realisasi_y_min_1
         this.dataYoy.unit_growth = yoy['1'].growth
 
+        this.colorYoy1 = +yoy['1'].realisasi_y_min_1 > +yoy['1'].realisasi ? "red":"green"
+
         this.dataYoy.amout_sekarang = yoy['0'].realisasi
         this.dataYoy.amount_tahun_lalu = yoy['0'].realisasi_y_min_1
         this.dataYoy.amount_growth = yoy['0'].growth
+
+        this.colorYoy2 = +yoy['0'].realisasi_y_min_1 > +yoy['0'].realisasi ? "red":"green"
       }
     )
   }
@@ -528,12 +606,15 @@ export class ReportCabangComponent implements OnInit {
     this.service.postApi('post', actApi).subscribe(
       response => {
         act = response.data
-        console.log(act)
+        //console.log(act)
         this.dataAct.mob_bl = act['0'].bl_FPD
         this.dataAct.mob_bs = act['0'].bs_FPD
         this.dataAct.mob_dbl = act['0'].dbl_FPD
         this.dataAct.mob_diff1 = act['0'].diff1
         this.dataAct.mob_diff2 = act['0'].diff2
+
+        this.colorActMobDiff1 = +act['0'].bs_FPD > +act['0'].bl_FPD ? "red" : "green"
+        this.colorActMobDiff2 = +act['0'].bs_FPD > +act['0'].dbl_FPD ? "red" : "green"
 
         this.dataAct.f3pd_bl = act['1'].bl_FPD
         this.dataAct.f3pd_bs = act['1'].bs_FPD
@@ -541,11 +622,17 @@ export class ReportCabangComponent implements OnInit {
         this.dataAct.f3pd_diff1 = act['1'].diff1
         this.dataAct.f3pd_diff2 = act['1'].diff2
 
+        this.colorActF3pdDiff1 = +act['1'].bs_FPD > +act['1'].bl_FPD ? "red" : "green"
+        this.colorActF3pdDiff2 = +act['1'].bs_FPD > +act['1'].dbl_FPD ? "red" : "green"
+
         this.dataAct.fid_bl = act['2'].bl_FPD
         this.dataAct.fid_bs = act['2'].bs_FPD
         this.dataAct.fid_dbl = act['2'].dbl_FPD
         this.dataAct.fid_diff1 = act['2'].diff1
         this.dataAct.fid_diff2 = act['2'].diff2
+
+        this.colorActFidDiff1 = +act['2'].bs_FPD > +act['2'].bl_FPD ? "red" : "green"
+        this.colorActFidDiff2 = +act['2'].bs_FPD > +act['2'].dbl_FPD ? "red" : "green"
 
         this.dataAct.fpd_bl = act['3'].bl_FPD
         this.dataAct.fpd_bs = act['3'].bs_FPD
@@ -553,6 +640,8 @@ export class ReportCabangComponent implements OnInit {
         this.dataAct.fpd_diff1 = act['3'].diff1
         this.dataAct.fpd_diff2 = act['3'].diff2
 
+        this.colorActFpdDiff1 = +act['3'].bs_FPD > +act['3'].bl_FPD ? "red" : "green"
+        this.colorActFpdDiff2 = +act['3'].bs_FPD > +act['3'].dbl_FPD ? "red" : "green"
       }
 
     )
@@ -605,11 +694,43 @@ export class ReportCabangComponent implements OnInit {
         this.dataPro.mob_diff1 = proyeksi['0'].diff1
         this.dataPro.mob_diff2 = proyeksi['0'].diff2
 
+        if(proyeksi['0'].diff1 > 99){
+          this.colorProMobDiff1 = 'green'
+        } else if(proyeksi['0'].diff1 < 95){
+          this.colorProMobDiff1 = 'red'
+        }else{
+          this.colorProMobDiff1 = 'yellow'
+        }
+
+        if(proyeksi['0'].diff2 > 99){
+          this.colorProMobDiff2 = 'green'
+        } else if(proyeksi['0'].diff2 < 95){
+          this.colorProMobDiff2 = 'red'
+        }else{
+          this.colorProMobDiff2 = 'yellow'
+        }
+
         this.dataPro.f3pd_bl = proyeksi['1'].bl_FPD
         this.dataPro.f3pd_bs = proyeksi['1'].bs_FPD
         this.dataPro.f3pd_dbl = proyeksi['1'].dbl_FPD
         this.dataPro.f3pd_diff1 = proyeksi['1'].diff1
         this.dataPro.f3pd_diff2 = proyeksi['1'].diff2
+
+        if(proyeksi['1'].diff1 > 99){
+          this.colorProF3pdDiff1 = 'green'
+        } else if(proyeksi['1'].diff1 < 95){
+          this.colorProF3pdDiff1 = 'red'
+        }else{
+          this.colorProF3pdDiff1 = 'yellow'
+        }
+
+        if(proyeksi['1'].diff2 > 99){
+          this.colorProF3pdDiff2 = 'green'
+        } else if(proyeksi['1'].diff2 < 95){
+          this.colorProF3pdDiff2 = 'red'
+        }else{
+          this.colorProF3pdDiff1 = 'yellow'
+        }
 
         this.dataPro.fid_bl = proyeksi['2'].bl_FPD
         this.dataPro.fid_bs = proyeksi['2'].bs_FPD
@@ -617,11 +738,43 @@ export class ReportCabangComponent implements OnInit {
         this.dataPro.fid_diff1 = proyeksi['2'].diff1
         this.dataPro.fid_diff2 = proyeksi['2'].diff2
 
+        if(proyeksi['2'].diff1 > 99){
+          this.colorProFidDiff1 = 'green'
+        } else if(proyeksi['2'].diff1 < 95){
+          this.colorProFidDiff1 = 'red'
+        }else{
+          this.colorProFidDiff1 = 'yellow'
+        }
+
+        if(proyeksi['2'].diff2 > 99){
+          this.colorProFidDiff2 = 'green'
+        } else if(proyeksi['2'].diff2 < 95){
+          this.colorProFidDiff2 = 'red'
+        }else{
+          this.colorProFidDiff2 = 'yellow'
+        }
+
         this.dataPro.fpd_bl = proyeksi['3'].bl_FPD
         this.dataPro.fpd_bs = proyeksi['3'].bs_FPD
         this.dataPro.fpd_dbl = proyeksi['3'].dbl_FPD
         this.dataPro.fpd_diff1 = proyeksi['3'].diff1
         this.dataPro.fpd_diff2 = proyeksi['3'].diff2
+
+        if(proyeksi['3'].diff1 > 99){
+          this.colorProFpdDiff1 = 'green'
+        } else if(proyeksi['3'].diff1 < 95){
+          this.colorProFpdDiff1 = 'red'
+        }else{
+          this.colorProFpdDiff1 = 'yellow'
+        }
+
+        if(proyeksi['3'].diff2 > 99){
+          this.colorProFpdDiff2 = 'green'
+        } else if(proyeksi['3'].diff2 < 95){
+          this.colorProFpdDiff2 = 'red'
+        }else{
+          this.colorProFpdDiff2 = 'yellow'
+        }
 
       }
     )
@@ -657,14 +810,14 @@ export class ReportCabangComponent implements OnInit {
     this.service.postApi('post', actTargetApi).subscribe(
       response => {
         actTarget = response.data
-        this.dataActTarget.mob_realisasi = actTarget["0"].realisasi;
-        this.dataActTarget.mob_target = actTarget['0'].target;
+        this.dataActTarget.mob_realisasi = actTarget["2"].realisasi;
+        this.dataActTarget.mob_target = actTarget['2'].target;
         this.dataActTarget.f3pd_realisasi = actTarget['1'].realisasi;
         this.dataActTarget.f3pd_target = actTarget['1'].target;
-        this.dataActTarget.fid_realisasi = actTarget['2'].realisasi;
-        this.dataActTarget.fid_target = actTarget['2'].target;
-        this.dataActTarget.fpd_realisasi = actTarget['3'].realisasi;
-        this.dataActTarget.fpd_target = actTarget['3'].target
+        this.dataActTarget.fid_realisasi = actTarget['3'].realisasi;
+        this.dataActTarget.fid_target = actTarget['3'].target;
+        this.dataActTarget.fpd_realisasi = actTarget['0'].realisasi;
+        this.dataActTarget.fpd_target = actTarget['0'].target
       }
     )
   }

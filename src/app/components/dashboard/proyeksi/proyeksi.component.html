@@ -9,89 +9,105 @@
     <h1 class="center">DASHBOARD PROYEKSI</h1>
 
     <div class="row">
-
-      <div class="col-md-12">
+      <!-- Form Sidebar -->
+      <div class="col-md-2">
         <div class="card">
           <div class="card-block">
-            <div class="progress top loop" max="100"><progress></progress></div>
-            <h4 class="card-title center">PERFORMANCE REPO, SOLD, STOCK BY UNIT</h4>
-            <p class="card-text" style="width: 100% !important;">
-              <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat"
-                [dataSource]="dataSourceLine1" style="display: inline-block !important;">
-              </fusioncharts>
-            </p>
-            <clr-datagrid class="grid-font">
-              <clr-dg-column></clr-dg-column>
-              <clr-dg-column>Jul-13</clr-dg-column>
-              <clr-dg-column>Aug-13</clr-dg-column>
-              <clr-dg-column>Sep-13</clr-dg-column>
-              <clr-dg-column>Okt-13</clr-dg-column>
-              <clr-dg-column>Nov-13</clr-dg-column>
-              <clr-dg-column>Des-13</clr-dg-column>
-              <clr-dg-column>Jan-14</clr-dg-column>
-              <clr-dg-column>Feb-14</clr-dg-column>
-              <clr-dg-column>Mar-14</clr-dg-column>
-              <clr-dg-column>Apr-14</clr-dg-column>
-              <clr-dg-column>May-14</clr-dg-column>
-              <clr-dg-column>Jun-14</clr-dg-column>
-              <clr-dg-column>Jul-14</clr-dg-column>
-
-              <clr-dg-row>
-                <clr-dg-cell>REPO</clr-dg-cell>
-                <clr-dg-cell>12753</clr-dg-cell>
-                <clr-dg-cell>12038</clr-dg-cell>
-                <clr-dg-cell>13808</clr-dg-cell>
-                <clr-dg-cell>12702</clr-dg-cell>
-                <clr-dg-cell>11973</clr-dg-cell>
-                <clr-dg-cell>11678</clr-dg-cell>
-                <clr-dg-cell>11430</clr-dg-cell>
-                <clr-dg-cell>11819</clr-dg-cell>
-                <clr-dg-cell>13662</clr-dg-cell>
-                <clr-dg-cell>13662</clr-dg-cell>
-                <clr-dg-cell>12198</clr-dg-cell>
-                <clr-dg-cell>13294</clr-dg-cell>
-                <clr-dg-cell>13420</clr-dg-cell>
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>SOLD</clr-dg-cell>
-                <clr-dg-cell>14291</clr-dg-cell>
-                <clr-dg-cell>10708</clr-dg-cell>
-                <clr-dg-cell>14444</clr-dg-cell>
-                <clr-dg-cell>13952</clr-dg-cell>
-                <clr-dg-cell>12253</clr-dg-cell>
-                <clr-dg-cell>12324</clr-dg-cell>
-                <clr-dg-cell>11066</clr-dg-cell>
-                <clr-dg-cell>11570</clr-dg-cell>
-                <clr-dg-cell>12050</clr-dg-cell>
-                <clr-dg-cell>13768</clr-dg-cell>
-                <clr-dg-cell>12860</clr-dg-cell>
-                <clr-dg-cell>12834</clr-dg-cell>
-                <clr-dg-cell>11350</clr-dg-cell>
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>STOCK</clr-dg-cell>
-                <clr-dg-cell>9206</clr-dg-cell>
-                <clr-dg-cell>10522</clr-dg-cell>
-                <clr-dg-cell>3875</clr-dg-cell>
-                <clr-dg-cell>8965</clr-dg-cell>
-                <clr-dg-cell>8685</clr-dg-cell>
-                <clr-dg-cell>8030</clr-dg-cell>
-                <clr-dg-cell>8367</clr-dg-cell>
-                <clr-dg-cell>8604</clr-dg-cell>
-                <clr-dg-cell>10204</clr-dg-cell>
-                <clr-dg-cell>8606</clr-dg-cell>
-                <clr-dg-cell>9030</clr-dg-cell>
-                <clr-dg-cell>3586</clr-dg-cell>
-                <clr-dg-cell>9830</clr-dg-cell>
-              </clr-dg-row>
-              <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
-            </clr-datagrid>
+            
           </div>
           <div class="card-footer">
-            <div class="cursor-pointer">
-              <clr-icon shape="refresh"></clr-icon>
-              Reload
+              <div class="cursor-pointer">
+                <clr-icon shape="refresh"></clr-icon>
+                <!-- Reload -->
+              </div>
+            </div>
+        </div>
+      </div>
+      <!-- Content -->
+      <div class="col-md-10">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-block">
+              <div class="progress top loop" max="100"><progress></progress></div>
+              <h4 class="card-title center">PERFORMANCE REPO, SOLD, STOCK BY UNIT</h4>
+              <p class="card-text" style="width: 100% !important;">
+                <fusioncharts [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat"
+                  [dataSource]="dataSourceLine1" style="display: inline-block !important;">
+                </fusioncharts>
+              </p>
+              <clr-datagrid class="grid-font">
+                <clr-dg-column></clr-dg-column>
+                <clr-dg-column>Jul-13</clr-dg-column>
+                <clr-dg-column>Aug-13</clr-dg-column>
+                <clr-dg-column>Sep-13</clr-dg-column>
+                <clr-dg-column>Okt-13</clr-dg-column>
+                <clr-dg-column>Nov-13</clr-dg-column>
+                <clr-dg-column>Des-13</clr-dg-column>
+                <clr-dg-column>Jan-14</clr-dg-column>
+                <clr-dg-column>Feb-14</clr-dg-column>
+                <clr-dg-column>Mar-14</clr-dg-column>
+                <clr-dg-column>Apr-14</clr-dg-column>
+                <clr-dg-column>May-14</clr-dg-column>
+                <clr-dg-column>Jun-14</clr-dg-column>
+                <clr-dg-column>Jul-14</clr-dg-column>
+  
+                <clr-dg-row>
+                  <clr-dg-cell>REPO</clr-dg-cell>
+                  <clr-dg-cell>12753</clr-dg-cell>
+                  <clr-dg-cell>12038</clr-dg-cell>
+                  <clr-dg-cell>13808</clr-dg-cell>
+                  <clr-dg-cell>12702</clr-dg-cell>
+                  <clr-dg-cell>11973</clr-dg-cell>
+                  <clr-dg-cell>11678</clr-dg-cell>
+                  <clr-dg-cell>11430</clr-dg-cell>
+                  <clr-dg-cell>11819</clr-dg-cell>
+                  <clr-dg-cell>13662</clr-dg-cell>
+                  <clr-dg-cell>13662</clr-dg-cell>
+                  <clr-dg-cell>12198</clr-dg-cell>
+                  <clr-dg-cell>13294</clr-dg-cell>
+                  <clr-dg-cell>13420</clr-dg-cell>
+  
+                </clr-dg-row>
+                <clr-dg-row>
+                  <clr-dg-cell>SOLD</clr-dg-cell>
+                  <clr-dg-cell>14291</clr-dg-cell>
+                  <clr-dg-cell>10708</clr-dg-cell>
+                  <clr-dg-cell>14444</clr-dg-cell>
+                  <clr-dg-cell>13952</clr-dg-cell>
+                  <clr-dg-cell>12253</clr-dg-cell>
+                  <clr-dg-cell>12324</clr-dg-cell>
+                  <clr-dg-cell>11066</clr-dg-cell>
+                  <clr-dg-cell>11570</clr-dg-cell>
+                  <clr-dg-cell>12050</clr-dg-cell>
+                  <clr-dg-cell>13768</clr-dg-cell>
+                  <clr-dg-cell>12860</clr-dg-cell>
+                  <clr-dg-cell>12834</clr-dg-cell>
+                  <clr-dg-cell>11350</clr-dg-cell>
+                </clr-dg-row>
+                <clr-dg-row>
+                  <clr-dg-cell>STOCK</clr-dg-cell>
+                  <clr-dg-cell>9206</clr-dg-cell>
+                  <clr-dg-cell>10522</clr-dg-cell>
+                  <clr-dg-cell>3875</clr-dg-cell>
+                  <clr-dg-cell>8965</clr-dg-cell>
+                  <clr-dg-cell>8685</clr-dg-cell>
+                  <clr-dg-cell>8030</clr-dg-cell>
+                  <clr-dg-cell>8367</clr-dg-cell>
+                  <clr-dg-cell>8604</clr-dg-cell>
+                  <clr-dg-cell>10204</clr-dg-cell>
+                  <clr-dg-cell>8606</clr-dg-cell>
+                  <clr-dg-cell>9030</clr-dg-cell>
+                  <clr-dg-cell>3586</clr-dg-cell>
+                  <clr-dg-cell>9830</clr-dg-cell>
+                </clr-dg-row>
+                <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+              </clr-datagrid>
+            </div>
+            <div class="card-footer">
+              <div class="cursor-pointer">
+                <clr-icon shape="refresh"></clr-icon>
+                Reload
+              </div>
             </div>
           </div>
         </div>

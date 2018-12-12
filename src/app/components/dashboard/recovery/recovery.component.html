@@ -374,6 +374,45 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
+            <h4 class="card-title center"></h4>
+            <p class="card-text" style="width: 25% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="line" [dataFormat]="dataFormat" [dataSource]="dataSourceLine9">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-block">
+            <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
+            <h4 class="card-title center"></h4>
+            <p class="card-text" style="width: 25% !important;">
+              <fusioncharts [width]="width" [height]="height" [type]="line" [dataFormat]="dataFormat" [dataSource]="dataSourceLine10">
+              </fusioncharts>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
   </clr-vertical-nav>

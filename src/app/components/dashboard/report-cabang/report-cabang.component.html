@@ -85,7 +85,7 @@
                       <thead cellspacing="1">
                         <tr>
                           <th class="center table-header" colspan="6">Unit Booking IR</th>
-                          <th class="center table-header" colspan="4">MTD Target {{tableTitle.title1}}</th>
+                          <th class="center table-header" colspan="4">MTD Target {{tableTitle.title1 | date: "MMM"}}</th>
                           <th class="center table-header" colspan="4">MOM</th>
                         </tr>
                       </thead>
@@ -115,8 +115,8 @@
                           <td >{{unitBookingIRUnit.data_bulan_kurang_3 |  number:"1.0-0"}}</td>
                           <td >{{unitBookingIRUnit.data_bulan_kurang_2 |  number:"1.0-0"}}</td>
                           <td >{{unitBookingIRUnit.data_sekarang |  number:"1.0-0"}}</td>
-                          <td >{{unitBookingIRUnit.growth_2_1}}</td>
-                          <td >{{unitBookingIRUnit.growth_3_2}}</td>
+                          <td [ngStyle]="{'color': colorBookUniGr1}">{{unitBookingIRUnit.growth_3_2}}%</td>
+                          <td [ngStyle]="{'color': colorBookUniGr2}">{{unitBookingIRUnit.growth_2_1}}%</td>
                           <td class="middle-center">Unit</td>
                           <td >{{target.target_unit |  number:"1.0-0"}}</td>
                           <td >{{target.target_unit_realisasi |  number:"1.0-0"}}</td>
@@ -124,15 +124,15 @@
                           <td class="middle-center">Unit</td>
                           <td>{{dataMom.data_unit_thn_lalu |  number:"1.0-0"}}</td>
                           <td>{{dataMom.data_unit_sekarang |  number:"1.0-0"}}</td>
-                          <td>{{dataMom.data_unit_growth}}</td>
+                          <td [ngStyle]="{'color': colorMom1}">{{dataMom.data_unit_growth}}%</td>
                         </tr>
                         <tr>
                           <td class="header2">Amount</td>
                           <td >{{unitBookingIRAmount.data_bulan_kurang_3 |  number:"1.0-0"}}</td>
                           <td >{{unitBookingIRAmount.data_bulan_kurang_2 |  number:"1.0-0"}}</td>
                           <td >{{unitBookingIRAmount.data_sekarang |  number:"1.0-0"}}</td>
-                          <td >{{unitBookingIRAmount.growth_2_1}}</td>
-                          <td >{{unitBookingIRAmount.growth_3_2}}</td>
+                          <td [ngStyle]="{'color': colorBookAmntiGr1}">{{unitBookingIRAmount.growth_3_2}}%</td>
+                          <td [ngStyle]="{'color': colorBookAmntiGr2}">{{unitBookingIRAmount.growth_2_1}}%</td>
                           <td class="middle-center">Amount</td>
                           <td >{{target.target_amount | number:"1.0-0"}}</td>
                           <td >{{target.target_amount_realisasi | number:"1.0-0"}}</td>
@@ -140,7 +140,7 @@
                           <td class="middle-center">Amount</td>
                           <td>{{dataMom.data_amount_thn_lalu | number:"1.0-0"}}</td>
                           <td>{{dataMom.data_amount_sekarang | number:"1.0-0"}}</td>
-                          <td>{{dataMom.data_amount_growth}}</td>
+                          <td [ngStyle]="{'color': colorMom2}">{{dataMom.data_amount_growth}}%</td>
                         </tr>
                       </tbody>
                       <thead>
@@ -165,6 +165,7 @@
                           <td rowspan="2" class="middle-center">{{tableTitle.title4 | date: "MMM yyyy"}}</td>
                           <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}}</td>
                           <td rowspan="2" class="middle-center">Growth</td>
+                          <td rowspan="5" style="vertical-align: bottom">JUTAAN</td>
                         </tr>
                         <tr>
                           <td class="header2">{{tableTitle.title3 | date: "MMM yyyy"}} - {{tableTitle.title2 | date: "MMM yyyy"}}</td>
@@ -175,8 +176,8 @@
                           <td >{{dataAvg.avg_unit3 | number:"1.0-0"}}</td>
                           <td >{{dataAvg.avg_unit2 | number:"1.0-0"}}</td>
                           <td >{{dataAvg.avg_unit1| number:"1.0-0"}}</td>
-                          <td >{{this.dataAvg.avg_growth_unit2_1}}%</td>
-                          <td >{{this.dataAvg.avg_growth_unit3_2}}%</td>
+                          <td [ngStyle]="{'color': colorAvgUniGr1}">{{this.dataAvg.avg_growth_unit3_2}}%</td>
+                          <td [ngStyle]="{'color': colorAvgUniGr2}">{{this.dataAvg.avg_growth_unit2_1}}%</td>
                           <td class="header2">Unit</td>
                           <td >{{dataYtdTarget.ytd_unit_target | number:"1.0-0"}}</td>
                           <td >{{dataYtdTarget.ytd_unit_realisasi | number:"1.0-0"}}</td>
@@ -184,15 +185,15 @@
                           <td class="header2">Unit</td>
                           <td >{{dataYoy.unit_tahun_lalu}}</td>
                           <td >{{dataYoy.unit_sekarang}}</td>
-                          <td >{{dataYoy.unit_growth}}</td>
+                          <td [ngStyle]="{'color': colorYoy1}">{{dataYoy.unit_growth}}%</td>
                         </tr>
                         <tr>
                           <td class="middle-center">AVG Amount</td>
                           <td >{{dataAvg.avg_amount3 | number: "1.0-0"}}</td>
                           <td >{{dataAvg.avg_amount2 | number: "1.0-0"}}</td>
                           <td >{{dataAvg.avg_amount1 | number: "1.0-0"}}</td>
-                          <td >{{dataAvg.avg_growth_amount2_1}}%</td>
-                          <td >{{dataAvg.avg_growth_amount3_2}}%</td>
+                          <td [ngStyle]="{'color': colorAvgAmntGr1}">{{dataAvg.avg_growth_amount3_2}}%</td>
+                          <td [ngStyle]="{'color': colorAvgAmntGr2}">{{dataAvg.avg_growth_amount2_1 }}%</td>
                           <td class="middle-center">Amount</td>
                           <td >{{dataYtdTarget.ytd_amount_target | number: "1.0-0"}}</td>
                           <td >{{dataYtdTarget.ytd_amount_realisasi | number: "1.0-0"}}</td>
@@ -200,7 +201,7 @@
                           <td class="middle-center">Amount</td>
                           <td>{{dataYoy.amount_tahun_lalu | number:"1.0-0"}}</td>
                           <td>{{dataYoy.amout_sekarang | number:"1.0-0"}}</td>
-                          <td>{{dataYoy.amount_growth}}</td>
+                          <td [ngStyle]="{'color': colorYoy2}">{{dataYoy.amount_growth}}%</td>
                         </tr>
                       </tbody>
                     </table>
@@ -253,64 +254,64 @@
                       <td>{{dataAct.fpd_dbl}}%</td>
                       <td>{{dataAct.fpd_bl}}%</td>
                       <td>{{dataAct.fpd_bs}}%</td>
-                      <td>{{dataAct.fpd_diff1}}%</td>
-                      <td>{{dataAct.fpd_diff2}}%</td>
+                      <td [ngStyle]="{'color': colorActFpdDiff1}">{{dataAct.fpd_diff1}}%</td>
+                      <td [ngStyle]="{'color': colorActFpdDiff2}">{{dataAct.fpd_diff2}}%</td>
                       <td>{{dataActTarget.fpd_target}}%</td>
                       <td>{{dataActTarget.fpd_realisasi}}%</td>
                       <td class="header2">FPD</td>
                       <td>{{dataPro.fpd_dbl}}%</td>
                       <td>{{dataPro.fpd_bl}}%</td>
                       <td>{{dataPro.fpd_bs}}%</td>
-                      <td>{{dataPro.fpd_diff1}}%</td>
-                      <td>{{dataPro.fpd_diff2}}%</td>
+                      <td [ngStyle]="{'color': colorProFpdDiff1}">{{dataPro.fpd_diff1}}%</td>
+                      <td [ngStyle]="{'color': colorProFpdDiff2}">{{dataPro.fpd_diff2}}%</td>
                     </tr>
                     <tr>
                       <td class="header2">F3PD</td>
                       <td>{{dataAct.f3pd_dbl}}%</td>
                       <td>{{dataAct.f3pd_bl}}%</td>
                       <td>{{dataAct.f3pd_bs}}%</td>
-                      <td>{{dataAct.f3pd_diff1}}%</td>
-                      <td>{{dataAct.f3pd_diff2}}%</td>
+                      <td [ngStyle]="{'color': colorActF3pdDiff1}">{{dataAct.f3pd_diff1}}%</td>
+                      <td [ngStyle]="{'color': colorActF3pdDiff2}">{{dataAct.f3pd_diff2}}%</td>
                       <td>{{dataActTarget.f3pd_target}}%</td>
                       <td>{{dataActTarget.f3pd_realisasi}}%</td>
                       <td class="header2">F3PD</td>
                       <td>{{dataPro.f3pd_dbl}}%</td>
                       <td>{{dataPro.f3pd_bl}}%</td>
                       <td>{{dataPro.f3pd_bs}}%</td>
-                      <td>{{dataPro.f3pd_diff1}}%</td>
-                      <td>{{dataPro.f3pd_diff2}}%</td>
+                      <td [ngStyle]="{'color': colorProF3pdDiff1}">{{dataPro.f3pd_diff1}}%</td>
+                      <td [ngStyle]="{'color': colorProF3pdDiff2}">{{dataPro.f3pd_diff2}}%</td>
                     </tr>
                     <tr>
                       <td class="header2">30+@6MOB</td>
                       <td >{{dataAct.mob_dbl}}%</td>
                       <td >{{dataAct.mob_bl}}%</td>
                       <td >{{dataAct.mob_bs}}%</td>
-                      <td >{{dataAct.mob_diff1}}%</td>
-                      <td >{{dataAct.mob_diff2}}%</td>
+                      <td [ngStyle]="{'color': colorActMobDiff1}">{{dataAct.mob_diff1}}%</td>
+                      <td [ngStyle]="{'color': colorActMobDiff2}">{{dataAct.mob_diff2}}%</td>
                       <td>{{dataActTarget.mob_target}}%</td>
                       <td>{{dataActTarget.mob_realisasi}}%</td>
                       <td class="header2">30+@6MOB</td>
                       <td >{{dataPro.mob_dbl}}%</td>
                       <td >{{dataPro.mob_bl}}%</td>
                       <td >{{dataPro.mob_bs}}%</td>
-                      <td >{{dataPro.mob_diff1}}%</td>
-                      <td >{{dataPro.mob_diff2}}%</td>
+                      <td [ngStyle]="{'color': colorProMobDiff1}">{{dataPro.mob_diff1}}%</td>
+                      <td [ngStyle]="{'color': colorProMobDiff2}">{{dataPro.mob_diff2}}%</td>
                     </tr>
                     <tr>
                       <td class="header2">FID9</td>
                       <td >{{dataAct.fid_dbl}}%</td>
                       <td >{{dataAct.fid_bl}}%</td>
                       <td >{{dataAct.fid_bs}}%</td>
-                      <td >{{dataAct.fid_diff1}}%</td>
-                      <td >{{dataAct.fid_diff2}}%</td>
+                      <td [ngStyle]="{'color': colorActFidDiff1}">{{dataAct.fid_diff1}}%</td>
+                      <td [ngStyle]="{'color': colorActFidDiff2}">{{dataAct.fid_diff2}}%</td>
                       <td>{{dataActTarget.fid_target}}%</td>
                       <td>{{dataActTarget.fid_realisasi}}%</td>
                       <td class="header2">FID9</td>
                       <td >{{dataPro.fid_dbl}}%</td>
                       <td >{{dataPro.fid_bl}}%</td>
                       <td >{{dataPro.fid_bs}}%</td>
-                      <td >{{dataPro.fid_diff1}}%</td>
-                      <td >{{dataPro.fid_diff2}}%</td>
+                      <td [ngStyle]="{'color': colorProFidDiff1}">{{dataPro.fid_diff1}}%</td>
+                      <td [ngStyle]="{'color': colorProFidDiff2}">{{dataPro.fid_diff2}}%</td>
                     </tr>
                   </tbody>
                 </table>
@@ -385,7 +386,7 @@
                 <table class="table table-compact table-noborder col-lg-6">
                   <thead>
                     <tr>
-                      <th class="center table-header" colspan="7">AMOUNT</th>
+                      <th class="center table-header" colspan="7">AMOUNT (JUTAAN)</th>
                     </tr>
                   </thead>
                   <tbody>

@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
+import { DatePipe } from '@angular/common/src/pipes/date_pipe';
+import { getLocaleDateTimeFormat } from '@angular/common/src/i18n/locale_data_api';
+
 
 @Component({
   selector: 'app-collection',
@@ -8,847 +11,14 @@ import { ServicesService } from 'src/app/services/services.service';
 })
 export class CollectionComponent implements OnInit {
   
-  dataCache=JSON.parse('currentUser');
+  
 
-  areaList
+  mufnet: any
   branchList
   portfolioList
-  data = {
-    "chart": {
-      "caption": "Collection Effectiveness Performance",
-      "subcaption": "Mandiri Utama Finance",
-      "xAxisname": "Month",
-      // "pYAxisName": "Amount (In USD)",
-      // "sYAxisName": "Profit %",
-      "numberSuffix": "%",
-      "sNumberSuffix": "%",
-      "sYAxisMaxValue": "85",
-      "theme": "fusion",
-      "exportenabled": "1"
-    },
-    "categories": [
-      {
-        "category": [
-          {
-            "label": "Jul-13"
-          },
-          {
-            "label": "Aug-13"
-          },
-          {
-            "label": "Sep-13"
-          },
-          {
-            "label": "Okt-13"
-          },
-          {
-            "label": "Nov-13"
-          },
-          {
-            "label": "Des-13"
-          },
-          {
-            "label": "Jan-14"
-          },
-          {
-            "label": "Feb-14"
-          },
-          {
-            "label": "Mar-14"
-          },
-          {
-            "label": "Apr-14"
-          },
-          {
-            "label": "May-14"
-          },
-          {
-            "label": "Jun-14"
-          },
-          {
-            "label": "Jul-14"
-          }
-        ]
-      }
-    ],
-    "dataset": [
-      {
-        "seriesname": "% Stay",
-        "parentYAxis": "S",
-        "renderAs" : "Bar",
-        "data": [
-          {
-            "value": "78.74"
-          },
-          {
-            "value": "78.54"
-          },
-          {
-            "value": "78.49"
-          },
-          {
-            "value": "79.58"
-          },
-          {
-            "value": "79.99"
-          },
-          {
-            "value": "79.96"
-          },
-          {
-            "value": "79.92"
-          },
-          {
-            "value": "78.82"
-          },
-          {
-            "value": "78.35"
-          },
-          {
-            "value": "78.95"
-          },
-          {
-            "value": "78.84"
-          },
-          {
-            "value": "78.35"
-          },
-          {
-            "value": "76.27"
-          }
-        ]
-      },
-      {
-        "seriesname": "% Back TO Current",
-        "renderas": "line",
-        "data": [
-          {
-            "value": "5.34"
-          },
-          {
-            "value": "4.40"
-          },
-          {
-            "value": "6.25"
-          },
-          {
-            "value": "4.63"
-          },
-          {
-            "value": "5.42"
-          },
-          {
-            "value": "4.65"
-          },
-          {
-            "value": "4.31"
-          },
-          {
-            "value": "5.87"
-          },
-          {
-            "value": "4.66"
-          },
-          {
-            "value": "5.58"
-          },
-          {
-            "value": "4.40"
-          },
-          {
-            "value": "5.05"
-          },
-          {
-            "value": "3.88"
-          }
-        ]
-      },
-      {
-        "seriesname": "% Lunas",
-        "renderas": "line",
-        "data": [
-          {
-            "value": "4.22"
-          },
-          {
-            "value": "3.49"
-          },
-          {
-            "value": "3.94"
-          },
-          {
-            "value": "3.81"
-          },
-          {
-            "value": "3.76"
-          },
-          {
-            "value": "3.97"
-          },
-          {
-            "value": "3.71"
-          },
-          {
-            "value": "3.77"
-          },
-          {
-            "value": "4.05"
-          },
-          {
-            "value": "4.15"
-          },
-          {
-            "value": "4.26"
-          },
-          {
-            "value": "4.40"
-          },
-          {
-            "value": "3.84"
-          }
-        ]
-      },
-      {
-        "seriesname": "% Repo",
-        "renderas": "line",
-        "data": [
-          {
-            "value": "0.34"
-          },
-          {
-            "value": "0.32"
-          },
-          {
-            "value": "0.37"
-          },
-          {
-            "value": "0.34"
-          },
-          {
-            "value": "0.32"
-          },
-          {
-            "value": "0.32"
-          },
-          {
-            "value": "0.31"
-          },
-          {
-            "value": "0.32"
-          },
-          {
-            "value": "0.37"
-          },
-          {
-            "value": "0.34"
-          },
-          {
-            "value": "0.37"
-          },
-          {
-            "value": "0.37"
-          },
-          {
-            "value": "0.32"
-          }
-        ]
-      },
-      {
-        "seriesname": "% Roll Down",
-        "renderas": "line",
-        "data": [
-          {
-            "value": "0.56"
-          },
-          {
-            "value": "0.47"
-          },
-          {
-            "value": "0.68"
-          },
-          {
-            "value": "0.55"
-          },
-          {
-            "value": "0.49"
-          },
-          {
-            "value": "0.50"
-          },
-          {
-            "value": "0.40"
-          },
-          {
-            "value": "0.49"
-          },
-          {
-            "value": "0.61"
-          },
-          {
-            "value": "0.49"
-          },
-          {
-            "value": "0.52"
-          },
-          {
-            "value": "0.48"
-          },
-          {
-            "value": "0.52"
-          }
-        ]
-      },
-      {
-        "seriesname": "% Roll Up",
-        "renderas": "line",
-        "data": [
-          {
-            "value": "10.44"
-          },
-          {
-            "value": "12.24"
-          },
-          {
-            "value": "9.94"
-          },
-          {
-            "value": "10.75"
-          },
-          {
-            "value": "9.70"
-          },
-          {
-            "value": "10.20"
-          },
-          {
-            "value": "10.97"
-          },
-          {
-            "value": "10.45"
-          },
-          {
-            "value": "11.63"
-          },
-          {
-            "value": "10.18"
-          },
-          {
-            "value": "11.30"
-          },
-          {
-            "value": "11.03"
-          },
-          {
-            "value": "14.82"
-          }
-        ]
-      },
-      {
-        "seriesname": "% WO",
-        "renderas": "line",
-        "data": [
-          {
-            "value": "0.35"
-          },
-          {
-            "value": "0.33"
-          },
-          {
-            "value": "0.33"
-          },
-          {
-            "value": "0.34"
-          },
-          {
-            "value": "0.32"
-          },
-          {
-            "value": "0.41"
-          },
-          {
-            "value": "0.37"
-          },
-          {
-            "value": "0.29"
-          },
-          {
-            "value": "0.32"
-          },
-          {
-            "value": "0.31"
-          },
-          {
-            "value": "0.31"
-          },
-          {
-            "value": "0.31"
-          },
-          {
-            "value": "0.35"
-          }
-        ]
-      }
-    ]
-  }
+  
 
-  data_bar = {
-    "chart": {
-      "caption": "Collection Effectiveness Performance",
-      "subcaption": "Mandiri Utama Finance",
-      "xaxisname": "Tanggal",
-      "yaxisname": "Total",
-      "formatnumberscale": "1",
-      "plottooltext": "<b>$dataValue</b> apps were available on <b>$seriesName</b> in $label",
-      // "theme": "zune",
-      "theme": "fusion",
-      "exportenabled": "1",
-      // "drawcrossline": "1"
-      
-    },
-    "categories": [
-      {
-        "category": [
-          {
-            "label": "31/07/2013"
-          },
-          {
-            "label": "31/08/2013"
-          },
-          {
-            "label": "31/09/2013"
-          },
-          {
-            "label": "31/10/2013"
-          },
-          {
-            "label": "31/11/2013"
-          },
-          {
-            "label": "31/12/2013"
-          },
-          {
-            "label": "31/01/2014"
-          },
-          {
-            "label": "31/02/2014"
-          },
-          {
-            "label": "31/03/2014"
-          },
-          {
-            "label": "31/04/2014"
-          },
-          {
-            "label": "31/05/2014"
-          },
-          {
-            "label": "31/06/2014"
-          },
-          {
-            "label": "31/07/2014"
-          }
-        ]
-      }
-    ],
-    "dataset": [
-      {
-        "seriesname": "Back To Current",
-        "data": [
-          {
-            "value": "197441"
-          },
-          {
-            "value": "163748"
-          },
-          {
-            "value": "233020"
-          },
-          {
-            "value": "171986"
-          },
-          {
-            "value": "200883"
-          },
-          {
-            "value": "171557"
-          },
-          {
-            "value": "158964"
-          },
-          {
-            "value": "215329"
-          },
-          {
-            "value": "170109"
-          },
-          {
-            "value": "202633"
-          },
-          {
-            "value": "159278"
-          },
-          {
-            "value": "182338"
-          },
-          {
-            "value": "139875"
-          }
-        ]
-      },
-      {
-        "seriesname": "Delq Awal",
-        "data": [
-          {
-            "value": "407037"
-          },
-          {
-            "value": "480077"
-          },
-          {
-            "value": "395684"
-          },
-          {
-            "value": "419633"
-          },
-          {
-            "value": "377313"
-          },
-          {
-            "value": "395036"
-          },
-          {
-            "value": "419595"
-          },
-          {
-            "value": "400771"
-          },
-          {
-            "value": "447271"
-          },
-          {
-            "value": "387521"
-          },
-          {
-            "value": "427621"
-          },
-          {
-            "value": "415469"
-          },
-          {
-            "value": "552788"
-          },
-        ]
-      },
-      {
-        "seriesname": "Delq Akhir",
-        "data": [
-          {
-            "value": "3699"
-          },
-          {
-            "value": "3718.1"
-          },
-          {
-            "value": "3727.6"
-          },
-          {
-            "value": "3713.9"
-          },
-          {
-            "value": "3702.9"
-          },
-          {
-            "value": "3691.7"
-          },
-          {
-            "value": "3688.1"
-          },
-          {
-            "value": "3669.1"
-          },
-          {
-            "value": "3651.9"
-          },
-          {
-            "value": "3632.1"
-          },
-          {
-            "value": "3616.9"
-          },
-          {
-            "value": "3609"
-          },
-          {
-            "value": "3604.7"
-          }
-        ]
-      },
-      {
-        "seriesname": "Lunas",
-        "data": [
-          {
-            "value": "156282"
-          },
-          {
-            "value": "129838"
-          },
-          {
-            "value": "147015"
-          },
-          {
-            "value": "141394"
-          },
-          {
-            "value": "139146"
-          },
-          {
-            "value": "146657"
-          },
-          {
-            "value": "136967"
-          },
-          {
-            "value": "138354"
-          },
-          {
-            "value": "147873"
-          },
-          {
-            "value": "150787"
-          },
-          {
-            "value": "153993"
-          },
-          {
-            "value": "158852"
-          },
-          {
-            "value": "138485"
-          }
-        ]
-      },
-      {
-        "seriesname": "Repo",
-        "data": [
-          {
-            "value": "12753"
-          },
-          {
-            "value": "12037"
-          },
-          {
-            "value": "13806"
-          },
-          {
-            "value": "12700"
-          },
-          {
-            "value": "11972"
-          },
-          {
-            "value": "11676"
-          },
-          {
-            "value": "11429"
-          },
-          {
-            "value": "11817"
-          },
-          {
-            "value": "13662"
-          },
-          {
-            "value": "12197"
-          },
-          {
-            "value": "13294"
-          },
-          {
-            "value": "13420"
-          },
-          {
-            "value": "11607"
-          }
-        ]
-      },
-      {
-        "seriesname": "Roll Down",
-        "data": [
-          {
-            "value": "20763"
-          },
-          {
-            "value": "17544"
-          },
-          {
-            "value": "25171"
-          },
-          {
-            "value": "20381"
-          },
-          {
-            "value": "18071"
-          },
-          {
-            "value": "18568"
-          },
-          {
-            "value": "14865"
-          },
-          {
-            "value": "17957"
-          },
-          {
-            "value": "22399"
-          },
-          {
-            "value": "17815"
-          },
-          {
-            "value": "18914"
-          },
-          {
-            "value": "17295"
-          },
-          {
-            "value": "18568"
-          }
-        ]
-      },
-      {
-        "seriesname": "Roll Up",
-        "data": [
-          {
-            "value": "386274"
-          },
-          {
-            "value": "462527"
-          },
-          {
-            "value": "370513"
-          },
-          {
-            "value": "399252"
-          },
-          {
-            "value": "359242"
-          },
-          {
-            "value": "376468"
-          },
-          {
-            "value": "404730"
-          },
-          {
-            "value": "382814"
-          },
-          {
-            "value": "424872"
-          },
-          {
-            "value": "369706"
-          },
-          {
-            "value": "408707"
-          },
-          {
-            "value": "396174"
-          },
-          {
-            "value": "594220"
-          }
-        ]
-      },
-      {
-        "seriesname": "Stay",
-        "data": [
-          {
-            "value": "2912.7"
-          },
-          {
-            "value": "2920.2"
-          },
-          {
-            "value": "2925.9"
-          },
-          {
-            "value": "2955.5"
-          },
-          {
-            "value": "2961.8"
-          },
-          {
-            "value": "2951.7"
-          },
-          {
-            "value": "2947.5"
-          },
-          {
-            "value": "2892"
-          },
-          {
-            "value": "2861.3"
-          },
-          {
-            "value": "2867.7"
-          },
-          {
-            "value": "2851.4"
-          },
-          {
-            "value": "2827.7"
-          },
-          {
-            "value": "2749.2"
-          }
-        ]
-      },
-      {
-        "seriesname": "WO",
-        "data": [
-          {
-            "value": "12785"
-          },
-          {
-            "value": "12203"
-          },
-          {
-            "value": "12116"
-          },
-          {
-            "value": "12642"
-          },
-          {
-            "value": "11783"
-          },
-          {
-            "value": "15063"
-          },
-          {
-            "value": "13629"
-          },
-          {
-            "value": "10791"
-          },
-          {
-            "value": "11683"
-          },
-          {
-            "value": "11282"
-          },
-          {
-            "value": "11286"
-          },
-          {
-            "value": "11165"
-          },
-          {
-            "value": "12748"
-          }
-        ]
-      }
-    ]
-  };
+  
 
   data_2 = {
     "chart": {
@@ -1284,7 +454,7 @@ export class CollectionComponent implements OnInit {
       "sYAxisMaxValue":"4.50",
       "numberprefix": "",
       "exportenabled": "1",
-      "theme": "fusion"
+      "theme": "fint"
     },
     "categories": [
       {
@@ -2358,417 +1528,7 @@ export class CollectionComponent implements OnInit {
     ]
   }
 
-  data_stack_coloumn = {
-    "chart": {
-      "caption": "REPO By PORTFOLIO",
-      // "subcaption": " Top 5 Developed Countries",
-      "numbersuffix": " %",
-      // "showsum": "1",
-      "plottooltext": "$label produces <b>$dataValue</b> of energy from $seriesName",
-      "theme": "fusion",
-      "exportenabled": "1",
-      "drawcrossline": "1"
-    },
-    "categories": [
-      {
-        "category": [
-          {
-            "label": "Jul-13"
-          },
-          {
-            "label": "Aug-13"
-          },
-          {
-            "label": "Sep-13"
-          },
-          {
-            "label": "Okt-13"
-          },
-          {
-            "label": "Nov-13"
-          },
-          {
-            "label": "Des-13"
-          },
-          {
-            "label": "Jan-14"
-          },
-          {
-            "label": "Feb-14"
-          },
-          {
-            "label": "Mar-14"
-          },
-          {
-            "label": "Apr-14"
-          },
-          {
-            "label": "May-14"
-          },
-          {
-            "label": "Jun-14"
-          },
-          {
-            "label": "Jul-14"
-          }
-        ]
-      }
-    ],
-    "dataset": [
-      {
-        "seriesname": "HONDA",
-        "data": [
-          {
-            "value": "20.79"
-          },
-          {
-            "value": "19.60"
-          },
-          {
-            "value": "20.10"
-          },
-          {
-            "value": "20.22"
-          },
-          {
-            "value": "19.91"
-          },
-          {
-            "value": "20.11"
-          },
-          {
-            "value": "20.10"
-          },
-          {
-            "value": "20.04"
-          },
-          {
-            "value": "20.28"
-          },
-          {
-            "value": "20.56"
-          },
-          {
-            "value": "20.63"
-          },
-          {
-            "value": "20.89"
-          },
-          {
-            "value": "21.73"
-          }
-        ]
-      },
-      {
-        "seriesname": "YAMAHA",
-        "data": [
-          {
-            "value": "18.96"
-          },
-          {
-            "value": "18.03"
-          },
-          {
-            "value": "17.11"
-          },
-          {
-            "value": "16.89"
-          },
-          {
-            "value": "16.63"
-          },
-          {
-            "value": "17.51"
-          },
-          {
-            "value": "16.54"
-          },
-          {
-            "value": "16.58"
-          },
-          {
-            "value": "17.00"
-          },
-          {
-            "value": "17.47"
-          },
-          {
-            "value": "18.31"
-          },
-          {
-            "value": "17.19"
-          },
-          {
-            "value": "16.89"
-          }
-        ]
-      },
-      {
-        "seriesname": "SUZUKI",
-        "data": [
-          {
-            "value": "5.32"
-          },
-          {
-            "value": "5.61"
-          },
-          {
-            "value": "5.50"
-          },
-          {
-            "value": "6.03"
-          },
-          {
-            "value": "5.66"
-          },
-          {
-            "value": "5.45"
-          },
-          {
-            "value": "5.34"
-          },
-          {
-            "value": "6.12"
-          },
-          {
-            "value": "6.13"
-          },
-          {
-            "value": "5.89"
-          },
-          {
-            "value": "5.96"
-          },
-          {
-            "value": "6.04"
-          },
-          {
-            "value": "5.67"
-          }
-        ]
-      },
-      {
-        "seriesname": "UMCY",
-        "data": [
-          {
-            "value": "42.51"
-          },
-          {
-            "value": "44.77"
-          },
-          {
-            "value": "45.34"
-          },
-          {
-            "value": "45.18"
-          },
-          {
-            "value": "46.44"
-          },
-          {
-            "value": "44.82"
-          },
-          {
-            "value": "47.13"
-          },
-          {
-            "value": "46.43"
-          },
-          {
-            "value": "46.00"
-          },
-          {
-            "value": "45.26"
-          },
-          {
-            "value" : "44.63"
-          },
-          {
-            "value" : "45.12"
-          },
-          {
-            "value" : "45.31"
-          }
-        ]
-      },
-      {
-        "seriesname": "UCAR",
-        "data": [
-          {
-            "value": "2.02"
-          },
-          {
-            "value": "1.89"
-          },
-          {
-            "value": "2.26"
-          },
-          {
-            "value": "2.36"
-          },
-          {
-            "value": "2.48"
-          },
-          {
-            "value": "2.52"
-          },
-          {
-            "value": "2.16"
-          },
-          {
-            "value": "2.33"
-          },
-          {
-            "value": "2.11"
-          },
-          {
-            "value": "2.66"
-          },
-          {
-            "value": "2.51"
-          },
-          {
-            "value": "2.74"
-          },
-          {
-            "value": "2.25"
-          }
-        ]
-      },
-      {
-        "seriesname": "NCAR",
-        "data": [
-          {
-            "value": "3.94"
-          },
-          {
-            "value": "3.62"
-          },
-          {
-            "value": "3.53"
-          },
-          {
-            "value": "3.39"
-          },
-          {
-            "value": "3.36"
-          },
-          {
-            "value": "4.01"
-          },
-          {
-            "value": "3.51"
-          },
-          {
-            "value": "3.38"
-          },
-          {
-            "value" : " 3.78"
-          },
-          {
-            "value": "3.50"
-          },
-          {
-            "value": "3.43"
-          },
-          {
-            "value": "3.96"
-          },
-          {
-            "value": "4.16"
-          },
-        ]
-      },
-      {
-        "seriesname": "NON AISI",
-        "data": [
-          {
-            "value": "5.94"
-          },
-          {
-            "value": "5.99"
-          },
-          {
-            "value": "5.84"
-          },
-          {
-            "value": "5.54"
-          },
-          {
-            "value": "5.19"
-          },
-          {
-            "value": "5.25"
-          },
-          {
-            "value": "4.86"
-          },
-          {
-            "value": "4.79"
-          },
-          {
-            "value": "4.41"
-          },
-          {
-            "value": "4.30"
-          },
-          {
-            "value": "4.18"
-          },
-          {
-            "value": "3.78"
-          },
-          {
-            "value": "3.70"
-          }
-        ]
-      },
-      {
-        "seriesname": "OTHER AISI",
-        "data": [
-          {
-            "value": "0.51"
-          },
-          {
-            "value": "0.48"
-          },
-          {
-            "value": "0.32"
-          },
-          {
-            "value": "0.39"
-          },
-          {
-            "value": "0.33"
-          },
-          {
-            "value": "0.33"
-          },
-          {
-            "value": "0.36"
-          },
-          {
-            "value": "0.34"
-          },
-          {
-            "value": "0.29"
-          },
-          {
-            "value": "0.35"
-          },
-          {
-            "value": "0.35"
-          },
-          {
-            "value": "0.28"
-          },
-          {
-            "value": "0.28"
-          }
-        ]
-      }
-    ]
-  };
+  
 
   data_stack_coloumn2 = {
     "chart": {
@@ -6199,10 +4959,10 @@ export class CollectionComponent implements OnInit {
   height = 0.5 * screen.height;
   type = 'mscombidy2d';
   dataFormat = 'json';
-  dataSource = this.data;
+  
 
   type_bar = 'scrollcolumn2d';
-  dataSourceBar = this.data_bar;
+  dataSourceBar =null;
   dataSource2 = this.data_2;
   dataSource3 = this.data_3;
 
@@ -6223,7 +4983,7 @@ export class CollectionComponent implements OnInit {
   dataSourceLine2 = this.data_line2
 
   type_stack_col = 'stackedcolumn2d';
-  dataSourceStackCol = this.data_stack_coloumn;
+
   dataSourceStackCol2 = this.data_stack_coloumn2;
   dataSourceStackCol3 = this.data_stack_coloumn3;
   dataSourceStackCol4 = this.data_stack_coloumn4;
@@ -6245,11 +5005,843 @@ export class CollectionComponent implements OnInit {
 
   colorScheme = 'cool';
 
+  getCu = localStorage.getItem("currentUser");
+  currentUser=JSON.parse(this.getCu);
 
-  constructor(private services: ServicesService) {
+  list_area = {
+    "app": "mdm",
+    "method": "getBranchArea",
+    "data": null
   }
 
+  branch_params_code = {
+    "data": "WHERE BRANCH_TYPE = 'BR' ORDER BY BRANCH_NAME ASC"
+  }
+
+  branch_params_area = {
+    "data": "WHERE BRANCH_PARENT = '"+this.currentUser["data"].resultUserProfileLocation[0].branch_code+"' ORDER BY BRANCH_NAME ASC"
+  }
+
+  branch_params_code_ho = {
+    "data": "WHERE BRANCH_TYPE = 'BR' AND BRANCH_TYPE NOT IN ('AR','HO') ORDER BY BRANCH_NAME ASC"
+  }
+
+
+  constructor(private service: ServicesService) {
+
+  }
+
+  begin_delq_list=['0.Current',
+    '1.1-30',
+    '3.61-90',
+    '2.31-60',
+    '4.91-120',
+    '5.121-150',
+    '6.151-180',
+    '7.180UP'
+    ]
+    portofolio_list;
+  portofolio_list1=[
+    'NCAR',
+    'UCAR',
+    'MCAR'
+  ]
+
+  portofolio_list2=[
+    'NMCY',
+    'UMCY',
+    'MMCY'
+  ]
+  portofolio_list3=[
+  'CMCY',
+  'CCAR' 
+  ]
+
+  penggolongan_product_list=[
+    'CAPTIVE',
+    'NON CAPTIVE'
+  ]
+
+  object_list=['MOBIL',
+    'MOTOR'
+    ]
+
+    // bulan0=(new Date().getMonth() + ).toString();
+    // bulan1
+    // bulan2
+    // bulan3
+    // bulan4
+    // bulan5
+    // bulan6
+    // bulan7
+    // bulan8
+    // bulan9
+    // bulan10
+    // bulan11
+    // bulan12
+    areaDisable;
+    area;
+    areaList;
+  begin_delq;
+  portofolio;
+  p_product;
+  object;
+
   ngOnInit() {
-    console.log(this.dataCache);
+    //console.log(this.currentUser);
+    this.getFilter();
+
+  }
+
+  filterObject(val:any){
+    if(val=="MOBIL" && this.p_product == "CAPTIVE"){
+      this.portofolio_list=['CCAR'];
+      this.portofolio="CCAR"
+    }
+    else if(val=="MOTOR" && this.p_product == "CAPTIVE"){
+      this.portofolio_list=["CMCY"]
+      this.portofolio="CMCY"
+    } else if (val=="MOTOR" && this.p_product == "NON CAPTIVE") {
+      this.portofolio_list=this.portofolio_list2;
+      this.portofolio="NMCY"
+    }
+    else if (val=="MOBIL" && this.p_product == "NON CAPTIVE") {
+      this.portofolio_list=this.portofolio_list1;
+      this.portofolio="NCAR";
+    }
+  }
+
+  filterGolProduct(val:any){
+    if(val=="CAPTIVE" && this.object == "MOBIL"){
+      this.portofolio_list=['CCAR'];
+      this.portofolio="CCAR"
+    }
+    else if(val=="NON CAPTIVE" && this.object == "MOBIL"){
+      this.portofolio_list=this.portofolio_list1;
+      this.portofolio="NCAR";
+    }
+
+    if(val=="CAPTIVE" && this.object == "MOTOR"){
+      this.portofolio_list=["CMCY"]
+      this.portofolio="CMCY"
+    }
+    else if(val=="NON CAPTIVE" && this.object == "MOTOR"){
+      this.portofolio_list=this.portofolio_list2;
+      this.portofolio="NMCY"
+    }
+  }
+
+  filterBDelq(val:any){
+    this.begin_delq=val;
+    this.ngOnInit();
+  }
+
+
+
+  datas=[];
+  list_branch=[];
+  cabang;
+  setSatus;
+  disable=false;
+  disable2=false;
+  getFilter(){
+    var bran:string;
+    var cu=this.currentUser;
+    // console.log(cu);
+    //validasi area ,branch, atau ho
+    for (var index = 0; index < cu.data.resultProfileUserRole.length; index++) {
+      if(cu.data.resultProfileUserRole[index].role_code == 'DSB_MKT_BR') {
+        // this.cabang=cu['data'].resultUserProfileLocation[0].branch_code;
+        
+        this.list_area.data = this.branch_params_code;
+         this.setSatus="branch"
+         this.disable=true;
+         this.disable2=true;
+        break;
+      } 
+      else if(cu.data.resultProfileUserRole[index].role_code == 'DSB_MKT_AR') {
+        this.list_area.data = this.branch_params_area;
+         this.setSatus="area"
+         this.disable=false;
+         
+        break;
+      }
+      else {
+        this.list_area.data = this.branch_params_code_ho;
+         this.setSatus="ho"
+         this.disable=false;
+      }
+    }
+
+    this.service.postData('post',this.list_area).subscribe(
+      res=>{
+        var temp
+        this.datas=res;
+        // console.log(this.datas);
+        this.list_branch=this.datas;
+
+        // console.log(this.setSatus);
+        if(this.setSatus=="area"&& this.cabang== undefined){
+          this.cabang=this.list_branch['1'].branch_code;    
+          this.areaList=this.currentUser['data'].resultUserProfileLocation
+          this.area=this.currentUser['data'].resultUserProfileLocation[0].branch_code
+          this.areaDisable=true;
+         
+        }
+        if(this.setSatus=="ho"&& this.cabang== undefined){
+          this.cabang=this.list_branch['1'].branch_code;
+          this.areaDisable=false;
+        }
+        if(this.setSatus=="branch"&& this.cabang== undefined){
+          this.cabang=this.currentUser['data'].resultUserProfileLocation[0].branch_code;
+          this.areaDisable=true;
+        }
+
+        if(this.begin_delq== undefined){
+          this.begin_delq=this.begin_delq_list[0];
+        }
+        if(this.portofolio==undefined){
+          this.portofolio_list=this.portofolio_list1
+          this.portofolio="NCAR";
+        }
+        if(this.object==undefined){
+          this.object="MOBIL";
+        }
+        if(this.p_product==undefined){
+          this.p_product="NON CAPTIVE";
+        }
+
+        //console.log(this.setSatus)
+        //panggil semua method cuy
+
+
+        this.getEfektifPerformTable(this.cabang,this.begin_delq,this.p_product,this.object,this.portofolio);
+        this.getEfektifPerformChart(this.cabang,this.begin_delq,this.p_product,this.object,this.portofolio);
+        this.collectionEffectivenessPerformanceLT(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
+        this.collectionEffectivenessPerformanceLC(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDataTabelCollectionBucketByUnit(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDataChartCollectionBucketByUnit(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDataChartCollectionBucketByAmount(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDatacollectionBucketByAmountTable(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDatacollectionRepoByPortoTable(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getCollectionRepoByPortoChart(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
+        // this.getDataMom(this.monthe,this.cabang);
+        //console.log(this.cabang);
+        //console.log(this.begin_delq);
+        //console.log(this.p_product);
+        //console.log(this.object);
+        //console.log(this.portofolio);
+
+      }
+    );
+  }
+
+  // COLLECTION EFFECTIVENESS PERFORMANCE
+  dataEpt;
+ 
+  getEfektifPerformTable(cab,bDelq,pp,obj,porto){
+    var ept={
+      "app": "muf-dashboard",
+      "method": "collectionEffectivenessPerformanceRT",
+      "data": {
+          "begin_delq": bDelq,
+          "branch_code": cab,
+          "portofolio": porto,
+          "object": obj,
+          "penggolongan_product": pp
+      }
+  }
+
+  this.service.postData('post',ept).subscribe(result=>{
+    this.dataEpt=result['data_effectiveness_collection_performance_rt'];
+    // //console.log(this.dataEpt)
+  });
+
+  }
+
+  data_bar = {
+    "chart": {
+      "caption": "Collection Effectiveness Performance",
+      "subcaption": "Mandiri Utama Finance",
+      "xAxisname": "Month",
+      // "pYAxisName": "Amount (In USD)",
+      // "sYAxisName": "Profit %",
+      // "numberSuffix": "",
+      // "sNumberSuffix": "",
+      // "sYAxisMaxValue": "85",
+      // "drawcrossline": "0",
+      "showValues": "0",
+      "theme": "fusion",
+      // "labeldisplay": "auto",
+      "labelFontSize": "10",
+      "exportenabled": "1"
+      
+    },
+    "categories":
+    [
+      {
+        "category": null
+      }
+    ],
+    "dataset": 
+    [
+      {
+        "seriesname": "Back To Current",
+
+        "data": null
+      },
+      {
+        "seriesname": "Delq Awal",
+
+        
+        "data": null
+      },
+      // {
+      //   "seriesname": "Delq Akhir",
+      //   "data": null
+      // },
+      {
+        "seriesname": "Lunas",
+
+        "data": null
+      },
+      {
+        "seriesname": "Repo",
+
+        "data": null
+      },
+      {
+        "seriesname": "Roll Down",
+
+        "data": null
+      },
+      {
+        "seriesname": "Roll Up",
+
+        "data": null
+      },
+      {
+        "seriesname": "Stay",
+        "parentYAxis": "S",
+        "renderAs" : "Bar",
+        "data": null
+      },
+      {
+        "seriesname": "WO",
+
+        "data": null
+      }
+    ]
+  };
+
+  dataEptChart;
+  
+  getEfektifPerformChart(cab,bDelq,pp,obj,porto){
+    var eptChart={
+      "app": "muf-dashboard",
+      "method": "collectionEffectivenessPerformanceRC",
+      "data": {
+          "begin_delq": bDelq,
+          "branch_code": cab,
+          "portofolio": porto,
+          "object": obj,
+          "penggolongan_product": pp
+      }
+    }
+
+
+
+    this.service.postData('post',eptChart).subscribe(resChart=>{
+      this.dataEptChart=resChart
+      // console.log(this.dataEptChart);
+      // this.dataEptChart['data_effectiveness_collection_performance_rc']['category'].forEach(function(value){
+        
+      
+      // });
+      // console.log(tempCat)
+      this.data_bar.categories[0].category= this.dataEptChart['data_effectiveness_collection_performance_rc']['category']
+      this.data_bar.dataset[0].data=this.dataEptChart['data_effectiveness_collection_performance_rc']['data_back_to_current']
+      this.data_bar.dataset[1].data=this.dataEptChart['data_effectiveness_collection_performance_rc']['delq_awal']
+      this.data_bar.dataset[2].data=this.dataEptChart['data_effectiveness_collection_performance_rc']['lunas']
+      this.data_bar.dataset[3].data=this.dataEptChart['data_effectiveness_collection_performance_rc']['repo']
+      this.data_bar.dataset[4].data=this.dataEptChart['data_effectiveness_collection_performance_rc']['roll_down']
+      this.data_bar.dataset[5].data=this.dataEptChart['data_effectiveness_collection_performance_rc']['roll_up']
+      this.data_bar.dataset[6].data=this.dataEptChart['data_effectiveness_collection_performance_rc']['stay']
+      this.data_bar.dataset[7].data=this.dataEptChart['data_effectiveness_collection_performance_rc']['wo']
+      
+      // console.log(this.data_bar.dataset[6].data);
+
+      this.dataSourceBar=this.data_bar
+      // console.log(this.dataSourceBar)
+    })
+
+  }
+
+  eplt=[];
+  collectionEffectivenessPerformanceLT(cab,bDelq,pp,obj,porto){
+    var dataEplt={
+      "app": "muf-dashboard",
+      "method": "collectionEffectivenessPerformanceLT",
+      "data": {
+          "begin_delq": bDelq,
+          "branch_code": cab,
+          "portofolio": porto,
+          "object": obj,
+          "penggolongan_product": pp
+      }
+    }
+
+    this.service.postData('post',dataEplt).subscribe(result=>{
+      this.eplt=result['data_effectiveness_collection_performance_lt'];
+      // console.log(this.eplt);
+
+    });
+  }
+
+  dataSource;
+  data = {
+    "chart": {
+      "caption": "Collection Effectiveness Performance",
+      "subcaption": "Mandiri Utama Finance",
+      "xAxisname": "Month",
+      // "pYAxisName": "Amount (In USD)",
+      // "sYAxisName": "Profit %",
+      // "numberSuffix": "%",
+      // "sNumberSuffix": "%",
+      // "sYAxisMaxValue": "85",
+      // "labelDisplay": "Auto",
+      "showValues": "0",
+      "showLabels": "0",
+      "theme": "fusion",
+      "exportenabled": "1"
+    },
+    "categories": [
+      {
+        "category": null
+      }
+    ],
+    "dataset": [
+      {
+        "seriesname": "% Stay",
+        "parentYAxis": "S",
+        "renderAs" : "Bar",
+        "data": null
+      },
+      {
+        "seriesname": "% Back TO Current",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "% Lunas",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "% Repo",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "% Roll Down",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "% Roll Up",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "% WO",
+        "renderas": "line",
+        "data": null
+      }
+    ]
+  }
+  collectionEffectivenessPerformanceLC(cab,bDelq,pp,obj,porto){
+    var temp=this.data;
+    var epltChart={
+      "app": "muf-dashboard",
+      "method": "collectionEffectivenessPerformanceLC",
+      "data": {
+          "begin_delq": bDelq,
+          "branch_code": cab,
+          "portofolio": porto,
+          "object": obj,
+          "penggolongan_product": pp
+      }
+    }
+
+    // console.log(epltChart);
+    var tempValue;
+    this.service.postData('post',epltChart).subscribe(resChart=>{
+      tempValue=resChart['data_effectiveness_collection_performance_lc'];
+      // console.log(resChart['data_effectiveness_collection_performance_lc'])
+      temp.categories[0].category=tempValue['category'];
+      temp.dataset[0].data=tempValue['stay'];
+      temp.dataset[1].data=tempValue['data_back_to_current']
+      temp.dataset[2].data=tempValue['lunas']
+      temp.dataset[3].data=tempValue['repo']
+      temp.dataset[4].data=tempValue['roll_down']
+      temp.dataset[5].data=tempValue['roll_up']
+      temp.dataset[6].data=tempValue['wo']
+      this.dataSource=temp;
+      //console.log(this.dataSource);
+    })
+  }
+
+
+  bucketUnit=[];
+  getDataTabelCollectionBucketByUnit(cab,bDelq,pp,obj,porto){
+    var tempBucket={
+      "app": "muf-dashboard",
+      "method": "collectionBucketByUnitTable",
+      "data": {
+          "begin_delq": bDelq,
+          "branch_code": cab,
+          "portofolio": porto,
+          "object": obj,
+          "penggolongan_product": pp
+      }
+  
+  }
+    this.service.postData('post',tempBucket).subscribe(result=>{
+      this.bucketUnit=result['data_collection_bucket_by_unit_table'];
+
+      // console.log(this.bucketUnit);
+    })
+  }
+
+  dataSourceBucketByUnit = {
+    "chart": {
+      "caption": "Bucket by Unit",
+      "subcaption": "Mandiri Utama Finance",
+      "xAxisname": "Month",
+      // "pYAxisName": "Amount (In USD)",
+      // "sYAxisName": "Profit %",
+      // "numberSuffix": "",
+      // "sNumberSuffix": "",
+      // "sYAxisMaxValue": "85",
+      "showValues": "0",
+      "labelDisplay": "Auto",
+      "useEllipsesWhenOverflow":"0",
+      "theme": "fusion",
+      "exportenabled": "1"
+    },
+    "categories": [
+      {
+        "category": null
+      }
+    ],
+    "dataset": [
+      {
+        "seriesname": "AR/10^6",
+        "parentYAxis": "S",
+        "renderAs" : "Bar",
+        "data": null
+      },
+      {
+        "seriesname": "01.Current",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "02. 1-30",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "03. 31-60",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "04. 61-90",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "05. 91-120",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "06. 121-150",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "07. >150",
+        "renderas": "line",
+        "data": null
+      }
+    ]
+  }
+
+  getDataChartCollectionBucketByUnit(cab,bDelq,pp,obj,porto){
+    var tempchart;
+    var bucketChart={
+      "app": "muf-dashboard",
+      "method": "collectionBucketByUnitChart",
+      "data": {
+          "begin_delq": bDelq,
+          "branch_code": cab,
+          "portofolio": porto,
+          "object": obj,
+          "penggolongan_product": pp
+      }
+  
+  }
+  this.service.postData('post',bucketChart).subscribe(result=>{
+    tempchart=result['data_collection_bucket_by_unit_chart'];
+    this.dataSourceBucketByUnit.categories[0].category=tempchart['category'];
+    this.dataSourceBucketByUnit.dataset[0].data=tempchart['unit_ar_106'];
+    this.dataSourceBucketByUnit.dataset[1].data=tempchart['unit_1_30'];
+    this.dataSourceBucketByUnit.dataset[2].data=tempchart['unit_31_60'];
+    this.dataSourceBucketByUnit.dataset[3].data=tempchart['unit_61_90'];
+    this.dataSourceBucketByUnit.dataset[4].data=tempchart['unit_91_120'];
+    this.dataSourceBucketByUnit.dataset[5].data=tempchart['unit_121_150'];
+    this.dataSourceBucketByUnit.dataset[6].data=tempchart['unit_lebih_dari_150'];
+    // console.log(tempchart);
+  })
+  
+  }
+
+
+
+  dataSourceBucketByAmount={
+    "chart": {
+      "caption": "Bucket by Amount",
+      "subcaption": "Mandiri Utama Finance",
+      "xAxisname": "Month",
+      // "pYAxisName": "Amount (In USD)",
+      // "sYAxisName": "Profit %",
+      // "numberSuffix": "%",
+      // "sNumberSuffix": "%",
+      // "sYAxisMaxValue": "85",
+      "showValues": "0",
+      "labelDisplay": "Auto",
+      "useEllipsesWhenOverflow":"0",
+      "theme": "fusion",
+      "exportenabled": "1"
+    },
+    "categories": [
+      {
+        "category": null
+      }
+    ],
+    "dataset": [
+      {
+        "seriesname": "AR/10^6",
+        "parentYAxis": "S",
+        "renderAs" : "Bar",
+        "data": null
+      },
+      {
+        "seriesname": "01.Current",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "02. 1-30",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "03. 31-60",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "04. 61-90",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "05. 91-120",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "06. 121-150",
+        "renderas": "line",
+        "data": null
+      },
+      {
+        "seriesname": "07. >150",
+        "renderas": "line",
+        "data": null
+      }
+    ]
+  }
+
+  getDataChartCollectionBucketByAmount(cab,bDelq,pp,obj,porto){
+    var tempchart;
+    var bucketChart={
+      "app": "muf-dashboard",
+      "method": "collectionBucketByAmountChart",
+      "data": {
+          "begin_delq": bDelq,
+          "branch_code": cab,
+          "portofolio": porto,
+          "object": obj,
+          "penggolongan_product": pp
+      }
+    }
+
+    this.service.postData('post',bucketChart).subscribe(res=>{
+      tempchart=res['data_collection_bucket_by_amount_chart'];
+
+      this.dataSourceBucketByAmount.categories[0].category=tempchart['category'];
+    this.dataSourceBucketByAmount.dataset[0].data=tempchart['unit_ar_106'];
+    this.dataSourceBucketByAmount.dataset[1].data=tempchart['unit_1_30'];
+    this.dataSourceBucketByAmount.dataset[2].data=tempchart['unit_31_60'];
+    this.dataSourceBucketByAmount.dataset[3].data=tempchart['unit_61_90'];
+    this.dataSourceBucketByAmount.dataset[4].data=tempchart['unit_91_120'];
+    this.dataSourceBucketByAmount.dataset[5].data=tempchart['unit_121_150'];
+    this.dataSourceBucketByAmount.dataset[6].data=tempchart['unit_lebih_dari_150'];
+      // console.log(tempchart['data_collection_bucket_by_amount_chart']['category'])
+    })
+  }
+
+  dataTableAmount=[];
+  getDatacollectionBucketByAmountTable(cab,bDelq,pp,obj,porto){
+    var tempchart;
+    var bucketAmount={
+      "app": "muf-dashboard",
+      "method": "collectionBucketByAmountTable",
+      "data": {
+          "begin_delq": bDelq,
+          "branch_code": cab,
+          "portofolio": porto,
+          "object": obj,
+          "penggolongan_product": pp
+      }
+  
+  }
+
+  this.service.postData('post',bucketAmount).subscribe(response=>{
+    this.dataTableAmount=response['data_collection_bucket_by_amount_table'];
+    // console.log(this.dataTableAmount);
+  })
+  }
+
+  dataTableRepoPorto=[];
+  getDatacollectionRepoByPortoTable(cab,bDelq,pp,obj,porto){
+    var tempTable;
+    var repoByPorto={
+      "app": "muf-dashboard",
+      "method": "collectionRepoByPortoTable",
+      "data": {
+          "begin_delq": bDelq,
+          "branch_code": cab,
+          "portofolio": porto,
+          "object": obj,
+          "penggolongan_product": pp
+      }
+  
+  }
+
+  this.service.postData('post',repoByPorto).subscribe(result=>{
+    this.dataTableRepoPorto=result['data_collection_repo_by_porto_table']
+    // console.log(this.dataTableRepoPorto)
+  })
+  }
+  
+
+
+  dataChartRepoByPorto= {
+    "chart": {
+      "caption": "REPO By PORTFOLIO",
+      // "subcaption": " Top 5 Developed Countries",
+      "numbersuffix": " %",
+      // "showsum": "1",
+      "showValues": "0",
+      "plottooltext": "$label produces <b>$dataValue</b> of energy from $seriesName",
+      "theme": "fusion",
+      "exportenabled": "1",
+      "drawcrossline": "1"
+    },
+    "categories": [
+      {
+        "category": null
+      }
+    ],
+    "dataset": [
+      {
+        "seriesname": "NMCY",
+        "data": null
+      },
+      {
+        "seriesname": "UMCY",
+        "data": null
+      },
+      {
+        "seriesname": "NCAR",
+        "data": null
+      },
+      {
+        "seriesname": "UCAR",
+        "data": null
+      },
+      {
+        "seriesname": "MMCY",
+        "data": null
+      },
+      {
+        "seriesname": "MCAR",
+        "data": null
+      },
+      {
+        "seriesname": "CMCY",
+        "data": null
+      },
+      {
+        "seriesname": "CCAR",
+        "data": null
+      }
+    ]
+  };
+  getCollectionRepoByPortoChart(cab,bDelq,pp,obj,porto){
+    var tempChart;
+    var ChartRepoByPorto={
+      "app": "muf-dashboard",
+      "method": "collectionRepoByPortoChart",
+      "data": {
+          "begin_delq": bDelq,
+          "branch_code": cab,
+          "portofolio": porto,
+          "object": obj,
+          "penggolongan_product": pp
+      }
+  
+  }
+
+  this.service.postData('post',ChartRepoByPorto).subscribe(res=>{
+    tempChart=res['data_collection_repo_by_porto_chart'];
+    this.dataChartRepoByPorto.categories[0].category=tempChart['category'];
+// var i
+//     for(i=0;i<this.dataChartRepoByPorto.dataset.length;i++){
+//       this.dataChartRepoByPorto.dataset[i].data=tempChart[i];
+//     }
+//     console.log(tempChart)
+    // console.log(this.dataChartRepoByPorto);
+    this.dataChartRepoByPorto.dataset[0].data=tempChart['ccar'];
+    this.dataChartRepoByPorto.dataset[1].data=tempChart['cmcy'];
+    this.dataChartRepoByPorto.dataset[2].data=tempChart['mcar'];
+    this.dataChartRepoByPorto.dataset[3].data=tempChart['mmcy'];
+    this.dataChartRepoByPorto.dataset[4].data=tempChart['ncar'];
+    this.dataChartRepoByPorto.dataset[5].data=tempChart['nmcy'];
+    this.dataChartRepoByPorto.dataset[6].data=tempChart['ucar'];
+    this.dataChartRepoByPorto.dataset[7].data=tempChart['umcy'];
+
+    // console.log(this.dataChartRepoByPorto)
+  });
+
+  }
+  
+  onClickSubmit(){
+    this.ngOnInit();
   }
 }
