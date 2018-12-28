@@ -30,7 +30,22 @@ import { RecoveryComponent } from './components/dashboard/recovery/recovery.comp
 import { InventoryComponent } from './components/dashboard/inventory/inventory.component';
 import { LoginComponent } from './components/login/login.component';
 
+import { OwlDateTimeModule, OwlNativeDateTimeModule, OWL_DATE_TIME_FORMATS} from 'ng-pick-datetime'; 
+import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
+
 FusionChartsModule.fcRoot(FusionCharts, Charts, Zune, Widget, FusionTheme, Candy)
+
+export const MY_MOMENT_FORMATS = {
+  parse: {
+    dateInput: 'DD-MMM-YYYY',
+  },
+  display: {
+    dateInput: 'DD-MMM-YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -55,9 +70,17 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, Zune, Widget, FusionTheme, Candy
     ClrFormsNextModule,
     NgxChartsModule,
     FusionChartsModule,
-    ServiceWorkerModule.register('/dashboard/ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('/dashboard/ngsw-worker.js', { enabled: environment.production }),
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    
+    
   ],
-  providers: [],
+  providers: [
+    {provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS},
+  ],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }

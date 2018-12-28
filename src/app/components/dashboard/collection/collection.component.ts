@@ -27,6 +27,7 @@ export class CollectionComponent implements OnInit {
       "xAxisname": "Month",
       "yaxisname": "Value",
       "exportenabled": "1",
+      "exportMode": "server",
       "xAxisMaxValue" : "1000000000",
       // "xNumberPreffix": "",
       // "sNumberSuffix": "",

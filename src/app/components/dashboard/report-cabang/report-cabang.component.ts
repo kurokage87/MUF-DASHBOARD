@@ -1,13 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ServicesService } from '../../../services/services.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import { DateTimeAdapter, OWL_DATE_TIME_FORMATS, OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
+import { MomentDateTimeAdapter } from 'ng-pick-datetime-moment';
+import * as _moment from 'moment';
+import { Moment } from 'moment';
+import { FormGroup, FormControl } from '@angular/forms';
+// const moment = (_moment as any).default ? (_moment as any).default : _moment;
 
-
+export const MY_MOMENT_FORMATS = {
+  parseInput: 'DD-MMM-YYYY',
+  fullPickerInput: 'DD-MMM-YYYY',
+  datePickerInput: 'DD-MMM-YYYY',
+  timePickerInput: 'DD-MMM-YYYY',
+  monthYearLabel: 'MMM YYYY',
+  dateA11yLabel: 'DD-MMM-YYYY',
+  monthYearA11yLabel: 'MMMM YYYY',
+};
 
 @Component({
   selector: 'app-report-cabang',
   templateUrl: './report-cabang.component.html',
-  styleUrls: ['./report-cabang.component.css']
+  styleUrls: ['./report-cabang.component.css'],
+  providers: [
+    { provide: DateTimeAdapter, useClass: MomentDateTimeAdapter },
+    { provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS },
+  ]
 })
 export class ReportCabangComponent implements OnInit {
   collapsed: boolean = true;
@@ -96,7 +114,12 @@ export class ReportCabangComponent implements OnInit {
   colorProMobDiff2 = ''
   colorProFidDiff1 = ''
   colorProFidDiff2 = ''
-
+  //MTD AVC
+  colorMtdAvc1 = ''
+  colorMtdAvc2 = ''
+  //YTD AVC
+  colorYtdAvc1 = ''
+  colorYtdAvc2 = ''
 
   unitBookingIRUnit = {
     "data_sekarang": null,
@@ -122,7 +145,7 @@ export class ReportCabangComponent implements OnInit {
   }
 
   branch_params_area = {
-    "data": "WHERE BRANCH_PARENT = '" + this.test["data"].resultUserProfileLocation[0].branch_code + "' ORDER BY BRANCH_NAME ASC"
+    "data": "WHERE BRANCH_PARENT = '" + this.test["data"].resultUserProfileLocation[0].branch_code + "' AND BRANCH_TYPE ='BR' AND BRANCH_NAME NOT LIKE '%AREA%' ORDER BY BRANCH_NAME ASC"
   }
 
   branch_params_code_ho = {
@@ -159,6 +182,7 @@ export class ReportCabangComponent implements OnInit {
     method: null,
     data: null
   }
+  month_names = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
   constructor(private service: ServicesService) {
 
@@ -176,19 +200,51 @@ export class ReportCabangComponent implements OnInit {
       { name: 'November', value: '11', f_checked: false, f_disabled: false },
       { name: 'December', value: '12', f_checked: false, f_disabled: false }
     ];
-    this.monthe = (new Date().getMonth() + 1).toString();
+    // this.monthe = (new Date().getMonth() + 1).toString();
+    
+    var currentDate = new Date()
+    var day = currentDate.getDate();
+    var month_index = currentDate.getMonth();
+    var year = currentDate.getFullYear();
 
+    if (this.lunar == undefined) {
+      this.lunar = day + "-" + this.month_names[month_index] + "-" + year;
+    }
+
+    this.monthe = currentDate;
+    
+    console.log(this.monthe)
   }
-
+  tahun = new Date().getFullYear();
+  bulan = new Date().getMonth();
+  day = new Date().getDate();
+  min = new Date(this.tahun, this.bulan-2, 1);
+  // min = new Date(this.tahun, this.bulan, 1)
+  max = new Date(this.tahun, this.bulan, this.day);
+  lunar: any;
   ngOnInit() {
     // console.log(this.test['data'].resultUserProfileLocation[0].branch_code)
     this.getDataBranch();
 
+    // console.log(this.max_date)
 
+  }
+
+  dp(lunar: any) {
+    this.lunar = lunar._d.getDate() + "-" + this.month_names[lunar._d.getMonth()] + "-" + lunar._d.getFullYear();
+    //console.log(this.lunar);
+  }
+
+  onClickSubmit() {
+    // this.ngOnInit();
+    // this.harian = this.dailyReq.format("DD-MMM-YYYY").toUpperCase()+" "+this.daily.getMonth();
+    this.refresh();
+    this.getDataBranch()
   }
 
   getDataBranch() {
     var bran: string;
+
     var cu = this.test;
     //console.log(cu);
     //validasi area ,branch, atau ho
@@ -217,40 +273,55 @@ export class ReportCabangComponent implements OnInit {
     //get branch 
     this.service.postData('post', this.list_area).subscribe(
       res => {
+        let temp_branch = res;
         this.datas = res;
-        //console.log(this.datas);
-        this.list_branch = this.datas;
         if (this.setSatus == "area" && this.cabang == undefined) {
-          this.cabang = this.list_branch['0'].branch_code;
+          this.list_branch = [];
+          this.list_branch.push({ branch_name: "ALL", branch_code: cu.data.resultUserProfileLocation[0].branch_code })
+          temp_branch.forEach(element => {
+            //console.log(element.branch_name)
+            this.list_branch.push(element)
+          });
+          this.cabang = this.list_branch[0].branch_code
+          //console.log(this.cabang.branch_name)
         }
         if (this.setSatus == "ho" && this.cabang == undefined) {
           this.cabang = this.list_branch['1'].branch_code;
         }
         if (this.setSatus == "branch" && this.cabang == undefined) {
-          this.cabang = this.test['data'].resultUserProfileLocation[0].branch_code;
+          this.list_branch = this.test['data'].resultUserProfileLocation
+          this.cabang = this.list_branch[0].branch_code;
         }
+
+        // if(this.lunar==undefined){
+        //   this.lunar=this.monthe;
+        // }
         this.loading = false;
         //panggil semua method cuy
-        this.getDataUnitBookingIR(this.monthe, this.cabang);
-        this.getDataWorkingDay(this.monthe, this.cabang);
-        this.getMtdTarget(this.monthe, this.cabang);
-        this.getDataAvgBookingIR(this.monthe, this.cabang);
-        this.getDataYtdTarget(this.monthe, this.cabang);
-        this.getDataMom(this.monthe, this.cabang);
-        this.getDataYoy(this.monthe, this.cabang);
-        this.getDatAct(this.monthe, this.cabang);
-        this.getDataProyeksi(this.monthe, this.cabang);
-        this.getDataActTarget(this.monthe, this.cabang);
-        this.getDataUnit(this.monthe, this.cabang);
-        this.getDataTotalUnit(this.monthe, this.cabang);
-        this.getDataAmount(this.monthe, this.cabang);
-        this.getDataTotalAmount(this.monthe, this.cabang)
-        this.getDataActUnit(this.monthe, this.cabang);
-        this.getDataActAmount(this.monthe, this.cabang);
-        this.getDataProAmount(this.monthe, this.cabang);
-        this.getDataTotActAmount(this.monthe, this.cabang);
-        this.getDataTotActUnit (this.monthe, this.cabang);
-        this.getTotProAmount(this.monthe, this.cabang);
+        //console.log(this.cabang)
+        this.getDataUnitBookingIR(this.lunar, this.cabang);
+        this.getDataWorkingDay(this.lunar, this.cabang);
+        this.getMtdTarget(this.lunar, this.cabang);
+        this.getDataAvgBookingIR(this.lunar, this.cabang);
+        this.getDataYtdTarget(this.lunar, this.cabang);
+        this.getDataMom(this.lunar, this.cabang);
+        this.getDataYoy(this.lunar, this.cabang);
+        this.getDatAct(this.lunar, this.cabang);
+        this.getDataProyeksi(this.lunar, this.cabang);
+        this.getDataActTarget(this.lunar, this.cabang);
+        this.getDataUnit(this.lunar, this.cabang);
+        this.getDataTotalUnit(this.lunar, this.cabang);
+        this.getDataAmount(this.lunar, this.cabang);
+        this.getDataTotalAmount(this.lunar, this.cabang)
+        this.getDataActUnit(this.lunar, this.cabang);
+        this.getDataActAmount(this.lunar, this.cabang);
+        this.getDataProAmount(this.lunar, this.cabang);
+        this.getDataTotActAmount(this.lunar, this.cabang);
+        this.getDataTotActUnit(this.lunar, this.cabang);
+        this.getTotProAmount(this.lunar, this.cabang);
+        this.getDataWorkDayYoy(this.lunar, this.cabang);
+        this.getWorkDayMom(this.lunar, this.cabang);
+        this.namaCabang();
       }
     );
 
@@ -259,6 +330,21 @@ export class ReportCabangComponent implements OnInit {
   refresh() {
     this.loading = true;
     this.getDataBranch();
+  }
+
+  namaCabang() {
+    var temp = this.list_branch.find(t => t.branch_code == this.cabang);
+    if (this.list_branch[0].branch_code == this.cabang) {
+      this.ncabang = this.test.data.resultUserProfileLocation[0].branch_name;
+    } else {
+      this.ncabang = temp.branch_name;
+    }
+
+    // if(this.list_branch[0].branch_code == val){
+    //   this.ncabang = this.test.resultUserProfileLocation[0].branch_name;
+    // }else{
+    //   this.ncabang = val.branch_name;
+    // }
   }
 
   //get data unit booking IR
@@ -285,20 +371,11 @@ export class ReportCabangComponent implements OnInit {
       this.unitBookingIRUnit.data_bulan_kurang_3 = temp['1'].data_bulan_kurang_3;
       this.unitBookingIRUnit.growth_2_1 = temp['1'].growth_2_1;
       this.unitBookingIRUnit.growth_3_2 = temp['1'].growth_3_2;
-      console.log(temp['1'].data_bulan_kurang_2)
-      console.log(temp['1'].data_sekarang)
-
-      //warna kondisi growth
-      this.colorBookUniGr1 = +temp['1'].data_bulan_kurang_3 > +temp['1'].data_bulan_kurang_2? "red":"green"
-      this.colorBookUniGr2 = +temp['1'].data_bulan_kurang_2 > +temp['1'].data_sekarang ? "red" : "green"
-      console.log(this.colorBookUniGr2)
-
-      // if(temp['1'].data_bulan_kurang_2 > temp['1'].data_sekarang){
-      //   this.colorBookUniGr2 = 'red'
-      // }else if(temp['1'].data_bulan_kurang_2 < temp['1'].data_sekarang){
-      //   this.colorBookUniGr2 = 'green'
-      // }
-
+      //console.log(temp['1'].data_bulan_kurang_2)
+      //console.log(temp['1'].data_sekarang)
+      //warna untuk nilai bookingIR
+      this.colorBookUniGr1 = +temp['1'].growth_2_1 >= 0 ? "green" : "red"
+      this.colorBookUniGr2 = +temp['1'].growth_3_2 >= 0 ? 'green' : 'red'
 
       this.unitBookingIRAmount.data_sekarang = temp['0'].data_sekarang;
       this.unitBookingIRAmount.data_bulan_kurang_2 = temp['0'].data_bulan_kurang_2;
@@ -306,21 +383,8 @@ export class ReportCabangComponent implements OnInit {
       this.unitBookingIRAmount.growth_2_1 = temp['0'].growth_2_1;
       this.unitBookingIRAmount.growth_3_2 = temp['0'].growth_3_2;
 
-      this.colorBookAmntiGr1 = +temp['0'].data_bulan_kurang_3 > +temp['0'].data_bulan_kurang_2? "red":"green"
-      this.colorBookAmntiGr2 = +temp['0'].data_bulan_kurang_2 > +temp['0'].data_sekarang ? "red" : "green"
-      
-      //warna kondisi growth
-      // if(temp['0'].data_bulan_kurang_3 > temp['0'].data_bulan_kurang_2 || temp['0'].data_bulan_kurang_2 > temp['0'].data_sekarang){
-      //   this.colorBookAmntiGr1 = 'red'
-      // }else if(temp['0'].data_bulan_kurang_3 < temp['0'].data_bulan_kurang_2){
-      //   this.colorBookAmntiGr1 = 'green'
-      // }
-
-      // if(temp['0'].data_bulan_kurang_2 > temp['0'].data_sekarang){
-      //   this.colorBookAmntiGr1 = 'red'
-      // }else if(temp['0'].data_bulan_kurang_2 < temp['0'].data_sekarang){
-      //   this.colorBookAmntiGr2 = 'green'
-      // }
+      this.colorBookAmntiGr1 = +temp['0'].growth_2_1 < 0 ? "red" : "green"
+      this.colorBookAmntiGr2 = +temp['0'].growth_3_2 < 0 ? "red" : "green"
     })
 
 
@@ -334,8 +398,11 @@ export class ReportCabangComponent implements OnInit {
     "workday2": null,
     "title3": null,
     "workday3": null,
-    "title4": null
+    "title4": null,
+    "workday1hk": null
   }
+
+  tanggal: any
   getDataWorkingDay(bulan, br_code) {
     var bulans = {
       "app": "muf-dashboard",
@@ -349,22 +416,88 @@ export class ReportCabangComponent implements OnInit {
     //get data working day untuk title
     this.service.postApi('post', bulans).subscribe(getTanggal => {
       tgl = getTanggal;
-      this.tableTitle.title1 = tgl['data_count_work_day'][0].periode;
-      this.tableTitle.workday1 = tgl['data_count_work_day'][0].count_work_day
-      this.tableTitle.title2 = tgl['data_count_work_day'][1].periode;
-      this.tableTitle.workday2 = tgl['data_count_work_day'][1].count_work_day
-      this.tableTitle.title3 = tgl['data_count_work_day'][2].periode;
-      this.tableTitle.workday3 = tgl['data_count_work_day'][2].count_work_day
+      // console.log(this.monthe)
+      this.tanggal = new Date(this.monthe).getDate();
+      // console.log(this.lunar)
+      let tgl_skrg = tgl['data_count_work_day'][3].periode;
+      this.tableTitle.title1 = tgl_skrg.substring(3).replace("-", " ")
+      // console.log(this.tableTitle.title1.substring(3));
+      this.tableTitle.workday1 = tgl['data_count_work_day'][3].count_work_day //sisa hari kerja
+      this.tableTitle.title2 = tgl['data_count_work_day'][1].periode.substring(3).replace("-", " ");
+      console.log(this.tableTitle.title2)
+      this.tableTitle.workday2 = tgl['data_count_work_day'][1].count_work_day //hari kerja
+      this.tableTitle.title3 = tgl['data_count_work_day'][0].periode.substring(3).replace("-", " ");
+      this.tableTitle.workday3 = tgl['data_count_work_day'][0].count_work_day //hari kerja
+      this.tableTitle.workday1hk = tgl['data_count_work_day'][2].count_work_day
 
-      let tggl = new Date(this.tableTitle.title1);
+
+      let tggl = new Date(this.monthe);
       let tahun = (tggl.getFullYear() - 1)
       let bln = tggl.getMonth()
-      let thn_blkg = new Date(tahun, bln)
+      
+      this.tableTitle.title4 = this.month_names[bln] +" "+tahun.toString().substring(2);
+      console.log(this.tableTitle.title4);
 
-      this.tableTitle.title4 = thn_blkg
 
     })
 
+  }
+
+
+  countWorkYoy = {
+    "hk_now": null,
+    "hk_past_year": null,
+    "title_past_year": null
+  }
+
+  getDataWorkDayYoy(bulan, br_code) {
+    let workDaysYoy = {
+      "app": "muf-dashboard",
+      "method": "countWorkDayYOY",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    let hk;
+
+    this.service.postApi('post', workDaysYoy).subscribe(
+      getTanggal => {
+        hk = getTanggal;
+        this.countWorkYoy.title_past_year = hk['data_count_work_day'][0].periode
+        console.log(this.countWorkYoy.title_past_year);
+        this.countWorkYoy.hk_past_year = hk['data_count_work_day'][0].count_work_day;
+        this.countWorkYoy.hk_now = hk['data_count_work_day'][1].count_work_day;
+      }
+    )
+
+  }
+
+  countWorkMom = {
+    "hk_now": null,
+    "hk_past_year": null
+  }
+
+  getWorkDayMom(bulan, br_code) {
+    let workDaysMom = {
+      "app": "muf-dashboard",
+      "method": "countWorkDayMOM",
+      "data":
+      {
+        "bulan": bulan,
+        "branch_code": br_code
+      }
+    }
+
+    this.service.postApi('post', workDaysMom).subscribe(
+      result => {
+        let hk = result['data_count_work_day'];
+        this.countWorkMom.hk_now = hk[1].count_work_day
+        this.countWorkMom.hk_past_year = hk[0].count_work_day
+      }
+    )
   }
 
   target = {
@@ -392,10 +525,15 @@ export class ReportCabangComponent implements OnInit {
         this.target.target_amount_realisasi = mtd['data'][0].realisasi;
         this.target.target_amount_acievment = mtd['data'][0].acievment;
 
+        this.colorMtdAvc1 = +mtd['data'][0].acievment < 0 ? 'red' : 'green'
+
         this.target.target_unit = mtd['data'][1].target;
         this.target.target_unit_realisasi = mtd['data'][1].realisasi;
         this.target.target_unit_acievment = mtd['data'][1].acievment;
         //console.log(mtd)
+
+        this.colorMtdAvc2 = +mtd['data'][1].acievment < 0 ? 'red' : 'green'
+
       }
     );
 
@@ -435,17 +573,18 @@ export class ReportCabangComponent implements OnInit {
       this.dataAvg.avg_growth_unit2_1 = avg['data'][1].growth_2_1;
       this.dataAvg.avg_growth_unit3_2 = avg['data'][1].growth_3_2;
 
-      this.colorAvgUniGr1 = +avg['data'][1].data_bulan_kurang_3 > +avg['data'][1].data_bulan_kurang_2 ? "red":"green"
-      this.colorAvgUniGr2 = +avg['data'][1].data_bulan_kurang_2 > +avg['data'][1].data_sekarang ? "red":"green"
+      this.colorAvgUniGr1 = +avg['data'][1].growth_2_1 < 0 ? "red" : "green"
+      this.colorAvgUniGr2 = +avg['data'][1].growth_3_2 < 0 ? "red" : "green"
 
       this.dataAvg.avg_amount1 = avg['data'][0].data_sekarang;
       this.dataAvg.avg_amount2 = avg['data'][0].data_bulan_kurang_2;
       this.dataAvg.avg_amount3 = avg['data'][0].data_bulan_kurang_3;
       this.dataAvg.avg_growth_amount2_1 = avg['data'][0].growth_2_1;
       this.dataAvg.avg_growth_amount3_2 = avg['data'][0].growth_3_2;
-      
-      this.colorAvgAmntGr1 = +avg['data'][0].data_bulan_kurang_3 > +avg['data'][0].data_bulan_kurang_2 ? "red":"green"
-      this.colorAvgAmntGr2 = +avg['data'][0].data_bulan_kurang_2 > +avg['data'][0].data_sekarang ? "red":"green"
+
+      this.colorAvgAmntGr1 = +avg['data'][0].growth_2_1 < 0 ? "red" : "green"
+      this.colorAvgAmntGr2 = +avg['data'][0].growth_3_2 < 0 ? "red" : "green"
+
     })
 
   }
@@ -478,10 +617,13 @@ export class ReportCabangComponent implements OnInit {
         this.dataYtdTarget.ytd_unit_realisasi = ytd['data'][1].realisasi;
         this.dataYtdTarget.ytd_unit_acievment = ytd['data'][1].acievment;
 
+        this.colorYtdAvc1 = +ytd['data'][1].acievment < 0 ? 'red' : 'green'
+
         this.dataYtdTarget.ytd_amount_target = ytd['data'][0].target;
         this.dataYtdTarget.ytd_amount_realisasi = ytd['data'][0].realisasi;
         this.dataYtdTarget.ytd_amount_acievment = ytd['data'][0].acievment;
 
+        this.colorYtdAvc2 = +ytd['data'][0].acievment < 0 ? 'red' : 'green'
       }
     );
   }
@@ -515,13 +657,13 @@ export class ReportCabangComponent implements OnInit {
         this.dataMom.data_unit_thn_lalu = data_mom['data'][1].data_tahun_lalu
         this.dataMom.data_unit_growth = data_mom['data'][1].growth
 
-        this.colorMom1 = +data_mom['data'][1].data_tahun_lalu > +data_mom['data'][1].data_sekarang ? "red":"green"
+        this.colorMom1 = +data_mom['data'][1].growth < 0 ? "red" : "green"
 
         this.dataMom.data_amount_sekarang = data_mom['data'][0].data_sekarang
         this.dataMom.data_amount_thn_lalu = data_mom['data'][0].data_tahun_lalu
         this.dataMom.data_amount_growth = data_mom['data'][0].growth
 
-        this.colorMom2 = +data_mom['data'][0].data_tahun_lalu > +data_mom['data'][0].data_sekarang ? "red":"green"
+        this.colorMom2 = +data_mom['data'][0].growth < 0 ? "red" : "green"
       }
     )
   }
@@ -554,13 +696,13 @@ export class ReportCabangComponent implements OnInit {
         this.dataYoy.unit_tahun_lalu = yoy['1'].realisasi_y_min_1
         this.dataYoy.unit_growth = yoy['1'].growth
 
-        this.colorYoy1 = +yoy['1'].realisasi_y_min_1 > +yoy['1'].realisasi ? "red":"green"
+        this.colorYoy1 = +yoy['1'].growth < 0 ? "red" : "green"
 
         this.dataYoy.amout_sekarang = yoy['0'].realisasi
         this.dataYoy.amount_tahun_lalu = yoy['0'].realisasi_y_min_1
         this.dataYoy.amount_growth = yoy['0'].growth
 
-        this.colorYoy2 = +yoy['0'].realisasi_y_min_1 > +yoy['0'].realisasi ? "red":"green"
+        this.colorYoy2 = +yoy['0'].growth < 0 ? "red" : "green"
       }
     )
   }
@@ -613,8 +755,23 @@ export class ReportCabangComponent implements OnInit {
         this.dataAct.mob_diff1 = act['0'].diff1
         this.dataAct.mob_diff2 = act['0'].diff2
 
-        this.colorActMobDiff1 = +act['0'].bs_FPD > +act['0'].bl_FPD ? "red" : "green"
-        this.colorActMobDiff2 = +act['0'].bs_FPD > +act['0'].dbl_FPD ? "red" : "green"
+        // this.colorActMobDiff1 = +act['0'].bs_FPD > +act['0'].bl_FPD ? "red" : "green"
+        if (+act['0'].bs_FPD > +act['0'].bl_FPD) {
+          this.colorActMobDiff1 = "red"
+        } else if (+act['0'].bs_FPD < +act['0'].bl_FPD) {
+          this.colorActMobDiff1 = "green"
+        } else {
+          this.colorActMobDiff1 = "black"
+        }
+
+        // this.colorActMobDiff2 = +act['0'].bs_FPD > +act['0'].dbl_FPD ? "red" : "green"
+        if (+act['0'].bs_FPD > +act['0'].dbl_FPD) {
+          this.colorActMobDiff2 = "red"
+        } else if (+act['0'].bs_FPD < +act['0'].dbl_FPD) {
+          this.colorActMobDiff2 = "green"
+        } else {
+          this.colorActMobDiff2 = "black"
+        }
 
         this.dataAct.f3pd_bl = act['1'].bl_FPD
         this.dataAct.f3pd_bs = act['1'].bs_FPD
@@ -622,8 +779,23 @@ export class ReportCabangComponent implements OnInit {
         this.dataAct.f3pd_diff1 = act['1'].diff1
         this.dataAct.f3pd_diff2 = act['1'].diff2
 
-        this.colorActF3pdDiff1 = +act['1'].bs_FPD > +act['1'].bl_FPD ? "red" : "green"
-        this.colorActF3pdDiff2 = +act['1'].bs_FPD > +act['1'].dbl_FPD ? "red" : "green"
+        // this.colorActF3pdDiff1 = +act['1'].bs_FPD > +act['1'].bl_FPD ? "red" : "green"
+        if (+act['1'].bs_FPD > +act['1'].bl_FPD) {
+          this.colorActF3pdDiff1 = "red"
+        } else if (+act['1'].bs_FPD < +act['1'].bl_FPD) {
+          this.colorActF3pdDiff1 = "green"
+        } else {
+          this.colorActF3pdDiff1 = "black"
+        }
+
+        // this.colorActF3pdDiff2 = +act['1'].bs_FPD > +act['1'].dbl_FPD ? "red" : "green"
+        if (+act['1'].bs_FPD > +act['1'].dbl_FPD) {
+          this.colorActF3pdDiff2 = "red"
+        } else if (+act['1'].bs_FPD < +act['1'].dbl_FPD) {
+          this.colorActF3pdDiff2 = "green"
+        } else {
+          this.colorActF3pdDiff2 = "black"
+        }
 
         this.dataAct.fid_bl = act['2'].bl_FPD
         this.dataAct.fid_bs = act['2'].bs_FPD
@@ -631,8 +803,23 @@ export class ReportCabangComponent implements OnInit {
         this.dataAct.fid_diff1 = act['2'].diff1
         this.dataAct.fid_diff2 = act['2'].diff2
 
-        this.colorActFidDiff1 = +act['2'].bs_FPD > +act['2'].bl_FPD ? "red" : "green"
-        this.colorActFidDiff2 = +act['2'].bs_FPD > +act['2'].dbl_FPD ? "red" : "green"
+        // this.colorActFidDiff1 = +act['2'].bs_FPD > +act['2'].bl_FPD ? "red" : "green"
+        if (+act['2'].bs_FPD > +act['2'].bl_FPD) {
+          this.colorActFidDiff1 = "red"
+        } else if (+act['2'].bs_FPD < +act['2'].bl_FPD) {
+          this.colorActFidDiff1 = "green"
+        } else {
+          this.colorActFidDiff1 = "black"
+        }
+
+        // this.colorActFidDiff2 = +act['2'].bs_FPD > +act['2'].dbl_FPD ? "red" : "green"
+        if (+act['2'].bs_FPD > +act['2'].dbl_FPD) {
+          this.colorActFidDiff2 = "red"
+        } else if (+act['2'].bs_FPD < +act['2'].dbl_FPD) {
+          this.colorActFidDiff2 = "green"
+        } else {
+          this.colorActFidDiff2 = "black"
+        }
 
         this.dataAct.fpd_bl = act['3'].bl_FPD
         this.dataAct.fpd_bs = act['3'].bs_FPD
@@ -640,8 +827,22 @@ export class ReportCabangComponent implements OnInit {
         this.dataAct.fpd_diff1 = act['3'].diff1
         this.dataAct.fpd_diff2 = act['3'].diff2
 
-        this.colorActFpdDiff1 = +act['3'].bs_FPD > +act['3'].bl_FPD ? "red" : "green"
-        this.colorActFpdDiff2 = +act['3'].bs_FPD > +act['3'].dbl_FPD ? "red" : "green"
+        // this.colorActFpdDiff1 = +act['3'].bs_FPD > +act['3'].bl_FPD ? "red" : "green"
+        if (+act['3'].bs_FPD > +act['3'].bl_FPD) {
+          this.colorActFpdDiff1 = "red"
+        } else if (+act['3'].bs_FPD < +act['3'].bl_FPD) {
+          this.colorActFpdDiff1 = "green"
+        } else {
+          this.colorActFpdDiff1 = "black"
+        }
+        // this.colorActFpdDiff2 = +act['3'].bs_FPD > +act['3'].dbl_FPD ? "red" : "green"
+        if (+act['3'].bs_FPD > +act['3'].dbl_FPD) {
+          this.colorActFpdDiff2 = "red"
+        } else if (+act['3'].bs_FPD < +act['3'].dbl_FPD) {
+          this.colorActFpdDiff2 = "green"
+        } else {
+          this.colorActFpdDiff2 = "black"
+        }
       }
 
     )
@@ -694,20 +895,20 @@ export class ReportCabangComponent implements OnInit {
         this.dataPro.mob_diff1 = proyeksi['0'].diff1
         this.dataPro.mob_diff2 = proyeksi['0'].diff2
 
-        if(proyeksi['0'].diff1 > 99){
-          this.colorProMobDiff1 = 'green'
-        } else if(proyeksi['0'].diff1 < 95){
+        if (+proyeksi['0'].bs_FPD > +proyeksi['0'].bl_FPD) {
           this.colorProMobDiff1 = 'red'
-        }else{
-          this.colorProMobDiff1 = 'yellow'
+        } else if (+proyeksi['0'].bs_FPD < +proyeksi['0'].bl_FPD) {
+          this.colorProMobDiff1 = 'green'
+        } else {
+          this.colorProMobDiff1 = 'black'
         }
 
-        if(proyeksi['0'].diff2 > 99){
-          this.colorProMobDiff2 = 'green'
-        } else if(proyeksi['0'].diff2 < 95){
+        if (+proyeksi['0'].bs_FPD > +proyeksi['0'].dbl_FPD) {
           this.colorProMobDiff2 = 'red'
-        }else{
-          this.colorProMobDiff2 = 'yellow'
+        } else if (+proyeksi['0'].bs_FPD < +proyeksi['0'].dbl_FPD) {
+          this.colorProMobDiff2 = 'green'
+        } else {
+          this.colorProMobDiff2 = 'black'
         }
 
         this.dataPro.f3pd_bl = proyeksi['1'].bl_FPD
@@ -716,20 +917,20 @@ export class ReportCabangComponent implements OnInit {
         this.dataPro.f3pd_diff1 = proyeksi['1'].diff1
         this.dataPro.f3pd_diff2 = proyeksi['1'].diff2
 
-        if(proyeksi['1'].diff1 > 99){
-          this.colorProF3pdDiff1 = 'green'
-        } else if(proyeksi['1'].diff1 < 95){
+        if (+proyeksi['1'].bs_FPD > +proyeksi['1'].bl_FPD) {
           this.colorProF3pdDiff1 = 'red'
-        }else{
-          this.colorProF3pdDiff1 = 'yellow'
+        } else if (+proyeksi['1'].bs_FPD < +proyeksi['1'].bl_FPD) {
+          this.colorProF3pdDiff1 = 'green'
+        } else {
+          this.colorProF3pdDiff1 = 'black'
         }
 
-        if(proyeksi['1'].diff2 > 99){
-          this.colorProF3pdDiff2 = 'green'
-        } else if(proyeksi['1'].diff2 < 95){
+        if (+proyeksi['1'].bs_FPD > +proyeksi['1'].dbl_FPD) {
           this.colorProF3pdDiff2 = 'red'
-        }else{
-          this.colorProF3pdDiff1 = 'yellow'
+        } else if (+proyeksi['1'].bs_FPD < +proyeksi['1'].dbl_FPD) {
+          this.colorProF3pdDiff2 = 'green'
+        } else {
+          this.colorProF3pdDiff2 = 'black'
         }
 
         this.dataPro.fid_bl = proyeksi['2'].bl_FPD
@@ -738,20 +939,20 @@ export class ReportCabangComponent implements OnInit {
         this.dataPro.fid_diff1 = proyeksi['2'].diff1
         this.dataPro.fid_diff2 = proyeksi['2'].diff2
 
-        if(proyeksi['2'].diff1 > 99){
-          this.colorProFidDiff1 = 'green'
-        } else if(proyeksi['2'].diff1 < 95){
+        if (+proyeksi['2'].bs_FPD > +proyeksi['2'].bl_FPD) {
           this.colorProFidDiff1 = 'red'
-        }else{
-          this.colorProFidDiff1 = 'yellow'
+        } else if (+proyeksi['2'].bs_FPD < +proyeksi['2'].bl_FPD) {
+          this.colorProFidDiff1 = 'green'
+        } else {
+          this.colorProFidDiff1 = 'black'
         }
 
-        if(proyeksi['2'].diff2 > 99){
-          this.colorProFidDiff2 = 'green'
-        } else if(proyeksi['2'].diff2 < 95){
+        if (+proyeksi['2'].bs_FPD > +proyeksi['2'].dbl_FPD) {
           this.colorProFidDiff2 = 'red'
-        }else{
-          this.colorProFidDiff2 = 'yellow'
+        } else if (+proyeksi['2'].bs_FPD < +proyeksi['2'].dbl_FPD) {
+          this.colorProFidDiff2 = 'green'
+        } else {
+          this.colorProFidDiff2 = 'black'
         }
 
         this.dataPro.fpd_bl = proyeksi['3'].bl_FPD
@@ -760,20 +961,20 @@ export class ReportCabangComponent implements OnInit {
         this.dataPro.fpd_diff1 = proyeksi['3'].diff1
         this.dataPro.fpd_diff2 = proyeksi['3'].diff2
 
-        if(proyeksi['3'].diff1 > 99){
-          this.colorProFpdDiff1 = 'green'
-        } else if(proyeksi['3'].diff1 < 95){
+        if (+proyeksi['3'].bs_FPD > +proyeksi['3'].bl_FPD) {
           this.colorProFpdDiff1 = 'red'
-        }else{
-          this.colorProFpdDiff1 = 'yellow'
+        } else if (+proyeksi['3'].bs_FPD < +proyeksi['3'].bl_FPD) {
+          this.colorProFpdDiff1 = 'green'
+        } else {
+          this.colorProFpdDiff1 = 'black'
         }
 
-        if(proyeksi['3'].diff2 > 99){
-          this.colorProFpdDiff2 = 'green'
-        } else if(proyeksi['3'].diff2 < 95){
+        if (+proyeksi['3'].bs_FPD > +proyeksi['3'].dbl_FPD) {
           this.colorProFpdDiff2 = 'red'
-        }else{
-          this.colorProFpdDiff2 = 'yellow'
+        } else if (+proyeksi['3'].bs_FPD < +proyeksi['3'].dbl_FPD) {
+          this.colorProFpdDiff2 = 'green'
+        } else {
+          this.colorProFpdDiff2 = 'black'
         }
 
       }
@@ -868,11 +1069,11 @@ export class ReportCabangComponent implements OnInit {
         "branch_code": br_code
       }
     }
-      this.service.postApi('post', amountApi).subscribe(
-        response => {
-          this.amount = response.data
-        }
-      )
+    this.service.postApi('post', amountApi).subscribe(
+      response => {
+        this.amount = response.data
+      }
+    )
   }
 
   getDataTotalAmount(bulan, br_code) {
@@ -892,7 +1093,7 @@ export class ReportCabangComponent implements OnInit {
     )
   }
 
-  getDataActUnit(bulan, br_code){
+  getDataActUnit(bulan, br_code) {
     let actUnitApi = {
       "app": "muf-dashboard",
       "method": "actualInUnit",
@@ -910,7 +1111,7 @@ export class ReportCabangComponent implements OnInit {
     )
   }
 
-  getDataTotActUnit(bulan, br_code){
+  getDataTotActUnit(bulan, br_code) {
     let totUnit = {
       "app": "muf-dashboard",
       "method": "totalActualInUnit",
@@ -928,7 +1129,7 @@ export class ReportCabangComponent implements OnInit {
     )
   }
 
-  getDataActAmount(bulan, br_code){
+  getDataActAmount(bulan, br_code) {
     let actAmount = {
       "app": "muf-dashboard",
       "method": "actualInAmount",
@@ -938,7 +1139,7 @@ export class ReportCabangComponent implements OnInit {
         "branch_code": br_code
       }
     }
-    
+
     this.service.postApi('post', actAmount).subscribe(
       response => {
         this.actualAmount = response.data
@@ -946,7 +1147,7 @@ export class ReportCabangComponent implements OnInit {
     )
   }
 
-  getDataTotActAmount(bulan, br_code){
+  getDataTotActAmount(bulan, br_code) {
     let totAmount = {
       "app": "muf-dashboard",
       "method": "totalActualInAmount",
@@ -964,7 +1165,7 @@ export class ReportCabangComponent implements OnInit {
     )
   }
 
-  getDataProAmount(bulan, br_code){
+  getDataProAmount(bulan, br_code) {
     let proAmount = {
       "app": "muf-dashboard",
       "method": "proyeksiInAmount",
@@ -982,7 +1183,7 @@ export class ReportCabangComponent implements OnInit {
     )
   }
 
-  getTotProAmount(bulan, br_code){
+  getTotProAmount(bulan, br_code) {
     let totPro = {
       "app": "muf-dashboard",
       "method": "totalProyeksiInAmount",
@@ -1000,10 +1201,7 @@ export class ReportCabangComponent implements OnInit {
     )
   }
 
-  onClickSubmit() {
-    this.ngOnInit();
-    // this.getDataBranch()
-  }
+
 
   // ngAfterContentInit(){
   //   this.ngOnInit();

@@ -1,9 +1,9 @@
-<span class="spinner spinner-lg" *ngIf="this.loading">
+<!-- <span class="spinner spinner-lg" *ngIf="this.loading">
   Loading...
-</span>
+</span> -->
 
 <!-- <div *ngIf="!this.loading" class="content-container"> -->
-    <div  class="content-container">
+  <div class="content-container">
   <main class="content-area">
 
     <!-- <ul>
@@ -13,28 +13,39 @@
     <div class="container">
 
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-7">
           <div class="card">
             <div class="card-block">
               <div class="card-text">
                 <form class="clr-form clr-form-compact" action="">
-                  <div class="row">
-                    <div class="row col-md-4" style="text-align: left">
-                      <div class="row col-md-12">
-                        <!-- <div class="form-group"> -->
-                        <div class="col-md-2">
-                          <label for="" class="control-label">Bulan</label>
-                        </div>
-                        <div class="col-md-10" *ngIf="months">
-                          <select placeholder="pilih bulan"  name="area2" id="area2" class="form-control" [(ngModel)]="monthe">
-                            <option *ngFor="let s of months" [ngValue]="s.value">{{s.name}}</option>
-                          </select>
-                        </div>
-                        <!-- </div> -->
-                        <!-- <p>{{monthe}}</p> -->
+                  <!-- <div class="row"> -->
+                  <!-- <div class="row col-md-4" style="text-align: left">-->
+                  <div class="row col-md-12">
+                    <!-- <div class="form-group"> -->
+                    <div class="col-md-10">
+                      <!-- <label for="" class="control-label">Bulan</label>
+                        </div> -->
+
+                      <!-- Inputan Bulan start -->
+                      <div class="form-group">
+                        <label for="" class="control-label">Tanggal</label>
+                        <!-- <select clrSelect placeholder="pilih bulan" name="area2" id="area2" class="form-control"
+                          [(ngModel)]="monthe">
+                          <option *ngFor="let s of months" [ngValue]="s.value">{{s.name}}</option>
+                        </select> -->
+                        <input [min]="min" [max]="max" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="monthe" name="monthe" (ngModelChange)="dp($event)">
+                        <owl-date-time #dt [pickerType]="'calendar'"></owl-date-time>
+                        <!-- <input type="date" [min]="min" [max]="max" id="date" name="date" [(ngModel)]="date" clrDate> -->
                       </div>
+                      <!-- Inputan Bulan End -->
+
+
+
+                      <!-- </div> -->
+                      <!-- <p>{{monthe}}</p> -->
                     </div>
-                    <!-- <div class="row col-md-4" style="text-align: left" hidden={{hide}}>
+                  </div>
+                  <!-- <div class="row col-md-4" style="text-align: left" hidden={{hide}}>
                         <div class="row col-md-12">
         
                           <div class="col-md-2">
@@ -48,28 +59,39 @@
              
                         </div>
                       </div> -->
-                    <div class="row col-md-4" style="text-align: left">
-                        <div class="row col-md-12">
-                          <!-- <div class="form-group"> -->
-                          <div class="col-md-2">
-                            <label for="" class="control-label">Branch</label>
-                          </div>
-                          <div class="col-md-10">
-                            <select  name="area" id="area" class="form-control" [(ngModel)]="cabang" [disabled]="hide">
-                              <option  *ngFor="let s of list_branch" [ngValue]="s.branch_code">{{s.branch_name}}</option>
-                            </select>
-                          </div>
-                          <!-- </div> -->
-                        </div>
+                  <br />
+                  <!-- <div class="row col-md-4" style="text-align: left">-->
+                  <div class="row col-md-12">
+                    <!-- <div class="form-group"> -->
+                    <div class="col-md-9">
+                      <!-- <label for="" class="control-label">Branch</label>
+                        </div> -->
+                      <div class="form-group">
+                        <label for="" class="control-label">Branch</label>
+                        <select clrSelect name="area" class="form-control" [(ngModel)]="cabang" [disabled]="hide">
+                          <option *ngFor="let s of list_branch" [ngValue]="s.branch_code">{{s.branch_name}}</option>
+                        </select>
                       </div>
+                      <!-- </div> -->
+                    </div>
+                    <div class="col-md-1">
+                      <button class="btn btn-success" type="submit" (click)="onClickSubmit()">Proses</button>
+                    </div>
                   </div>
-                  <br>
+                  <!-- </div> -->
+                  <!-- <br> -->
                   <!-- <div class="row col-md-12">
                     <button type="submit" class="btn btn-default">Proses</button>
                   </div> -->
-        
+
                 </form>
-                <button type="submit" (click)="onClickSubmit()">Proses</button>
+                <!-- <div class="row col-md-12">
+                    <div class="col-md-3">
+                      </div>
+                  <div class="col-md-1">
+                    <button class="btn btn-success" type="submit" (click)="onClickSubmit()">Proses</button>
+                  </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -81,132 +103,136 @@
           <div class="card">
             <div class="card-block">
               <div class="card-text">
-                  <table class="table table-noborder">
-                      <thead cellspacing="1">
-                        <tr>
-                          <th class="center table-header" colspan="6">Unit Booking IR</th>
-                          <th class="center table-header" colspan="4">MTD Target {{tableTitle.title1 | date: "MMM"}}</th>
-                          <th class="center table-header" colspan="4">MOM</th>
-                        </tr>
-                      </thead>
-                      <tbody >
-                        <tr>
-                          <td rowspan="2" class="middle-center"></td>
-                          <td rowspan="2" class="middle-center">{{tableTitle.title3 | date: "MMM yyyy"}}</td>
-                          <td rowspan="2" class="middle-center">{{tableTitle.title2 | date: "MMM yyyy"}}</td>
-                          <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}}</td>
-                          <td colspan="2" class="header2">Growth</td>
-                          <td rowspan="2" class="middle-center"></td>
-                          <td rowspan="2" class="middle-center">Target</td>
-                          <td rowspan="2" class="middle-center">Realisasi</td>
-                          <td rowspan="2" class="middle-center">Acv %</td>
-                          <td rowspan="2" class="middle-center"></td>
-                          <td rowspan="2" class="middle-center">{{tableTitle.title4 | date: "MMM yyyy"}}</td>
-                          <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}}</td>
-                          <td rowspan="2" class="middle-center">Growth</td>
-                          <td rowspan="5" style="vertical-align: bottom">JUTAAN</td>
-                        </tr>
-                        <tr>
-                          <td class="header2">{{tableTitle.title3 | date: "MMM yyyy"}} - {{tableTitle.title2 | date: "MMM yyyy"}}</td>
-                          <td class="header2">{{tableTitle.title2 | date: "MMM yyyy"}} - {{tableTitle.title1 | date: "MMM yyyy"}}</td>
-                        </tr>
-                        <tr>
-                          <td class="header2">Unit</td>
-                          <td >{{unitBookingIRUnit.data_bulan_kurang_3 |  number:"1.0-0"}}</td>
-                          <td >{{unitBookingIRUnit.data_bulan_kurang_2 |  number:"1.0-0"}}</td>
-                          <td >{{unitBookingIRUnit.data_sekarang |  number:"1.0-0"}}</td>
-                          <td [ngStyle]="{'color': colorBookUniGr1}">{{unitBookingIRUnit.growth_3_2}}%</td>
-                          <td [ngStyle]="{'color': colorBookUniGr2}">{{unitBookingIRUnit.growth_2_1}}%</td>
-                          <td class="middle-center">Unit</td>
-                          <td >{{target.target_unit |  number:"1.0-0"}}</td>
-                          <td >{{target.target_unit_realisasi |  number:"1.0-0"}}</td>
-                          <td >{{target.target_unit_acievment}}</td>
-                          <td class="middle-center">Unit</td>
-                          <td>{{dataMom.data_unit_thn_lalu |  number:"1.0-0"}}</td>
-                          <td>{{dataMom.data_unit_sekarang |  number:"1.0-0"}}</td>
-                          <td [ngStyle]="{'color': colorMom1}">{{dataMom.data_unit_growth}}%</td>
-                        </tr>
-                        <tr>
-                          <td class="header2">Amount</td>
-                          <td >{{unitBookingIRAmount.data_bulan_kurang_3 |  number:"1.0-0"}}</td>
-                          <td >{{unitBookingIRAmount.data_bulan_kurang_2 |  number:"1.0-0"}}</td>
-                          <td >{{unitBookingIRAmount.data_sekarang |  number:"1.0-0"}}</td>
-                          <td [ngStyle]="{'color': colorBookAmntiGr1}">{{unitBookingIRAmount.growth_3_2}}%</td>
-                          <td [ngStyle]="{'color': colorBookAmntiGr2}">{{unitBookingIRAmount.growth_2_1}}%</td>
-                          <td class="middle-center">Amount</td>
-                          <td >{{target.target_amount | number:"1.0-0"}}</td>
-                          <td >{{target.target_amount_realisasi | number:"1.0-0"}}</td>
-                          <td >{{target.target_amount_acievment}}</td>
-                          <td class="middle-center">Amount</td>
-                          <td>{{dataMom.data_amount_thn_lalu | number:"1.0-0"}}</td>
-                          <td>{{dataMom.data_amount_sekarang | number:"1.0-0"}}</td>
-                          <td [ngStyle]="{'color': colorMom2}">{{dataMom.data_amount_growth}}%</td>
-                        </tr>
-                      </tbody>
-                      <thead>
-                        <tr>
-                          <th class="center table-header" colspan="6">Average Booking IR/ Day</th>
-                          <th class="center table-header" colspan="4">YTD Target Jan - {{tableTitle.title1 | date: "MMM yyyy"}}</th>
-                          <th class="center table-header" colspan="4">YOY</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td rowspan="2" class="middle-center"></td>
-                          <td rowspan="2" class="middle-center">{{tableTitle.title3 | date: "MMM yyyy"}} ({{tableTitle.workday3}})</td>
-                          <td rowspan="2" class="middle-center">{{tableTitle.title2 | date: "MMM yyyy"}} ({{tableTitle.workday2}})</td>
-                          <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} ({{tableTitle.workday1}})</td>
-                          <td colspan="2" class="header2">Growth</td>
-                          <td rowspan="2" class="middle-center"></td>
-                          <td rowspan="2" class="middle-center">Target</td>
-                          <td rowspan="2" class="middle-center">Realisasi</td>
-                          <td rowspan="2" class="middle-center">Acv %</td>
-                          <td rowspan="2" class="middle-center"></td>
-                          <td rowspan="2" class="middle-center">{{tableTitle.title4 | date: "MMM yyyy"}}</td>
-                          <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}}</td>
-                          <td rowspan="2" class="middle-center">Growth</td>
-                          <td rowspan="5" style="vertical-align: bottom">JUTAAN</td>
-                        </tr>
-                        <tr>
-                          <td class="header2">{{tableTitle.title3 | date: "MMM yyyy"}} - {{tableTitle.title2 | date: "MMM yyyy"}}</td>
-                          <td class="header2">{{tableTitle.title2 | date: "MMM yyyy"}} - {{tableTitle.title1 | date: "MMM yyyy"}}</td>
-                        </tr>
-                        <tr>
-                          <td class="header2">AVG Unit</td>
-                          <td >{{dataAvg.avg_unit3 | number:"1.0-0"}}</td>
-                          <td >{{dataAvg.avg_unit2 | number:"1.0-0"}}</td>
-                          <td >{{dataAvg.avg_unit1| number:"1.0-0"}}</td>
-                          <td [ngStyle]="{'color': colorAvgUniGr1}">{{this.dataAvg.avg_growth_unit3_2}}%</td>
-                          <td [ngStyle]="{'color': colorAvgUniGr2}">{{this.dataAvg.avg_growth_unit2_1}}%</td>
-                          <td class="header2">Unit</td>
-                          <td >{{dataYtdTarget.ytd_unit_target | number:"1.0-0"}}</td>
-                          <td >{{dataYtdTarget.ytd_unit_realisasi | number:"1.0-0"}}</td>
-                          <td >{{dataYtdTarget.ytd_unit_acievment}}</td>
-                          <td class="header2">Unit</td>
-                          <td >{{dataYoy.unit_tahun_lalu}}</td>
-                          <td >{{dataYoy.unit_sekarang}}</td>
-                          <td [ngStyle]="{'color': colorYoy1}">{{dataYoy.unit_growth}}%</td>
-                        </tr>
-                        <tr>
-                          <td class="middle-center">AVG Amount</td>
-                          <td >{{dataAvg.avg_amount3 | number: "1.0-0"}}</td>
-                          <td >{{dataAvg.avg_amount2 | number: "1.0-0"}}</td>
-                          <td >{{dataAvg.avg_amount1 | number: "1.0-0"}}</td>
-                          <td [ngStyle]="{'color': colorAvgAmntGr1}">{{dataAvg.avg_growth_amount3_2}}%</td>
-                          <td [ngStyle]="{'color': colorAvgAmntGr2}">{{dataAvg.avg_growth_amount2_1 }}%</td>
-                          <td class="middle-center">Amount</td>
-                          <td >{{dataYtdTarget.ytd_amount_target | number: "1.0-0"}}</td>
-                          <td >{{dataYtdTarget.ytd_amount_realisasi | number: "1.0-0"}}</td>
-                          <td >{{dataYtdTarget.ytd_amount_acievment}}</td>
-                          <td class="middle-center">Amount</td>
-                          <td>{{dataYoy.amount_tahun_lalu | number:"1.0-0"}}</td>
-                          <td>{{dataYoy.amout_sekarang | number:"1.0-0"}}</td>
-                          <td [ngStyle]="{'color': colorYoy2}">{{dataYoy.amount_growth}}%</td>
-                        </tr>
-                      </tbody>
-                    </table>
-    
-                
+                <p style="margin-bottom: 0px; margin-top: 0px"><small><sup>*</sup> HK : Hari Kerja <br> <sup>*</sup>SHK : Sisa Hari Kerja</small></p>
+                <table class="table table-noborder">
+                  <thead cellspacing="1">
+                    <tr>
+                      <th class="center table-header" colspan="6">Sales Booking IR</th>
+                      <th class="center table-header" colspan="4">MTD Target {{tableTitle.title1}}</th>
+                      <th class="center table-header" colspan="4">MOM</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="2" class="middle-center"></td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title3  }}<br>HK ({{this.tableTitle.workday3}})</td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title2  }}<br>HK ({{this.tableTitle.workday2}})</td>
+                      <td rowspan="2" class="middle-center">{{tanggal}} {{tableTitle.title1}}<br>SHK({{this.tableTitle.workday1}})</td>
+                      <td colspan="2" class="header2">Growth</td>
+                      <td rowspan="2" class="middle-center"></td>
+                      <td rowspan="2" class="middle-center">Target</td>
+                      <td rowspan="2" class="middle-center">Realisasi</td>
+                      <td rowspan="2" class="middle-center">Acv %</td>
+                      <td rowspan="2" class="middle-center"></td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title4  }} <br> HK({{this.countWorkMom.hk_past_year}})</td>
+                      <td rowspan="2" class="middle-center">{{tanggal}} {{tableTitle.title1  }} <br> HK({{this.countWorkMom.hk_now}})</td>
+                      <td rowspan="2" class="middle-center">Growth</td>
+                      
+                    </tr>
+                    <tr>
+                      <td class="header2">{{tableTitle.title3  }} - {{tableTitle.title2}}</td>
+                      <td class="header2">{{tableTitle.title2  }} - {{tableTitle.title1}}</td>
+                    </tr>
+                    <tr>
+                      <td class="header2">Unit</td>
+                      <td>{{unitBookingIRUnit.data_bulan_kurang_3 | number:"1.0-0"}}</td>
+                      <td>{{unitBookingIRUnit.data_bulan_kurang_2 | number:"1.0-0"}}</td>
+                      <td>{{unitBookingIRUnit.data_sekarang | number:"1.0-0"}}</td>
+                      <td [ngStyle]="{'color': colorBookUniGr2}">{{unitBookingIRUnit.growth_3_2}}%</td>
+                      <td [ngStyle]="{'color': colorBookUniGr1}">{{unitBookingIRUnit.growth_2_1}}%</td>
+                      <td class="middle-center">Unit</td>
+                      <td>{{target.target_unit | number:"1.0-0"}}</td>
+                      <td>{{target.target_unit_realisasi | number:"1.0-0"}}</td>
+                      <td [ngStyle]="{'color': this.colorMtdAvc2}">{{target.target_unit_acievment}}</td>
+                      <td class="middle-center">Unit</td>
+                      <td>{{dataMom.data_unit_thn_lalu | number:"1.0-0"}}</td>
+                      <td>{{dataMom.data_unit_sekarang | number:"1.0-0"}}</td>
+                      <td [ngStyle]="{'color': colorMom1}">{{dataMom.data_unit_growth}}%</td>
+                    </tr>
+                    <tr>
+                      <td class="header2">Amount (MIO)</td>
+                      <td>{{unitBookingIRAmount.data_bulan_kurang_3 | number:"1.0-0"}}</td>
+                      <td>{{unitBookingIRAmount.data_bulan_kurang_2 | number:"1.0-0"}}</td>
+                      <td>{{unitBookingIRAmount.data_sekarang | number:"1.0-0"}}</td>
+                      <td [ngStyle]="{'color': colorBookAmntiGr2}">{{unitBookingIRAmount.growth_3_2}}%</td>
+                      <td [ngStyle]="{'color': colorBookAmntiGr1}">{{unitBookingIRAmount.growth_2_1}}%</td>
+                      <td class="middle-center">Amount (MIO)</td>
+                      <td>{{target.target_amount | number:"1.0-0"}}</td>
+                      <td>{{target.target_amount_realisasi | number:"1.0-0"}}</td>
+                      <td [ngStyle]="{'color': colorMtdAvc1}">{{target.target_amount_acievment}}</td>
+                      <td class="middle-center">Amount (MIO)</td>
+                      <td>{{dataMom.data_amount_thn_lalu | number:"1.0-0"}}</td>
+                      <td>{{dataMom.data_amount_sekarang | number:"1.0-0"}}</td>
+                      <td [ngStyle]="{'color': colorMom2}">{{dataMom.data_amount_growth}}%</td>
+                    </tr>
+                  </tbody>
+                  <thead>
+                    <tr>
+                      <th class="center table-header" colspan="6">Average Booking IR/ Day</th>
+                      <th class="center table-header" colspan="4">YTD Target Jan - {{tableTitle.title1 | date: "MMM
+                        yyyy"}}</th>
+                      <th class="center table-header" colspan="4">YOY</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td rowspan="2" class="middle-center"></td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title3  }} <br> HK({{this.tableTitle.workday3}})
+                      </td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title2  }} <br> HK({{this.tableTitle.workday2}})
+                      </td>
+                      <td rowspan="2" class="middle-center">{{tanggal}} {{tableTitle.title1  }} <br> HK({{this.tableTitle.workday1hk}})
+                      </td>
+                      <td colspan="2" class="header2">Growth</td>
+                      <td rowspan="2" class="middle-center"></td>
+                      <td rowspan="2" class="middle-center">Target</td>
+                      <td rowspan="2" class="middle-center">Realisasi</td>
+                      <td rowspan="2" class="middle-center">Acv %</td>
+                      <td rowspan="2" class="middle-center"></td>
+                      <td rowspan="2" class="middle-center">{{tableTitle.title4  }} <br>HK({{this.countWorkYoy.hk_past_year}})</td>
+                      <td rowspan="2" class="middle-center">{{tanggal}} {{tableTitle.title1  }} <br>HK({{this.countWorkYoy.hk_now}})</td>
+                      <td rowspan="2" class="middle-center">Growth</td>
+                    </tr>
+                    <tr>
+                      <td class="header2">{{tableTitle.title3  }} - {{tableTitle.title2}}</td>
+                      <td class="header2">{{tableTitle.title2  }} - {{tableTitle.title1}}</td>
+                    </tr>
+                    <tr>
+                      <td class="header2">AVG Unit</td>
+                      <td>{{dataAvg.avg_unit3 | number:"1.0-0"}}</td>
+                      <td>{{dataAvg.avg_unit2 | number:"1.0-0"}}</td>
+                      <td>{{dataAvg.avg_unit1| number:"1.0-0"}}</td>
+                      <td [ngStyle]="{'color': colorAvgUniGr2}">{{this.dataAvg.avg_growth_unit3_2}}%</td>
+                      <td [ngStyle]="{'color': colorAvgUniGr1}">{{this.dataAvg.avg_growth_unit2_1}}%</td>
+                      <td class="header2">Unit</td>
+                      <td>{{dataYtdTarget.ytd_unit_target | number:"1.0-0"}}</td>
+                      <td>{{dataYtdTarget.ytd_unit_realisasi | number:"1.0-0"}}</td>
+                      <td [ngStyle]="{'color': colorYtdAvc1}">{{dataYtdTarget.ytd_unit_acievment}}</td>
+                      <td class="header2">Unit</td>
+                      <td>{{dataYoy.unit_tahun_lalu | number:"1.0-0"}}</td>
+                      <td>{{dataYoy.unit_sekarang | number:"1.0-0"}}</td>
+                      <td [ngStyle]="{'color': colorYoy1}">{{dataYoy.unit_growth}}%</td>
+                    </tr>
+                    <tr>
+                      <td class="middle-center">AVG Amount (MIO)</td>
+                      <td>{{dataAvg.avg_amount3 | number: "1.0-0"}}</td>
+                      <td>{{dataAvg.avg_amount2 | number: "1.0-0"}}</td>
+                      <td>{{dataAvg.avg_amount1 | number: "1.0-0"}}</td>
+                      <td [ngStyle]="{'color': colorAvgAmntGr2}">{{dataAvg.avg_growth_amount3_2}}%</td>
+                      <td [ngStyle]="{'color': colorAvgAmntGr1}">{{dataAvg.avg_growth_amount2_1 }}%</td>
+                      <td class="middle-center">Amount (MIO)</td>
+                      <td>{{dataYtdTarget.ytd_amount_target | number: "1.0-0"}}</td>
+                      <td>{{dataYtdTarget.ytd_amount_realisasi | number: "1.0-0"}}</td>
+                      <td [ngStyle]="{'color': colorYtdAvc2}">{{dataYtdTarget.ytd_amount_acievment}}</td>
+                      <td class="middle-center">Amount (MIO)</td>
+                      <td>{{dataYoy.amount_tahun_lalu | number:"1.0-0"}}</td>
+                      <td>{{dataYoy.amout_sekarang | number:"1.0-0"}}</td>
+                      <td [ngStyle]="{'color': colorYoy2}">{{dataYoy.amount_growth}}%</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
 
               </div>
             </div>
@@ -231,23 +257,29 @@
                   <tbody>
                     <tr>
                       <td rowspan="2" class="middle-center">IN AMOUNT</td>
-                      <td rowspan="2" class="middle-center">{{tableTitle.title3 | date: "MMM yyyy"}} ({{tableTitle.workday3}})</td>
-                      <td rowspan="2" class="middle-center">{{tableTitle.title2 | date: "MMM yyyy"}} ({{tableTitle.workday2}})</td>
-                      <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} ({{tableTitle.workday1}})</td>
+                      <td rowspan="2" class="middle-center">{{tanggal}} {{tableTitle.title3  }}
+                      </td>
+                      <td rowspan="2" class="middle-center">{{tanggal}} {{tableTitle.title2  }}
+                      </td>
+                      <td rowspan="2" class="middle-center">{{tanggal}} {{tableTitle.title1  }}
+                      </td>
                       <td colspan="2" class="middle-center">Diff</td>
                       <td class="middle-center" rowspan="2">Target</td>
                       <td class="middle-center" rowspan="2">Realisasi</td>
                       <td rowspan="2" class="middle-center">IN AMOUNT</td>
-                      <td rowspan="2" class="middle-center">{{tableTitle.title3 | date: "MMM yyyy"}} ({{tableTitle.workday3}})</td>
-                      <td rowspan="2" class="middle-center">{{tableTitle.title2 | date: "MMM yyyy"}} ({{tableTitle.workday2}})</td>
-                      <td rowspan="2" class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} ({{tableTitle.workday1}})</td>
+                      <td rowspan="2" class="middle-center">{{tanggal}} {{tableTitle.title3  }}
+                      </td>
+                      <td rowspan="2" class="middle-center">{{tanggal}} {{tableTitle.title2  }}
+                      </td>
+                      <td rowspan="2" class="middle-center">{{tanggal}} {{tableTitle.title1  }}
+                      </td>
                       <td colspan="2" class="middle-center">Diff</td>
                     </tr>
                     <tr>
-                      <td class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} - {{tableTitle.title2 | date: "MMM yyyy"}}</td>
-                      <td class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} - {{tableTitle.title3 | date: "MMM yyyy"}}</td>
-                      <td class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} - {{tableTitle.title2 | date: "MMM yyyy"}}</td>
-                      <td class="middle-center">{{tableTitle.title1 | date: "MMM yyyy"}} - {{tableTitle.title3 | date: "MMM yyyy"}}</td>
+                      <td class="middle-center">{{tableTitle.title1  }} - {{tableTitle.title2}}</td>
+                      <td class="middle-center">{{tableTitle.title1  }} - {{tableTitle.title3}}</td>
+                      <td class="middle-center">{{tableTitle.title1  }} - {{tableTitle.title2}}</td>
+                      <td class="middle-center">{{tableTitle.title1  }} - {{tableTitle.title3}}</td>
                     </tr>
                     <tr>
                       <td class="header2">FPD</td>
@@ -283,39 +315,39 @@
                     </tr>
                     <tr>
                       <td class="header2">30+@6MOB</td>
-                      <td >{{dataAct.mob_dbl}}%</td>
-                      <td >{{dataAct.mob_bl}}%</td>
-                      <td >{{dataAct.mob_bs}}%</td>
+                      <td>{{dataAct.mob_dbl}}%</td>
+                      <td>{{dataAct.mob_bl}}%</td>
+                      <td>{{dataAct.mob_bs}}%</td>
                       <td [ngStyle]="{'color': colorActMobDiff1}">{{dataAct.mob_diff1}}%</td>
                       <td [ngStyle]="{'color': colorActMobDiff2}">{{dataAct.mob_diff2}}%</td>
                       <td>{{dataActTarget.mob_target}}%</td>
                       <td>{{dataActTarget.mob_realisasi}}%</td>
                       <td class="header2">30+@6MOB</td>
-                      <td >{{dataPro.mob_dbl}}%</td>
-                      <td >{{dataPro.mob_bl}}%</td>
-                      <td >{{dataPro.mob_bs}}%</td>
+                      <td>{{dataPro.mob_dbl}}%</td>
+                      <td>{{dataPro.mob_bl}}%</td>
+                      <td>{{dataPro.mob_bs}}%</td>
                       <td [ngStyle]="{'color': colorProMobDiff1}">{{dataPro.mob_diff1}}%</td>
                       <td [ngStyle]="{'color': colorProMobDiff2}">{{dataPro.mob_diff2}}%</td>
                     </tr>
                     <tr>
                       <td class="header2">FID9</td>
-                      <td >{{dataAct.fid_dbl}}%</td>
-                      <td >{{dataAct.fid_bl}}%</td>
-                      <td >{{dataAct.fid_bs}}%</td>
+                      <td>{{dataAct.fid_dbl}}%</td>
+                      <td>{{dataAct.fid_bl}}%</td>
+                      <td>{{dataAct.fid_bs}}%</td>
                       <td [ngStyle]="{'color': colorActFidDiff1}">{{dataAct.fid_diff1}}%</td>
                       <td [ngStyle]="{'color': colorActFidDiff2}">{{dataAct.fid_diff2}}%</td>
                       <td>{{dataActTarget.fid_target}}%</td>
                       <td>{{dataActTarget.fid_realisasi}}%</td>
                       <td class="header2">FID9</td>
-                      <td >{{dataPro.fid_dbl}}%</td>
-                      <td >{{dataPro.fid_bl}}%</td>
-                      <td >{{dataPro.fid_bs}}%</td>
+                      <td>{{dataPro.fid_dbl}}%</td>
+                      <td>{{dataPro.fid_bl}}%</td>
+                      <td>{{dataPro.fid_bs}}%</td>
                       <td [ngStyle]="{'color': colorProFidDiff1}">{{dataPro.fid_diff1}}%</td>
                       <td [ngStyle]="{'color': colorProFidDiff2}">{{dataPro.fid_diff2}}%</td>
                     </tr>
                   </tbody>
                 </table>
-                
+
               </div>
             </div>
           </div>
@@ -339,8 +371,8 @@
                   <tbody>
                     <tr>
                       <td rowspan="2" class="middle-center">PORTOFOLIO</td>
-                      <td colspan="3" class="middle-center">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td colspan="3" class="middle-center">{{tableTitle.title1 | date:"MMM_yy"}}</td>
+                      <td colspan="3" class="middle-center">{{tableTitle.title2 }}<br>HK({{this.tableTitle.workday2}})</td>
+                      <td colspan="3" class="middle-center">{{tanggal}} {{tableTitle.title1 }} <br>HK({{this.tableTitle.workday1hk}})</td>
                     </tr>
                     <tr>
                       <td class="middle-center">OI</td>
@@ -350,7 +382,7 @@
                       <td class="middle-center">PO</td>
                       <td class="middle-center">PPD</td>
                     </tr>
-                    <tr *ngFor="let s of unit"  >
+                    <tr *ngFor="let s of unit">
                       <td>{{s.portfolio_code}}</td>
                       <td>{{s.oi}}</td>
                       <td>{{s.po}}</td>
@@ -372,7 +404,7 @@
                     </tr>
                   </tfoot>
                 </table>
-                
+
               </div>
             </div>
           </div>
@@ -386,13 +418,13 @@
                 <table class="table table-compact table-noborder col-lg-6">
                   <thead>
                     <tr>
-                      <th class="center table-header" colspan="7">AMOUNT (JUTAAN)</th>
+                      <th class="center table-header" colspan="7">AMOUNT (MIO)</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td colspan="3" class="middle-center">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td colspan="3" class="middle-center">{{tableTitle.title1 | date:"MMM_yy"}}</td>
+                      <td colspan="3" class="middle-center">{{tableTitle.title2 }} <br>HK({{this.tableTitle.workday2}})</td>
+                      <td colspan="3" class="middle-center">{{tanggal}} {{tableTitle.title1 }} <br>HK({{this.tableTitle.workday1hk}})</td>
                     </tr>
                     <tr>
                       <td class="middle-center">OI</td>
@@ -448,21 +480,21 @@
                   <tbody>
                     <tr>
                       <td class="column1" colspan="2">PORTFOLIO</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
                     </tr>
-                    
-                    
+
+
                     <tr *ngFor="let s of actualUnit">
                       <td class="text-left" colspan="2">{{s.portfolio_code}}</td>
                       <td>{{s.dbl_FPD}}%</td>
@@ -479,7 +511,7 @@
                       <td>{{s.bs_30MOB6}}%</td>
                     </tr>
                   </tbody>
-                    <tfoot>
+                  <tfoot>
                     <tr *ngFor="let s of totalActualInUnit">
                       <td class="column1 text-left" colspan="2">TOTAL</td>
                       <td class="column1">{{s.dbl_FPD}}%</td>
@@ -523,18 +555,18 @@
                   <tbody>
                     <tr>
                       <td class="column1">PORTFOLIO</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
                     </tr>
                     <tr *ngFor="let s of actualAmount">
                       <td class="text-left">{{s.portfolio_code}}</td>
@@ -551,8 +583,8 @@
                       <td>{{s.bl_30MOB6}}%</td>
                       <td>{{s.bs_30MOB6}}%</td>
                     </tr>
-                    </tbody>
-                    <tfoot>
+                  </tbody>
+                  <tfoot>
                     <tr *ngFor="let s of totalActualInAmount">
                       <td class="column1 text-left">TOTAL</td>
                       <td class="column1">{{s.dbl_FPD}}%</td>
@@ -568,7 +600,7 @@
                       <td class="column1">{{s.bl_30MOB6}}%</td>
                       <td class="column1">{{s.bs_30MOB6}}%</td>
                     </tr>
-                    </tfoot>
+                  </tfoot>
                 </table>
 
               </div>
@@ -596,20 +628,20 @@
                   <tbody>
                     <tr>
                       <td class="column1">PORTFOLIO</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title3 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title2 | date: "MMM_yy"}}</td>
-                      <td class="column1">{{tableTitle.title1 | date: "MMM_yy"}}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title3 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title2 }}</td>
+                      <td class="column1">{{tanggal}} {{tableTitle.title1 }}</td>
                     </tr>
-                    <tr *ngFor="let s of actualAmount">
+                    <tr *ngFor="let s of proyeksiAmout">
                       <td class="text-left">{{s.portfolio_code}}</td>
                       <td>{{s.dbl_FPD}}%</td>
                       <td>{{s.bl_FPD}}%</td>
@@ -624,9 +656,9 @@
                       <td>{{s.bl_30MOB6}}%</td>
                       <td>{{s.bs_30MOB6}}%</td>
                     </tr>
-                    </tbody>
-                    <tfoot>
-                    <tr *ngFor="let s of totalActualInAmount">
+                  </tbody>
+                  <tfoot>
+                    <tr *ngFor="let s of totalProyeksiInAmount">
                       <td class="column1 text-left">TOTAL</td>
                       <td class="column1">{{s.dbl_FPD}}%</td>
                       <td class="column1">{{s.bl_FPD}}%</td>
@@ -641,7 +673,7 @@
                       <td class="column1">{{s.bl_30MOB6}}%</td>
                       <td class="column1">{{s.bs_30MOB6}}%</td>
                     </tr>
-                    </tfoot>
+                  </tfoot>
                 </table>
 
               </div>
@@ -654,5 +686,10 @@
 
   </main>
   <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
+    <a clrVerticalNavLink routerLink="/dashboard/collection" routerLinkActive="active">Dashboard Collection</a>
+    <a clrVerticalNavLink routerLink="/dashboard/marketing" routerLinkActive="active">Dashboard Marketing</a>
+    <!-- <a clrVerticalNavLink routerLink="/dashboard/recovery" routerLinkActive="active">Dashboard Recovery</a>
+      <a clrVerticalNavLink routerLink="/dashboard/proyeksi" routerLinkActive="active">Dashboard Proyeksi</a>
+      <a clrVerticalNavLink routerLink="/dashboard/inventory" routerLinkActive="active">Dashboard Inventory</a> -->
   </clr-vertical-nav>
 </div>

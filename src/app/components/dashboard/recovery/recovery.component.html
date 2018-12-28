@@ -6,117 +6,104 @@
 <div class="content-container">
   <main class="content-area">
 
-    <h1 class="center">DASHBOARD RECOVERY</h1>
+    <!-- <h1 class="center">DASHBOARD RECOVERY</h1> -->
 
-    <div class="card col-md-12">
-      <div class="card-block">
-        <form class="clr-form clr-form-compact" action="">
-          <div class="row">
-            <div class="row col-md-4" style="text-align: left">
-              <div class="row col-md-12">
-                <!-- <div class="form-group"> -->
-                <div class="col-md-2">
-                  <label for="" class="control-label">Area</label>
+    <!-- <div class="row row1">
+
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-block">
+              <div class="row filterArea center">
+                <div class="col-sm-3 area">
+                  <span>Area</span>
                 </div>
-                <div class="col-md-10">
-                  <select name="area" id="area" class="form-control">
-                    <option value="1">Area 1</option>
-                    <option value="2">Area 2</option>
-                    <option value="3">Area 3</option>
-                    <option value="4">Area 4</option>
+                <div class="col-sm-5 ">
+                  <select clrSelect name="options" [(ngModel)]="area" [disabled]="areaDisable">
+                    <option *ngFor="let e of areaList" [ngValue]="e.branch_code">{{e.branch_name}}</option>
                   </select>
                 </div>
-                <!-- </div> -->
               </div>
-              <div class="row col-md-12">
-                <!-- <div class="form-group"> -->
-                <div class="col-md-2">
-                  <label for="" class="control-label">Area</label>
+              <div class="row filterArea center">
+                <div class="col-sm-3 area">
+                  <span>CABANG</span>
                 </div>
-                <div class="col-md-10">
-                  <select name="area" id="area" class="form-control">
-                    <option value="1">Area 1</option>
-                    <option value="2">Area 2</option>
-                    <option value="3">Area 3</option>
-                    <option value="4">Area 4</option>
+                <div class="col-sm-5 ">
+                  <select clrSelect name="options" [(ngModel)]="cabang" [disabled]="disable2">
+                    <option *ngFor="let b of list_branch" [ngValue]="b.branch_code">{{b.branch_name}}</option>
+  
                   </select>
                 </div>
-                <!-- </div> -->
               </div>
+              <div class="row filterArea center">
+                <div class="col-sm-3 area">
+                  <span>MUFNET</span>
+                </div>
+                <div class="col-sm-5 ">
+                  <select clrSelect name="options" [(ngModel)]="mufnet" [disabled]="true">
+                    <option value="one">One</option>
+                    <option value="two">Two</option>
+                    <option value="three">Three</option>
+                  </select>
+                </div>
+              </div>
+  
             </div>
-            <div class="row col-md-4" style="text-align: left">
-              <div class="row col-md-12">
-                <!-- <div class="form-group"> -->
-                <div class="col-md-2">
-                  <label for="" class="control-label">Area</label>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="card">
+            <div class="card-block">
+              <div class="row filterArea center">
+                <div class="col-sm-6 area">
+                  <span>OBJECT</span>
                 </div>
-                <div class="col-md-10">
-                  <select name="area" id="area" class="form-control">
-                    <option value="1">Area 1</option>
-                    <option value="2">Area 2</option>
-                    <option value="3">Area 3</option>
-                    <option value="4">Area 4</option>
+                <div class="col-sm-3 ">
+                  <select clrSelect name="options" [(ngModel)]="object" (ngModelChange)="filterObject($event)">
+                    <option *ngFor="let o of object_list" [ngValue]="o">{{o}}</option>
                   </select>
                 </div>
-                <!-- </div> -->
+  
               </div>
-              <div class="row col-md-12">
-                <!-- <div class="form-group"> -->
-                <div class="col-md-2">
-                  <label for="" class="control-label">Area</label>
+              <div class="row filterArea center">
+                <div class="col-sm-6 area">
+                  <span>PRODUCT</span>
                 </div>
-                <div class="col-md-10">
-                  <select name="area" id="area" class="form-control">
-                    <option value="1">Area 1</option>
-                    <option value="2">Area 2</option>
-                    <option value="3">Area 3</option>
-                    <option value="4">Area 4</option>
+                <div class="col-sm-3 ">
+                  <select clrSelect name="options" [(ngModel)]="p_product" (ngModelChange)="filterGolProduct($event)">
+                    <option *ngFor="let pp of penggolongan_product_list" [ngValue]="pp">{{pp}}</option>
                   </select>
                 </div>
-                <!-- </div> -->
               </div>
-            </div>
-            <div class="row col-md-4" style="text-align: left">
-              <div class="row col-md-12">
-                <!-- <div class="form-group"> -->
-                <div class="col-md-2">
-                  <label for="" class="control-label">Area</label>
+              <div class="row filterArea center">
+                <div class="col-sm-6 area">
+                  <span>PORTOFOLIO</span>
                 </div>
-                <div class="col-md-10">
-                  <select name="area" id="area" class="form-control">
-                    <option value="1">Area 1</option>
-                    <option value="2">Area 2</option>
-                    <option value="3">Area 3</option>
-                    <option value="4">Area 4</option>
+                <div class="col-sm-3 ">
+                  <select clrSelect name="options" [(ngModel)]="portofolio">
+                    <option *ngFor="let p of portofolio_list" [ngValue]="p">{{p}}</option>
+  
                   </select>
                 </div>
-                <!-- </div> -->
-              </div>
-              <div class="row col-md-12">
-                <!-- <div class="form-group"> -->
-                <div class="col-md-2">
-                  <label for="" class="control-label">Area</label>
+                <div class="col-sm-3 btn-proses">
+                  <button type="button" class="btn btn-primary" (click)="onClickSubmit()"> PROSES </button>
                 </div>
-                <div class="col-md-10">
-                  <select name="area" id="area" class="form-control">
-                    <option value="1">Area 1</option>
-                    <option value="2">Area 2</option>
-                    <option value="3">Area 3</option>
-                    <option value="4">Area 4</option>
-                  </select>
-                </div>
-                <!-- </div> -->
               </div>
             </div>
           </div>
-          <br>
-          <div class="row col-md-12">
-            <button type="submit" class="btn btn-default">Proses</button>
+        </div>
+  
+        <div class="col-md-3 titleCol">
+            <div class="card carding">
+              <div class="card-block cardblok1">
+                <div class="row filterArea center">
+                  <h4 class="center">MONTHLY RECOVERY DASHBOARD</h4>
+                </div>
+    
+              </div>
+            </div>
           </div>
-
-        </form>
-      </div>
-    </div>
+  
+      </div> -->
 
     <div class="row">
 
@@ -415,5 +402,10 @@
     </div>
   </main>
   <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
+      <a clrVerticalNavLink routerLink="/dashboard/collection" routerLinkActive="active">Dashboard Collection</a>
+      <a clrVerticalNavLink routerLink="/dashboard/marketing" routerLinkActive="active">Dashboard Marketing</a>
+      <a clrVerticalNavLink routerLink="/dashboard/recovery" routerLinkActive="active">Dashboard Recovery</a>
+      <a clrVerticalNavLink routerLink="/dashboard/proyeksi" routerLinkActive="active">Dashboard Proyeksi</a>
+      <a clrVerticalNavLink routerLink="/dashboard/inventory" routerLinkActive="active">Dashboard Inventory</a>
   </clr-vertical-nav>
 </div>

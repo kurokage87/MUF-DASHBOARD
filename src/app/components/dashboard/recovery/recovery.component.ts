@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServicesService } from '../../../services/services.service';
 
 @Component({
   selector: 'app-recovery',
@@ -6,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recovery.component.css']
 })
 export class RecoveryComponent implements OnInit {
+
+  mufnet: any
+  listCabang
+  listPortfolio
+
+
+
   line1 = {
     "chart": {
       "caption": "TREND WO JF NON JF BY UNIT",
@@ -1729,766 +1737,6 @@ export class RecoveryComponent implements OnInit {
     ]
   }
 
-  // line9 = {
-  //   "chart": {
-  //     "caption": "VINTAGE_WO_IN UNIT",
-  //     // "yaxisname": "% of Day",
-  //     // "useEllipsesWhenOverflow":"0",
-  //     "rotateLabels": "0",
-  //     "showhovereffect": "1",
-  //     "numbersuffix": "%",
-  //     "drawcrossline": "1",
-  //     // "plottooltext": "<b>$dataValue</b> Proyeksi 0+ $seriesName",
-  //     "theme": "fusion"
-  //   },
-  //   "categories": [
-  //     {
-  //       "category": [
-  //         {
-  //           "label": "1"
-  //         },
-  //         {
-  //           "label": "2"
-  //         },
-  //         {
-  //           "label": "3"
-  //         },
-  //         {
-  //           "label": "4"
-  //         },
-  //         {
-  //           "label": "5"
-  //         },
-  //         {
-  //           "label": "6"
-  //         },
-  //         {
-  //           "label": "7"
-  //         },
-  //         {
-  //           "label": "8"
-  //         },
-  //         {
-  //           "label": "9"
-  //         },
-  //         {
-  //           "label": "10"
-  //         },
-  //         {
-  //           "label": "11"
-  //         },
-  //         {
-  //           "label": "12"
-  //         },
-  //         {
-  //           "label": "13"
-  //         },
-  //         {
-  //           "label": "14"
-  //         },
-  //         {
-  //           "label": "15"
-  //         },
-  //         {
-  //           "label": "16"
-  //         },
-  //         {
-  //           "label": "17"
-  //         }
-  //       ]
-  //     }
-  //   ],
-  //   "dataset": [
-  //     {
-  //       "seriesname": "Q4_16",
-  //       "anchorSides": "4",
-  //       "data": [
-  //         {
-  //           "value": "91.19"
-  //         },
-  //         {
-  //           "value": "90.06"
-  //         },
-  //         {
-  //           "value": "89.69"
-  //         },
-  //         {
-  //           "value": "84.65"
-  //         },
-  //         {
-  //           "value": "81.59"
-  //         },
-  //         {
-  //           "value": "79.03"
-  //         },
-  //         {
-  //           "value": "76.39"
-  //         },
-  //         {
-  //           "value": "73.83"
-  //         },
-  //         {
-  //           "value": "72.67"
-  //         },
-  //         {
-  //           "value": "72.29"
-  //         },
-  //         {
-  //           "value": "68.11"
-  //         },
-  //         {
-  //           "value": "65.26"
-  //         },
-  //         {
-  //           "value": "62.67"
-  //         },
-  //         {
-  //           "value": "60.26"
-  //         },
-  //         {
-  //           "value": "57.64"
-  //         },
-  //         {
-  //           "value": "56.53"
-  //         },
-  //         {
-  //           "value": "56.18"
-  //         },
-  //         {
-  //           "value": "51.66"
-  //         },
-  //         {
-  //           "value": "48.54"
-  //         },
-  //         {
-  //           "value": "41.87"
-  //         },
-  //         {
-  //           "value": "38.92"
-  //         },
-  //         {
-  //           "value": "33.68"
-  //         },
-  //         {
-  //           "value": "32.00"
-  //         },
-  //         {
-  //           "value": "31.44"
-  //         },
-  //         {
-  //           "value": "30.98"
-  //         },
-  //         {
-  //           "value": "29.89"
-  //         },
-  //         {
-  //           "value": "25.11"
-  //         },
-  //         {
-  //           "value": "21.79"
-  //         },
-  //         {
-  //           "value": "18.98"
-  //         },
-  //         {
-  //           "value": "16.73"
-  //         },
-  //         {
-  //           "value": "16.22"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "seriesname": "Jan-18",
-  //       "data": [
-  //         {
-  //           "value": "90.97"
-  //         },
-  //         {
-  //           "value": "87.49"
-  //         },
-  //         {
-  //           "value": "85.21"
-  //         },
-  //         {
-  //           "value": "83.35"
-  //         },
-  //         {
-  //           "value": "80.85"
-  //         },
-  //         {
-  //           "value": "79.97"
-  //         },
-  //         {
-  //           "value": "79.43"
-  //         },
-  //         {
-  //           "value": "75.35"
-  //         },
-  //         {
-  //           "value": "72.61"
-  //         },
-  //         {
-  //           "value": "70.18"
-  //         },
-  //         {
-  //           "value": "67.82"
-  //         },
-  //         {
-  //           "value": "65.28"
-  //         },
-  //         {
-  //           "value": "64.27"
-  //         },
-  //         {
-  //           "value": "63.95"
-  //         },
-  //         {
-  //           "value": "59.58"
-  //         },
-  //         {
-  //           "value": "56.39"
-  //         },
-  //         {
-  //           "value": "53.73"
-  //         },
-  //         {
-  //           "value": "51.29"
-  //         },
-  //         {
-  //           "value": "48.85"
-  //         },
-  //         {
-  //           "value": "47.68"
-  //         },
-  //         {
-  //           "value": "47.35"
-  //         },
-  //         {
-  //           "value": "42.69"
-  //         },
-  //         {
-  //           "value": "39.79"
-  //         },
-  //         {
-  //           "value": "37.36"
-  //         },
-  //         {
-  //           "value": "31.83"
-  //         },
-  //         {
-  //           "value": "29.06"
-  //         },
-  //         {
-  //           "value": "27.88"
-  //         },
-  //         {
-  //           "value": "27.44"
-  //         },
-  //         {
-  //           "value": "22.73"
-  //         },
-  //         {
-  //           "value": "19.42"
-  //         },
-  //         {
-  //           "value": "16.38"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "seriesname": "Feb-18",
-  //       "data": [
-  //         {
-  //           "value": "82.67"
-  //         },
-  //         {
-  //           "value": "79.51"
-  //         },
-  //         {
-  //           "value": "78.51"
-  //         },
-  //         {
-  //           "value": "78.17"
-  //         },
-  //         {
-  //           "value": "74.56"
-  //         },
-  //         {
-  //           "value": "71.86"
-  //         },
-  //         {
-  //           "value": "69.37"
-  //         },
-  //         {
-  //           "value": "66.99"
-  //         },
-  //         {
-  //           "value": "64.45"
-  //         },
-  //         {
-  //           "value": "63.37"
-  //         },
-  //         {
-  //           "value": "63.02"
-  //         },
-  //         {
-  //           "value": "58.90"
-  //         },
-  //         {
-  //           "value": "56.01"
-  //         },
-  //         {
-  //           "value": "53.65"
-  //         },
-  //         {
-  //           "value": "52.48"
-  //         },
-  //         {
-  //           "value": "50.48"
-  //         },
-  //         {
-  //           "value": "49.29"
-  //         },
-  //         {
-  //           "value": "48.96"
-  //         },
-  //         {
-  //           "value": "43.89"
-  //         },
-  //         {
-  //           "value": "40.66"
-  //         },
-  //         {
-  //           "value": "37.92"
-  //         },
-  //         {
-  //           "value": "35.19"
-  //         },
-  //         {
-  //           "value": "32.63"
-  //         },
-  //         {
-  //           "value": "31.62"
-  //         },
-  //         {
-  //           "value": "31.16"
-  //         },
-  //         {
-  //           "value": "24.24"
-  //         },
-  //         {
-  //           "value": "20.94"
-  //         },
-  //         {
-  //           "value": "16.98"
-  //         },
-  //         {
-  //           "value": ""
-  //         },
-  //         {
-  //           "value": ""
-  //         },
-  //         {
-  //           "value": ""
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "seriesname": "Mar-18",
-  //       "data": [
-  //         {
-  //           "value": "90.83"
-  //         },
-  //         {
-  //           "value": "87.33"
-  //         },
-  //         {
-  //           "value": "86.27"
-  //         },
-  //         {
-  //           "value": "85.87"
-  //         },
-  //         {
-  //           "value": "82.26"
-  //         },
-  //         {
-  //           "value": "79.44"
-  //         },
-  //         {
-  //           "value": "77.07"
-  //         },
-  //         {
-  //           "value": "74.63"
-  //         },
-  //         {
-  //           "value": "72.22"
-  //         },
-  //         {
-  //           "value": "70.71"
-  //         },
-  //         {
-  //           "value": "70.71"
-  //         },
-  //         {
-  //           "value": "66.69"
-  //         },
-  //         {
-  //           "value": "63.80"
-  //         },
-  //         {
-  //           "value": "63.69"
-  //         },
-  //         {
-  //           "value": "58.78"
-  //         },
-  //         {
-  //           "value": "56.19"
-  //         },
-  //         {
-  //           "value": "55.77"
-  //         },
-  //         {
-  //           "value": "55.43"
-  //         },
-  //         {
-  //           "value": "51.12"
-  //         },
-  //         {
-  //           "value": "48.01"
-  //         },
-  //         {
-  //           "value": "45.17"
-  //         },
-  //         {
-  //           "value": "42.42"
-  //         },
-  //         {
-  //           "value": "39.71"
-  //         },
-  //         {
-  //           "value": "38.67"
-  //         },
-  //         {
-  //           "value": "38.25"
-  //         },
-  //         {
-  //           "value": "31.31"
-  //         },
-  //         {
-  //           "value": "26.05"
-  //         },
-  //         {
-  //           "value": "23.45"
-  //         },
-  //         {
-  //           "value": "20.25"
-  //         },
-  //         {
-  //           "value": "19.64"
-  //         },
-  //         {
-  //           "value": "17.32"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "seriesname": "Apr-18",
-  //       "data": [
-  //         {
-  //           "value": "89.90"
-  //         },
-  //         {
-  //           "value": "85.83"
-  //         },
-  //         {
-  //           "value": "83.40"
-  //         },
-  //         {
-  //           "value": "81.35"
-  //         },
-  //         {
-  //           "value": "79.11"
-  //         },
-  //         {
-  //           "value": "76.74"
-  //         },
-  //         {
-  //           "value": "75.68"
-  //         },
-  //         {
-  //           "value": "75.33"
-  //         },
-  //         {
-  //           "value": "71.15"
-  //         },
-  //         {
-  //           "value": "68.26"
-  //         },
-  //         {
-  //           "value": "65.87"
-  //         },
-  //         {
-  //           "value": "63.44"
-  //         },
-  //         {
-  //           "value": "60.90"
-  //         },
-  //         {
-  //           "value": "60.50"
-  //         },
-  //         {
-  //           "value": "60.18"
-  //         },
-  //         {
-  //           "value": "55.89"
-  //         },
-  //         {
-  //           "value": "52.94"
-  //         },
-  //         {
-  //           "value": "50.53"
-  //         },
-  //         {
-  //           "value": "48.01"
-  //         },
-  //         {
-  //           "value": "45.08"
-  //         },
-  //         {
-  //           "value": "44.02"
-  //         },
-  //         {
-  //           "value": "43.69"
-  //         },
-  //         {
-  //           "value": "39.07"
-  //         },
-  //         {
-  //           "value": "33.82"
-  //         },
-  //         {
-  //           "value": "31.14"
-  //         },
-  //         {
-  //           "value": "26.16"
-  //         },
-  //         {
-  //           "value": "23.60"
-  //         },
-  //         {
-  //           "value": "22.25"
-  //         },
-  //         {
-  //           "value": "21.32"
-  //         },
-  //         {
-  //           "value": "17.26"
-  //         },
-  //         {
-  //           "value": ""
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "seriesname": "May-18",
-  //       "data": [
-  //         {
-  //           "value": "91.75"
-  //         },
-  //         {
-  //           "value": "87.60"
-  //         },
-  //         {
-  //           "value": "85.12"
-  //         },
-  //         {
-  //           "value": "83.01"
-  //         },
-  //         {
-  //           "value": "81.94"
-  //         },
-  //         {
-  //           "value": "81.55"
-  //         },
-  //         {
-  //           "value": "77.76"
-  //         },
-  //         {
-  //           "value": "74.97"
-  //         },
-  //         {
-  //           "value": "72.29"
-  //         },
-  //         {
-  //           "value": "71.82"
-  //         },
-  //         {
-  //           "value": "68.45"
-  //         },
-  //         {
-  //           "value": "67.33"
-  //         },
-  //         {
-  //           "value": "66.99"
-  //         },
-  //         {
-  //           "value": "62.67"
-  //         },
-  //         {
-  //           "value": "59.51"
-  //         },
-  //         {
-  //           "value": "56.96"
-  //         },
-  //         {
-  //           "value": "54.44"
-  //         },
-  //         {
-  //           "value": "51.94"
-  //         },
-  //         {
-  //           "value": "50.78"
-  //         },
-  //         {
-  //           "value": "50.37"
-  //         },
-  //         {
-  //           "value": "45.76"
-  //         },
-  //         {
-  //           "value": "42.51"
-  //         },
-  //         {
-  //           "value": "39.98"
-  //         },
-  //         {
-  //           "value": "37.66"
-  //         },
-  //         {
-  //           "value": "32.45"
-  //         },
-  //         {
-  //           "value": "31.15"
-  //         },
-  //         {
-  //           "value": "30.60"
-  //         },
-  //         {
-  //           "value": "25.50"
-  //         },
-  //         {
-  //           "value": "24.29"
-  //         },
-  //         {
-  //           "value": "20.28"
-  //         },
-  //         {
-  //           "value": "16.72"
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       "seriesname": "Jun-18",
-  //       "data": [
-  //         {
-  //           "value": "89.14"
-  //         },
-  //         {
-  //           "value": "87.76"
-  //         },
-  //         {
-  //           "value": "87.33"
-  //         },
-  //         {
-  //           "value": "82.01"
-  //         },
-  //         {
-  //           "value": "78.86"
-  //         },
-  //         {
-  //           "value": "75.96"
-  //         },
-  //         {
-  //           "value": "67.51"
-  //         },
-  //         {
-  //           "value": "63.30"
-  //         },
-  //         {
-  //           "value": "61.85"
-  //         },
-  //         {
-  //           "value": "61.35"
-  //         },
-  //         {
-  //           "value": "58.94"
-  //         },
-  //         {
-  //           "value": "56.08"
-  //         },
-  //         {
-  //           "value": "55.28"
-  //         },
-  //         {
-  //           "value": "54.92"
-  //         },
-  //         {
-  //           "value": "54.84"
-  //         },
-  //         {
-  //           "value": "54.68"
-  //         },
-  //         {
-  //           "value": "54.47"
-  //         },
-  //         {
-  //           "value": "54.00"
-  //         },
-  //         {
-  //           "value": "53.35"
-  //         },
-  //         {
-  //           "value": "50.83"
-  //         },
-  //         {
-  //           "value": "47.30"
-  //         },
-  //         {
-  //           "value": "44.19"
-  //         },
-  //         {
-  //           "value": "43.15"
-  //         },
-  //         {
-  //           "value": "42.76"
-  //         },
-  //         {
-  //           "value": "35.77"
-  //         },
-  //         {
-  //           "value": ""
-  //         },
-  //         {
-  //           "value": ""
-  //         },
-  //         {
-  //           "value": ""
-  //         },
-  //         {
-  //           "value": ""
-  //         },
-  //         {
-  //           "value": ""
-  //         },
-  //         {
-  //           "value": ""
-  //         }
-  //       ]
-  //     },
-  //   ]
-  // }
-
   line9 = {
     "chart": {
       "caption": "VINTAGE_WO_IN UNIT",
@@ -3466,9 +2714,84 @@ export class RecoveryComponent implements OnInit {
   dataSourceLine9 = this.line9
   dataSourceLine10 = this.line10
   collapsed: boolean = true;
-  constructor() { }
+
+  getCurrentUser = localStorage.getItem("currentUser");
+  currentUser = JSON.parse(this.getCurrentUser);
+
+  list_area = {
+    "app": "mdm",
+    "method":"getBranchArea",
+    "data":null
+  }
+
+  parameter_kode_cabang = {
+    "data": "WHERE BRANCH_TYPE = 'BR' ORDER BY BRANCH_NAME ASC"
+  }
+
+  parameter_kode_area = {
+    "data": "WHERE BRANCH_PARENT = '"+this.currentUser["data"].resultUserProfileLocation[0].branch_code+"' ORDER BY BRANCH_NAME ASC"
+  }
+
+  parameter_kode_ho = {
+    "data": "WHERE BRANCH_TYPE = 'BR' AND BRANCH_TYPE NOT IN ('AR','HO') ORDER BY BRANCH_NAME ASC"
+  }
+
+  constructor(private service: ServicesService) { }
+
+  
+  list_portfolio_motor = [
+    'NMCY',
+    'UMCY',
+    'MMCY',
+    'CMCY'
+  ];
+
+  list_portfolio_mobil = [
+    'NCAR',
+    'UCAR',
+    'MCAR',
+    'CCAR'
+  ]
+
+  list_object = [
+    'MOBIL',
+    'MOTOR'
+  ];
+
+  list_produk = [
+    'CAPTIVE',
+    'MULTIGUNA CAPTIVE',
+    'MULTIGUNA NON CAPTIVE',
+    'NON CAPTIVE'
+  ]
+
+  list_portfolio;
+  areaDisable;
+  area;
+  listArea;
+  portfolio;
+  produk;
+  object;
+  disableArea=false;
+  disableBranch=false;
+  setStatus;
+  list_cabang = []
 
   ngOnInit() {
+  }
+
+  filterObject(type:any){
+    if(type == "MOBIL"){
+      this.list_portfolio = this.list_portfolio_mobil;
+      this.portfolio = this.list_portfolio[0];
+    }else if(type == "MOTOR"){
+      this.list_portfolio = this.list_portfolio_motor
+      this.portfolio = this.list_portfolio[0];
+    }
+  }
+
+  getFilter(){
+    
   }
 
 }

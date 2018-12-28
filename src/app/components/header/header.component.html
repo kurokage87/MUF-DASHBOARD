@@ -6,18 +6,18 @@
     </a>
   </div>
   <div class="header-nav">
-    <clr-dropdown class="col-md-10">
+    <!-- <clr-dropdown class="col-md-10">
       <button class="nav-icon" clrDropdownTrigger>
         <a href="javascript://" class="nav-link nav-text">Dashboard</a>
       </button>
       <clr-dropdown-menu *clrIfOpen clrPosition="bottom">
         <a href="javascript://" clrDropdownItem [routerLink]="['collection']" routerLinkActive="router-link-active" >Dashboard Collection</a>
         <a href="javascript://" clrDropdownItem [routerLink]="['marketing']" routerLinkActive="router-link-active" >Dashboard Marketing</a>
-        <!-- <a href="javascript://" clrDropdownItem [routerLink]="['recovery']" routerLinkActive="router-link-active" >Dashboard Recovery</a>
+        <a href="javascript://" clrDropdownItem [routerLink]="['recovery']" routerLinkActive="router-link-active" >Dashboard Recovery</a>
         <a href="javascript://" clrDropdownItem [routerLink]="['inventory']" routerLinkActive="router-link-active" >Dashboard Inventory Management</a>
-        <a href="javascript://" clrDropdownItem [routerLink]="['proyeksi']" routerLinkActive="router-link-active" >Dashboard Proyeksi: 6 Bulan</a> -->
+        <a href="javascript://" clrDropdownItem [routerLink]="['proyeksi']" routerLinkActive="router-link-active" >Dashboard Proyeksi: 6 Bulan</a>
       </clr-dropdown-menu>
-    </clr-dropdown>
+    </clr-dropdown> -->
     <!-- <clr-dropdown class="col-md-10">
       <button class="nav-icon" clrDropdownTrigger>
         <a href="javascript://" class="nav-link nav-text">Report</a>
@@ -26,7 +26,7 @@
         <a href="javascript://" clrDropdownItem>About</a>
       </clr-dropdown-menu>
     </clr-dropdown> -->
-    <clr-dropdown class="col-md-10">
+    <clr-dropdown class="col-md-10" style="align-content: right;">
       <button class="nav-icon" clrDropdownTrigger type="buttton" (click)="logout()">
         <span style="color:white">Logout</span>
       </button>

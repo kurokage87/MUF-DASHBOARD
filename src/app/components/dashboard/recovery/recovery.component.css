@@ -1,3 +1,117 @@
+.ngx-charts-outer .ngx-charts {
+    margin-top: 10px !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.gauge .gauge-tick path {
+    stroke: #003665 !important;
+    z-index: -1;
+}
+
 .center {
     text-align: center;
 }
+
+.header-wid {
+    width: 100% !important
+}
+
+.grid-font {
+    font-size: 10px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+.column {
+    width: 100px;
+}
+
+.cell {
+    width: 25%;
+}
+
+clr-dg-column {
+    text-align: center !important;
+}
+
+.filterArea {
+    text-align: left !important;
+    height: fit-content;
+    align-self: auto;
+
+    vertical-align: bottom;
+}
+.area{
+    margin-top: 25px;
+    left: 0%;
+}
+
+.gauge{
+    margin-left: 0.1%; 
+}
+
+.col2{
+    width: 19.8%;
+}
+.titleCol .carding .cardblok1{
+    height: 12.2em;
+    width: 100%;
+}
+
+.btn-proses{
+    margin-top: 14px;
+}
+
+.down{
+    z-index:-1;
+}
+
+#bg-text
+{
+    margin-top: 20%;
+    position: absolute;
+    width: 100%;
+    float: right;
+    color:black;
+    font-size:90px;
+    opacity: 50;
+    transform:rotate(330deg);
+    -webkit-transform:rotate(330deg);
+    z-index: 1 !important;
+    text-align: center;
+}
+
+.bDelq{
+    text-align: center;
+    margin-top: 10px;
+    float: right; 
+    margin-right: 7px; 
+    width:40%;
+    background-color:orange;
+    border-radius: 10px;
+
+}
+
+.bd{
+    margin-bottom: 12px;
+}
+
+#bg-text1
+{
+    margin-top: 20%;
+    position: absolute;
+    width: 100%;
+    float: right;
+    padding-right: 18%;
+    color:black;
+    font-size:130px;
+    opacity: 50;
+    transform:rotate(330deg);
+    -webkit-transform:rotate(330deg);
+    z-index: 1 !important;
+    text-align: center;
+}
+
