@@ -10,7 +10,7 @@ export class ConfigService {
   // api_url:string = 'http://10.22.24.116/MUFDealer/';
   api_url:string = 'http://10.22.24.116/Public_API/';
   api_login:string= 'http://10.22.24.116/Public_API/';
-  // api_firdaus:string='http://10.20.13.83/Codeigniter/Public_API/';
+  api_local:string='http://10.20.13.83/Codeigniter/Public_API/';
   
   // api_url:string;
 
