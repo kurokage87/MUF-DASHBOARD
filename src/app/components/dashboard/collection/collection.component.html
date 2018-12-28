@@ -16,7 +16,7 @@
                 <span>Area</span>
               </div>
               <div class="col-sm-5 ">
-                <select clrSelect name="options" [(ngModel)]="area" [disabled]="areaDisable">
+                <select clrSelect name="options" [(ngModel)]="area" [disabled]="areaDisable" (ngModelChange)="filterArea($event)">
                   <option *ngFor="let e of areaList" [ngValue]="e.branch_code">{{e.branch_name}}</option>
                 </select>
               </div>
@@ -26,7 +26,7 @@
                 <span>CABANG</span>
               </div>
               <div class="col-sm-5 ">
-                <select clrSelect name="options" [(ngModel)]="cabang" [disabled]="disable2">
+                <select clrSelect name="options" [(ngModel)]="cabang" [disabled]="disable2" (ngModelChange)="filterBranch($event)">
                   <option *ngFor="let b of list_branch" [ngValue]="b.branch_code">{{b.branch_name}}</option>
 
                 </select>
@@ -37,10 +37,8 @@
                 <span>MUFNET</span>
               </div>
               <div class="col-sm-5 ">
-                <select clrSelect name="options" [(ngModel)]="mufnet" [disabled]="true">
-                  <option value="one">One</option>
-                  <option value="two">Two</option>
-                  <option value="three">Three</option>
+                <select clrSelect name="options" [(ngModel)]="mufnet" [disabled]="false">
+                    <option *ngFor="let b of mufnet_list" [ngValue]="b.branch_code">{{b.branch_name}}</option>
                 </select>
               </div>
             </div>
@@ -67,7 +65,7 @@
                 <span>PENGGOLONGAN PRODUCT</span>
               </div>
               <div class="col-sm-3 ">
-                <select clrSelect name="options" [(ngModel)]="p_product" (ngModelChange)="filterGolProduct($event)">
+                <select clrSelect name="options" [(ngModel)]="p_product">
                   <option *ngFor="let pp of penggolongan_product_list" [ngValue]="pp">{{pp}}</option>
                 </select>
               </div>
@@ -104,14 +102,14 @@
     </div>
 
     <div class="row gauge">
-        <p id="bg-text1">On Develop</p>
+        <!-- <p id="bg-text1">On Develop</p> -->
       <div class="col2">
         <div class="card">
           <div class="card-block">
             <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
             <h4 class="card-title center">% GCL</h4>
             <p class="card-text" style="width: 25% !important;">
-              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGauge1">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGaugePersenGCL">
               </fusioncharts>
             </p>
           </div>
@@ -132,7 +130,7 @@
               <sup>6</sup>
             </h4>
             <p class="card-text" style="width: 25% !important;">
-              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGauge1">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGaugeGcl106">
               </fusioncharts>
             </p>
           </div>
@@ -153,7 +151,7 @@
               <sup>6</sup>
             </h4>
             <p class="card-text" style="width: 25% !important;">
-              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGauge2">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceLorGross106">
               </fusioncharts>
             </p>
           </div>
@@ -174,7 +172,7 @@
               <sup>6</sup>
             </h4>
             <p class="card-text" style="width: 25% !important;">
-              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGauge3">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceWOAll106Chart">
               </fusioncharts>
             </p>
           </div>
@@ -195,7 +193,7 @@
               <sup>6</sup>
             </h4>
             <p class="card-text" style="width: 25% !important;">
-              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGauge4">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGci106Chart">
               </fusioncharts>
             </p>
           </div>
@@ -217,7 +215,7 @@
             <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
             <h4 class="card-title center">% NCL</h4>
             <p class="card-text" style="width: 25% !important;">
-              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGauge1">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourcePersenNCL">
               </fusioncharts>
             </p>
           </div>
@@ -238,7 +236,7 @@
               <sup>6</sup>
             </h4>
             <p class="card-text" style="width: 25% !important;">
-              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGauge1">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceNCL106Chart">
               </fusioncharts>
             </p>
           </div>
@@ -259,7 +257,7 @@
               <sup>6</sup>
             </h4>
             <p class="card-text" style="width: 25% !important;">
-              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGauge2">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceLorNET106Chart">
               </fusioncharts>
             </p>
           </div>
@@ -280,7 +278,7 @@
               <sup>6</sup>
             </h4>
             <p class="card-text" style="width: 25% !important;">
-              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGauge3">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceWONormal106Chart">
               </fusioncharts>
             </p>
           </div>
@@ -301,7 +299,7 @@
               <sup>6</sup>
             </h4>
             <p class="card-text" style="width: 25% !important;">
-              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceGauge4">
+              <fusioncharts [width]="width_gauce2" [height]="height_gauce2" [type]="type_gauce1" [dataFormat]="dataFormat" [dataSource]="dataSourceNCI106Chart">
               </fusioncharts>
             </p>
           </div>
@@ -316,6 +314,27 @@
 
     </div>
 
+
+    <div class="row" align="right">
+      <div class="col-md-9">
+      </div>
+      <!-- <div class="col-md-4">
+        </div> -->
+      <div class="col-md-3">
+        <div class="card" >
+          <div class="card block" style="margin:0">
+              <div class="row" align="right">
+                  <div class="col-sm-5"  style="margin-top: 22px"> <label for="">Begin Delq &nbsp;:</label> </div>
+                  <div class="col-sm-2" >
+                      <select style="border:3px solid grey;" clrSelect name="b_delq" [(ngModel)]="begin_delq" (ngModelChange)="filterBDelq($event)">
+                          <option *ngFor="let b of begin_delq_list" [value]="b">{{b}}</option>
+                        </select>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
 
       <div class="col-md-6">
@@ -362,13 +381,11 @@
                 <clr-dg-cell>{{ep.bulan_12 | number}}%</clr-dg-cell>
                 <clr-dg-cell>{{ep.bulan_13 | number}}%</clr-dg-cell>
               </clr-dg-row>
-
+              
               <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+             
             </clr-datagrid>
-            <br>
-            <br>
-            <br>
-            <br>
+            
             
           </div>
           <div class="card-footer">
@@ -377,19 +394,17 @@
               Reload
             </div>
           </div>
+
+          <!-- <br> -->
+          <!-- <br>
+          <br>
+          <br> -->
         </div>
       </div>
+      
 
-      <div class="col-md-6">
-        <div class="card">
-            <div class="row bDelq">
-                <div class="col-sm-6 bd" style="padding-top: 23px;">Begin Delq &nbsp;: </div>
-                <div class="col-sm-2 bd" style="padding-top: 0;">
-                    <select style="border:3px solid grey;" clrSelect name="b_delq" [(ngModel)]="begin_delq" (ngModelChange)="filterBDelq($event)">
-                        <option *ngFor="let b of begin_delq_list" [value]="b">{{b}}</option>
-                      </select>
-                </div>
-              </div>
+      <div class="col-md-6" align="right">
+        <div class="card" align="right">
           <div class="card-block">
             
             <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
@@ -443,6 +458,7 @@
               Reload
             </div>
           </div>
+   
         </div>
       </div>
 
@@ -492,6 +508,7 @@
                   <clr-dg-cell>{{ep.bulan_12 | number}}</clr-dg-cell>
                   <clr-dg-cell>{{ep.bulan_13 | number}}</clr-dg-cell>
                 </clr-dg-row>
+                
   
                 <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
               </clr-datagrid>
@@ -612,131 +629,16 @@
           </div>
         </div>
       </div> -->
-      <div class="col-md-6 ">
-          
-          <div class="card">
-            <div class="card-block">
-              <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
-              <h4 class="card-title center">LOSSES PERFORMANCE GROSS</h4>
-              <p id="bg-text">On Develop</p>
-              <p class="card-text" style="width: 100% !important;">
-                <fusioncharts class="down" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource3">
-    
-                </fusioncharts>
-              </p>
-              
-              <clr-datagrid class="grid-font">
-                <clr-dg-column></clr-dg-column>
-                <clr-dg-column>Jul-13</clr-dg-column>
-                <clr-dg-column>Aug-13</clr-dg-column>
-                <clr-dg-column>Sep-13</clr-dg-column>
-                <clr-dg-column>Okt-13</clr-dg-column>
-                <clr-dg-column>Nov-13</clr-dg-column>
-                <clr-dg-column>Des-13</clr-dg-column>
-                <clr-dg-column>Jan-14</clr-dg-column>
-                <clr-dg-column>Feb-14</clr-dg-column>
-                <clr-dg-column>Mar-14</clr-dg-column>
-                <clr-dg-column>Apr-14</clr-dg-column>
-                <clr-dg-column>May-14</clr-dg-column>
-                <clr-dg-column>Jun-14</clr-dg-column>
-                <clr-dg-column>Jul-14</clr-dg-column>
-  
-                <clr-dg-row>
-                  <clr-dg-cell>LOR/10</clr-dg-cell>
-                  <clr-dg-cell>49968</clr-dg-cell>
-                  <clr-dg-cell>45647</clr-dg-cell>
-                  <clr-dg-cell>44135</clr-dg-cell>
-                  <clr-dg-cell>39045</clr-dg-cell>
-                  <clr-dg-cell>37447</clr-dg-cell>
-                  <clr-dg-cell>44190</clr-dg-cell>
-                  <clr-dg-cell>38810</clr-dg-cell>
-                  <clr-dg-cell>38482</clr-dg-cell>
-                  <clr-dg-cell>50175</clr-dg-cell>
-                  <clr-dg-cell>44487</clr-dg-cell>
-                  <clr-dg-cell>48487</clr-dg-cell>
-                  <clr-dg-cell>54287</clr-dg-cell>
-                  <clr-dg-cell>43044</clr-dg-cell>
-                </clr-dg-row>
-                <clr-dg-row>
-                  <clr-dg-cell>WO/10</clr-dg-cell>
-                  <clr-dg-cell>117285</clr-dg-cell>
-                  <clr-dg-cell>107772</clr-dg-cell>
-                  <clr-dg-cell>110014</clr-dg-cell>
-                  <clr-dg-cell>108939</clr-dg-cell>
-                  <clr-dg-cell>100435</clr-dg-cell>
-                  <clr-dg-cell>128245</clr-dg-cell>
-                  <clr-dg-cell>117488</clr-dg-cell>
-                  <clr-dg-cell>96769</clr-dg-cell>
-                  <clr-dg-cell>101766</clr-dg-cell>
-                  <clr-dg-cell>99300</clr-dg-cell>
-                  <clr-dg-cell>102183</clr-dg-cell>
-                  <clr-dg-cell>101443</clr-dg-cell>
-                  <clr-dg-cell>117659</clr-dg-cell>
-  
-                </clr-dg-row>
-                <clr-dg-row>
-                  <clr-dg-cell>NCL Net/10</clr-dg-cell>
-                  <clr-dg-cell>19490</clr-dg-cell>
-                  <clr-dg-cell>18054</clr-dg-cell>
-                  <clr-dg-cell>19163</clr-dg-cell>
-                  <clr-dg-cell>20929</clr-dg-cell>
-                  <clr-dg-cell>17860</clr-dg-cell>
-                  <clr-dg-cell>26224</clr-dg-cell>
-                  <clr-dg-cell>15528</clr-dg-cell>
-                  <clr-dg-cell>16982</clr-dg-cell>
-                  <clr-dg-cell>16202</clr-dg-cell>
-                  <clr-dg-cell>17783</clr-dg-cell>
-                  <clr-dg-cell>14950</clr-dg-cell>
-                  <clr-dg-cell>17007</clr-dg-cell>
-                  <clr-dg-cell>14851</clr-dg-cell>
-  
-                </clr-dg-row>
-                <clr-dg-row>
-                  <clr-dg-cell>NCL %</clr-dg-cell>
-                  <clr-dg-cell>3.94 %</clr-dg-cell>
-                  <clr-dg-cell>3.56 %</clr-dg-cell>
-                  <clr-dg-cell>3.65 %</clr-dg-cell>
-                  <clr-dg-cell>3.31 %</clr-dg-cell>
-                  <clr-dg-cell>3.21 %</clr-dg-cell>
-                  <clr-dg-cell>3.76 %</clr-dg-cell>
-                  <clr-dg-cell>3.6 %</clr-dg-cell>
-                  <clr-dg-cell>3.34 %</clr-dg-cell>
-                  <clr-dg-cell>3.46 %</clr-dg-cell>
-                  <clr-dg-cell>3.32 %</clr-dg-cell>
-                  <clr-dg-cell>3.46 %</clr-dg-cell>
-                  <clr-dg-cell>3.63 %</clr-dg-cell>
-                  <clr-dg-cell>3.66 %</clr-dg-cell>
-  
-                </clr-dg-row>
-                <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
-              </clr-datagrid>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              <br>
-              
-            </div>
-            <div class="card-footer">
-              <div class="cursor-pointer">
-                <clr-icon shape="refresh"></clr-icon>
-                Reload
-              </div>
-            </div>
-          </div>
-        </div>
-
-
+      
       <div class="col-md-6 ">
           
         <div class="card">
           <div class="card-block">
             <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
-            <h4 class="card-title center">LOSSES PERFORMANCE NETT</h4>
-            <p id="bg-text">On Develop</p>
+            <h4 class="card-title center">LOSSES PERFORMANCE GROSS</h4>
+            <!-- <p id="bg-text">On Develop</p> -->
             <p class="card-text" style="width: 100% !important;">
-              <fusioncharts class="down" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource3">
+              <fusioncharts class="down" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataChartLossesPerformGrossChart">
   
               </fusioncharts>
             </p>
@@ -757,72 +659,21 @@
               <clr-dg-column>Jun-14</clr-dg-column>
               <clr-dg-column>Jul-14</clr-dg-column>
 
-              <clr-dg-row>
-                <clr-dg-cell>LOR/10</clr-dg-cell>
-                <clr-dg-cell>49968</clr-dg-cell>
-                <clr-dg-cell>45647</clr-dg-cell>
-                <clr-dg-cell>44135</clr-dg-cell>
-                <clr-dg-cell>39045</clr-dg-cell>
-                <clr-dg-cell>37447</clr-dg-cell>
-                <clr-dg-cell>44190</clr-dg-cell>
-                <clr-dg-cell>38810</clr-dg-cell>
-                <clr-dg-cell>38482</clr-dg-cell>
-                <clr-dg-cell>50175</clr-dg-cell>
-                <clr-dg-cell>44487</clr-dg-cell>
-                <clr-dg-cell>48487</clr-dg-cell>
-                <clr-dg-cell>54287</clr-dg-cell>
-                <clr-dg-cell>43044</clr-dg-cell>
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>WO/10</clr-dg-cell>
-                <clr-dg-cell>117285</clr-dg-cell>
-                <clr-dg-cell>107772</clr-dg-cell>
-                <clr-dg-cell>110014</clr-dg-cell>
-                <clr-dg-cell>108939</clr-dg-cell>
-                <clr-dg-cell>100435</clr-dg-cell>
-                <clr-dg-cell>128245</clr-dg-cell>
-                <clr-dg-cell>117488</clr-dg-cell>
-                <clr-dg-cell>96769</clr-dg-cell>
-                <clr-dg-cell>101766</clr-dg-cell>
-                <clr-dg-cell>99300</clr-dg-cell>
-                <clr-dg-cell>102183</clr-dg-cell>
-                <clr-dg-cell>101443</clr-dg-cell>
-                <clr-dg-cell>117659</clr-dg-cell>
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>NCL Net/10</clr-dg-cell>
-                <clr-dg-cell>19490</clr-dg-cell>
-                <clr-dg-cell>18054</clr-dg-cell>
-                <clr-dg-cell>19163</clr-dg-cell>
-                <clr-dg-cell>20929</clr-dg-cell>
-                <clr-dg-cell>17860</clr-dg-cell>
-                <clr-dg-cell>26224</clr-dg-cell>
-                <clr-dg-cell>15528</clr-dg-cell>
-                <clr-dg-cell>16982</clr-dg-cell>
-                <clr-dg-cell>16202</clr-dg-cell>
-                <clr-dg-cell>17783</clr-dg-cell>
-                <clr-dg-cell>14950</clr-dg-cell>
-                <clr-dg-cell>17007</clr-dg-cell>
-                <clr-dg-cell>14851</clr-dg-cell>
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>NCL %</clr-dg-cell>
-                <clr-dg-cell>3.94 %</clr-dg-cell>
-                <clr-dg-cell>3.56 %</clr-dg-cell>
-                <clr-dg-cell>3.65 %</clr-dg-cell>
-                <clr-dg-cell>3.31 %</clr-dg-cell>
-                <clr-dg-cell>3.21 %</clr-dg-cell>
-                <clr-dg-cell>3.76 %</clr-dg-cell>
-                <clr-dg-cell>3.6 %</clr-dg-cell>
-                <clr-dg-cell>3.34 %</clr-dg-cell>
-                <clr-dg-cell>3.46 %</clr-dg-cell>
-                <clr-dg-cell>3.32 %</clr-dg-cell>
-                <clr-dg-cell>3.46 %</clr-dg-cell>
-                <clr-dg-cell>3.63 %</clr-dg-cell>
-                <clr-dg-cell>3.66 %</clr-dg-cell>
-
+              <clr-dg-row *ngFor="let ep of dataTableLossesPerformGross">
+                <clr-dg-cell>{{ep.status}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_1 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_2 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_3 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_4 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_5 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_6 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_7 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_8 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_9 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_10 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_11 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_12 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_13 | number}}</clr-dg-cell>
               </clr-dg-row>
               <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
             </clr-datagrid>
@@ -843,6 +694,69 @@
         </div>
       </div>
 
+      <div class="col-md-6 ">
+          
+        <div class="card">
+          <div class="card-block">
+            <!-- <div class="progress top loop" max="100"><progress></progress></div> -->
+            <h4 class="card-title center">LOSSES PERFORMANCE NETT</h4>
+            <!-- <p id="bg-text">On Develop</p> -->
+            <p class="card-text" style="width: 100% !important;">
+              <fusioncharts class="down" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataChartLossesPerformNetChart">
+  
+              </fusioncharts>
+            </p>
+            
+            <clr-datagrid class="grid-font">
+              <clr-dg-column></clr-dg-column>
+              <clr-dg-column>Jul-13</clr-dg-column>
+              <clr-dg-column>Aug-13</clr-dg-column>
+              <clr-dg-column>Sep-13</clr-dg-column>
+              <clr-dg-column>Okt-13</clr-dg-column>
+              <clr-dg-column>Nov-13</clr-dg-column>
+              <clr-dg-column>Des-13</clr-dg-column>
+              <clr-dg-column>Jan-14</clr-dg-column>
+              <clr-dg-column>Feb-14</clr-dg-column>
+              <clr-dg-column>Mar-14</clr-dg-column>
+              <clr-dg-column>Apr-14</clr-dg-column>
+              <clr-dg-column>May-14</clr-dg-column>
+              <clr-dg-column>Jun-14</clr-dg-column>
+              <clr-dg-column>Jul-14</clr-dg-column>
+
+              <clr-dg-row *ngFor="let ep of dataTableLossesPerformNet">
+                <clr-dg-cell>{{ep.status}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_1 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_2 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_3 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_4 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_5 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_6 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_7 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_8 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_9 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_10 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_11 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_12 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_13 | number}}</clr-dg-cell>
+              </clr-dg-row>
+              <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
+            </clr-datagrid>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            
+          </div>
+          <div class="card-footer">
+            <div class="cursor-pointer">
+              <clr-icon shape="refresh"></clr-icon>
+              Reload
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="row">
@@ -850,81 +764,48 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-block">
-                <p id="bg-text">On Develop</p>
-              <div class="progress top loop" max="100">
+                <!-- <p id="bg-text">On Develop</p> -->
+              <!-- <div class="progress top loop" max="100">
                 <progress></progress>
-              </div>
+              </div> -->
               <h4 class="card-title center">PERFORMANCE REPO, SOLD, STOCK BY AMOUNT</h4>
               <p class="card-text" style="width: 100% !important;">
-                <fusioncharts [width]="full_widt" [height]="height" [type]="type_bar2" [dataFormat]="dataFormat" [dataSource]="dataSourceBar2"
+                <fusioncharts [width]="full_widt" [height]="height" [type]="type_bar2" [dataFormat]="dataFormat" [dataSource]="dataCharPerformRssByAmtChart"
                   style="display: inline-block !important;">
                 </fusioncharts>
               </p>
               
               <clr-datagrid class="grid-font">
                 <clr-dg-column></clr-dg-column>
-                <clr-dg-column>Jul-13</clr-dg-column>
-                <clr-dg-column>Aug-13</clr-dg-column>
-                <clr-dg-column>Sep-13</clr-dg-column>
-                <clr-dg-column>Okt-13</clr-dg-column>
-                <clr-dg-column>Nov-13</clr-dg-column>
-                <clr-dg-column>Des-13</clr-dg-column>
-                <clr-dg-column>Jan-14</clr-dg-column>
-                <clr-dg-column>Feb-14</clr-dg-column>
-                <clr-dg-column>Mar-14</clr-dg-column>
-                <clr-dg-column>Apr-14</clr-dg-column>
-                <clr-dg-column>May-14</clr-dg-column>
-                <clr-dg-column>Jun-14</clr-dg-column>
-                <clr-dg-column>Jul-14</clr-dg-column>
+              <clr-dg-column>Jul-13</clr-dg-column>
+              <clr-dg-column>Aug-13</clr-dg-column>
+              <clr-dg-column>Sep-13</clr-dg-column>
+              <clr-dg-column>Okt-13</clr-dg-column>
+              <clr-dg-column>Nov-13</clr-dg-column>
+              <clr-dg-column>Des-13</clr-dg-column>
+              <clr-dg-column>Jan-14</clr-dg-column>
+              <clr-dg-column>Feb-14</clr-dg-column>
+              <clr-dg-column>Mar-14</clr-dg-column>
+              <clr-dg-column>Apr-14</clr-dg-column>
+              <clr-dg-column>May-14</clr-dg-column>
+              <clr-dg-column>Jun-14</clr-dg-column>
+              <clr-dg-column>Jul-14</clr-dg-column>
   
-                <clr-dg-row>
-                  <clr-dg-cell>REPO</clr-dg-cell>
-                  <clr-dg-cell>12753</clr-dg-cell>
-                  <clr-dg-cell>12038</clr-dg-cell>
-                  <clr-dg-cell>13808</clr-dg-cell>
-                  <clr-dg-cell>12702</clr-dg-cell>
-                  <clr-dg-cell>11973</clr-dg-cell>
-                  <clr-dg-cell>11678</clr-dg-cell>
-                  <clr-dg-cell>11430</clr-dg-cell>
-                  <clr-dg-cell>11819</clr-dg-cell>
-                  <clr-dg-cell>13662</clr-dg-cell>
-                  <clr-dg-cell>13662</clr-dg-cell>
-                  <clr-dg-cell>12198</clr-dg-cell>
-                  <clr-dg-cell>13294</clr-dg-cell>
-                  <clr-dg-cell>13420</clr-dg-cell>
-  
-                </clr-dg-row>
-                <clr-dg-row>
-                  <clr-dg-cell>SOLD</clr-dg-cell>
-                  <clr-dg-cell>14291</clr-dg-cell>
-                  <clr-dg-cell>10708</clr-dg-cell>
-                  <clr-dg-cell>14444</clr-dg-cell>
-                  <clr-dg-cell>13952</clr-dg-cell>
-                  <clr-dg-cell>12253</clr-dg-cell>
-                  <clr-dg-cell>12324</clr-dg-cell>
-                  <clr-dg-cell>11066</clr-dg-cell>
-                  <clr-dg-cell>11570</clr-dg-cell>
-                  <clr-dg-cell>12050</clr-dg-cell>
-                  <clr-dg-cell>13768</clr-dg-cell>
-                  <clr-dg-cell>12860</clr-dg-cell>
-                  <clr-dg-cell>12834</clr-dg-cell>
-                  <clr-dg-cell>11350</clr-dg-cell>
-                </clr-dg-row>
-                <clr-dg-row>
-                  <clr-dg-cell>STOCK</clr-dg-cell>
-                  <clr-dg-cell>9206</clr-dg-cell>
-                  <clr-dg-cell>10522</clr-dg-cell>
-                  <clr-dg-cell>3875</clr-dg-cell>
-                  <clr-dg-cell>8965</clr-dg-cell>
-                  <clr-dg-cell>8685</clr-dg-cell>
-                  <clr-dg-cell>8030</clr-dg-cell>
-                  <clr-dg-cell>8367</clr-dg-cell>
-                  <clr-dg-cell>8604</clr-dg-cell>
-                  <clr-dg-cell>10204</clr-dg-cell>
-                  <clr-dg-cell>8606</clr-dg-cell>
-                  <clr-dg-cell>9030</clr-dg-cell>
-                  <clr-dg-cell>3586</clr-dg-cell>
-                  <clr-dg-cell>9830</clr-dg-cell>
+                <clr-dg-row *ngFor="let ep of dataTablePerformRssByAmt">
+                  <clr-dg-cell>{{ep.status}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_1 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_2 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_3 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_4 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_5 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_6 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_7 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_8 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_9 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_10 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_11 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_12 | number}}</clr-dg-cell>
+                  <clr-dg-cell>{{ep.bulan_13 | number}}</clr-dg-cell>
                 </clr-dg-row>
                 <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
               </clr-datagrid>
@@ -2012,7 +1893,7 @@
             <!-- <div class="progress top loop" max="100">
               <progress></progress>
             </div> -->
-            <p id="bg-text">On Develop</p>
+            <!-- <p id="bg-text">On Develop</p> -->
             <h4 class="card-title center">UNIT SOLD BY OBJECT YEAR</h4>
             <p class="card-text" style="width: 100% !important;">
               <fusioncharts [width]="width" [height]="height" [type]="type_stack_col" [dataFormat]="dataFormat" [dataSource]="dataSourceStackCol5">
@@ -2020,226 +1901,34 @@
             </p>
             <clr-datagrid class="grid-font">
               <clr-dg-column></clr-dg-column>
-              <clr-dg-column>Jul-13</clr-dg-column>
-              <clr-dg-column>Aug-13</clr-dg-column>
-              <clr-dg-column>Sep-13</clr-dg-column>
-              <clr-dg-column>Okt-13</clr-dg-column>
-              <clr-dg-column>Nov-13</clr-dg-column>
-              <clr-dg-column>Des-13</clr-dg-column>
-              <clr-dg-column>Jan-14</clr-dg-column>
-              <clr-dg-column>Feb-14</clr-dg-column>
-              <clr-dg-column>Mar-14</clr-dg-column>
-              <clr-dg-column>Apr-14</clr-dg-column>
-              <clr-dg-column>May-14</clr-dg-column>
-              <clr-dg-column>Jun-14</clr-dg-column>
-              <clr-dg-column>Jul-14</clr-dg-column>
-              <clr-dg-row>
-                <clr-dg-cell>2014</clr-dg-cell>
-                <clr-dg-cell>0%</clr-dg-cell>
-                <clr-dg-cell>0%</clr-dg-cell>
-                <clr-dg-cell>0%</clr-dg-cell>
-                <clr-dg-cell>0%</clr-dg-cell>
-                <clr-dg-cell>0%</clr-dg-cell>
-                <clr-dg-cell>0%</clr-dg-cell>
-                <clr-dg-cell>0%</clr-dg-cell>
-                <clr-dg-cell>0.01%</clr-dg-cell>
-                <clr-dg-cell>0.17%</clr-dg-cell>
-                <clr-dg-cell>0.79%</clr-dg-cell>
-                <clr-dg-cell>2.62%</clr-dg-cell>
-                <clr-dg-cell>5.09%</clr-dg-cell>
-                <clr-dg-cell>8.18%</clr-dg-cell>
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>2013</clr-dg-cell>
-                <clr-dg-cell>3.99%</clr-dg-cell>
-                <clr-dg-cell>5.59%</clr-dg-cell>
-                <clr-dg-cell>9.39%</clr-dg-cell>
-                <clr-dg-cell>13.46%</clr-dg-cell>
-                <clr-dg-cell>17.18%</clr-dg-cell>
-                <clr-dg-cell>20.77%</clr-dg-cell>
-                <clr-dg-cell>24.21%</clr-dg-cell>
-                <clr-dg-cell>27.35%</clr-dg-cell>
-                <clr-dg-cell>29.48%</clr-dg-cell>
-                <clr-dg-cell>33.17%</clr-dg-cell>
-                <clr-dg-cell>34.28%</clr-dg-cell>
-                <clr-dg-cell>32.94%</clr-dg-cell>
-                <clr-dg-cell>31.66%</clr-dg-cell>
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>2012</clr-dg-cell>
-                <clr-dg-cell>33.21%</clr-dg-cell>
-                <clr-dg-cell>32.44%</clr-dg-cell>
-                <clr-dg-cell>30.86%</clr-dg-cell>
-                <clr-dg-cell>28.39%</clr-dg-cell>
-                <clr-dg-cell>27.28%</clr-dg-cell>
-                <clr-dg-cell>25.26%</clr-dg-cell>
-                <clr-dg-cell>23.81%</clr-dg-cell>
-                <clr-dg-cell>22.03%</clr-dg-cell>
-                <clr-dg-cell>20.42%</clr-dg-cell>
-                <clr-dg-cell>18.29%</clr-dg-cell>
-                <clr-dg-cell>17.72%</clr-dg-cell>
-                <clr-dg-cell>16.8%</clr-dg-cell>
-                <clr-dg-cell>15.71%</clr-dg-cell>
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>2011</clr-dg-cell>
-                <clr-dg-cell>27.66%</clr-dg-cell>
-                <clr-dg-cell>27.03%</clr-dg-cell>
-                <clr-dg-cell>25.19%</clr-dg-cell>
-                <clr-dg-cell>23.81%</clr-dg-cell>
-                <clr-dg-cell>22.25%</clr-dg-cell>
-                <clr-dg-cell>21.36%</clr-dg-cell>
-                <clr-dg-cell>20.12%</clr-dg-cell>
-                <clr-dg-cell>18.69%</clr-dg-cell>
-                <clr-dg-cell>18.05%</clr-dg-cell>
-                <clr-dg-cell>16.47%</clr-dg-cell>
-                <clr-dg-cell>16.15%</clr-dg-cell>
-                <clr-dg-cell>15.69%</clr-dg-cell>
-                <clr-dg-cell>15.02%</clr-dg-cell>
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>2010</clr-dg-cell>
-                <clr-dg-cell>13.44%</clr-dg-cell>
-                <clr-dg-cell>13.67%</clr-dg-cell>
-                <clr-dg-cell>13.41%</clr-dg-cell>
-                <clr-dg-cell>13.27%</clr-dg-cell>
-                <clr-dg-cell>12.75%</clr-dg-cell>
-                <clr-dg-cell>12.33%</clr-dg-cell>
-                <clr-dg-cell>12.38%</clr-dg-cell>
-                <clr-dg-cell>12.18%</clr-dg-cell>
-                <clr-dg-cell>12.16%</clr-dg-cell>
-                <clr-dg-cell>12.26%</clr-dg-cell>
-                <clr-dg-cell>10.81%</clr-dg-cell>
-                <clr-dg-cell>11.19%</clr-dg-cell>
-                <clr-dg-cell>11.54%</clr-dg-cell>
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>2009</clr-dg-cell>
-                <clr-dg-cell>6.73%</clr-dg-cell>
-                <clr-dg-cell>7.17%</clr-dg-cell>
-                <clr-dg-cell>6.97%</clr-dg-cell>
-                <clr-dg-cell>7.03%</clr-dg-cell>
-                <clr-dg-cell> 7.29%</clr-dg-cell>
-                <clr-dg-cell>6.7%</clr-dg-cell>
-                <clr-dg-cell>6.94%</clr-dg-cell>
-                <clr-dg-cell>7.06%</clr-dg-cell>
-                <clr-dg-cell>6.91%</clr-dg-cell>
-                <clr-dg-cell>6.68%</clr-dg-cell>
-                <clr-dg-cell>6.38%</clr-dg-cell>
-                <clr-dg-cell>6.66%</clr-dg-cell>
-                <clr-dg-cell>6.6%</clr-dg-cell>
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>2008</clr-dg-cell>
-                <clr-dg-cell>6.54%</clr-dg-cell>
-                <clr-dg-cell>6.3%</clr-dg-cell>
-                <clr-dg-cell>6.21%</clr-dg-cell>
-                <clr-dg-cell>6.28%</clr-dg-cell>
-                <clr-dg-cell>6.12%</clr-dg-cell>
-                <clr-dg-cell>5.69%</clr-dg-cell>
-                <clr-dg-cell>5.56%</clr-dg-cell>
-                <clr-dg-cell>5.88%</clr-dg-cell>
-                <clr-dg-cell>5.47%</clr-dg-cell>
-                <clr-dg-cell>5.59%</clr-dg-cell>
-                <clr-dg-cell>5.44%</clr-dg-cell>
-                <clr-dg-cell>5.13%</clr-dg-cell>
-                <clr-dg-cell>5.11%</clr-dg-cell>
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>2007</clr-dg-cell>
-                <clr-dg-cell>3.7%</clr-dg-cell>
-                <clr-dg-cell>3.48%</clr-dg-cell>
-                <clr-dg-cell>3.65%</clr-dg-cell>
-                <clr-dg-cell>3.4%</clr-dg-cell>
-                <clr-dg-cell>3.21%</clr-dg-cell>
-                <clr-dg-cell>3.48%</clr-dg-cell>
-                <clr-dg-cell>2.97%</clr-dg-cell>
-                <clr-dg-cell>3.05%</clr-dg-cell>
-                <clr-dg-cell>3.39%</clr-dg-cell>
-                <clr-dg-cell>3.08%</clr-dg-cell>
-                <clr-dg-cell>3.01%</clr-dg-cell>
-                <clr-dg-cell>3.04%</clr-dg-cell>
-                <clr-dg-cell>2.73%</clr-dg-cell>
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>2006</clr-dg-cell>
-                <clr-dg-cell>2.16%</clr-dg-cell>
-                <clr-dg-cell>1.97%</clr-dg-cell>
-                <clr-dg-cell>2.14%</clr-dg-cell>
-                <clr-dg-cell>2.13%</clr-dg-cell>
-                <clr-dg-cell>1.69%</clr-dg-cell>
-                <clr-dg-cell>1.88%</clr-dg-cell>
-                <clr-dg-cell>1.74%</clr-dg-cell>
-                <clr-dg-cell>1.89%</clr-dg-cell>
-                <clr-dg-cell>1.96%</clr-dg-cell>
-                <clr-dg-cell>1.81%</clr-dg-cell>
-                <clr-dg-cell>1.8%</clr-dg-cell>
-                <clr-dg-cell>1.79%</clr-dg-cell>
-                <clr-dg-cell>1.78%</clr-dg-cell>
-
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>2005</clr-dg-cell>
-                <clr-dg-cell>1.71%</clr-dg-cell>
-                <clr-dg-cell>1.56%</clr-dg-cell>
-                <clr-dg-cell>1.49%</clr-dg-cell>
-                <clr-dg-cell>1.41%</clr-dg-cell>
-                <clr-dg-cell>1.53%</clr-dg-cell>
-                <clr-dg-cell>1.42%</clr-dg-cell>
-                <clr-dg-cell>1.47%</clr-dg-cell>
-                <clr-dg-cell>1.25%</clr-dg-cell>
-                <clr-dg-cell>1.33%</clr-dg-cell>
-                <clr-dg-cell>1.21%</clr-dg-cell>
-                <clr-dg-cell>1.21%</clr-dg-cell>
-                <clr-dg-cell>1.21%</clr-dg-cell>
-                <clr-dg-cell>1.23%</clr-dg-cell>
-
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>2004</clr-dg-cell>
-                <clr-dg-cell>0.71%</clr-dg-cell>
-                <clr-dg-cell>0.61%</clr-dg-cell>
-                <clr-dg-cell>0.61%</clr-dg-cell>
-                <clr-dg-cell>0.6%</clr-dg-cell>
-                <clr-dg-cell>0.6%</clr-dg-cell>
-                <clr-dg-cell>0.67%</clr-dg-cell>
-                <clr-dg-cell>0.65%</clr-dg-cell>
-                <clr-dg-cell>0.46%</clr-dg-cell>
-                <clr-dg-cell>0.55%</clr-dg-cell>
-                <clr-dg-cell>0.54%</clr-dg-cell>
-                <clr-dg-cell>0.49%</clr-dg-cell>
-                <clr-dg-cell>0.37%</clr-dg-cell>
-                <clr-dg-cell>0.34%</clr-dg-cell>
-
-
-              </clr-dg-row>
-              <clr-dg-row>
-                <clr-dg-cell>2003</clr-dg-cell>
-                <clr-dg-cell>0.14%</clr-dg-cell>
-                <clr-dg-cell>0.21%</clr-dg-cell>
-                <clr-dg-cell>0.08%</clr-dg-cell>
-                <clr-dg-cell>0.21%</clr-dg-cell>
-                <clr-dg-cell>0.1%</clr-dg-cell>
-                <clr-dg-cell>0.18%</clr-dg-cell>
-                <clr-dg-cell>0.15%</clr-dg-cell>
-                <clr-dg-cell>0.16%</clr-dg-cell>
-                <clr-dg-cell>0.11%</clr-dg-cell>
-                <clr-dg-cell>0.11%</clr-dg-cell>
-                <clr-dg-cell>0.09%</clr-dg-cell>
-                <clr-dg-cell>0.09%</clr-dg-cell>
-                <clr-dg-cell>0.11%</clr-dg-cell>
-
-
+                <clr-dg-column>Des-17</clr-dg-column>
+                <clr-dg-column>Jan-18</clr-dg-column>
+                <clr-dg-column>Feb-18</clr-dg-column>
+                <clr-dg-column>Mar-18</clr-dg-column>
+                <clr-dg-column>Apr-18</clr-dg-column>
+                <clr-dg-column>Mei-18</clr-dg-column>
+                <clr-dg-column>Jun-18</clr-dg-column>
+                <clr-dg-column>Jul-18</clr-dg-column>
+                <clr-dg-column>Aug-18</clr-dg-column>
+                <clr-dg-column>Sep-18</clr-dg-column>
+                <clr-dg-column>Okt-18</clr-dg-column>
+                <clr-dg-column>Nov-18</clr-dg-column>
+                <clr-dg-column>Des-18</clr-dg-column>
+              <clr-dg-row *ngFor="let ep of dataTableUnitSoldObjYear">
+                <clr-dg-cell>{{ep.status}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_1 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_2 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_3 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_4 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_5 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_6 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_7 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_8 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_9 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_10 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_11 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_12 | number}}</clr-dg-cell>
+                <clr-dg-cell>{{ep.bulan_13 | number}}</clr-dg-cell>
               </clr-dg-row>
 
               <!-- <clr-dg-footer>{{users.length}} users</clr-dg-footer> -->
@@ -2829,10 +2518,5 @@
 
   </main>
   <clr-vertical-nav [clrVerticalNavCollapsible]="true" [(clrVerticalNavCollapsed)]="collapsed">
-      <a clrVerticalNavLink routerLink="/dashboard/collection" routerLinkActive="active">Dashboard Collection</a>
-      <a clrVerticalNavLink routerLink="/dashboard/marketing" routerLinkActive="active">Dashboard Marketing</a>
-      <!-- <a clrVerticalNavLink routerLink="/dashboard/recovery" routerLinkActive="active">Dashboard Recovery</a>
-        <a clrVerticalNavLink routerLink="/dashboard/proyeksi" routerLinkActive="active">Dashboard Proyeksi</a>
-        <a clrVerticalNavLink routerLink="/dashboard/inventory" routerLinkActive="active">Dashboard Inventory</a> -->
   </clr-vertical-nav>
 </div>

@@ -2,6 +2,7 @@ import { Component,Input, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/services/services.service';
 import { DatePipe } from '@angular/common/src/pipes/date_pipe';
 import { getLocaleDateTimeFormat } from '@angular/common/src/i18n/locale_data_api';
+import { element } from '@angular/core/src/render3/instructions';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class CollectionComponent implements OnInit {
   
   
 
-  mufnet: any
+  
   branchList
   portfolioList
   
@@ -27,7 +28,6 @@ export class CollectionComponent implements OnInit {
       "xAxisname": "Month",
       "yaxisname": "Value",
       "exportenabled": "1",
-      "exportMode": "server",
       "xAxisMaxValue" : "1000000000",
       // "xNumberPreffix": "",
       // "sNumberSuffix": "",
@@ -4775,6 +4775,8 @@ export class CollectionComponent implements OnInit {
       "numberSuffix" : "%",
       "lowerLimit": "0",
       "upperLimit": "50",
+      // "valueBelowPivot":"1",
+      // "showValue":"1",
       "theme": "zune",
       "exportenabled": "1",
   },
@@ -4810,6 +4812,7 @@ export class CollectionComponent implements OnInit {
     "chart": {
       "numberSuffix" : "%",
       "lowerLimit": "0",
+      "valueBelowPivot":"1",
       "upperLimit": "200000",
       "theme": "zune",
       "exportenabled": "1",
@@ -5020,11 +5023,15 @@ export class CollectionComponent implements OnInit {
   }
 
   branch_params_area = {
-    "data": "WHERE BRANCH_PARENT = '"+this.currentUser["data"].resultUserProfileLocation[0].branch_code+"' ORDER BY BRANCH_NAME ASC"
+    "data": "WHERE BRANCH_PARENT = '" + this.currentUser["data"].resultUserProfileLocation[0].branch_code + "' AND BRANCH_TYPE = 'BR' AND BRANCH_NAME NOT LIKE '%AREA' ORDER BY BRANCH_NAME ASC"
   }
 
   branch_params_code_ho = {
     "data": "WHERE BRANCH_TYPE = 'BR' AND BRANCH_TYPE NOT IN ('AR','HO') ORDER BY BRANCH_NAME ASC"
+  }
+
+  ho_branch_params_ho = {
+    "data": "WHERE BRANCH_TYPE = 'AR' ORDER BY BRANCH_NAME ASC"
   }
 
 
@@ -5043,24 +5050,24 @@ export class CollectionComponent implements OnInit {
     ]
     portofolio_list;
   portofolio_list1=[
+    'CCAR',
     'NCAR',
     'UCAR',
     'MCAR'
   ]
 
   portofolio_list2=[
+    'CMCY',
     'NMCY',
     'UMCY',
     'MMCY'
   ]
-  portofolio_list3=[
-  'CMCY',
-  'CCAR' 
-  ]
 
   penggolongan_product_list=[
     'CAPTIVE',
-    'NON CAPTIVE'
+    'NON CAPTIVE',
+    'MULTIGUNA CAPTIVE',
+    'MULTIGUNA NON CAPTIVE'
   ]
 
   object_list=['MOBIL',
@@ -5087,174 +5094,898 @@ export class CollectionComponent implements OnInit {
   portofolio;
   p_product;
   object;
-
+  mufnet;
+  mufnet_list;
   ngOnInit() {
     //console.log(this.currentUser);
-    this.getFilter();
+    // this.getAllBranchList();
+    this.getFilter(); 
 
   }
 
   filterObject(val:any){
-    if(val=="MOBIL" && this.p_product == "CAPTIVE"){
-      this.portofolio_list=['CCAR'];
-      this.portofolio="CCAR"
-    }
-    else if(val=="MOTOR" && this.p_product == "CAPTIVE"){
-      this.portofolio_list=["CMCY"]
-      this.portofolio="CMCY"
-    } else if (val=="MOTOR" && this.p_product == "NON CAPTIVE") {
+    // if(val=="MOBIL" && this.p_product == "CAPTIVE"){
+    //   this.portofolio_list=['CCAR'];
+    //   this.portofolio="CCAR"
+    // }
+    // else if(val=="MOTOR" && this.p_product == "CAPTIVE"){
+    //   this.portofolio_list=["CMCY"]
+    //   this.portofolio="CMCY"
+    // } 
+    if (val=="MOTOR") {
       this.portofolio_list=this.portofolio_list2;
-      this.portofolio="NMCY"
+      this.portofolio="CMCY"
     }
-    else if (val=="MOBIL" && this.p_product == "NON CAPTIVE") {
+    else if (val=="MOBIL") {
       this.portofolio_list=this.portofolio_list1;
-      this.portofolio="NCAR";
+      this.portofolio="CCAR";
     }
   }
 
-  filterGolProduct(val:any){
-    if(val=="CAPTIVE" && this.object == "MOBIL"){
-      this.portofolio_list=['CCAR'];
-      this.portofolio="CCAR"
-    }
-    else if(val=="NON CAPTIVE" && this.object == "MOBIL"){
-      this.portofolio_list=this.portofolio_list1;
-      this.portofolio="NCAR";
-    }
+  // filterGolProduct(val:any){
+  //   if(val=="CAPTIVE" && this.object == "MOBIL"){
+  //     this.portofolio_list=['CCAR'];
+  //     this.portofolio="CCAR"
+  //   }
+  //   else if(val=="NON CAPTIVE" && this.object == "MOBIL"){
+  //     this.portofolio_list=this.portofolio_list1;
+  //     this.portofolio="NCAR";
+  //   }
 
-    if(val=="CAPTIVE" && this.object == "MOTOR"){
-      this.portofolio_list=["CMCY"]
-      this.portofolio="CMCY"
-    }
-    else if(val=="NON CAPTIVE" && this.object == "MOTOR"){
-      this.portofolio_list=this.portofolio_list2;
-      this.portofolio="NMCY"
-    }
-  }
+  //   if(val=="CAPTIVE" && this.object == "MOTOR"){
+  //     this.portofolio_list=["CMCY"]
+  //     this.portofolio="CMCY"
+  //   }
+  //   else if(val=="NON CAPTIVE" && this.object == "MOTOR"){
+  //     this.portofolio_list=this.portofolio_list2;
+  //     this.portofolio="NMCY"
+  //   }
+  // }
 
   filterBDelq(val:any){
     this.begin_delq=val;
     this.ngOnInit();
+    
   }
 
+  filterArea(val:any){
+    this.getAllBranchList(val);
+  }
+
+  filterBranch(val:any){
+    this.getMufnetByBranch(val);
+  }
 
 
   datas=[];
   list_branch=[];
   cabang;
   setSatus;
-  disable=false;
+
   disable2=false;
   getFilter(){
+    var AreaFilter=[];
+    var AreaFilter2=[];
     var bran:string;
-    var cu=this.currentUser;
-    // console.log(cu);
-    //validasi area ,branch, atau ho
-    for (var index = 0; index < cu.data.resultProfileUserRole.length; index++) {
-      if(cu.data.resultProfileUserRole[index].role_code == 'DSB_MKT_BR') {
-        // this.cabang=cu['data'].resultUserProfileLocation[0].branch_code;
-        
-        this.list_area.data = this.branch_params_code;
-         this.setSatus="branch"
-         this.disable=true;
-         this.disable2=true;
-        break;
-      } 
-      else if(cu.data.resultProfileUserRole[index].role_code == 'DSB_MKT_AR') {
-        this.list_area.data = this.branch_params_area;
-         this.setSatus="area"
-         this.disable=false;
+    this.getStatusLogin();
+   if(this.setSatus=="ho"){
+     this.list_area.data=this.ho_branch_params_ho 
+        this.service.postData('post',this.list_area).subscribe(res=>{
+          this.areaList=res;
+              if(this.area==undefined){
+                this.area=this.areaList[0].branch_code
+                console.log(this.areaList);
+                
+              } 
+              this.getAllBranchList(this.area);            
+        });
          
-        break;
-      }
-      else {
-        this.list_area.data = this.branch_params_code_ho;
-         this.setSatus="ho"
-         this.disable=false;
-      }
-    }
-
-    this.service.postData('post',this.list_area).subscribe(
-      res=>{
-        var temp
-        this.datas=res;
-        // console.log(this.datas);
-        this.list_branch=this.datas;
-
-        // console.log(this.setSatus);
-        if(this.setSatus=="area"&& this.cabang== undefined){
-          this.cabang=this.list_branch['1'].branch_code;    
-          this.areaList=this.currentUser['data'].resultUserProfileLocation
-          this.area=this.currentUser['data'].resultUserProfileLocation[0].branch_code
-          this.areaDisable=true;
-         
-        }
-        if(this.setSatus=="ho"&& this.cabang== undefined){
-          this.cabang=this.list_branch['1'].branch_code;
-          this.areaDisable=false;
-        }
-        if(this.setSatus=="branch"&& this.cabang== undefined){
-          this.cabang=this.currentUser['data'].resultUserProfileLocation[0].branch_code;
-          this.areaDisable=true;
-        }
-
-        if(this.begin_delq== undefined){
-          this.begin_delq=this.begin_delq_list[0];
-        }
-        if(this.portofolio==undefined){
-          this.portofolio_list=this.portofolio_list1
-          this.portofolio="NCAR";
-        }
-        if(this.object==undefined){
-          this.object="MOBIL";
-        }
-        if(this.p_product==undefined){
-          this.p_product="NON CAPTIVE";
-        }
-
-        //console.log(this.setSatus)
-        //panggil semua method cuy
-
-
-        this.getEfektifPerformTable(this.cabang,this.begin_delq,this.p_product,this.object,this.portofolio);
-        this.getEfektifPerformChart(this.cabang,this.begin_delq,this.p_product,this.object,this.portofolio);
-        this.collectionEffectivenessPerformanceLT(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
-        this.collectionEffectivenessPerformanceLC(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
-        this.getDataTabelCollectionBucketByUnit(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
-        this.getDataChartCollectionBucketByUnit(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
-        this.getDataChartCollectionBucketByAmount(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
-        this.getDatacollectionBucketByAmountTable(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
-        this.getDatacollectionRepoByPortoTable(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
-        this.getCollectionRepoByPortoChart(this.cabang,"0.Current",this.p_product,this.object,this.portofolio);
-        // this.getDataMom(this.monthe,this.cabang);
-        //console.log(this.cabang);
-        //console.log(this.begin_delq);
-        //console.log(this.p_product);
-        //console.log(this.object);
-        //console.log(this.portofolio);
-
-      }
-    );
+   }
+   else if(this.setSatus=="area"){
+    this.areaList=this.currentUser['data'].resultUserProfileLocation;
+    this.area=this.currentUser['data'].resultUserProfileLocation[0].branch_code;
+    this.areaDisable=true;
+    this.getAllBranchList(this.area);
+   }
+   else{
+    this.list_branch=this.currentUser['data'].resultUserProfileLocation;
+    this.cabang=this.currentUser['data'].resultUserProfileLocation[0].branch_code;
+    this.list_area.data=this.ho_branch_params_ho 
+    this.service.postData('post',this.list_area).subscribe(res=>{
+      AreaFilter=res;
+      AreaFilter2[0]=AreaFilter.find(f=>(f.branch_code+"").substring(3,4)==this.cabang.substring(1,2));
+          this.areaList=AreaFilter2
+          this.area=this.areaList[0].branch_code;
+          this.getMufnetByBranch(this.cabang);    
+          // this.fullMethodDeploy();            
+    });
+    
+   }
   }
 
   // COLLECTION EFFECTIVENESS PERFORMANCE
   dataEpt;
+
+  getStatusLogin(){
+    var cu=this.currentUser;
+    for (var index = 0; index < cu.data.resultProfileUserRole.length; index++) {
+      if(cu.data.resultProfileUserRole[index].role_code == 'DSB_MKT_BR') {
+        // this.cabang=cu['data'].resultUserProfileLocation[0].branch_code;
+        // this.list_area.data = this.branch_params_code;
+         this.setSatus="branch"
+         this.branchList=
+         this.areaDisable=true;
+         this.disable2=true;
+        break;
+      } 
+      else if(cu.data.resultProfileUserRole[index].role_code == 'DSB_MKT_AR') {
+         this.setSatus="area"
+         this.areaDisable=true;
+         this.disable2=false;
+        break;
+      }
+      else {
+         this.setSatus="ho"
+         this.areaDisable=false;
+         this.disable2=false;
+      }
+    }
+  }
+
+  getAllBranchList(area:string){
+    console.log(area)
+    if(this.setSatus=="ho"){
+      this.branch_params_area = {
+        "data": "WHERE BRANCH_PARENT = '" + area + "' AND BRANCH_TYPE = 'BR' AND BRANCH_NAME NOT LIKE '%AREA' ORDER BY BRANCH_NAME ASC"
+      }
+      this.list_area.data=this.branch_params_area
+      this.service.postData('post',this.list_area).subscribe(res=>{
+        this.list_branch=res;
+        if(this.cabang== undefined){
+          this.cabang=this.list_branch[0].branch_code
+        }
+          this.getMufnetByBranch(this.cabang);
+          // this.fullMethodDeploy();
+      });
+    }
+
+    else if(this.setSatus=="area"){
+      this.branch_params_area = {
+        "data": "WHERE BRANCH_PARENT = '" + area + "' AND BRANCH_TYPE = 'BR' AND BRANCH_NAME NOT LIKE '%AREA' ORDER BY BRANCH_NAME ASC"
+      }
+      this.list_area.data=this.branch_params_area
+      this.service.postData('post',this.list_area).subscribe(res=>{
+        if(res){
+          this.list_branch=res;
+          if(this.cabang== undefined){
+            this.cabang=this.list_branch[0].branch_code
+          }
+          this.getMufnetByBranch(this.cabang);
+          // this.fullMethodDeploy();
+        }
+      });
+    }
+  }
+
+  
+  getMufnetByBranch(branch){
+    var getDataMufNet={
+      "app": "muf-dashboard",
+      "method": "getMufnetByBranch",
+      "data": {
+          "branch_parent":branch
+      }
+  }
+    this.service.postData('post',getDataMufNet).subscribe(muf=>{
+      // console.log(muf);
+      if(muf['status']==true){
+        this.mufnet_list=muf['data'];
+           this.mufnet=this.mufnet_list[0].branch_code;
+        // console.log(muf['data'])
+      }
+      else{
+        this.mufnet_list=[];
+        this.mufnet="";
+      }
+      this.fullMethodDeploy();
+    })
+  }
+
+  fullMethodDeploy(){
+    if(this.begin_delq== undefined){
+      this.begin_delq=this.begin_delq_list[0];
+    }
+    if(this.portofolio==undefined){
+      this.portofolio_list=this.portofolio_list1
+      this.portofolio="CCAR";
+    }
+    if(this.object==undefined){
+      this.object="MOBIL";
+    }
+    if(this.p_product==undefined){
+      this.p_product="CAPTIVE";
+    }
+        console.log(this.cabang);
+        console.log(this.begin_delq);
+        console.log(this.p_product);
+        console.log(this.object);
+        console.log(this.portofolio);
+        console.log(this.mufnet);
+        // this.getMufnetByBranch(this.cabang);
+
+        this.getEfektifPerformTable(this.area,this.cabang,this.mufnet,this.begin_delq,this.p_product,this.object,this.portofolio);
+        this.getEfektifPerformChart(this.area,this.cabang,this.mufnet,this.begin_delq,this.p_product,this.object,this.portofolio);
+        this.collectionEffectivenessPerformanceLT(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.collectionEffectivenessPerformanceLC(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDataTabelCollectionBucketByUnit(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDataChartCollectionBucketByUnit(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDataChartCollectionBucketByAmount(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDatacollectionBucketByAmountTable(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDatacollectionRepoByPortoTable(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getCollectionRepoByPortoChart(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.dataGetCollectionUnitSoldObjYearChart(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.dataGetCollectionUnitSoldObjYearTable(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDataCollectionLossesPerformNetTable(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDataCollectionLossesPerformNetChart(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDataCollectionLossesPerformGrossTable(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.getDataCollectionLossesPerformGrossChart(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.dataGetCollectionPerformRssByAmtTable(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+        this.dataGetCollectionPerformRssByAmtChart(this.area,this.cabang,this.mufnet,"0.Current",this.p_product,this.object,this.portofolio);
+
+        this.getDataCollectionGcl106YtdChart(this.area,this.cabang,this.mufnet,this.p_product,this.object,this.portofolio);
+        this.getDataCollectionLorGross106Chart(this.area,this.cabang,this.mufnet,this.p_product,this.object,this.portofolio);
+        this.getDataCollectionWOAll106Chart(this.area,this.cabang,this.mufnet,this.p_product,this.object,this.portofolio);
+        this.getDataCollectionGci106Chart(this.area,this.cabang,this.mufnet,this.p_product,this.object,this.portofolio);
+        this.getDataCollectionPersenGCL(this.area,this.cabang,this.mufnet,this.p_product,this.object,this.portofolio);
+        this.getDatacollectionPersenNCL(this.area,this.cabang,this.mufnet,this.p_product,this.object,this.portofolio);
+        this.getDatacollectionNCL106Chart(this.area,this.cabang,this.mufnet,this.p_product,this.object,this.portofolio);
+        this.getDatacollectionLorNET106Chart(this.area,this.cabang,this.mufnet,this.p_product,this.object,this.portofolio);
+        this.getDatacollectionWONormal106Chart(this.area,this.cabang,this.mufnet,this.p_product,this.object,this.portofolio);
+        this.getDatacollectionNCI106Chart(this.area,this.cabang,this.mufnet,this.p_product,this.object,this.portofolio);
+        
+      }
+
+  // GAUGE 1 
+  data_gauge_persenGCL = {
+    "chart": {
+      // "numberSuffix" : "%",
+      "lowerLimit": "0",
+      "valueBelowPivot":"1",
+      "upperLimit": "10",
+      "theme": "zune",
+      "exportenabled": "1",
+    },
+    "colorRange": {
+        "color": [
+            {
+                "minValue": "0",
+                "maxValue": "3",
+                "code": "#00FF00"
+            },
+            {
+                "minValue": "3",
+                "maxValue": "7",
+                "code": "#FFFF00"
+            },
+            {
+                "minValue": "7",
+                "maxValue": "10",
+                "code": "#FF0000"
+            }
+        ]
+    },
+    "dials": {
+        "dial": [
+            {
+                "value": null
+            }
+        ]
+    }
+  }
+  dataSourceGaugePersenGCL=this.data_gauge_persenGCL
+  getDataCollectionPersenGCL(area,cab,mufnet,pp,obj,porto){
+    var dataChartGauge={
+      "app": "muf-dashboard",
+      "method": "collectionPersenGCL",
+      "data": {
+      	"area_code": area,
+          "branch_code": cab,
+          "mufnet_code": mufnet,
+          "portofolio":porto,
+          "penggolongan_product": pp,
+          "object": obj
+      }
+    }
+    this.service.postLocal('post',dataChartGauge).subscribe(res=>{
+      if(res.status==true){
+        this.data_gauge_persenGCL.dials.dial[0].value=res['data_collection_%_gcl_chart'].value_gcl[0].value;
+      }
+      else{
+        console.log("PersenGCL",false)
+      }
+    //  console.log(res)
+     
+    })
+
+  }
+
+  // GAUGE 2
+  data_gauge_gcl106 = {
+    "chart": {
+      // "numberSuffix" : "%",
+      "lowerLimit": "0",
+      "valueBelowPivot":"1",
+      "upperLimit": "10",
+      "theme": "zune",
+      "exportenabled": "1",
+    },
+    "colorRange": {
+        "color": [
+            {
+                "minValue": "0",
+                "maxValue": "3",
+                "code": "#00FF00"
+            },
+            {
+                "minValue": "3",
+                "maxValue": "7",
+                "code": "#FFFF00"
+            },
+            {
+                "minValue": "7",
+                "maxValue": "10",
+                "code": "#FF0000"
+            }
+        ]
+    },
+    "dials": {
+        "dial": [
+            {
+                "value": null
+            }
+        ]
+    }
+  }
+  dataSourceGaugeGcl106 = this.data_gauge_gcl106
+
+  getDataCollectionGcl106YtdChart(area,cab,mufnet,pp,obj,porto){
+    var dataChartGauge={
+      "app": "muf-dashboard",
+      "method": "collectionGcl106YtdChart",
+      "data": {
+      	"area_code": area,
+          "branch_code": cab,
+          "mufnet_code": mufnet,
+          "portofolio":porto,
+          "penggolongan_product": pp,
+          "object": obj
+      }
+    }
+
+    this.service.postLocal('post',dataChartGauge).subscribe(res=>{
+      if(res){
+      this.data_gauge_gcl106.dials.dial[0].value=res['data_collection_gcl_106_ytd_chart'].value_gcl[0].value;
+      // console.log(res['data_collection_gcl_106_ytd_chart'].value_gcl[0].value)
+      }
+    })
+
+  }
+
+  // GAUGE 3
+  data_gauge_LorGross106Chart = {
+    "chart": {
+      // "numberSuffix" : "%",
+      "lowerLimit": "0",
+      "valueBelowPivot":"1",
+      "upperLimit": "10",
+      "theme": "zune",
+      "exportenabled": "1",
+    },
+    "colorRange": {
+        "color": [
+            {
+                "minValue": "0",
+                "maxValue": "3",
+                "code": "#00FF00"
+            },
+            {
+                "minValue": "3",
+                "maxValue": "7",
+                "code": "#FFFF00"
+            },
+            {
+                "minValue": "7",
+                "maxValue": "10",
+                "code": "#FF0000"
+            }
+        ]
+    },
+    "dials": {
+        "dial": [
+            {
+                "value": null
+            }
+        ]
+    }
+  }
+  dataSourceLorGross106=this.data_gauge_LorGross106Chart;
+
+  getDataCollectionLorGross106Chart (area,cab,mufnet,pp,obj,porto){
+    var dataChartGauge={
+      "app": "muf-dashboard",
+      "method": "collectionLorGross106Chart",
+      "data": {
+      	"area_code": area,
+          "branch_code": cab,
+          "mufnet_code": mufnet,
+          "portofolio":porto,
+          "penggolongan_product": pp,
+          "object": obj
+      }
+    }
+
+    this.service.postLocal('post',dataChartGauge).subscribe(res=>{
+      if(res.status==true){
+        this.dataSourceLorGross106.dials.dial[0].value=res['data_collection_lor_gros_106_chart'].value_gcl[0].value;
+      }
+      else{
+       
+      }
+      
+      // this.data_gauge_gcl106.dials.dial[0].value=res['data_collection_gcl_106_ytd_chart'].value_gcl[0].value;
+      // console.log(res['data_collection_lor_gros_106_chart'])
+    })
+  }
+
+// GAUGE 4
+  data_gauge_WOAll106Chart = {
+    "chart": {
+      // "numberSuffix" : "%",
+      "lowerLimit": "0",
+      "valueBelowPivot":"1",
+      "upperLimit": "10",
+      "theme": "zune",
+      "exportenabled": "1",
+    },
+    "colorRange": {
+        "color": [
+            {
+                "minValue": "0",
+                "maxValue": "3",
+                "code": "#00FF00"
+            },
+            {
+                "minValue": "3",
+                "maxValue": "7",
+                "code": "#FFFF00"
+            },
+            {
+                "minValue": "7",
+                "maxValue": "10",
+                "code": "#FF0000"
+            }
+        ]
+    },
+    "dials": {
+        "dial": [
+            {
+                "value": null
+            }
+        ]
+    }
+  }
+
+  dataSourceWOAll106Chart=this.data_gauge_WOAll106Chart
+
+  getDataCollectionWOAll106Chart(area,cab,mufnet,pp,obj,porto){
+    var dataChartGauge={
+      "app": "muf-dashboard",
+      "method": "collectionWOAll106Chart",
+      "data": {
+      	"area_code": area,
+          "branch_code": cab,
+          "mufnet_code": mufnet,
+          "portofolio":porto,
+          "penggolongan_product": pp,
+          "object": obj
+      }
+    }
+    this.service.postLocal('post',dataChartGauge).subscribe(res=>{
+      // console.log("woa",res)
+      this.data_gauge_WOAll106Chart.dials.dial[0].value=res['data_collection_wo_all_106_chart'].value_gcl[0].value;
+      // console.log(res['data_collection_lor_gros_106_chart'])
+    })
+
+  }
+
+  // GAUGE 5
+  data_gauge_Gci106Chart = {
+    "chart": {
+      // "numberSuffix" : "%",
+      "lowerLimit": "0",
+      "valueBelowPivot":"1",
+      "upperLimit": "10",
+      "theme": "zune",
+      "exportenabled": "1",
+    },
+    "colorRange": {
+        "color": [
+            {
+                "minValue": "0",
+                "maxValue": "3",
+                "code": "#00FF00"
+            },
+            {
+                "minValue": "3",
+                "maxValue": "7",
+                "code": "#FFFF00"
+            },
+            {
+                "minValue": "7",
+                "maxValue": "10",
+                "code": "#FF0000"
+            }
+        ]
+    },
+    "dials": {
+        "dial": [
+            {
+                "value": null
+            }
+        ]
+    }
+  }
+
+  dataSourceGci106Chart=this.data_gauge_Gci106Chart
+  getDataCollectionGci106Chart(area,cab,mufnet,pp,obj,porto){
+    var dataChartGauge={
+      "app": "muf-dashboard",
+      "method": "collectionGci106Chart",
+      "data": {
+      	"area_code": area,
+          "branch_code": cab,
+          "mufnet_code": mufnet,
+          "portofolio":porto,
+          "penggolongan_product": pp,
+          "object": obj
+      }
+    }
+    this.service.postLocal('post',dataChartGauge).subscribe(res=>{
+      // console.log("gci",res)
+      this.data_gauge_Gci106Chart.dials.dial[0].value=res['data_collection_gci_106_chart'].value_gcl[0].value;
+      // console.log(res['data_collection_lor_gros_106_chart'])
+    })
+
+  }
+
+  // GAUGE 6
+  data_gauge_PersenNCL = {
+    "chart": {
+      // "numberSuffix" : "%",
+      "lowerLimit": "0",
+      "valueBelowPivot":"1",
+      "upperLimit": "10",
+      "theme": "zune",
+      "exportenabled": "1",
+    },
+    "colorRange": {
+        "color": [
+            {
+                "minValue": "0",
+                "maxValue": "3",
+                "code": "#00FF00"
+            },
+            {
+                "minValue": "3",
+                "maxValue": "7",
+                "code": "#FFFF00"
+            },
+            {
+                "minValue": "7",
+                "maxValue": "10",
+                "code": "#FF0000"
+            }
+        ]
+    },
+    "dials": {
+        "dial": [
+            {
+                "value": null
+            }
+        ]
+    }
+  }
+  dataSourcePersenNCL=this.data_gauge_PersenNCL
+  getDatacollectionPersenNCL(area,cab,mufnet,pp,obj,porto){
+    var dataChartGauge={
+      "app": "muf-dashboard",
+      "method": "collectionGci106Chart",
+      "data": {
+      	"area_code": area,
+          "branch_code": cab,
+          "mufnet_code": mufnet,
+          "portofolio":porto,
+          "penggolongan_product": pp,
+          "object": obj
+      }
+    }
+    this.service.postData('post',dataChartGauge).subscribe(res=>{
+      // console.log("PersenNCL",res)
+      if(res.status==true){
+        this.data_gauge_PersenNCL.dials.dial[0].value=res['data_collection_gci_106_chart'].value_gcl[0].value;
+      }
+      else{
+        console.log("getDatacollectionPersenNCL", false+" : Data Error")
+      }
+      // console.log(res['data_collection_lor_gros_106_chart'])
+    })
+
+  }
+
+  // GAUGE 7
+  data_gauge_NCL106Chart = {
+    "chart": {
+      // "numberSuffix" : "%",
+      "lowerLimit": "0",
+      "valueBelowPivot":"1",
+      "upperLimit": "10",
+      "theme": "zune",
+      "exportenabled": "1",
+    },
+    "colorRange": {
+        "color": [
+            {
+                "minValue": "0",
+                "maxValue": "3",
+                "code": "#00FF00"
+            },
+            {
+                "minValue": "3",
+                "maxValue": "7",
+                "code": "#FFFF00"
+            },
+            {
+                "minValue": "7",
+                "maxValue": "10",
+                "code": "#FF0000"
+            }
+        ]
+    },
+    "dials": {
+        "dial": [
+            {
+                "value": null
+            }
+        ]
+    }
+  }
+  dataSourceNCL106Chart=this.data_gauge_NCL106Chart
+  getDatacollectionNCL106Chart(area,cab,mufnet,pp,obj,porto){
+    var dataChartGauge={
+      "app": "muf-dashboard",
+      "method": "collectionNCL106Chart",
+      "data": {
+      	"area_code": area,
+          "branch_code": cab,
+          "mufnet_code": mufnet,
+          "portofolio":porto,
+          "penggolongan_product": pp,
+          "object": obj
+      }
+    }
+    this.service.postLocal('post',dataChartGauge).subscribe(res=>{
+      // console.log("NCL106Chart",res)
+      this.data_gauge_NCL106Chart.dials.dial[0].value=res['data_collection_ncl_106_ytd_chart'].value_gcl[0].value;
+      // console.log(res['data_collection_lor_gros_106_chart'])
+    })
+
+  }
+
+  // GAUGE 8 ****
+  data_gauge_LorNET106Chart = {
+    "chart": {
+      // "numberSuffix" : "%",
+      "lowerLimit": "0",
+      "valueBelowPivot":"1",
+      "upperLimit": "10",
+      "theme": "zune",
+      "exportenabled": "1",
+    },
+    "colorRange": {
+        "color": [
+            {
+                "minValue": "0",
+                "maxValue": "3",
+                "code": "#00FF00"
+            },
+            {
+                "minValue": "3",
+                "maxValue": "7",
+                "code": "#FFFF00"
+            },
+            {
+                "minValue": "7",
+                "maxValue": "10",
+                "code": "#FF0000"
+            }
+        ]
+    },
+    "dials": {
+        "dial": [
+            {
+                "value": null
+            }
+        ]
+    }
+  }
+  dataSourceLorNET106Chart=this.data_gauge_LorNET106Chart
+  getDatacollectionLorNET106Chart(area,cab,mufnet,pp,obj,porto){
+    var dataChartGauge={
+      "app": "muf-dashboard",
+      "method": "collectionLorNET106Chart",
+      "data": {
+      	"area_code": area,
+          "branch_code": cab,
+          "mufnet_code": mufnet,
+          "portofolio":porto,
+          "penggolongan_product": pp,
+          "object": obj
+      }
+    }
+    this.service.postLocal('post',dataChartGauge).subscribe(res=>{
+      // console.log("LorNET106Chart",res)
+      // this.data_gauge_LorNET106Chart.dials.dial[0].value=res['data_collection_lor_net_106_chart'].value_gcl[0].value;
+      // console.log(res['data_collection_lor_gros_106_chart'])
+    })
+
+  }
+
+
+   // GAUGE 9
+   data_gauge_WONormal106Chart = {
+    "chart": {
+      // "numberSuffix" : "%",
+      "lowerLimit": "0",
+      "valueBelowPivot":"1",
+      "upperLimit": "10",
+      "theme": "zune",
+      "exportenabled": "1",
+    },
+    "colorRange": {
+        "color": [
+            {
+                "minValue": "0",
+                "maxValue": "3",
+                "code": "#00FF00"
+            },
+            {
+                "minValue": "3",
+                "maxValue": "7",
+                "code": "#FFFF00"
+            },
+            {
+                "minValue": "7",
+                "maxValue": "10",
+                "code": "#FF0000"
+            }
+        ]
+    },
+    "dials": {
+        "dial": [
+            {
+                "value": null
+            }
+        ]
+    }
+  }
+  dataSourceWONormal106Chart=this.data_gauge_WONormal106Chart
+  getDatacollectionWONormal106Chart(area,cab,mufnet,pp,obj,porto){
+    var dataChartGauge={
+      "app": "muf-dashboard",
+      "method": "collectionWONormal106Chart",
+      "data": {
+      	"area_code": area,
+          "branch_code": cab,
+          "mufnet_code": mufnet,
+          "portofolio":porto,
+          "penggolongan_product": pp,
+          "object": obj
+      }
+    }
+    this.service.postLocal('post',dataChartGauge).subscribe(res=>{
+      // console.log("WONormal106Chart",res)
+      this.data_gauge_WONormal106Chart.dials.dial[0].value=res['data_collection_wo_all_106_chart'].value_gcl[0].value;
+      // console.log(res['data_collection_lor_gros_106_chart'])
+    })
+
+  }
+
+  // GAUGE 10
+  data_gauge_NCI106Chart = {
+    "chart": {
+      // "numberSuffix" : "%",
+      "lowerLimit": "0",
+      "valueBelowPivot":"1",
+      "upperLimit": "10",
+      "showValues": "1",
+      "theme": "zune",
+      "exportenabled": "1",
+    },
+    "colorRange": {
+        "color": [
+            {
+                "minValue": "0",
+                "maxValue": "3",
+                "code": "#00FF00"
+            },
+            {
+                "minValue": "3",
+                "maxValue": "7",
+                "code": "#FFFF00"
+            },
+            {
+                "minValue": "7",
+                "maxValue": "10",
+                "code": "#FF0000"
+            }
+        ]
+    },
+    "dials": {
+        "dial": [
+            {
+                "value": null
+            }
+        ]
+    }
+  }
+  dataSourceNCI106Chart=this.data_gauge_NCI106Chart
+  getDatacollectionNCI106Chart(area,cab,mufnet,pp,obj,porto){
+    var dataChartGauge={
+      "app": "muf-dashboard",
+      "method": "collectionNCI106Chart",
+      "data": {
+      	"area_code": area,
+          "branch_code": cab,
+          "mufnet_code": mufnet,
+          "portofolio":porto,
+          "penggolongan_product": pp,
+          "object": obj
+      }
+    }
+    this.service.postLocal('post',dataChartGauge).subscribe(res=>{
+      console.log("NCI106Chart",res)
+      this.data_gauge_NCI106Chart.dials.dial[0].value=res['data_collection_nci_106_chart'].value_gcl[0].value;
+      // console.log(res['data_collection_lor_gros_106_chart'])
+    })
+
+  }
  
-  getEfektifPerformTable(cab,bDelq,pp,obj,porto){
+
+
+
+  getEfektifPerformTable(area,cab,mufnet,bDelq,pp,obj,porto){
+    // console.log(mufnet)
     var ept={
       "app": "muf-dashboard",
       "method": "collectionEffectivenessPerformanceRT",
       "data": {
-          "begin_delq": bDelq,
-          "branch_code": cab,
-          "portofolio": porto,
-          "object": obj,
-          "penggolongan_product": pp
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
       }
   }
 
   this.service.postData('post',ept).subscribe(result=>{
-    this.dataEpt=result['data_effectiveness_collection_performance_rt'];
+    if(result.status==true){
+      this.dataEpt=result['data_effectiveness_collection_performance_rt'];
+    }
+    else{
+      this.dataEpt=[];
+    }
+   
     // //console.log(this.dataEpt)
   });
 
@@ -5335,26 +6066,29 @@ export class CollectionComponent implements OnInit {
     ]
   };
 
-  dataEptChart;
-  
-  getEfektifPerformChart(cab,bDelq,pp,obj,porto){
+  dataEptChart; 
+  getEfektifPerformChart(area,cab,mufnet,bDelq,pp,obj,porto){
     var eptChart={
       "app": "muf-dashboard",
       "method": "collectionEffectivenessPerformanceRC",
       "data": {
-          "begin_delq": bDelq,
-          "branch_code": cab,
-          "portofolio": porto,
-          "object": obj,
-          "penggolongan_product": pp
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
       }
     }
 
 
 
     this.service.postData('post',eptChart).subscribe(resChart=>{
+      if(resChart.status==true){
+
+      
       this.dataEptChart=resChart
-      // console.log(this.dataEptChart);
+      // console.log(resChart);
       // this.dataEptChart['data_effectiveness_collection_performance_rc']['category'].forEach(function(value){
         
       
@@ -5373,29 +6107,40 @@ export class CollectionComponent implements OnInit {
       // console.log(this.data_bar.dataset[6].data);
 
       this.dataSourceBar=this.data_bar
+    }
+    else{
+      this.dataEptChart=[];
+    }
       // console.log(this.dataSourceBar)
     })
 
   }
 
   eplt=[];
-  collectionEffectivenessPerformanceLT(cab,bDelq,pp,obj,porto){
+  collectionEffectivenessPerformanceLT(area,cab,mufnet,bDelq,pp,obj,porto){
     var dataEplt={
       "app": "muf-dashboard",
       "method": "collectionEffectivenessPerformanceLT",
       "data": {
-          "begin_delq": bDelq,
-          "branch_code": cab,
-          "portofolio": porto,
-          "object": obj,
-          "penggolongan_product": pp
+        "begin_delq": "0.Current",
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
       }
     }
 
     this.service.postData('post',dataEplt).subscribe(result=>{
-      this.eplt=result['data_effectiveness_collection_performance_lt'];
+      // console.log(result)
+      if(result.status==true){
+        this.eplt=result['data_effectiveness_collection_performance_lt'];
+      }
+      else{
+        this.eplt=[];
+      }      
       // console.log(this.eplt);
-
     });
   }
 
@@ -5460,24 +6205,28 @@ export class CollectionComponent implements OnInit {
       }
     ]
   }
-  collectionEffectivenessPerformanceLC(cab,bDelq,pp,obj,porto){
+  collectionEffectivenessPerformanceLC(area,cab,mufnet,bDelq,pp,obj,porto){
     var temp=this.data;
     var epltChart={
       "app": "muf-dashboard",
       "method": "collectionEffectivenessPerformanceLC",
       "data": {
-          "begin_delq": bDelq,
-          "branch_code": cab,
-          "portofolio": porto,
-          "object": obj,
-          "penggolongan_product": pp
+        "begin_delq": "0.Current",
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
       }
     }
 
     // console.log(epltChart);
     var tempValue;
     this.service.postData('post',epltChart).subscribe(resChart=>{
-      tempValue=resChart['data_effectiveness_collection_performance_lc'];
+      // console.log(resChart)
+      if(resChart.status==true){
+        tempValue=resChart['data_effectiveness_collection_performance_lc'];
       // console.log(resChart['data_effectiveness_collection_performance_lc'])
       temp.categories[0].category=tempValue['category'];
       temp.dataset[0].data=tempValue['stay'];
@@ -5488,22 +6237,30 @@ export class CollectionComponent implements OnInit {
       temp.dataset[5].data=tempValue['roll_up']
       temp.dataset[6].data=tempValue['wo']
       this.dataSource=temp;
+      }
+      else{
+        tempValue=[];
+      }
+      
       //console.log(this.dataSource);
     })
+
   }
 
 
   bucketUnit=[];
-  getDataTabelCollectionBucketByUnit(cab,bDelq,pp,obj,porto){
+  getDataTabelCollectionBucketByUnit(area,cab,mufnet,bDelq,pp,obj,porto){
     var tempBucket={
       "app": "muf-dashboard",
       "method": "collectionBucketByUnitTable",
       "data": {
-          "begin_delq": bDelq,
-          "branch_code": cab,
-          "portofolio": porto,
-          "object": obj,
-          "penggolongan_product": pp
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
       }
   
   }
@@ -5580,30 +6337,37 @@ export class CollectionComponent implements OnInit {
     ]
   }
 
-  getDataChartCollectionBucketByUnit(cab,bDelq,pp,obj,porto){
+  getDataChartCollectionBucketByUnit(area,cab,mufnet,bDelq,pp,obj,porto){
     var tempchart;
     var bucketChart={
       "app": "muf-dashboard",
       "method": "collectionBucketByUnitChart",
       "data": {
-          "begin_delq": bDelq,
-          "branch_code": cab,
-          "portofolio": porto,
-          "object": obj,
-          "penggolongan_product": pp
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
       }
   
   }
   this.service.postData('post',bucketChart).subscribe(result=>{
-    tempchart=result['data_collection_bucket_by_unit_chart'];
-    this.dataSourceBucketByUnit.categories[0].category=tempchart['category'];
-    this.dataSourceBucketByUnit.dataset[0].data=tempchart['unit_ar_106'];
-    this.dataSourceBucketByUnit.dataset[1].data=tempchart['unit_1_30'];
-    this.dataSourceBucketByUnit.dataset[2].data=tempchart['unit_31_60'];
-    this.dataSourceBucketByUnit.dataset[3].data=tempchart['unit_61_90'];
-    this.dataSourceBucketByUnit.dataset[4].data=tempchart['unit_91_120'];
-    this.dataSourceBucketByUnit.dataset[5].data=tempchart['unit_121_150'];
-    this.dataSourceBucketByUnit.dataset[6].data=tempchart['unit_lebih_dari_150'];
+    if(result.status==true){
+      tempchart=result['data_collection_bucket_by_unit_chart'];
+      this.dataSourceBucketByUnit.categories[0].category=tempchart['category'];
+      this.dataSourceBucketByUnit.dataset[0].data=tempchart['unit_ar_106'];
+      this.dataSourceBucketByUnit.dataset[1].data=tempchart['unit_1_30'];
+      this.dataSourceBucketByUnit.dataset[2].data=tempchart['unit_31_60'];
+      this.dataSourceBucketByUnit.dataset[3].data=tempchart['unit_61_90'];
+      this.dataSourceBucketByUnit.dataset[4].data=tempchart['unit_91_120'];
+      this.dataSourceBucketByUnit.dataset[5].data=tempchart['unit_121_150'];
+      this.dataSourceBucketByUnit.dataset[6].data=tempchart['unit_lebih_dari_150'];
+    }
+    else{
+      tempchart=[];
+    }
     // console.log(tempchart);
   })
   
@@ -5677,47 +6441,58 @@ export class CollectionComponent implements OnInit {
     ]
   }
 
-  getDataChartCollectionBucketByAmount(cab,bDelq,pp,obj,porto){
+  getDataChartCollectionBucketByAmount(area,cab,mufnet,bDelq,pp,obj,porto){
     var tempchart;
     var bucketChart={
       "app": "muf-dashboard",
       "method": "collectionBucketByAmountChart",
       "data": {
-          "begin_delq": bDelq,
-          "branch_code": cab,
-          "portofolio": porto,
-          "object": obj,
-          "penggolongan_product": pp
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
       }
     }
 
     this.service.postData('post',bucketChart).subscribe(res=>{
-      tempchart=res['data_collection_bucket_by_amount_chart'];
+      
+      if(res.status==true){
+        tempchart=res['data_collection_bucket_by_amount_chart'];
 
       this.dataSourceBucketByAmount.categories[0].category=tempchart['category'];
-    this.dataSourceBucketByAmount.dataset[0].data=tempchart['unit_ar_106'];
-    this.dataSourceBucketByAmount.dataset[1].data=tempchart['unit_1_30'];
-    this.dataSourceBucketByAmount.dataset[2].data=tempchart['unit_31_60'];
-    this.dataSourceBucketByAmount.dataset[3].data=tempchart['unit_61_90'];
-    this.dataSourceBucketByAmount.dataset[4].data=tempchart['unit_91_120'];
-    this.dataSourceBucketByAmount.dataset[5].data=tempchart['unit_121_150'];
-    this.dataSourceBucketByAmount.dataset[6].data=tempchart['unit_lebih_dari_150'];
+      this.dataSourceBucketByAmount.dataset[0].data=tempchart['unit_ar_106'];
+      this.dataSourceBucketByAmount.dataset[1].data=tempchart['unit_1_30'];
+      this.dataSourceBucketByAmount.dataset[2].data=tempchart['unit_31_60'];
+      this.dataSourceBucketByAmount.dataset[3].data=tempchart['unit_61_90'];
+      this.dataSourceBucketByAmount.dataset[4].data=tempchart['unit_91_120'];
+      this.dataSourceBucketByAmount.dataset[5].data=tempchart['unit_121_150'];
+      this.dataSourceBucketByAmount.dataset[6].data=tempchart['unit_lebih_dari_150'];
+      }
+      else{
+        tempchart=[];
+      }
+     
       // console.log(tempchart['data_collection_bucket_by_amount_chart']['category'])
     })
   }
 
   dataTableAmount=[];
-  getDatacollectionBucketByAmountTable(cab,bDelq,pp,obj,porto){
+  getDatacollectionBucketByAmountTable(area,cab,mufnet,bDelq,pp,obj,porto){
     var tempchart;
     var bucketAmount={
       "app": "muf-dashboard",
       "method": "collectionBucketByAmountTable",
       "data": {
-          "begin_delq": bDelq,
-          "branch_code": cab,
-          "portofolio": porto,
-          "object": obj,
-          "penggolongan_product": pp
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
       }
   
   }
@@ -5728,24 +6503,233 @@ export class CollectionComponent implements OnInit {
   })
   }
 
+  //LOSSES PERFORMANCE GROSS -------------------------------------------------------------
+  dataTableLossesPerformNet=[]
+  getDataCollectionLossesPerformNetTable(area,cab,mufnet,bDelq,pp,obj,porto){
+    var LossesPerformNet={
+      "app": "muf-dashboard",
+      "method": "collectionLossesPerformNetTable",
+      "data":{
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
+      }
+    }
+  this.service.postLocal('post',LossesPerformNet).subscribe(result=>{
+    console.log(result)
+    this.dataTableLossesPerformNet=result['data_collection_losses_perform_net_table']
+    // console.log(this.dataTableLossesPerformNet)
+  })
+  }
+
+  dataChartLossesPerformNetChart={
+    "chart": {
+      "caption": "Losses Performance",
+      "subcaption": "Mandiri Utama Finance",
+      "xaxisname": "Month",
+      "yaxisname": "Value",
+      "showLabels": "0",
+      "sNumberSuffix":"%",
+      "sYAxisMaxValue":"4.50",
+      "numberprefix": "",
+      "exportenabled": "1",
+      "theme": "fint"
+    },
+    "categories": [
+      {
+        "category": null
+      }
+    ],
+    "dataset": [
+      {
+        "seriesname": "lor_net_amount",
+        "data": null
+      },
+      {
+        "seriesname": "nci_amount",
+        "data": null
+      },
+      {
+        "seriesname": "ncl_amount",
+        "data": null
+      },
+      {
+        "seriesname": "ncl_persen",
+        "data": null
+      },
+      {
+        "seriesname": "wo_normal",
+        // "parentYAxis": "S",
+        // "renderAs" : "Line",
+        "data": null
+      }
+    ]
+  }
+  getDataCollectionLossesPerformNetChart(area,cab,mufnet,bDelq,pp,obj,porto){
+    var LossesPerformNetChart={
+      "app": "muf-dashboard",
+      "method": "collectionLossesPerformNetChart",
+      "data":{
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
+      }
+  
+  }
+    this.service.postLocal('post',LossesPerformNetChart).subscribe(result=>{
+      var tempResult=result['data_collection_losses_perform_net_chart'];
+      console.log(tempResult)
+      this.dataChartLossesPerformNetChart.categories[0].category=tempResult['category'];
+      this.dataChartLossesPerformNetChart.dataset[0].data=tempResult['lor_net_amount'];
+      this.dataChartLossesPerformNetChart.dataset[1].data=tempResult['nci_amount'];
+      this.dataChartLossesPerformNetChart.dataset[2].data=tempResult['ncl_amount'];
+      this.dataChartLossesPerformNetChart.dataset[3].data=tempResult['ncl_persen'];
+      this.dataChartLossesPerformNetChart.dataset[4].data=tempResult['wo_normal'];
+
+      
+    })
+
+    
+  }
+
+  //LOSSES PERFORMANCE GROSS -------------------------------------------------------------
+  dataTableLossesPerformGross=[]
+  getDataCollectionLossesPerformGrossTable(area,cab,mufnet,bDelq,pp,obj,porto){
+    var LossesPerformGross={
+      "app": "muf-dashboard",
+      "method": "collectionLossesPerformGrossTable",
+      "data":{
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
+      }
+    }
+  this.service.postLocal('post',LossesPerformGross).subscribe(result=>{
+    console.log(result)
+    this.dataTableLossesPerformGross=result['data_collection_losses_perform_gross_table']
+    // console.log(this.dataTableLossesPerformNet)
+  })
+  }
+
+  dataChartLossesPerformGrossChart={
+    "chart": {
+      "caption": "Losses Performance",
+      "subcaption": "Mandiri Utama Finance",
+      "xaxisname": "Month",
+      "yaxisname": "Value",
+      "showLabels": "0",
+      "sNumberSuffix":"%",
+      "sYAxisMaxValue":"4.50",
+      "numberprefix": "",
+      "exportenabled": "1",
+      "theme": "fint"
+    },
+    "categories": [
+      {
+        "category": null
+      }
+    ],
+    "dataset": [
+      {
+        "seriesname": "lor_net_amount",
+        "data": null
+      },
+      {
+        "seriesname": "nci_amount",
+        "data": null
+      },
+      {
+        "seriesname": "ncl_amount",
+        "data": null
+      },
+      {
+        "seriesname": "ncl_persen",
+        "data": null
+      },
+      {
+        "seriesname": "wo_normal",
+        // "parentYAxis": "S",
+        // "renderAs" : "Line",
+        "data": null
+      }
+    ]
+  }
+  getDataCollectionLossesPerformGrossChart(area,cab,mufnet,bDelq,pp,obj,porto){
+    var LossesPerformGrossChart={
+      "app": "muf-dashboard",
+      "method": "collectionLossesPerformGrossChart",
+      "data":{
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
+      }
+  
+  }
+    this.service.postLocal('post',LossesPerformGrossChart).subscribe(result=>{
+      var tempResult=result['data_collection_losses_perform_gross_chart'];
+      // console.log(result)
+      if(result.status==true){
+        this.dataChartLossesPerformGrossChart.categories[0].category=tempResult['category'];
+        this.dataChartLossesPerformGrossChart.dataset[0].data=tempResult['lor_net_amount'];
+        this.dataChartLossesPerformGrossChart.dataset[1].data=tempResult['nci_amount'];
+        this.dataChartLossesPerformGrossChart.dataset[2].data=tempResult['ncl_amount'];
+        this.dataChartLossesPerformGrossChart.dataset[3].data=tempResult['ncl_persen'];
+        this.dataChartLossesPerformGrossChart.dataset[4].data=tempResult['wo_normal'];
+      }
+      else{
+        console.log("LossesPerformGrossChart",false)
+      }
+      
+      
+
+      
+    })
+
+    
+  }
+
   dataTableRepoPorto=[];
-  getDatacollectionRepoByPortoTable(cab,bDelq,pp,obj,porto){
+  getDatacollectionRepoByPortoTable(area,cab,mufnet,bDelq,pp,obj,porto){
     var tempTable;
     var repoByPorto={
       "app": "muf-dashboard",
       "method": "collectionRepoByPortoTable",
       "data": {
-          "begin_delq": bDelq,
-          "branch_code": cab,
-          "portofolio": porto,
-          "object": obj,
-          "penggolongan_product": pp
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
       }
   
   }
 
   this.service.postData('post',repoByPorto).subscribe(result=>{
-    this.dataTableRepoPorto=result['data_collection_repo_by_porto_table']
+    if(result){
+      this.dataTableRepoPorto=result['data_collection_repo_by_porto_table'];
+    }
+    else{
+      this.dataTableRepoPorto=[];
+    }
+    
     // console.log(this.dataTableRepoPorto)
   })
   }
@@ -5804,17 +6788,19 @@ export class CollectionComponent implements OnInit {
       }
     ]
   };
-  getCollectionRepoByPortoChart(cab,bDelq,pp,obj,porto){
+  getCollectionRepoByPortoChart(area,cab,mufnet,bDelq,pp,obj,porto){
     var tempChart;
     var ChartRepoByPorto={
       "app": "muf-dashboard",
       "method": "collectionRepoByPortoChart",
-      "data": {
-          "begin_delq": bDelq,
-          "branch_code": cab,
-          "portofolio": porto,
-          "object": obj,
-          "penggolongan_product": pp
+      "data":{
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
       }
   
   }
@@ -5822,12 +6808,7 @@ export class CollectionComponent implements OnInit {
   this.service.postData('post',ChartRepoByPorto).subscribe(res=>{
     tempChart=res['data_collection_repo_by_porto_chart'];
     this.dataChartRepoByPorto.categories[0].category=tempChart['category'];
-// var i
-//     for(i=0;i<this.dataChartRepoByPorto.dataset.length;i++){
-//       this.dataChartRepoByPorto.dataset[i].data=tempChart[i];
-//     }
-//     console.log(tempChart)
-    // console.log(this.dataChartRepoByPorto);
+
     this.dataChartRepoByPorto.dataset[0].data=tempChart['ccar'];
     this.dataChartRepoByPorto.dataset[1].data=tempChart['cmcy'];
     this.dataChartRepoByPorto.dataset[2].data=tempChart['mcar'];
@@ -5836,11 +6817,228 @@ export class CollectionComponent implements OnInit {
     this.dataChartRepoByPorto.dataset[5].data=tempChart['nmcy'];
     this.dataChartRepoByPorto.dataset[6].data=tempChart['ucar'];
     this.dataChartRepoByPorto.dataset[7].data=tempChart['umcy'];
+    // console.log(tempChart);
 
     // console.log(this.dataChartRepoByPorto)
   });
 
   }
+
+
+  //collection Perform Repo, Sold, Stock By Amt
+  dataTablePerformRssByAmt=[]
+  dataGetCollectionPerformRssByAmtTable(area,cab,mufnet,bDelq,pp,obj,porto){
+    var PerformRssByAmtTable={
+      "app": "muf-dashboard",
+      "method": "collectionPerformRssByAmtTable",
+      "data":{
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
+      }
+    }
+
+    this.service.postLocal('post',PerformRssByAmtTable).subscribe(res=>{
+      if(res.status==true){
+        this.dataTablePerformRssByAmt=res['data_collection_perform_rss_by_amt_table'];
+      }
+      else{
+        console.log("dataGetCollectionPerformRssByAmtTable", false+" : dataError")
+      }
+       console.log(res['data_collection_perform_rss_by_amt_table'])
+    })
+
+  }
+  
+  dataCharPerformRssByAmtChart={
+    "chart": {
+      "caption": "Collection Effectiveness Performance",
+      "subcaption": "Mandiri Utama Finance",
+      "xaxisname": "Month",
+      "yaxisname": "Total",
+      "formatnumberscale": "1",
+      "plottooltext": "<b>$dataValue</b> apps were available on <b>$seriesName</b> in $label",
+      "theme": "fusion",
+      "exportenabled": "1",
+      // "drawcrossline": "1"
+      
+    },
+    "categories": [
+      {
+        "category": null
+      }
+    ],
+    "dataset": [
+      {
+        "seriesname": "REPO",
+        "data": null
+      },
+      {
+        "seriesname": "SOLD",
+        "data": null
+      },
+      {
+        "seriesname": "Stock",
+        "data": null
+      },
+    ]
+  }
+  dataGetCollectionPerformRssByAmtChart(area,cab,mufnet,bDelq,pp,obj,porto){
+    var PerformRssByAmtChart={
+      "app": "muf-dashboard",
+      "method": "collectionPerformRssByAmtChart",
+      "data":{
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
+      }
+    }
+    var tempChart;
+    this.service.postLocal('post',PerformRssByAmtChart).subscribe(result=>{
+      tempChart=result['data_collection_perform_rss_by_amt_chart']
+      if(result.status==true){
+        this.dataCharPerformRssByAmtChart.categories[0].category=tempChart.category
+        this.dataCharPerformRssByAmtChart.dataset[0].data=tempChart.repo
+        this.dataCharPerformRssByAmtChart.dataset[1].data=tempChart.sold
+        this.dataCharPerformRssByAmtChart.dataset[2].data=tempChart.stock
+        // console.log(tempChart)
+      }
+      else{
+        console.log("dataGetCollectionPerformRssByAmstChart",false+": Data Error")
+      }
+    })
+
+  }
+
+
+  // collection Unit Sold Object Year Table
+  dataTableUnitSoldObjYear=[];
+  dataGetCollectionUnitSoldObjYearTable(area,cab,mufnet,bDelq,pp,obj,porto){
+    var UnitSoldObjYear={
+      "app": "muf-dashboard",
+      "method": "collectionUnitSoldObjYearTable",
+      "data":{
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
+      }
+  
+  }
+    this.service.postData('post',UnitSoldObjYear).subscribe(result=>{
+      // console.log(result)
+      if(result.status==true){
+        this.dataTableUnitSoldObjYear=result['data_collection_sold_unit_obj_year_table']
+      }
+      // console.log(this.dataTableUnitSoldObjYear)
+    })
+  }
+
+
+  
+  dataUnitSoldObjYearChart={
+    "chart": {
+      "caption": "UNIT SOLD By OBJECT YEARS",
+      // "subcaption": " Top 5 Developed Countries",
+      "numbersuffix": " %",
+      // "showsum": "1",
+      "plottooltext": "$label produces <b>$dataValue</b> of energy from $seriesName",
+      "theme": "fusion",
+      "exportenabled": "1",
+      "drawcrossline": "1"
+    },
+    "categories": [
+      {
+        "category": null
+      }
+    ],
+    "dataset": [
+      {
+        "seriesname": "2014",
+        "data": null
+      },
+      {
+        "seriesname": "2013",
+        "data": null
+      },
+      {
+        "seriesname": "2012",
+        "data": null
+      },
+      {
+        "seriesname": "2011",
+        "data": null
+      },
+      {
+        "seriesname": "2010",
+        "data": null
+      },
+      {
+        "seriesname": "2009",
+        "data": null
+      },
+      {
+        "seriesname": "2008",
+        "data": null
+      },
+      {
+        "seriesname": "2007",
+        "data": null
+      },
+      {
+        "seriesname": "2006",
+        "data": null
+      },
+      {
+        "seriesname": "2005",
+        "data": null
+      },
+      {
+        "seriesname": "2004",
+        "data": null
+      },
+      {
+        "seriesname": "2003",
+        "data": null
+      }
+    ]
+  };
+  dataGetCollectionUnitSoldObjYearChart(area,cab,mufnet,bDelq,pp,obj,porto){
+    var UnitSoldObjYearCharts={
+      "app": "muf-dashboard",
+      "method": "collectionUnitSoldObjYearChart",
+      "data":{
+        "begin_delq": bDelq,
+        "area_code": area,
+        "branch_code": cab,
+        "mufnet_code": mufnet,
+        "portofolio":porto,
+        "penggolongan_product": pp,
+        "object": obj
+      }
+  
+  }
+    this.service.postData('post',UnitSoldObjYearCharts).subscribe(res=>{
+      // console.log(res)
+      // if(result.status==true){
+      //   this.dataTableUnitSoldObjYear=result['data_collection_sold_unit_obj_year_table']
+      // }
+      // console.log(this.dataTableUnitSoldObjYear)
+    })
+  }
+
+
   
   onClickSubmit(){
     this.ngOnInit();
